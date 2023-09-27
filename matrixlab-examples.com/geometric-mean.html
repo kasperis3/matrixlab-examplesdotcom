@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Geometric Mean</title>
+
+<meta name="Description" content="This program computes the geometric mean and geometric deviation of a set of data. We obtain the results in two ways, using iterations and available vectorized operations in Matlab...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/geometric-mean.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Geometric Mean" />
+<meta property="og:description" content="This program computes the geometric mean and geometric deviation of a set of data. We obtain the results in two ways, using iterations and available vectorized operations in Matlab..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/geometric-mean.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img style="width: 146px; height: 400px;" src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 520px;">
+<h1><a name="top"></a>Geometric
+mean and geometric deviation</h1>
+<br>
+This program computes the <span style="font-weight: bold;">geometric
+mean</span> and <span style="font-weight: bold;">geometric
+deviation</span> of a set of data. We obtain the results in two
+ways, using <span style="font-weight: bold;">iterations</span>
+and available <span style="font-weight: bold;">vectorized
+operations</span> in Matlab.<br>
+<br>
+The geom. mean is given by this formula<br>
+<div style="text-align: center;"><img style="width: 106px; height: 68px;" alt="geometric mean formula" src="http://www.matrixlab-examples.com/image-files/geometric-mean.jpg"></div>
+this means that it is the <span style="font-style: italic;">nth-root</span>
+of the product of all the elements being considered. <span style="font-style: italic;">n</span> is the number of
+elements in the set.<br>
+<br>
+The geom. deviation is given by this formula<br>
+<div style="text-align: center;"><img style="width: 181px; height: 56px;" alt="geometric deviation formula" src="http://www.matrixlab-examples.com/image-files/geometric-deviation.jpg"><br>
+</div>
+<br>
+where <span style="font-style: italic;">q</span> is
+a sum including the natural logarithms of the elements in the set.<br>
+<div style="text-align: center;"><img style="width: 116px; height: 50px;" alt="geometric deviation aux. formula" src="http://www.matrixlab-examples.com/image-files/geometric-deviation-2.jpg"><br>
+</div>
+<br>
+We can use iterations to calculate what we need. In Matlab, this is <span style="font-weight: bold;">not</span>
+the most efficient way to do it, but we can implement the same
+algorithm in other languages...<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+function [gm, gd] = geo_mean_dev(x)<br>
+<span style="font-weight: bold;">% Take into
+account the number of elements in the vector</span><br>
+n = length(x);<br>
+<br>
+<span style="font-weight: bold;">% Initialize
+some variables</span><br>
+gm = 1;<br>
+q = 0;<br>
+<br>
+<span style="font-weight: bold;">% Iterate
+through all of the elements</span><br>
+for i = 1 : n<br>
+&nbsp;&nbsp;&nbsp; d = x(i);<br>
+&nbsp;&nbsp;&nbsp; <br>
+<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;
+% Compute mean</span><br>
+&nbsp;&nbsp;&nbsp; gm = gm * d^(1/n);<br>
+&nbsp;&nbsp;&nbsp; <br>
+<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;
+% Accumulate intermediate term for deviation</span><br>
+&nbsp;&nbsp;&nbsp; q = q + log(d)^2;<br>
+end<br>
+<br>
+<span style="font-weight: bold;">% Compute
+deviation</span><br>
+gd = abs(exp(sqrt(q/(n-1)-(n/(n-1)*(log(gm))^2))));<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+We can test our function as follows (from the command window or from
+another script):<br>
+<br>
+x = [3 5 8 3 7 2];<br>
+[gm1, gd1]= geo_mean_dev(x)<br>
+<br>
+Matlab response is<br>
+<br>
+gm1 = &nbsp;&nbsp;&nbsp; 4.1407<br>
+gd1 = &nbsp;&nbsp;&nbsp; 1.7237<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+We can also use the vectorized form to make it easier and faster...<br>
+(note that the '<span style="font-weight: bold;">log</span>'
+function performs the <span style="font-weight: bold; font-style: italic;">natural
+logarithm</span> of a number, while the '<span style="font-weight: bold; font-style: italic;">log10</span><span style="font-weight: bold;"></span>' function performs
+the log in base 10)<br>
+<br>
+n = length(x);<br>
+<span style="font-weight: bold;"><br>
+% The 'prod' function gets the multiplication of all the elements</span><br>
+gm2 = prod(x)^(1/n)<br>
+<span style="font-weight: bold;"><br>
+% The 'sum' function gets the sum of the vector</span><br>
+q = sum(log(x).^2);<br>
+<br>
+<span style="font-weight: bold;">% and now we
+can imlement the last formula</span><br>
+gd2 = exp(sqrt(q/(n-1)-(n/(n-1)*log(gm2)^2)))<br>
+<br>
+Again, Matlab response is<br>
+<br>
+gm2 = &nbsp;&nbsp;&nbsp; 4.1407<br>
+gd2 = &nbsp;&nbsp;&nbsp; 1.7237<br>
+<br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Geometric Mean' to
+home</a><br>
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/generic-programming.html" onclick="return FIX.track(this);">From
+'Geometric Mean' to 'Matlab Cookbook'</a><br>
+&nbsp; <br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="geometric-mean.html#top">Top</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/iteration.html" onclick="return FIX.track(this);">Iterations</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/probability-and-statistics.html" onclick="return FIX.track(this);">Probability and Stats</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/finance-formulas.html" onclick="return FIX.track(this);">Financial Apps</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for geometric mean page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="vertical-align: top; width: 170px; text-align: right;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:43:46 10-Aug-2021 -->
+</body></html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Mathematical Optimization using Scilab's optim</title>
+
+<meta name="Description" content="Scilab can perform mathematical optimization using the built-in function &#8216;optim&#8217;. Need to define the function to be optimized, with pecularities...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/mathematical-optimization-2.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Mathematical Optimization using Scilab's optim" />
+<meta property="og:description" content="Scilab can perform mathematical optimization using the built-in function &amp;#8216;optim&amp;#8217;. Need to define the function to be optimized, with pecularities..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/mathematical-optimization-2.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/math-optimization-001.gif" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 813px;" colspan="2"><img style="width: 960px; height: 148px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 145px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 813px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 520px;"><br>
+<br>
+<h1><a name="Mathematical_Optimization_using_Scilab"></a>Mathematical
+Optimization using Scilab</h1>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><br>
+</td>
+<td style="vertical-align: top;"></td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal">In Scilab, we can perform
+mathematical optimizations using
+the built-in function named &#8216;optim&#8217;. We need to define the function to
+be
+optimized, with some special pecularities to take into account. Our
+function not
+only takes its regular arguments, but there&#8217;s also a parameter
+indicating what it
+is expected to deliver. The function must output its value and maybe
+its
+gradient and an index to notify special cases.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">So optim is another
+non-linear optimization routine and it&#8217;s
+based on derivatives. We have seen <a href="http://www.matrixlab-examples.com/curve-fitting-scilab.html" onclick="return FIX.track(this);">polynomial fitting</a>
+and <a href="http://www.matrixlab-examples.com/least-squares-fit.html" onclick="return FIX.track(this);">least squares</a>-based
+algorithms in other examples.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">In general, the form of
+the function to be minimized or
+optimized is:</p>
+<p class="MsoNormal"><span style="font-family: monospace;">[fx, gr, ind2] = f(x, ind1,
+p1, p2, ...)</span><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">where<br>
+<span style="font-family: monospace;">ind1</span>
+= 2 means that we&#8217;re evaluating fx = f(x).<br>
+<span style="font-family: monospace;">ind1</span>
+= 3 means that we&#8217;re evaluating gr = f&#8217;(x).<br>
+<span style="font-family: monospace;">ind1</span>
+= 4 means that we&#8217;re evaluating both the function and
+its gradient.<br>
+<span style="font-family: monospace;">ind2</span>
+&lt; 0 notifies that the function was not able to
+evaluate f(x).<br>
+<span style="font-family: monospace;">ind2</span>
+= 0 means that the optimization didn&#8217;t finish
+correctly.<br>
+<span style="font-family: monospace;">p1</span>,
+<span style="font-family: monospace;">p2</span>,
+... are aditional parameters that the function could
+take<o:p>&nbsp;</o:p><br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">We are going to see a
+simple example where we want to
+minimize a 5th. order polynomial.<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">This is our polynomial:</p>
+<p style="text-align: center;" class="MsoNormal">y
+= -0.0071x<sup>5</sup> + 0.087x<sup>4</sup> -
+0.1x<sup>3</sup>
+- 1.3x<sup>2</sup> + 2.3x + 3.2</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
+and this is the correspondig plot:<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="font-family: monospace;">x = -4 : .01 : 8;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">y =
+-.0071*x^5 + .087*x^4 - .1*x^3 - 1.3*x^2 + 2.3*x + 3.2;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">plot(x,
+y)</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">xgrid</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">title('5ht.
+Order Polynomial'); xlabel('x'); ylabel('y')</span></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><img style="width: 410px; height: 336px;" alt="Polynomial to be optimized" src="http://www.matrixlab-examples.com/image-files/math-optimization-001.gif"></p>
+<span style="font-family: monospace;"></span><br>
+<p class="MsoNormal">This is the code that we
+could use to find its minimum
+value:<o:p>&nbsp;</o:p></p>
+<p style="font-family: monospace;" class="MsoNormal">// We define the function<br>
+function f = poly5(x)<br>
+<span style="">&nbsp; </span>f =
+-.0071*x^5 +
+.087*x^4 - .1*x^3 -1.3*x^2 + 2.3*x + 3.2;<br>
+endfunction<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="font-family: monospace;">// We define the objective
+or cost function. We need to</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">//
+calculate the gradient. In this case we're using the</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">//
+built-in function numdiff to calculate it</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">function
+[f, g, ind] = poly5Cost(x, ind)</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+if ((ind == 1) |
+(ind == 4))</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+f = poly5(x);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+g = numdiff(poly5,
+x);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+end</span><br>
+<span style="font-family: monospace;">endfunction</span><o:p style="font-family: monospace;">&nbsp;</o:p></p>
+<p style="font-family: monospace;" class="MsoNormal">// We have to make an initial guess<br>
+x0 = 0;<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="font-family: monospace;">// Now we use the optim
+function which calls the</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">//
+previously defined objective function</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">[yopt,
+xopt] = optim(poly5Cost, x0)</span><br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The result of our
+mathematical optimization according to
+Scilab is<span style="">:</span><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="font-family: monospace;">xopt&nbsp; = -2.5130895</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">yopt&nbsp;
+= -5.021364</span><br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Notice that this result
+is a local minimum. Actually, the
+function minimum is a number that <span class="x">tends
+toward minus infinity (not plotted).<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span class="x">If
+we start with another seed, we can get a
+different result, for example<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="font-family: monospace;">x0 = 8;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">[yopt,
+xopt] = optim(poly5Cost, x0)</span><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">produces:<br>
+<span style="font-family: monospace;">xopt&nbsp;
+= 4.477D+61</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">yopt&nbsp;
+= -1.276+306</span><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">We also can include lower
+and upper bounds on x, as in<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="font-family: monospace;">x0 = 1;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">[yopt,
+xopt] = optim(poly5Cost, 'b', 1, 7, x0)</span><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">which now produces
+another local minimum<br>
+<span style="font-family: monospace;">xopt&nbsp;
+= 3.8891255</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">yopt&nbsp;
+= 0.1859703</span><br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">A note about the gradient
+that we need to include as output: we used &#8216;<span style="font-family: monospace;">numdiff</span>&#8217;, which
+is a numerical gradient estimation, and we can also
+use&nbsp;<br>
+&#8216;<span style="font-family: monospace;">derivative</span>&#8217;,
+which approximate derivatives of a function. If you know the exact
+derivative, you should use it, but it's also possible to optimize a
+problem without an explicit knowledge of the
+derivative of the objective function, and the numdiff or derivative
+function can accomplish
+this task.<o:p></o:p></p>
+If you need an exhaustive description of the inputs
+and outputs of the optim function and other optimization examples, I
+suggest
+you see<br>
+http://help.scilab.org/docs/5.3.3/en_US/optim.html<br>
+<br>
+<br>
+<span style="font-weight: bold;">Maybe you're
+interested in:</span><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/linear-programming.html" onclick="return FIX.track(this);">Non-gradient-based
+optimization in Matlab</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/strategic-optimization.html" onclick="return FIX.track(this);">Steps of a strategic
+optimization</a><br>
+<br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Mathematical Optimization' to home</a><br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/scilab.html" onclick="return FIX.track(this);">From
+'Mathematical Optimization' to Scilab</a><br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><br>
+</td>
+<td style="vertical-align: bottom; text-align: right; font-weight: bold;"><a href="#Mathematical_Optimization_using_Scilab">Top</a></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for matlab page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="vertical-align: top; background-color: rgb(211, 228, 244); width: 170px; text-align: right;"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:50:46 10-Aug-2021 -->
+</body></html>

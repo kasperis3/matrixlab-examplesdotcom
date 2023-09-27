@@ -1,0 +1,396 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Fourier Analysis - introduction from a practical point of view</title>
+
+<meta name="Description" content="Fourier analysis has many applications in science, physics, digital signal processing, imaging, numerical analysis, acoustics... Let's use math software to...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/fourier-analysis.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Fourier Analysis - introduction from a practical point of view" />
+<meta property="og:description" content="Fourier analysis has many applications in science, physics, digital signal processing, imaging, numerical analysis, acoustics... Let's use math software to..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/fourier-analysis.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<h1><a name="Fourier_Analysis_-_introduction_from_a"></a>Fourier
+Analysis - introduction from a practical point of view</h1>
+In
+calculus or mathematics, <span style="font-weight: bold;">Fourier
+analysis</span> is a topic
+which grew from the study of <span style="font-weight: bold;">Fourier
+series</span>. This field began with the study of
+the way periodic or general functions might be represented by <span style="font-weight: bold;">summations</span> of
+simpler trigonometric functions (<span style="font-weight: bold;">sine
+or cosine series</span>). <br>
+<br>
+<!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+<br>
+<br>
+Fourier analysis has
+many applications in science, physics, digital signal processing,
+imaging,
+numerical analysis, acoustics... and in many other areas.<br>
+<p class="MsoNormal">We are going to comment
+on some electronic applications, where
+there are two emphasized domains: analysis in <span style="font-weight: bold;">time domain</span>, to find
+the voltages
+or currents at specific moments, and the analysis in the <span style="font-weight: bold;">frequency domain</span>, to
+study (in order to possibly manipulate) the frequencies present in a
+given
+signal.</p>
+<h3>Fourier series</h3>
+<p class="MsoNormal">
+This figure shows a sine wave with a peak value <i style="">V</i><sub>p</sub>
+and a period <i style="">T</i>.
+</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><o:p></o:p><img style="width: 273px; height: 202px;" alt="sine wave used for Fourier analysis" src="http://www.matrixlab-examples.com/image-files/fourier-analysis001.gif"></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">When AC analysis is
+presented in circuit theory courses, they
+usually focus on the sine wave because it helps understand many
+effects. Based
+on those effects or behaviors of electronic components we can start the
+study
+of <span style="font-weight: bold;">non-sinusoidal signals</span>.</p>
+<h3>Periodic waves</h3>
+<p class="MsoNormal">
+The shapes below (a half-sine, a sawtooth and a square wave) complete
+their basic
+form over a period <i style="">T</i>, and each
+cycle
+is an exact copy of the first period or cycle. This kind of waveform
+with
+repetitive cycles is called a periodic wave with period <i style="">T</i>.</p>
+<p class="MsoNormal"><o:p></o:p></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><o:p></o:p><img style="width: 459px; height: 126px;" alt="periodic waves to be studied with Fourier analysis" src="http://www.matrixlab-examples.com/image-files/fourier-analysis002.gif"></p>
+<p class="MsoNormal"><o:p>&nbsp;<br>
+</o:p>The addition of sine waves with appropriate
+amplitudes and
+phases can represent triangular waves, or a different combination of
+sine series
+and waves can produce a sawtooth signal, and another different
+combination may produce
+a half-wave signal. In other words, <span style="font-weight: bold;">any
+periodic wave is a superposition of
+sine waves</span>. </p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
+The sine waves are harmonically related, which means that
+the frequencies are harmonics (or multiples) of a fundamental (lowest)
+frequency.
+Given a periodic wave, you can find the period <i style="">T</i>
+when measured with an oscilloscope. The reciprocal of <i style="">T</i>
+is equal to the fundamental frequency.<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">In formulas:</p>
+<p class="MsoNormal">The fundamental frequency
+<i style="">f</i><sub>1</sub>
+= 1 / <i style="">T</i><br>
+The second harmonic has a frequency <i style="">f</i><sub>2</sub>
+= 2<i style="">f</i><sub>1</sub><br>
+The third harmonic has a frequency <i style="">f</i><sub>3</sub>
+= 3<i style="">f</i><sub>1</sub><o:p></o:p></p>
+<p class="MsoNormal"><o:p></o:p>In
+general, the <i style="">n</i><sup>th</sup>
+harmonic has a frequency<br>
+<i style="">f<sub>n</sub></i>
+= <i style="">nf</i><sub>1</sub><br>
+<br>
+<span style="">&nbsp;</span><o:p></o:p></p>
+<h3>Formulas for the Fourier series</h3>
+<div style="text-align: center;"><img style="width: 472px; height: 228px;" alt="decomposition of a periodic wave" src="http://www.matrixlab-examples.com/image-files/fourier-analysis003.gif"><br style="">
+</div>
+<p class="MsoNormal"><br style="">
+Expressed in words, the figure above means:</p>
+<p class="MsoNormal"><span style="font-family: monospace;">periodic wave = DC component
++</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; first harmonic +</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; second harmonic +</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; ... +</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; </span><i style="font-family: monospace;">n</i><sup style="font-family: monospace;">th</sup><span style="font-family: monospace;">
+harmonic</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<br style="">
+In mathematical terms:<br>
+<br>
+<i style="">v</i> = <i style="">V</i><sub>0</sub>
++ <i style="">V</i><sub>1</sub>
+sin(<i style="">wt</i> + <i style=""><span style="">&#1060;</span></i><sub>1</sub>)
++ <i style="">V</i><sub>2</sub> sin(2<i style="">wt</i> + <i style=""><span style="">&#1060;</span></i><sub>2</sub>) +
+... +<i style=""> V</i><sub>n</sub> sin(<i style="">nwt</i> + <i style=""><span style="">&#1060;</span></i><sub>n</sub>)</p>
+<p class="MsoNormal"><span style="">&nbsp;</span><br>
+This famous equation is called the <span style="font-weight: bold;">Fourier
+series</span>, and it means that a periodic
+wave is a superposition of harmonically related sine waves.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Voltage <i style="">v</i>
+is the
+value of the periodic wave at any instant, this value can be calculated
+by
+adding the DC component and the instant values of all the the
+harmonics. The
+first term in the Fourier series is <i style="">V</i><sub>0</sub>,
+which is a constant and represents the DC component. The coefficients <i style="">V</i><sub>1</sub>, <i style="">V</i><sub>2</sub>...
+<i style="">V<sub>n</sub></i>
+are the peak values of the harmonics. The <span style="font-weight: bold;">angular frequency </span><i style="font-weight: bold;">w</i> is equal to 2<span style="">&#960;</span><i style="">f</i>,
+so you can
+see that each term in the Fourier series represents the next higher
+harmonic.<o:p></o:p></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
+Harmonic waves theoretically continue to infinity. However,
+five to ten terms are often enough to represent a periodic signal
+within an
+accuracy of 5%. With the right combination of magnitudes, angles and
+phases, it is
+possible to reproduce any periodic waveform.<br>
+<br>
+<br>
+Now, let&#8217;s do a brief experiment with our numerical software. You can
+see how to produce a <a href="http://www.matrixlab-examples.com/periodic-function.html" onclick="return FIX.track(this);">square
+wave, here</a>.</p>
+<p class="MsoNormal"><o:p></o:p>We
+can implement this code:<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Define and plot one cycle of a square wave</span><br>
+<span style="color: black;">x = 0 :
+.01 : 2*pi;<br>
+y =
+square(x);<br>
+plot(x,y)<br>
+axis([min(x)
+max(x) min(y)-.5 max(y)+.5])<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="color: forestgreen;">%
+Plot f1 and f3 and add them up</span><br>
+<span style="color: black;">figure<br>
+y1 =
+sin(x);<br>
+y2 =
+.2*sin(3*x);<br>
+plot(x,y1,</span><span style="color: rgb(160, 32, 240);">'b'</span><span style="color: black;">, x,y2,</span><span style="color: rgb(160, 32, 240);">'b:'</span><span style="color: black;">, x,
+y1+y2, </span><span style="color: rgb(160, 32, 240);">'g'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'linewidth'</span><span style="color: black;">, 2)<br>
+axis([min(x)
+max(x) min(y)-.5 max(y)+.5])</span><br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">We get two figures:</p>
+<p class="MsoNormal" style="text-align: center;" align="center"><img style="width: 540px; height: 217px;" alt="decomposition of a square wave with sines" src="http://www.matrixlab-examples.com/image-files/fourier-analysis004.gif"></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The figure on the left is
+a plain square wave. We want to
+find an equivalent of that periodic wave by utilizing only sines.
+The
+figure on the right represents our first attempt to do it. We use the
+first and
+third harmonics of the original wave,&nbsp;we add them up and show
+the results.
+We can clearly see that the green line is getting <span style="font-weight: bold;">closer</span> to a square
+wave. In
+order to produce a better approximation, we&#8217;d need to <span style="font-weight: bold;">adjust </span>our<span style="font-weight: bold;"> amplitudes </span>and<span style="font-weight: bold;">
+include more terms</span> in the series.</p>
+<p class="MsoNormal"><o:p></o:p>In
+the next article, we&#8217;re going to explore three very
+common periodic waves and the specific Fourier <a href="http://www.matrixlab-examples.com/fourier-series.html" onclick="return FIX.track(this);">Series to produce them</a>.</p>
+<span style="text-decoration: underline; font-weight: bold;"><br>
+Reference:</span><br>
+Malvino, A. P.; Electronic Principles; 2nd. edition; McGraw-Hill Co.,
+1979.<br>
+<br>
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Fourier Analysis ' to
+home</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/calculus-problems.html" onclick="return FIX.track(this);">From
+'Fourier
+Analysis ' to Calculus Problems</a><br style="font-weight: bold;">
+&nbsp; &nbsp; <br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right; font-weight: bold;"><a href="#Fourier_Analysis_-_introduction_from_a">Top</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/periodic-function.html" onclick="return FIX.track(this);">Periodic
+Waves</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/taylor-expansion.html" onclick="return FIX.track(this);">Taylor
+Expansions</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/harmonic-series.html" onclick="return FIX.track(this);">Harmonic
+Series</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/fourier-series.html" onclick="return FIX.track(this);">Fourier
+Series</a><br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for fourier analysis page"><a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br></a></p>
+</td>
+<td style="width: 170px; vertical-align: top; background-color: rgb(224, 236, 255); text-align: center;"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:42:29 10-Aug-2021 -->
+</body></html>

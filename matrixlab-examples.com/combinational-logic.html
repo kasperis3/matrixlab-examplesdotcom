@@ -1,0 +1,400 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Combinational Logic - Let's code some boolean circuits</title>
+
+<meta name="Description" content="Combinational logic and sequential one. The main difference is that the first type of circuit logic doesn&#8217;t depend on time or sequence of movements, and the second type of logic does...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/combinational-logic.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Combinational Logic - Let's code some boolean circuits" />
+<meta property="og:description" content="Combinational logic and sequential one. The main difference is that the first type of circuit logic doesn&amp;#8217;t depend on time or sequence of movements, and the second type of logic does..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/combinational-logic.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<h1><a name="Combinational_logic"></a><span style="" lang="ES-TRAD">Combinational
+logic - Basic Applications of Boolean Gates</span></h1>
+<h3>Experiments with electronic&nbsp;gates</h3>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+</td>
+<td style="vertical-align: middle;"><span style="font-weight: bold;" class="hps"><span style="" lang="EN">Logic
+circuits</span></span><span style="" lang="EN">
+<span class="hps">can be</span> <span class="hps">divided</span> <span class="hps">into
+two</span>
+<span class="hps">major</span> <span class="hps">sections: <br>
+</span><span style="font-weight: bold;" class="hps">combinational</span><span style="font-weight: bold;">
+logic</span> <span class="hps">and</span> <span style="font-weight: bold;" class="hps">sequential
+logic</span>. <span class="hps">The main difference</span>
+<span class="hps">is</span> <span class="hps">that</span>
+<span class="hps">the first type of
+circuit logic doesn&#8217;t depend on time or
+sequence of movements,</span> <span class="hps">and</span>
+<span class="hps">the</span>
+<span class="hps">second</span>
+type of logic does. <span class="hps"><br>
+<br>
+<br>
+A</span> <span class="hps">clear example</span>
+<span class="hps">to</span> <span class="hps">understand</span>
+<span class="hps">this difference can be
+illustrated by showing the two locks
+below:</span></span></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="text-align: center;"><img style="width: 224px; height: 167px;" alt="illustration for combinational logic" src="http://www.matrixlab-examples.com/image-files/combinational-logic-001.gif"></td>
+<td style="text-align: center;"><img style="width: 223px; height: 167px;" alt="sequential logic illustrated" src="http://www.matrixlab-examples.com/image-files/combinational-logic-002.gif"></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span style="font-weight: bold;">Combinational Logic</span></td>
+<td style="text-align: center;"><span style="font-weight: bold;">Sequential Logic</span></td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">The
+lock on the left has four discs that can be rotated separately. When
+the
+notches are aligned, the metal hook is released. The only one condition
+needed is
+that the appropriate four notches are aligned, no matter if the left
+disc is set
+before the one on the right. The lock will open if you have the
+correct
+combination.<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">On the
+contrary, the lock on the right has only one knob, and the combination
+could be
+3cw &#8211; 52ccw &#8211; 20cw. This means that one must first get to number 3
+going
+clockwise, then to 52 counterclockwise, and finally get to number 20
+clockwise.
+If you use the same numbers in different order, the lock won&#8217;t open.
+This is a sequential
+lock, a correct sequence is important.<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Due to
+its stability, reliability, low maintenance and ease at reading digital
+displays, these days everything is going the digital way.<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Logic
+circuits can be simulated with the so called boolean or logic gates.<o:p>
+This is kind of <span style="font-weight: bold;">Digital
+Electronics 101</span>...&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Let&#8217;s
+say that we&#8217;d like to find out the behavior of the following
+combinational
+circuit:<br>
+<o:p>&nbsp;</o:p></span></p>
+<p style="text-align: center;" class="MsoNormal"><span style=""><img style="width: 374px; height: 242px;" alt="combinational logic - example with logic gates" src="http://www.matrixlab-examples.com/image-files/combinational-logic-003.gif"></span><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p><br>
+We can
+create an m-file to effortlessly solve the logic circuit, like this:<o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: blue;">function</span><span style="color: black;"> f =
+combination(x)</span><br>
+<span style="color: forestgreen;">%
+x(1) = A<br>
+%
+x(2) = B<br>
+%
+x(3) = C<br>
+%
+Symbol ~ is used for NOT gates<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+We have 4 logic-AND gates</span><br>
+<span style="color: black;">and1 =
+~x(1) &amp; ~x(2) &amp; ~x(3);<br>
+and2 =
+~x(1) &amp; x(2) &nbsp;&amp; ~x(3);<br>
+and3 =
+~x(1) &amp; ~x(2) &amp; x(3);<br>
+and4 =
+~x(1) &amp; x(2) &nbsp;&amp; x(3);<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+We have 1 logic-OR gate</span><br>
+<span style="color: black;">f = and1
+| and2 | and3 | and4;</span><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><br>
+We can
+test our function for this specific example of combinational logic:<o:p><br>
+&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+These are all the possible combinations for 3 inputs</span><br>
+<span style="color: black;">M = [ 0
+0 0<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>0 0 1<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>0 1 0<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>0 1 1<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>1 0 0<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>1 0 1<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>1 1 0<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>1 1 1];<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+We give all the combinations, one at a time<span style="">&nbsp;</span></span><br>
+<span style="color: blue;">for</span><span style="color: black;"> i = 1 :
+8<br>
+<span style="">&nbsp;&nbsp; </span><span style="">&nbsp;</span>comb_log(i) =
+combination(M(i, :));</span><br>
+<span style="color: blue;">end<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="color: forestgreen; font-family: monospace;">%
+We display the results</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">comb_log</span><span style="" lang="ES-TRAD"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">The
+results are:<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><span style="font-family: monospace;">comb_log
+= &nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;
+0</span><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>If
+you make some analysis using the&nbsp;DeMorgan laws, you can
+conclude
+that this function can also be simplified to F = not(A), and you can
+visualize it from the results...</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">This
+means that we have not only a MATrix LABoratory, but we've
+got&nbsp;also&nbsp;a
+circuit
+logic simulator!<o:p><br>
+&nbsp;</o:p></span></p>
+&nbsp;<a href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From 'Combinational Logic'
+to home</a><br>
+<br>
+&nbsp;<a href="http://www.matrixlab-examples.com/boolean-algebra.html" onclick="return FIX.track(this);">From
+'Combinational Logic' to 'Boolean Algebra'</a><br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a href="#Combinational_logic">Top</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/logical-and.html" onclick="return FIX.track(this);">And Gate</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/logical-or.html" onclick="return FIX.track(this);">Or Gate</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/logical-not.html" onclick="return FIX.track(this);">Not Gate</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/boolean-operator.html" onclick="return FIX.track(this);">Boolean
+Operators</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/xor.html" onclick="return FIX.track(this);">Xor Gate</a><br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for combinational logic page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; vertical-align: top; background-color: rgb(224, 236, 255); text-align: center;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:51:41 10-Aug-2021 -->
+</body></html>

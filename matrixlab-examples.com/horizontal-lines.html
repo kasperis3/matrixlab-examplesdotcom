@@ -1,0 +1,514 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Horizontal Lines - plotting in Matlab</title>
+
+<meta name="Description" content="We show you how to draw horizontal lines (and vertical lines) in Matlab, and add them to any given plot...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/horizontal-lines.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Horizontal Lines - plotting in Matlab" />
+<meta property="og:description" content="We show you how to draw horizontal lines (and vertical lines) in Matlab, and add them to any given plot..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/horizontal-lines.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/horizontal-lines.gif" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 813px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/imgs/logo.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 145px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 813px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<h1 style="text-align: left;"><a name="top"></a>Matlab
+Plotting - Horizontal Lines and Vertical
+lines</h1>
+<a style="font-weight: bold;" href="#basics">1.-
+Basics</a><br>
+<br>
+<a style="font-weight: bold;" href="#code">2.-
+Code</a><br>
+<br>
+<a style="font-weight: bold;" href="#example">3.-
+Applied Example</a><br>
+<br>
+<a style="font-weight: bold;" href="#video">4.-
+Video (alternative code)</a><br>
+<br>
+<br>
+<h3><a name="basics"></a>1.- Basics</h3>
+We are going to create a simple Matlab function to add horizontal lines
+(and
+vertical ones) to any given Matlab-created plot.<br>
+&nbsp;<br>
+<!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+<br>
+<br>
+For
+example, let's say that we need to add some indications or annotations
+to a plot, and we need to display and indicate some upper or lower
+limits.<br>
+<br>
+The proposed Matlab function will have 5 input parameters:<br>
+<ul>
+<li>Initial value (where the horizontal line will
+start)</li>
+<li>Final value (where the line will end)</li>
+<li>Y value (vertical position of the line with
+respect to the plot)</li>
+<li>Direction (to indicate the direction of the
+annotation: 1 going upwards, or&nbsp;-1 going downwards, like an
+arrow)</li>
+<li>Vertical range (to display aesthetically
+proportioned lines)</li>
+</ul>
+<br>
+We plan the usage of our function like this (its name will be
+'plot_limit'):<br>
+<br>
+Usage:&nbsp;&nbsp;&nbsp; L = [L_min L_max y d r];<br>
+&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+plot_limit(L);<br>
+<br>
+where <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+L_min = starting point<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+L_max = ending point<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+y = y value of horizontal line<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+d = direction (1 or -1)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+r = y range<br>
+<br>
+So, we need to know in advance where we want to put our&nbsp;line
+(sure!).<br>
+<br>
+We
+define our horizontal and vertical values. We arbitrarily define 300
+horizontal points and use a linewidth = 1.5. The instruction 'hold on'
+keeps the current figure, instead of overwriting it. This Matlab code
+displays just a horizontal line.<br>
+<br>
+<span style="font-family: monospace;">a =
+linspace(L_min, L_max, 300);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">b =
+linspace(y, y, 300);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">plot(a,b,'k-','linewidth',1.5)</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">hold on</span><br>
+<br>
+Then,&nbsp;we
+add some tiny vertical lines on each side of the horizontal one. If
+direction 'd' is 1, the vertical lines are below the horizontal line
+(going 'up'). If direction 'd' is -1, the vertical lines are above the
+horizontal one (going 'down').&nbsp;We take the vertical range into
+account, in 'r', to display a vertical line of just 3% of the total
+'height' of the current figure. You can try different values to suit
+your needs, obviously. We find the initial or final points of the
+vertical lines with an 'if-statement'.<br>
+<br>
+<h3><a name="code"></a>2.- Code</h3>
+This is the code to achieve it.<br>
+<br>
+<span style="font-weight: bold; font-family: monospace;">%
+Initial
+vertical line</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">a =
+linspace(L_min, L_min, 10);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">if d == 1</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+b = linspace(y-r*.03, y, 10);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">else</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+b = linspace(y, y+r*.03, 10);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">end</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">plot(a,b,'k-','linewidth',1.5)</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">hold on</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-weight: bold; font-family: monospace;">%
+Final
+vertical line</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">a =
+linspace(L_max, L_max, 10);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">if d == 1</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+b = linspace(y-r*.03, y, 10);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">else</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+b = linspace(y, y+r*.03, 10);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">end</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">plot(a,b,'k-','linewidth',1.5)</span><br>
+<br>
+<br>
+<h3><a name="example"></a>3.-
+Applied Example</h3>
+Now, we'll test our function with this script.<br>
+<br>
+<span style="font-family: monospace;">clear;
+clc; close all</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">x = 0 :
+2*pi/360 : 2*pi;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">y =
+sin(x);</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">plot(x,y)</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">grid on </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">xlabel('angle')</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">ylabel('sin(x)')</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">title('Plot
+showing horizontal and vertical lines')</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">hold on</span><br style="font-family: monospace;">
+<span style="font-weight: bold; font-family: monospace;">plot_limit([0.8,
+2.5, 0.4, 1, 2])</span><br style="font-weight: bold; font-family: monospace;">
+<span style="font-weight: bold; font-family: monospace;">plot_limit([4,
+5.4, -0.6, -1, 2])</span><br>
+<br>
+<br>
+The result is:<br>
+<div style="text-align: center;"><img style="width: 420px; height: 315px;" alt="horizontal and vertical lines in Matlab plots" src="http://www.matrixlab-examples.com/image-files/horizontal-lines.gif"><br>
+</div>
+The first line starts at 0.8, ends at 2.5, and has a vertical value of
+0.4. The vertical lines simulate an up-arrow (d = 1).<br>
+<br>
+The second line starts at 4, ends at 5.4, and has a vertical value of
+-0.6. Direction goes down (d = -1).<br>
+<br>
+<br>
+<h3><a name="video"></a>4.- Video</h3>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td><iframe src="//www.youtube.com/embed/7r4xTellrNw?rel=0" allowfullscreen="" frameborder="0" height="360" width="480"></iframe></td>
+</tr>
+</tbody>
+</table>
+<br>
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Horizontal Lines' to home</a><span style="font-weight: bold;">
+&nbsp;<br>
+<br>
+&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-plot-2tier.html" onclick="return FIX.track(this);">From
+'Horizontal Lines' to 2D plots</a><br style="font-weight: bold;">
+&nbsp;<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="text-align: right; vertical-align: bottom;"><a style="font-weight: bold;" href="horizontal-lines.html#top">Top</a><br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for horizontal lines page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; text-align: right; vertical-align: top; background-color: rgb(224, 236, 255);"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div style="text-align: center;"><!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --><br>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:48:33 10-Aug-2021 -->
+</body></html>

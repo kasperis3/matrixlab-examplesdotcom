@@ -1,0 +1,597 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Callback Function - GUIs in Matlab</title>
+
+<meta name="Description" content="In this article we&#8217;re going to build-up a simple adder. Our adder (by means of relevant callback function s) is going to have two &#8216;edit text&#8217; components, two &#8216;static text&#8217; components, and one &#8216;push button&#8217; element.">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/callback-function.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Callback Function - GUIs in Matlab" />
+<meta property="og:description" content="In this article we&amp;#8217;re going to build-up a simple adder. Our adder (by means of relevant callback function s) is going to have two &amp;#8216;edit text&amp;#8217; components, two &amp;#8216;static text&amp;#8217; components, and one &amp;#8216;push button&amp;#8217; element." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/callback-function.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/matlab_gui1_001.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/matlab_gui1_002.gif" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img style="width: 146px; height: 400px;" src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<h1><span style="" lang="ES-TRAD"><a name="top"></a>Matlab
+GUI &#8211; Callback function</span></h1>
+<br>
+In this
+article we&#8217;re going to build-up a <span style="font-weight: bold;">simple
+adder</span>. Our adder (by means of a relevant <span style="font-weight: bold;">callback function</span>)
+is going to have two &#8216;<span style="font-weight: bold;">edit
+text</span>&#8217; components, two &#8216;<span style="font-weight: bold;">static
+text</span>&#8217; components, and one &#8216;<span style="font-weight: bold;">push button</span>&#8217; element.<br>
+&nbsp;<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><span style="" lang="ES-TRAD"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+</span></td>
+<td style="vertical-align: middle;">I
+strongly recommend you to review the <a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-gui.html" onclick="return FIX.track(this);">first
+article of this series</a>, if you haven&#8217;t done so. I explain
+there how to add elements to your interface,&nbsp;and how to use
+the
+built-in function &#8216;set&#8217;. &nbsp;You can see this <a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-gui-3.html" onclick="return FIX.track(this);">video
+on GUIs</a>, too. <br>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Let&#8217;s
+start... Open your <span style="font-weight: bold;">guide</span>
+(graphical interface environment) by typing on the command window:<o:p>&nbsp;</o:p></span></p>
+<span style="" lang="ES-TRAD"></span></td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">&gt;&gt;
+guide<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Choose
+the default option (<span style="font-weight: bold;">blank
+GUI</span>).<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Add (drag)
+two &#8216;<span style="font-weight: bold;">edit text</span>&#8217;
+boxes (which will be your inputs), two &#8216;<span style="font-weight: bold;">static text</span>&#8217;
+boxes (one
+will be just an equal sign and the other will be the output), and add a
+&#8216;<span style="font-weight: bold;">push button</span>&#8217;
+(which will be the &#8216;+&#8217; sign, as in a calculator).</span></p>
+<div style="text-align: center;"><img style="width: 256px; height: 231px;" alt="components for a GUI" src="http://www.matrixlab-examples.com/image-files/matlab_gui_003.gif"></div>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Resize
+your elements, figure and window as necessary (by dragging their
+anchors on the
+corners). You must end-up having something similar to this:<o:p></o:p></span></p>
+<div style="text-align: center;"><span style="" lang="ES-TRAD"><img style="width: 399px; height: 301px;" alt="Window to prepare GUIs" src="http://www.matrixlab-examples.com/image-files/matlab_gui1_001.gif"></span><br>
+<span style="" lang="ES-TRAD"></span></div>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Now,
+<span style="font-weight: bold;">double-click</span>
+on each element, look and modify their properties as indicated
+on this
+table:</span></p>
+<table style="text-align: left; width: 100%;" border="1" cellpadding="1" cellspacing="1">
+<tbody>
+<tr>
+<td style="font-weight: bold; text-align: center;">Component</td>
+<td style="text-align: center; font-weight: bold;">HorizontalAlignment</td>
+<td style="text-align: center; font-weight: bold;">String</td>
+<td style="text-align: center; font-weight: bold;">Tag</td>
+</tr>
+<tr>
+<td style="text-align: center;">Top Edit
+Text</td>
+<td style="text-align: center;">right</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">edit1</td>
+</tr>
+<tr>
+<td style="text-align: center;">Bottom
+Edit Text</td>
+<td style="text-align: center;">right</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">edit2</td>
+</tr>
+<tr>
+<td style="text-align: center;">Left
+Static Text</td>
+<td style="text-align: center;">center</td>
+<td style="text-align: center;">=</td>
+<td style="text-align: center;">text1</td>
+</tr>
+<tr>
+<td style="text-align: center;">Rigth
+Static Text</td>
+<td style="text-align: center;">right</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">result</td>
+</tr>
+<tr>
+<td style="text-align: center;">Push-button</td>
+<td style="text-align: center;">center</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">pushbutton1</td>
+</tr>
+</tbody>
+</table>
+<br>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">You
+must now have something similar to this (save it with any name, for
+example:
+adder.fig):<o:p></o:p></span></p>
+<p style="text-align: center;" class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p></span><img style="width: 397px; height: 299px;" alt="GUI before adding code" src="http://www.matrixlab-examples.com/image-files/matlab_gui1_002.gif"></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Before
+we develop the code for this interface, we must mention that there are
+three
+very important instructions when working with GUIs: &#8216;<span style="font-weight: bold;">get</span>&#8217;, &#8216;<span style="font-weight: bold;">guidata</span>&#8217;,
+and &#8216;<span style="font-weight: bold;">set</span>&#8217;.<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p><br>
+The
+&#8216;<span style="font-weight: bold;">get</span>&#8217;
+instruction, gets the <span style="font-weight: bold;">string
+value</span> from an input component. For
+example,
+if we want to get the number that the user inputs in &#8216;<span style="font-weight: bold;">edit1</span>&#8217;, we can do
+it like
+this (preceed the identifier tag with &#8216;<span style="font-weight: bold;">handles.</span>&#8217;):<o:p>&nbsp;<span style="font-family: Verdana,Geneva,Arial,Helvetica,sans-serif;">&nbsp;</span></o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;">get(handles.edit1,
+</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);">'String'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;">)</span><br>
+<span style="" lang="ES-TRAD"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">However,
+this instruction gets a string, <span style="font-weight: bold;">not</span>
+a number; thus, if we need to
+numerically
+manipulate that value, we have to transform it into a number first. For
+example, something typical is:<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">num =
+str2double(get(</span><span style="" lang="ES-TRAD">handles.edit1</span><span style="color: black;">,</span><span style="color: rgb(160, 32, 240);">'String'</span><span style="color: black;">));<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">Now, our
+variable &#8216;<span style="font-weight: bold;">num</span>&#8217;
+does contain a number (double), and we can manipulate it.<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">Finally,
+we must update the value of the component and keep that variable in our
+memory-workspace (using the &#8216;<span style="font-weight: bold;">guidata</span>&#8217;
+instruction) to be used in other&nbsp;<span style="font-weight: bold;">callback
+functions</span>. We can achieve it by doing this:<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="font-size: 12pt;"><o:p></o:p></span><span style="color: black; font-family: monospace;">handles.edit1
+= num;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;" lang="ES-TRAD">guidata(hObject,handles)<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Generally
+speaking, we need to finish every callback function with<o:p>&nbsp;</o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="" lang="ES-TRAD">guidata(hObject,handles)<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">in
+order to maintain in memory the values of the variables.<o:p><br>
+&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">The
+&#8216;<span style="font-weight: bold;">set</span>&#8217;
+instruction sets the properties of the element that you indicate.
+The
+property &#8216;<span style="font-weight: bold;">Tag</span>&#8217;
+is the identifier to use for this purpose. Do you
+remember that
+you have one &#8216;<span style="font-weight: bold;">static text</span>&#8217;
+with the tag (identifier) &#8216;<span style="font-weight: bold;">result</span>&#8217;?
+We are
+going to
+modify it when the user pushes the button with the string &#8216;<span style="font-weight: bold;">+</span>&#8217;. This is
+to be accomplished
+with the instruction<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">set(handles.output_line,</span><span style="color: rgb(160, 32, 240);">'String'</span><span style="color: black;">,value)<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="color: black;">where
+&#8216;<span style="font-weight: bold;">value</span>&#8217;
+contains the addition edit1 + edit2</span><br>
+<span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">We have
+to take care about two more things:<o:p></o:p></span></p>
+<ul style="margin-top: 0cm;" type="disc">
+<li class="MsoNormal" style=""><span style="" lang="ES-TRAD">What if the user doesn&#8217;t
+enter numbers in the edit boxes?<o:p></o:p></span></li>
+<li class="MsoNormal" style=""><span style="" lang="ES-TRAD">Do we need an initialization
+procedure to make sure everything is in order before the user uses our
+GUI?<o:p></o:p></span></li>
+</ul>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">To
+modify the Matlab code for the components displayed in your interface,
+right-click on any of them and choose &#8216;<span style="font-weight: bold;">View Callbacks</span>&#8217;
+-&gt;
+&#8216;<span style="font-weight: bold;">Callback</span>&#8217;.
+You
+will be taken to the corresponding m-file (there are many automatically
+written
+lines, just add the new ones).<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">We can
+test for the input value from the user. Let&#8217;s check the code for the
+callback function
+related to &#8216;<span style="font-weight: bold;">edit1</span>&#8217;:<br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: blue; font-family: monospace;">function</span><span style="color: black; font-family: monospace;">
+edit1_Callback(hObject, eventdata, handles)</span><br style="font-family: monospace;">
+<span style="color: forestgreen; font-family: monospace;">%
+hObject<span style="">&nbsp;&nbsp;&nbsp; </span>handle
+to edit1 (see GCBO)<br>
+%
+eventdata<span style="">&nbsp; </span>reserved
+- to be defined in a
+future version of&nbsp;MLB<br>
+%
+handles<span style="">&nbsp;&nbsp;&nbsp; </span>structure
+with handles and
+user data (see GUIDATA)<br>
+%
+Hints: get(hObject,'String') returns contents of edit1 as text<br>
+%<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp; </span>str2double(get(hObject,'String'))
+returns contents of&nbsp;<br>
+% &nbsp; &nbsp; &nbsp; &nbsp;edit1 as a double</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">num
+=
+str2double(get(hObject,</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'String'</span><span style="color: black; font-family: monospace;">));</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">if</span><span style="color: black; font-family: monospace;">
+isnan(num)<br>
+<span style="">&nbsp;&nbsp;&nbsp;
+</span>num = 0;<br>
+<span style="">&nbsp;&nbsp;&nbsp;
+</span>set(hObject,</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'String'</span><span style="color: black; font-family: monospace;">,num);<br>
+<span style="">&nbsp;&nbsp;&nbsp;
+</span>errordlg(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Input
+must be a number'</span><span style="color: black; font-family: monospace;">, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Error'</span><span style="color: black; font-family: monospace;">)</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">end</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">handles.edit1
+= num;<br>
+guidata(hObject,handles)</span><br>
+<span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">In this
+callback function, we first read the input from the user and <span style="font-weight: bold;">transform</span> it to a
+number
+(since we are within the edit1_Callback, using
+<span style="font-weight: bold;">get(handles.edit1,&#8217;String&#8217;)</span>
+is
+the same as using </span><span style="color: black; font-weight: bold;">get(hObject,</span><span style="color: rgb(160, 32, 240); font-weight: bold;">'String'</span><span style="color: black;"><span style="font-weight: bold;">)</span>)</span><span style="" lang="ES-TRAD">.</span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"> Then, we use the &#8216;<span style="font-weight: bold;">isnan</span>&#8217; (for
+<span style="font-weight: bold;">IS</span>
+<span style="font-weight: bold;">N</span>ot
+<span style="font-weight: bold;">A</span>
+<span style="font-weight: bold;">N</span>umber)
+to launch an error message if the value is not a
+number, and
+set the value to 0, too. Finally, we keep the corresponding numerical
+value in
+the variable &#8216;<span style="font-weight: bold;">edit1</span>&#8217;
+(officially recognized by Matlab as
+&#8216;<span style="font-weight: bold;">handles.edit1</span>&#8217;).<o:p><br>
+&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">We can
+do the same thing for the '<span style="font-weight: bold;">edit2</span>'
+callback function
+(you only need to add the last 8 lines):<br>
+<o:p>&nbsp;</o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="color: blue;">function</span><span style="color: black;">
+edit2_Callback(hObject, eventdata, handles)</span><br>
+<span style="color: forestgreen;">%
+hObject<span style="">&nbsp;&nbsp;&nbsp; </span>handle
+to edit2 (see GCBO)<br>
+%
+eventdata<span style="">&nbsp; </span>reserved
+- to be defined in a
+future version of MLB<br>
+%
+handles<span style="">&nbsp;&nbsp;&nbsp; </span>structure
+with handles and
+user data (see GUIDATA)<br>
+%
+Hints: get(hObject,'String') returns contents of edit2 as text<br>
+%<span style="">&nbsp; &nbsp; &nbsp;
+&nbsp; </span>str2double(get(hObject,'String'))
+returns contents of&nbsp;<br>
+% &nbsp; &nbsp; &nbsp; &nbsp;edit2 as a double</span><br>
+<span style="color: black;">num =
+str2double(get(hObject,</span><span style="color: rgb(160, 32, 240);">'String'</span><span style="color: black;">));</span><br>
+<span style="color: blue;">if</span><span style="color: black;">
+isnan(num)<br>
+<span style="">&nbsp;&nbsp;&nbsp;
+</span>num = 0;<br>
+<span style="">&nbsp;&nbsp;&nbsp;
+</span>set(hObject,</span><span style="color: rgb(160, 32, 240);">'String'</span><span style="color: black;">,num);<br>
+<span style="">&nbsp;&nbsp;&nbsp;
+</span>errordlg(</span><span style="color: rgb(160, 32, 240);">'Input must be a number'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'Error'</span><span style="color: black;">)</span><br>
+<span style="color: blue;">end</span><br>
+<span style="color: black;">handles.edit2
+= num;<br>
+guidata(hObject,handles)</span><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">And,
+since the values are kept in memory due to the '<span style="font-weight: bold;">guidata</span>' instruction
+used
+in both
+callback functions (in variables handles.edit1 and handles.edit2), we
+can easily
+code
+the section for the push-button, like this (you have to add only the
+last two
+lines):<o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen; font-family: monospace;">%
+--- Executes on button press in pushbutton1.</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">function</span><span style="color: black; font-family: monospace;">
+pushbutton1_Callback(hObject, eventdata, handles)</span><br style="font-family: monospace;">
+<span style="color: forestgreen; font-family: monospace;">%
+hObject<span style="">&nbsp;&nbsp;&nbsp; </span>handle
+to pushbutton1 (see
+GCBO)<br>
+%
+eventdata<span style="">&nbsp; </span>reserved
+- to be defined in a
+future version of MLB<br>
+%
+handles<span style="">&nbsp;&nbsp; </span><span style="">&nbsp;</span>structure with handles and
+user data (see
+GUIDATA)</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">addition
+= handles.edit1 + handles.edit2;<br>
+set(handles.result,
+</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'String'</span><span style="color: black; font-family: monospace;">, addition);</span><span style="font-size: 12pt;"><o:p><br>
+&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><span style="font-weight: bold;">Bingo!</span>
+We&#8217;re almost done!<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">We need
+to consider the <span style="font-weight: bold;">initialization</span>
+part. What if the user press the &#8216;+&#8217;
+button
+without entering any data? Will everything work fine?<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Unfortunately
+not. &#8216;<span style="font-weight: bold;">edit1</span>&#8217;
+and &#8216;<span style="font-weight: bold;">edit2</span>&#8217;
+don&#8217;t have zero values, they display a &#8216;<span style="font-weight: bold;">0</span>&#8217;
+<span style="font-weight: bold;">string</span>
+(not
+a number). So, if the user press the &#8216;+&#8217; button without entering any
+data, your
+GUI will display a number, but nothing to do with the expected
+numerical 0
+value.<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">To
+tackle this down, we just add some lines in the section code that runs
+just
+before &#8216;<span style="font-weight: bold;">adder</span>&#8217;
+(your m-file, remember?) is made visible (most of the
+lines are
+written by Matlab automatically, you just add three lines), like this:<br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+--- Executes just before adder is made visible.</span><br>
+<span style="color: blue;">function</span><span style="color: black;">
+adder_OpeningFcn(hObject, eventdata, handles, varargin)</span><br>
+<span style="color: forestgreen;">%
+This function has no output args, see OutputFcn.<br>
+%
+hObject<span style="">&nbsp;&nbsp;&nbsp; </span>handle
+to figure<br>
+%
+eventdata<span style="">&nbsp; </span>reserved
+- to be defined in a
+future version of MLB<br>
+%
+handles<span style="">&nbsp;&nbsp;&nbsp; </span>structure
+with handles and
+user data (see GUIDATA)<br>
+%
+varargin<span style="">&nbsp;&nbsp; </span>command
+line arguments to
+adder (see VARARGIN)<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Choose default command line output for adder</span><br>
+<span style="color: black;">handles.output
+= hObject;<br>
+num = 0;<br>
+handles.edit1
+= num;<br>
+handles.edit2
+= num;<br>
+<span style=""></span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Update handles structure</span><br>
+<span style="color: black;">guidata(hObject,
+handles);<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen; font-family: monospace;">%
+UIWAIT makes adder wait for user response (see UIRESUME)<br>
+%
+uiwait(handles.figure1);</span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><span style="font-weight: bold;">Done!</span>
+Run your GUI by clicking on the &#8216;<span style="font-weight: bold;">run</span>&#8217;
+<span style="font-weight: bold;">icon</span>
+at the top of your editor
+window...<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p></span></p>
+<p style="text-align: center;" class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p></span><img style="width: 213px; height: 178px;" alt="Running GUI" src="http://www.matrixlab-examples.com/image-files/matlab_gui1_004.gif"></p>
+<span style="text-decoration: underline;"><br>
+<br>
+</span>&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Callback Function' to home</a><br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-gui-2tier.html" onclick="return FIX.track(this);">From
+'Callback
+Function' to 'GUIs Menu'</a><br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="callback-function.html#top">Top</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/resistor-code.html" onclick="return FIX.track(this);">GUI - Resistor Code</a><br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for callback function page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; text-align: right; vertical-align: top; background-color: rgb(224, 236, 255);"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:43:09 10-Aug-2021 -->
+</body></html>

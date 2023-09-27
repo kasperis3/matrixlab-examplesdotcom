@@ -1,0 +1,374 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Vectors - an approach with numerical software</title>
+
+<meta name="Description" content="In Matlab, you can form arrays of numbers - vectors or matrices - in a straight and intuitive way. See these examples...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/vectors.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Vectors - an approach with numerical software" />
+<meta property="og:description" content="In Matlab, you can form arrays of numbers - vectors or matrices - in a straight and intuitive way. See these examples..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/vectors.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<h1><a name="top"></a>Vectors</h1>
+<br>
+<span style="font-weight: bold;">In Matlab,
+you can form arrays of numbers &nbsp;- vectors or matrices - in a
+straight and intuitive way</span>:<br>
+<br>
+&gt;&gt; a&nbsp; =&nbsp;
+[2&nbsp; 4&nbsp;
+6&nbsp; 9&nbsp; -1&nbsp; 3]<br>
+<br>
+means a row vector with values in variable 'a'<br>
+a&nbsp; = 2&nbsp;&nbsp;&nbsp;
+4&nbsp;&nbsp;&nbsp;
+6&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;
+-1&nbsp;&nbsp;&nbsp; 3<br>
+&nbsp;<br>
+<!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+<br>
+<br>
+The numbers of the <span style="font-weight: bold;">array</span>
+should be separated by <span style="font-weight: bold;">spaces</span>
+(like shown) or
+<span style="font-weight: bold;">commas</span>.
+If you're working with <span style="font-weight: bold;">complex
+numbers</span>, you must avoid spaces
+and work only with commas.<br>
+<br>
+There are simple ways to create horizontal arrays (<span style="font-weight: bold;">row vectors</span>) that
+increase or decrease in a linear pattern. For example, let's say that<br>
+you wish to have a vector <span style="font-style: italic;">t</span>
+to contain eleven values equally spaced
+from 0 to ¶. You can do this in at least three ways:<br>
+<br>
+&gt;&gt;&nbsp; t&nbsp; =&nbsp; [0&nbsp;
+.1*pi&nbsp; .2*pi&nbsp; .3*pi&nbsp; .4*pi&nbsp;
+.5*pi&nbsp; .6*pi&nbsp; .7*pi&nbsp; .8*pi&nbsp;
+.9*pi&nbsp; pi] <br>
+<br>
+&gt;&gt;&nbsp; t&nbsp; =&nbsp; (0 : 0.1 : 1)*pi <br>
+<br>
+&gt;&gt; t&nbsp; =&nbsp; linspace(0,pi,11) <br>
+<br>
+The Matlab result is exactly the same:<br>
+<br>
+t = <br>
+<br>
+Columns&nbsp; 1&nbsp; through&nbsp; 7 <br>
+<br>
+0&nbsp;&nbsp;&nbsp; 0.3142&nbsp;&nbsp;&nbsp;
+0.6283&nbsp;&nbsp;&nbsp;
+0.9425&nbsp;&nbsp;&nbsp;
+1.2566&nbsp;&nbsp;&nbsp;
+1.5708&nbsp;&nbsp;&nbsp; 1.8850<br>
+<br>
+Columns&nbsp; 8&nbsp; through&nbsp; 11<br>
+<br>
+2.1991&nbsp;&nbsp;&nbsp;
+2.5133&nbsp;&nbsp;&nbsp;
+2.8274&nbsp;&nbsp;&nbsp; 3.1416<br>
+<br>
+<br>
+In the first case, you only place the numbers one by one, which is a
+very boring way to do it...<br>
+<br>
+In the second case, you create an array which starts with 0, an then
+you increment the value in 0.1 steps until you get to 1. Then, every
+number is multiplied by ¶.<br>
+<br>
+In the third case, you use the <span style="font-weight: bold;">linspace</span>
+function, which has the
+following arguments:<br>
+&nbsp;<br>
+<span style="font-weight: bold;">linspace</span>(<span style="font-weight: bold;">start_value</span>, <span style="font-weight: bold;">end_value</span>, <span style="font-weight: bold;">number_of_values</span>)<br>
+<br>
+Obviously, the latest two ways are much better than the first way to do
+it.<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<span style="font-weight: bold;">Vector
+Construction</span><br>
+You create a <span style="font-weight: bold;">row vector</span>
+<span style="font-style: italic;">x</span>
+specifying the numbers, one by one:<br>
+<br>
+x&nbsp; =&nbsp; [1&nbsp; 3&nbsp; 9&nbsp;
+33&nbsp; 0&nbsp; -2]<br>
+<br>
+You create a row vector <span style="font-style: italic;">x</span>
+starting with a first value until you get to
+a last value, in steps of 1.<br>
+<br>
+x&nbsp; =&nbsp; first: last&nbsp;&nbsp;&nbsp; <br>
+<br>
+You create a row vector <span style="font-style: italic;">x</span>
+starting with a first value until you get to
+a last value, in specified increments.<br>
+<br>
+x&nbsp; =&nbsp; first: increment: last<br>
+<br>
+You create a row vector <span style="font-style: italic;">x</span>
+starting with a first value until you get to
+a last value, in equally spaced <span style="font-style: italic;">n</span>
+elements.<br>
+<br>
+x&nbsp; =&nbsp;
+linspace(first, last,&nbsp;n)&nbsp;&nbsp;&nbsp; <br>
+<br>
+To access each element of the vector you use <span style="font-weight: bold;">subscripts</span>. For
+example,
+x(1) is the first element of the vector <span style="font-style: italic;">x</span>.<br>
+<br>
+To access a group of <span style="font-weight: bold;">contiguous
+elements</span>, you also use subscripts. For
+example, x(1:5) represents five elements, from element 1 to element 5
+of the array.<br>
+<br>
+Other examples:<br>
+x(4 : -1 : 1) represents elements 4, 3, 2 and 1, in this order.<br>
+x(2 : 2 : 7) represents elements 2, 4, and 6.<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <br>
+<hr style="width: 100%; height: 2px;"><br>
+To work with <span style="font-weight: bold;">column
+vectors</span>, you put a '<span style="font-weight: bold;">;</span>'
+between each element.<br>
+<br>
+&gt;&gt; b&nbsp; =&nbsp; [1;&nbsp; 2;&nbsp;
+3;&nbsp; 4;&nbsp; 5]<br>
+<br>
+<br>
+b =<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 2<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 5<br>
+<br>
+&gt;&gt;<br>
+<br>
+You may use the transpose operator (<span style="font-weight: bold;">'</span>),
+to convert a row vector into a
+column vector.<br>
+<br>
+&gt;&gt; a&nbsp; =&nbsp; 1:5<br>
+<br>
+a&nbsp; =<br>
+<br>
+1&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;
+3&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp; 5<br>
+<br>
+&gt;&gt; b&nbsp; =&nbsp; a'<br>
+<br>
+b =<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 2<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 5<br>
+<br>
+&gt;&gt; x=(2:3:15)'<br>
+<br>
+x =<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 2<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 5<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 8<br>
+&nbsp;&nbsp;&nbsp; 11<br>
+&nbsp;&nbsp;&nbsp; 14<br>
+<br>
+&gt;&gt; <br>
+<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Vectors' to home</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-help-2tier.html" onclick="return FIX.track(this);">From
+'Vectors' to 'Matlab Help Menu'</a><br style="font-weight: bold;">
+&nbsp;<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="vectors.html#top">Top</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matrices.html" onclick="return FIX.track(this);">Matrices</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/getting-started-with-matlab.html" onclick="return FIX.track(this);">Video:
+Getting Started</a><br style="font-weight: bold;">
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><br>
+<p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for vectors page"><a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br></a></p>
+</td>
+<td style="width: 170px; vertical-align: top; background-color: rgb(224, 236, 255); text-align: center;"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:43:48 10-Aug-2021 -->
+</body></html>

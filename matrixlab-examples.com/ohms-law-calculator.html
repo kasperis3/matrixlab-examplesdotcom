@@ -1,0 +1,654 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Ohm's Law Calculator - spreadsheet for electrical
+calculations</title>
+
+<meta name="Description" content="Use this spreadsheet as an Ohm's Law Calculator. Find voltages, currents, resistances and wattage...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script language="JavaScript">
+function pr(){
+r1 = eval(resistors.r1.value);
+r2 = eval(resistors.r2.value);
+r3 = eval(resistors.r3.value);
+r = 1 / (1/r1 + 1/ r2 + 1/ r3);
+resistors.a1.value = r.toFixed(1);
+}
+function vira(){
+i = eval(vir.i.value);
+r = eval(vir.r.value);
+vir.a1.value = (i * r).toFixed(1);
+}
+function vpia(){
+i = eval(vpi.i.value);
+p = eval(vpi.p.value);
+vpi.a1.value = (p/i).toFixed(1);
+}
+function vpra(){
+r = eval(vpr.r.value);
+p = eval(vpr.p.value);
+vpr.a1.value = Math.sqrt(p*r).toFixed(1);
+}
+function ivra(){
+v = eval(ivr.v.value);
+r = eval(ivr.r.value);
+ivr.a1.value = (v/r).toFixed(3);
+}
+function ipva(){
+v = eval(ipv.v.value);
+p = eval(ipv.p.value);
+ipv.a1.value = (p/v).toFixed(3);
+}
+function ipra(){
+r = eval(ipr.r.value);
+p = eval(ipr.p.value);
+ipr.a1.value = Math.sqrt(p/r).toFixed(3);
+}
+function rvia(){
+v = eval(rvi.v.value);
+i = eval(rvi.i.value);
+rvi.a1.value = (v/i).toFixed(1);
+}
+function rvpa(){
+v = eval(rvp.v.value);
+p = eval(rvp.p.value);
+rvp.a1.value = (v*v / p).toFixed(1);
+}
+function rpia(){
+p = eval(rpi.p.value);
+i = eval(rpi.i.value);
+rpi.a1.value = (p / (i*i)).toFixed(1);
+}
+function pvia(){
+v = eval(pvi.v.value);
+i = eval(pvi.i.value);
+pvi.a1.value = (v * i).toFixed(1);
+}
+function pvra(){
+v = eval(pvr.v.value);
+r = eval(pvr.r.value);
+pvr.a1.value = (v*v / r).toFixed(1);
+}
+function pira(){
+i = eval(pir.i.value);
+r = eval(pir.r.value);
+pir.a1.value = (i*i * r).toFixed(1);
+}
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/ohms-law-calculator.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Ohm's Law Calculator - spreadsheet for electrical
+calculations" />
+<meta property="og:description" content="Use this spreadsheet as an Ohm's Law Calculator. Find voltages, currents, resistances and wattage..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/ohms-law-calculator.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/ohms-law-pie-chart.gif" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<h1><a name="top"></a>Ohm&#8217;s
+law Calculator</h1>
+<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
+</p>
+You can find the <span style="font-weight: bold;">calculator</span>
+at the bottom of this article.
+We&#8217;ll start with an introduction to this topic.&nbsp; <br>
+&nbsp;
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 308px; text-align: left; vertical-align: top;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --></td>
+<td style="vertical-align: middle;">The <span style="font-weight: bold;">Ohm&#8217;s law</span>
+(after Georg Ohm) defines the relationship between voltage (V), current
+(I) and resistance (R). Power (P) relationships appear as a logic
+consequence of the others. <br>
+<br>
+One ohm is the resistance value
+through which one volt will produce a current of one ampere. The Ohm&#8217;s
+formula is &nbsp; V = IR. </td>
+</tr>
+</tbody>
+</table>
+&nbsp; &nbsp; &nbsp;
+<p class="MsoNormal"><span style="font-weight: bold;">Voltage</span> (V) is the
+difference in electrical potential
+between two points in an electronic circuit, and it is measured in
+volts (V).<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="font-weight: bold;">Current</span> (I) is a
+flow of electrons on a conductor, and it is
+measured in amperes (A).<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="font-weight: bold;">Resistance</span> (R)
+determines how much current will flow through
+an electrical device. Resistors are used to control or limit voltage
+and
+current levels. A high resistance will allow a small current to flow. A
+low
+resistance will allow a larger current to flow. Resistors are measured
+in ohms.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="font-weight: bold;">Power</span> (P) is the
+voltage multiplied by the current, and it&#8217;s
+measured in watts (W).&nbsp;</p>
+<p class="MsoNormal" style="text-align: center;" align="center"><o:p><img style="width: 328px; height: 345px;" alt="Ohm's law pie chart - electrical calculations" src="http://www.matrixlab-examples.com/image-files/ohms-law-pie-chart.gif">&nbsp;</o:p></p>
+<p class="MsoNormal" style="text-align: center; font-weight: bold;" align="center">Ohm&#8217;s
+law Pie Chart</p>
+<h3>Electrical Calculations&nbsp;<o:p></o:p><br>
+</h3>
+<p class="MsoNormal">Let&#8217;s say that a 12V car
+battery is connected to a 3 ohm
+light bulb. What is the voltage measured at the light bulb?<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">We can use our calculator
+and enter<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">V = 12.0 V<br>
+R = 3.0 ohms<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">We get<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></p>
+<p class="MsoNormal">I = 4.0 A&nbsp;</p>
+<h3><o:p>Parallel Resistors&nbsp;</o:p></h3>
+<p class="MsoNormal">Our calculator can also
+be used to find out the equivalent
+resistor of up to three <span style="font-weight: bold;">resistors
+in parallel</span>. For example, three 20-ohm parallel
+resistors are connected across a 120 V power source. What is the
+current of
+this circuit?<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">We use the section on
+parallel resistors and enter<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">R1 = <span style="">
+</span>20 ohms<br>
+R2 = <span style=""> </span>20 ohms<br>
+R3 = <span style=""> </span>20 ohms<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">we learn that the
+equivalent resistor is Req = 6.7 ohms.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Now, we use the formula I
+= V/R and enter the known values
+of voltage and resistance<o:p>&nbsp;</o:p><br>
+</p>
+<p class="MsoNormal">V = <span style="">&nbsp;
+</span>120 V<br>
+R = <span style="">&nbsp; </span>6.7 ohms</p>
+<p class="MsoNormal">and we discover that the
+total current flowing is I = 17.91
+amperes.</p>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: middle; text-align: left; background-color: rgb(153, 255, 153);">Please
+enable JavaScript codes on this page. The calculator uses them.<br>
+</td>
+</tr>
+<tr>
+<td>&nbsp; &nbsp;<br>
+&nbsp;<!-- start: SSI z-addthis.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-addthis.shtml --><br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<form name="resistors"><u style="color: rgb(51, 51, 255);"><b>Parallel
+Resistors</b></u>
+<p>R<sub>1</sub> = <input name="r1" size="6" type="text"> ohms <br>
+R<sub>2</sub> = <input name="r2" size="6" type="text"> ohms <br>
+R<sub>3</sub> = <input name="r3" size="6" type="text"> ohms <br>
+<input value=" Calculate " onclick="pr()" type="button">
+<input value=" Clear " type="reset"><br>
+R<sub>eq</sub> = <input name="a1" size="6" readonly="readonly" type="text"> ohms<br>
+</p>
+</form>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>
+<form name="vir"><u style="color: rgb(51, 51, 255);"><b>V = I
+R</b></u>
+<p>I = <input name="i" size="6" type="text"> A<br>
+R = <input name="r" size="6" type="text">
+ohms<br>
+<input value=" Calculate " onclick="vira()" type="button">
+<input value=" Clear " type="reset"><br>
+V = <input name="a1" size="6" readonly="readonly" type="text"> V<br>
+</p>
+</form>
+</td>
+<td>
+<form name="vpi"><u style="color: rgb(51, 51, 255);"><b>V =
+P/I</b></u>
+<p>P = <input name="p" size="6" type="text"> W <br>
+I = <input name="i" size="6" type="text"> A
+<br>
+<input value=" Calculate " onclick="vpia()" type="button">
+<input value=" Clear " type="reset"><br>
+V = <input name="a1" size="6" readonly="readonly" type="text"> V<br>
+</p>
+</form>
+</td>
+<td>
+<form name="vpr"><u style="color: rgb(51, 51, 255);"><b>V =
+sqrt( PR )</b></u>
+<p>P = <input name="p" size="6" type="text"> W <br>
+R = <input name="r" size="6" type="text">
+ohms <br>
+<input value=" Calculate " onclick="vpra()" type="button">
+<input value=" Clear " type="reset"><br>
+V = <input name="a1" size="6" readonly="readonly" type="text"> V<br>
+</p>
+</form>
+</td>
+</tr>
+<tr>
+<td>
+<form name="ivr"><u style="color: rgb(51, 51, 255);"><b>I =
+V/R</b></u>
+<p>V = <input name="v" size="6" type="text"> V<br>
+R = <input name="r" size="6" type="text">
+ohms<br>
+<input value=" Calculate " onclick="ivra()" type="button">
+<input value=" Clear " type="reset"><br>
+I = <input name="a1" size="6" readonly="readonly" type="text"> A<br>
+</p>
+</form>
+</td>
+<td>
+<form name="ipv"><u style="color: rgb(51, 51, 255);"><b>I =
+P/V</b></u>
+<p>P = <input name="p" size="6" type="text"> W <br>
+V = <input name="v" size="6" type="text"> V
+<br>
+<input value=" Calculate " onclick="ipva()" type="button">
+<input value=" Clear " type="reset"><br>
+I = <input name="a1" size="6" readonly="readonly" type="text"> A<br>
+</p>
+</form>
+</td>
+<td>
+<form name="ipr"><u style="color: rgb(51, 51, 255);"><b>I =
+sqrt( P/R )</b></u>
+<p>P = <input name="p" size="6" type="text"> W <br>
+R = <input name="r" size="6" type="text">
+ohms <br>
+<input value=" Calculate " onclick="ipra()" type="button">
+<input value=" Clear " type="reset"><br>
+I = <input name="a1" size="6" readonly="readonly" type="text"> A<br>
+</p>
+</form>
+</td>
+</tr>
+<tr>
+<td>
+<form name="rvi"><u style="color: rgb(51, 51, 255);"><b>R =
+V/I</b></u>
+<p>V = <input name="v" size="6" type="text"> V<br>
+I = <input name="i" size="6" type="text"> A<br>
+<input value=" Calculate " onclick="rvia()" type="button">
+<input value=" Clear " type="reset"><br>
+R = <input name="a1" size="6" readonly="readonly" type="text"> ohms<br>
+</p>
+</form>
+</td>
+<td>
+<form name="rvp"><u style="color: rgb(51, 51, 255);"><b>R = V<sup>2</sup>/P</b></u>
+<p>V = <input name="v" size="6" type="text"> V <br>
+P = <input name="p" size="6" type="text"> W
+<br>
+<input value=" Calculate " onclick="rvpa()" type="button">
+<input value=" Clear " type="reset"><br>
+R = <input name="a1" size="6" readonly="readonly" type="text"> ohms<br>
+</p>
+</form>
+</td>
+<td>
+<form name="rpi"><u style="color: rgb(51, 51, 255);"><b>R =
+P/I<sup>2</sup></b></u>
+<p>P = <input name="p" size="6" type="text"> W <br>
+I = <input name="i" size="6" type="text"> A
+<br>
+<input value=" Calculate " onclick="rpia()" type="button">
+<input value=" Clear " type="reset"><br>
+R = <input name="a1" size="6" readonly="readonly" type="text"> ohms<br>
+</p>
+</form>
+</td>
+</tr>
+<tr>
+<td>
+<form name="pvi"><u style="color: rgb(51, 51, 255);"><b>P = VI</b></u>
+<p>V = <input name="v" size="6" type="text"> V<br>
+I = <input name="i" size="6" type="text"> A<br>
+<input value=" Calculate " onclick="pvia()" type="button">
+<input value=" Clear " type="reset"><br>
+P = <input name="a1" size="6" readonly="readonly" type="text"> W<br>
+</p>
+</form>
+</td>
+<td>
+<form name="pvr"><u style="color: rgb(51, 51, 255);"><b>P = V<sup>2</sup>/R</b></u>
+<p>V = <input name="v" size="6" type="text"> V <br>
+R = <input name="r" size="6" type="text">
+ohms <br>
+<input value=" Calculate " onclick="pvra()" type="button">
+<input value=" Clear " type="reset"><br>
+P = <input name="a1" size="6" readonly="readonly" type="text"> W<br>
+</p>
+</form>
+</td>
+<td>
+<form name="pir"><u style="color: rgb(51, 51, 255);"><b>P = I<sup>2</sup>R</b></u>
+<p>I = <input name="i" size="6" type="text"> A<br>
+R = <input name="r" size="6" type="text">
+ohms<br>
+<input value=" Calculate " onclick="pira()" type="button">
+<input value=" Clear " type="reset"><br>
+P = <input name="a1" size="6" readonly="readonly" type="text"> W<br>
+</p>
+</form>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Ohms Law Calculator' to home</a><br>
+<br>
+&nbsp;<a href="http://www.matrixlab-examples.com/free-online-calculators.html" onclick="return FIX.track(this);"><span style="font-weight: bold;">From 'Ohms Law Calculator' to
+Free Online
+Calculators</span></a><br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --><br>
+</td>
+<td style="vertical-align: bottom; text-align: right; font-weight: bold;"><a href="#top">Top</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/creative-electronic-projects.html" onclick="return FIX.track(this);">Creative
+Electronic Projects</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/electronic-experiments.html" onclick="return FIX.track(this);">Electronic
+Experiments<br>
+</a><br>
+<a href="http://www.matrixlab-examples.com/electrical-calculations.html" onclick="return FIX.track(this);">Electrical
+Calculations</a><br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for ohm's law calculator page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br>
+</a></p>
+</td>
+<td style="width: 170px; text-align: right; vertical-align: top; background-color: rgb(224, 236, 255);"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:48:57 10-Aug-2021 -->
+</body></html>

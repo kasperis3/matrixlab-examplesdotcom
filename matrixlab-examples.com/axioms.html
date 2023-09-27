@@ -1,0 +1,389 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Axioms - Laws of Boolean Algebra in numerical software</title>
+
+<meta name="Description" content="This is a brief summary of Boolean Algebra axioms and theorems, implemented with Matlab...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/axioms.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Axioms - Laws of Boolean Algebra in numerical software" />
+<meta property="og:description" content="This is a brief summary of Boolean Algebra axioms and theorems, implemented with Matlab..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/axioms.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/imgs/logo.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 540px;">
+<h1><a name="top"></a>Axioms -
+Laws of Boolean Algebra</h1>
+<span style="font-weight: bold;">Boolean
+algebra </span>is the algebra of propositions. Propositions
+are&nbsp;denoted by letters, such as A, B, x or y, etc.<br>
+&nbsp;<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --></td>
+<td style="vertical-align: top;"><span style="font-weight: bold;"></span>In the
+following&nbsp;<span style="font-weight: bold;">axioms
+</span>and theorems (<span style="font-weight: bold;">laws of boolean algebra</span>),
+the '+'
+or 'V' signs
+represent a logical OR (or
+conjunction),
+the '.' or '^' signs represent a
+logical
+AND (or
+disjunction),
+and '¬' or '~' represent a logical NOT ( or negation).<br>
+<br>
+Every proposition has two possible values: <span style="font-weight: bold;">1</span> (or <span style="font-weight: bold;">T</span>) when the
+proposition is <span style="font-weight: bold;">true</span>
+and <span style="font-weight: bold;">0</span> (or <span style="font-weight: bold;">F</span>) when the
+proposition is <span style="font-weight: bold;">false</span>.<br>
+</td>
+</tr>
+</tbody>
+</table>
+<span style="font-weight: bold;"></span><br>
+The <span style="font-weight: bold;">negation</span>
+of A is written as <span style="font-weight: bold;">¬A</span>
+(or <span style="font-weight: bold;">~A</span>) and
+read as '<span style="font-weight: bold;">not A'</span>.
+If A is true then ¬A is false. Conversely, if A is false then ¬A is
+true. <br>
+<br>
+<br>
+<h3>Basic Laws of Boolean Algebra</h3>
+<table style="width: 530px; height: 389px; text-align: left; margin-left: auto; margin-right: auto;" border="1" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="font-weight: bold; vertical-align: top; text-align: center; width: 105px;">Descript.</td>
+<td style="font-weight: bold; text-align: center; width: 77px;">OR
+form</td>
+<td style="font-weight: bold; text-align: center; width: 106px;">AND
+form</td>
+<td style="text-align: center; width: 232px;"><span style="font-weight: bold;">Other way to express it:</span></td>
+</tr>
+<tr>
+<td style="text-align: center; width: 105px;">Axiom</td>
+<td style="text-align: center; width: 77px;">x+0
+= x</td>
+<td style="text-align: center; width: 106px;">x.1
+= x</td>
+<td style="text-align: center; width: 232px;">A
+V F = A<br>
+A ^ T = A</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 105px;">Commutative</td>
+<td style="text-align: center; width: 77px;">x+y
+= y+x</td>
+<td style="text-align: center; width: 106px;">x.y
+= y.x</td>
+<td style="text-align: center; width: 232px;">A
+V B = B V A<br>
+A ^ B = B ^ A</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 105px;">Distributive</td>
+<td style="text-align: center; width: 77px;">x.(y+z)
+= (x.y)+(x.z)</td>
+<td style="text-align: center; width: 106px;">x+y.z
+= (x+y).(x+z)</td>
+<td style="text-align: center; width: 232px;">A
+^ (B V C) = (A ^ B) V (A ^ C)<br>
+A V B ^ C = (A V B) ^ (A V C)</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 105px;">Axiom</td>
+<td style="text-align: center; width: 77px;">x+¬x
+= 1</td>
+<td style="text-align: center; width: 106px;">x.¬x
+= 0</td>
+<td style="text-align: center; width: 232px;">A
+V ¬A = T<br>
+A ^ ¬A = F</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 105px;">Theorem</td>
+<td style="text-align: center; width: 77px;">x+x
+= x</td>
+<td style="text-align: center; width: 106px;">x.x
+= x</td>
+<td style="text-align: center; width: 232px;">A
+V A = A<br>
+A ^ A = A</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 105px;">Theorem</td>
+<td style="text-align: center; width: 77px;">x+1
+= 1</td>
+<td style="text-align: center; width: 106px;">x.0
+= 0</td>
+<td style="text-align: center; width: 232px;">A
+V T = T<br>
+A ^ F = F</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 105px;">Theorem</td>
+<td style="text-align: center; width: 77px;">¬¬x
+= x</td>
+<td style="text-align: center; width: 106px;">&nbsp;
+</td>
+<td style="text-align: center; width: 232px;">¬(¬A)
+= A</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 105px;">Associativity</td>
+<td style="text-align: center; width: 77px;">x+(y+z)
+= (x+y)+z</td>
+<td style="text-align: center; width: 106px;">x.(y.z)
+= (x.y).z</td>
+<td style="text-align: center; width: 232px;">A
+V (B V C) = (A V B) V C<br>
+A ^ (B ^ C) = (A ^ B) ^ C</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 105px;">Absorption</td>
+<td style="text-align: center; width: 77px;">x+x.y
+= x</td>
+<td style="text-align: center; width: 106px;">x.(x+y)
+= x</td>
+<td style="text-align: center; width: 232px;">A
+V A ^ B = A<br>
+A ^ (A V B) = A</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 105px;">DeMorgan's
+laws</td>
+<td style="text-align: center; width: 77px;">x+y
+= ¬(¬x.¬y)</td>
+<td style="text-align: center; width: 106px;">x.y
+= ¬(¬x+¬y)</td>
+<td style="text-align: center; width: 232px;">A
+V B = ¬(¬A ^ ¬B)<br>
+A ^ B = ¬(¬A V ¬B)</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+Using logical gates, the <span style="font-weight: bold;">commutative
+property</span> for a <span style="font-weight: bold;">logical
+AND</span> is:<br>
+<br>
+<div style="text-align: center;"><img style="width: 381px; height: 53px;" alt="commutativity 1" src="http://www.matrixlab-examples.com/image-files/commutativity-1.jpg"><br>
+</div>
+<br>
+The commutative property for a <span style="font-weight: bold;">logical
+OR</span>, is:<br>
+<div style="text-align: center;"><img style="width: 378px; height: 61px;" alt="commutativity-2" src="http://www.matrixlab-examples.com/image-files/commutativity-2.jpg"><br>
+</div>
+<hr style="width: 100%; height: 2px;"><br>
+Using electronic gates, the <span style="font-weight: bold;">distributive&nbsp;property</span>&nbsp;<span style="font-weight: bold;"></span>is:<br>
+<br>
+<img style="width: 529px; height: 126px;" alt="distributive property using gates" src="http://www.matrixlab-examples.com/image-files/distributivity-1.jpg"><br>
+<hr style="width: 100%; height: 2px;"><br>
+The <span style="font-weight: bold;">De Morgan's laws</span>
+can transform logical ORs into logical ANDs (negations are necessary)
+and can electronically be described this way:<br>
+<br>
+<div style="text-align: center;"><img style="width: 336px; height: 56px;" alt="De Morgan's law 1" src="http://www.matrixlab-examples.com/image-files/de-morgan-1.jpg"><br>
+</div>
+<br>
+or<br>
+<div style="text-align: center;"><img style="width: 341px; height: 53px;" alt="De Morgan law 2" src="http://www.matrixlab-examples.com/image-files/de-morgan-2.jpg"><br>
+</div>
+<br>
+<br>
+&nbsp;<a href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Axioms' to home</a><br>
+<br>
+&nbsp;<a href="http://www.matrixlab-examples.com/boolean-algebra.html" onclick="return FIX.track(this);">From
+'Axioms' to 'Boolean Algebra'</a><br>
+&nbsp;<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a href="axioms.html#top">Top</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/logical-and.html" onclick="return FIX.track(this);">AND gate</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/logical-or.html" onclick="return FIX.track(this);">OR gate</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/logical-not.html" onclick="return FIX.track(this);">NOT gate</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/xor.html" onclick="return FIX.track(this);">XOR gate</a><br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><br>
+<p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for boolean algebra axioms page"><a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br></a></p>
+</td>
+<td style="width: 170px; vertical-align: top; background-color: rgb(224, 236, 255); text-align: center;"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:51:37 10-Aug-2021 -->
+</body></html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Matlab Help - examples and videos</title>
+
+<meta name="Description" content="We're looking at the general structure of the MATLAB help environment. See other sections for full code development...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/matlab-help.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Matlab Help - examples and videos" />
+<meta property="og:description" content="We're looking at the general structure of the MATLAB help environment. See other sections for full code development..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/matlab-help.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/starting_matlab.jpg" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/edit_plot_windows.jpg" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<h1><a name="top"></a>Basic MATLAB
+help</h1>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+</td>
+<td>In this section we talk about some very
+basic features and commands.
+This is a type of Matlab help. To begin with, we look
+at the general structure of the environment.<br>
+<br>
+Typing 'help <span style="font-style: italic;">function</span>'
+(in the
+Matlab command window), with the appropriate <span style="font-weight: bold;">function</span> or <span style="font-weight: bold;">command</span> name,
+provides
+detailed help for any of the functions or commands available. We
+encourage the use of the online Matlab help.</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<div style="text-align: center;"><img style="width: 410px; height: 297px;" alt="Different Windows in Matlab (default view)" src="http://www.matrixlab-examples.com/image-files/starting_matlab.jpg"><br>
+</div>
+<br>
+<span style="font-weight: bold;">Command window</span><br>
+This is the main window. It is characterized by the MATLAB command
+prompt '&gt;&gt;'. When you launch the application, MATLAB puts
+you in this window. All commands are typed here, at the MATLAB prompt.<br>
+<br>
+<span style="font-weight: bold;">Command
+History</span><br>
+All commands typed on the MATLAB prompt in the command window get
+recorded, even across multiple sessions. You can select a command from
+this window with the mouse and execute it in the command window by
+double clicking on it. You can also select a set of commands from this
+window and create an m-file with the right click of the mouse, and also
+selecting the appropriate option from the menu.<br>
+<br>
+<span style="font-weight: bold;">Workspace</span><br>
+This subwindow lists all variables that you have generated so far and
+shows their type and size. You can do various things with these
+variables by clicking on a variable and then using the right button on
+the mouse to select your option.<br>
+<br>
+<span style="font-weight: bold;">Current
+Directory</span><br>
+This is where all your files from the current directory are found. You
+can do file navigation here. You also have several options of what you
+can do with a file once you select it. To see the options, click the
+right button of the mouse after selecting a file. You can run m-files,
+rename them, delete them, etc. <br>
+<br>
+<span style="font-weight: bold;">Edit window</span><br>
+This is where you write or edit and save your own programs in files
+called 'M-files'. You can use any text editor to carry out these tasks.
+MATLAB provides its own built-in editor. However, you can use your own
+editor by typing the standard file-editing command that you normally
+use on your system.<br>
+<br>
+<div style="text-align: center;"><img style="width: 461px; height: 334px;" alt="Matlab Edit Window - with a circle in a Figure Window" src="http://www.matrixlab-examples.com/image-files/edit_plot_windows.jpg"><br>
+</div>
+<span style="font-weight: bold;"><br>
+Graphics window</span><br>
+The output of all graphics commands typed in the command window is
+flushed to the Graphics or Figure window, a separate window with white
+background color.<br>
+<br>
+<span style="font-weight: bold;">Demo</span><br>
+The MATLAB help has a demo facility to show many of its features. The
+program
+includes a tutorial introduction that is worth trying. Type '<span style="font-weight: bold;">demo</span>' at
+the MATLAB prompt to invoke the demonstrations, and follow the
+instructions.<br>
+<br>
+<span style="font-weight: bold;">On-line
+documentation</span><br>
+The MATLAB help provides on-line examples&nbsp;for all its built-in
+functions and
+programming language commands. You can get Matlab help just typing
+'<span style="font-style: italic;">help function</span>'
+on your command window. You'll see fast-helpful
+examples.<br>
+<br>
+<span style="font-weight: bold;">Input-Output</span><br>
+MATLAB supports interactive computation, taking the input from the
+screen, and flushing the output to the screen. Additionally, it can
+read input files and write output files.<br>
+<br>
+<span style="font-weight: bold;">Data types</span><br>
+The fundamental data type in MATLAB is the array. It includes several
+distinct data objects: integers, real numbers, matrices, strings,
+structures, and cells. In most cases you never worry about the data
+type or object declarations. MATLAB automatically sets its variables to
+match what you need.<br>
+<br>
+<span style="font-weight: bold;">Dimensioning</span><br>
+Dimensioning is automatic in MATLAB. No dimension statements are
+required for vectors or arrays. You can find the dimensions of an
+existing matrix or a vector with the 'size' and 'length' commands.<br>
+<br>
+<span style="font-weight: bold;">Case
+sensitivity</span><br>
+MATLAB is case-sensitive; that is, it differentiates between the
+lowercase and uppercase letters. Thus 'm' and 'M' are different
+variables. MATLAB commands and function are typed in lowercase letters.<br>
+<br>
+<span style="font-weight: bold;">Output display</span><br>
+The output of every command is displayed on the screen unless MATLAB is
+directed otherwise. A semicolon at the end of a command suppresses the
+screen output, except for graphics.<br>
+<br>
+<span style="font-weight: bold;">Output format</span><br>
+Computations in MATLAB are performed using double precision, but
+the appearance of floating point numbers on the screen is controlled by
+the 'format' in use. There are several different output formats. The
+following list shows the 'pi' value in several formats:<br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 132px;">format short</td>
+<td style="width: 362px;"> 3.1416</td>
+</tr>
+<tr>
+<td style="width: 132px;">format long </td>
+<td style="width: 362px;">3.14159265358979</td>
+</tr>
+<tr>
+<td style="width: 132px;">format hex</td>
+<td style="width: 362px;">
+400921fb54442d18</td>
+</tr>
+<tr>
+<td style="width: 132px;">format short e</td>
+<td style="width: 362px;">3.1416e+000</td>
+</tr>
+</tbody>
+</table>
+<br>
+The formats 'format compact' and 'format loose' control the spacing
+above and below the displayed lines. The default is format short.<br>
+<br>
+<span style="font-weight: bold;">Command
+history</span><br>
+MATLAB saves previously typed commands in a buffer. These commands can
+be recalled with the up-arrow key (this helps in editing previous
+commands). You can also copy and paste commands from the 'Command
+History' subwindow where all your commands from even previous sessions
+of MATLAB are recorded and listed.<br>
+<br>
+<span style="font-weight: bold;">File types</span><br>
+<span style="font-weight: bold;">M-files</span>
+are standard ASCII text files, with a '.m' extension. There are two
+types of these: script files and function files. Most of the programs
+that you write in MATLAB are saved as M-files. All built-in functions
+are M-files, most of which reside on your computer in a special format.<br>
+<br>
+<span style="font-weight: bold;">Mat-files</span>
+are binary data-files, with a '.mat' extension to the filename.
+Matfiles are created by MATLAB when you save data with the 'save'
+command. The data are written in a special format that only MATLAB can
+read. These files can be loaded into MATLAB with the 'load' command.<br>
+<br>
+<span style="font-weight: bold;">Mex-files</span>
+are MATLAB-callable Fortran and C programs, with a '.mex' extension to
+the filename.<br>
+<br>
+<span style="font-weight: bold;">Creating a
+directory and saving files</span><br>
+In MATLAB, there's a default folder called 'work' where MATLAB saves
+your files if you do not specify any other location. However, it is
+better if you create a separate folder for saving your work. If you
+need to store your files somewhere else, you might have to specify the
+path to the files using the 'path' command, or change the working
+directory of MATLAB to the desired directory with the 'cd' command.<br>
+<br>
+<span style="font-weight: bold;">Printing</span><br>
+On PCs, you can print the contents of your current active window
+(command, figure, or edit window), select Print... from the File menu
+and click Print in the dialog box.<br>
+<br>
+<span style="font-weight: bold;">File
+Navigation</span><br>
+Starting with MATLAB 6, <a href="http://www.mathworks.com" onclick="return FIX.track(this);" rel="noopener" target="_blank">Mathworks (the MATLAB creators)</a>
+incorporated
+new features to easily navigate through your files. The 'Current
+Directory' is shown just above the Command Window with the option of
+changing the current directory with just a click. In addition, there is
+a 'Current Directory' subwindow to the left of the Command Window that
+lists files in the current directory (you can show/hide it from the
+'Desktop menu'), and gives you the option of opening, executing,
+editing, etc., with the click of the right button on your mouse. You
+can also change the directory there or add a particular directory to
+the MATLAB path so that it can access all the files in that directory
+automatically.<br>
+<br>
+<br>
+&nbsp;<a href="http://www.matrixlab-examples.com/" onmouseout="window.status=&#39;&#39;; return true" onmouseover="window.status=&#39;to home&#39;; return true" onclick="return FIX.track(this);">From
+'Matlab Help' to home</a>
+<br>
+<br>
+&nbsp;<a href="http://www.matrixlab-examples.com/matlab-help-2tier.html" onmouseout="window.status=&#39;&#39;; return true" onmouseover="window.status=&#39;to A guide to Matlab&#39;; return true" onclick="return FIX.track(this);">From
+'Matlab Help' to 'Help Menu'</a><br>
+&nbsp; &nbsp;<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a href="matlab-help.html#top" onmouseout="window.status=''; return true" onmouseover="window.status='to home'; return true">Top</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/matlab-commands.html" onclick="return FIX.track(this);">Matlab
+Commands</a><br>
+<br>
+&nbsp;<a href="http://www.matrixlab-examples.com/matlab-ide.html" onclick="return FIX.track(this);">Video: Matlab
+IDE</a><br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for matlab help page"><a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br></a></p>
+</td>
+<td style="width: 170px; vertical-align: top; background-color: rgb(224, 236, 255); text-align: center;"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:50:21 10-Aug-2021 -->
+</body></html>

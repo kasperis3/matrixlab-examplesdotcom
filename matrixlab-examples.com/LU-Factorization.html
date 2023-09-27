@@ -1,0 +1,353 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>LU factorization - using Matlab functions</title>
+
+<meta name="Description" content="The name of the built-in function for a Lower-Upper decomposition is 'lu'. To get the LU factorization of a square matrix A, type the command '[L, U] = lu(A)'. See this example...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/LU-Factorization.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="LU factorization - using Matlab functions" />
+<meta property="og:description" content="The name of the built-in function for a Lower-Upper decomposition is 'lu'. To get the LU factorization of a square matrix A, type the command '[L, U] = lu(A)'. See this example..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/LU-Factorization.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<h1><a name="top"></a>LU
+Factorization</h1>
+In Matlab there are several built-in
+functions provided for matrix <span style="font-weight: bold;">factorization</span>
+(also
+called <span style="font-weight: bold;">decomposition</span>).<br>
+&nbsp;
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+</td>
+<td><br>
+The name of the built-in function for a Lower-Upper decomposition is '<span style="font-weight: bold;">lu</span>'. To get the
+LU&nbsp;factorization of a <span style="font-weight: bold;">square
+matrix</span> <span style="font-weight: bold; font-style: italic;">A</span>,
+type the command <br>
+'<span style="font-weight: bold;">[L, U]
+= lu(A)</span>'.<br>
+<br>
+Matlab returns a lower triangular matrix <span style="font-weight: bold; font-style: italic;">L</span>
+and an upper triangular matrix &nbsp;<span style="font-weight: bold; font-style: italic;">U </span>such
+that&nbsp;<span style="font-weight: bold; font-style: italic;">L</span>*<span style="font-weight: bold; font-style: italic;">U</span>
+= <span style="font-style: italic; font-weight: bold;">A</span>.</td>
+</tr>
+</tbody>
+</table>
+<br>
+Suppose that we need to perform a factorization on<br>
+<br>
+<span style="font-style: italic; font-weight: bold;">A</span>=
+[ 1 &nbsp;2 -3 <br>
+&nbsp; &nbsp;&nbsp; -3 -4 13<br>
+&nbsp; &nbsp; &nbsp; &nbsp;2 1 -5]<br>
+<br>
+We can verify that if matrix<br>
+<br>
+<span style="font-style: italic; font-weight: bold;">L</span>
+= [ 1&nbsp; &nbsp;0&nbsp; &nbsp; &nbsp;0<br>
+&nbsp; &nbsp; &nbsp; -3 &nbsp; 1 &nbsp;&nbsp;
+&nbsp;0<br>
+&nbsp; &nbsp; &nbsp;&nbsp; 2 &nbsp;-1.5&nbsp; 1]<br>
+<br>
+and matrix<br>
+<br>
+<span style="font-style: italic; font-weight: bold;">U</span>
+= [1 &nbsp; 2 &nbsp;-3<br>
+&nbsp; &nbsp; &nbsp;&nbsp; 0 &nbsp; 2 &nbsp; 4<br>
+&nbsp; &nbsp; &nbsp; &nbsp;0&nbsp; &nbsp;0
+&nbsp; 7]<br>
+<br>
+Then, factors of <span style="font-style: italic; font-weight: bold;">A</span>
+are <span style="font-style: italic; font-weight: bold;">L</span>
+and <span style="font-style: italic; font-weight: bold;">U</span>,
+that is: <span style="font-style: italic; font-weight: bold;">A</span>
+= <span style="font-style: italic; font-weight: bold;">L</span>*<span style="font-style: italic; font-weight: bold;">U</span><br>
+<br>
+The decomposition of the matrix <span style="font-style: italic; font-weight: bold;">A</span>
+is an illustration of an important
+and well known theorem. If <span style="font-style: italic; font-weight: bold;">A</span>
+is a <span style="font-weight: bold;">nonsingular matrix</span>
+that can be transformed into an
+upper diagonal form <span style="font-weight: bold; font-style: italic;">U</span>
+by the application or row addition operations,
+then there exists a lower triangular matrix <span style="font-style: italic; font-weight: bold;">L</span>
+such that <span style="font-weight: bold; font-style: italic;">A</span>
+= <span style="font-weight: bold; font-style: italic;">LU</span>.<br>
+<br>
+Row
+addition operations can be represented by a product of <span style="font-weight: bold;">elementary</span>
+matrices. If <span style="font-style: italic;">n</span>
+such operations are required, the matrix <span style="font-weight: bold; font-style: italic;">U</span>
+is related to
+the matrix <span style="font-weight: bold; font-style: italic;">A</span>
+in the following way:
+<p class="MsoNormal"><i style=""><span style="font-weight: bold;">U</span> = <span style="font-weight: bold;">E</span><sub>n</sub>
+<span style="font-weight: bold;">E</span><sub>n-1</sub>
+... <span style="font-weight: bold;">E</span><sub>2</sub>
+<span style="font-weight: bold;">E</span><sub>1</sub>
+<span style="font-weight: bold;">A</span><o:p></o:p></i></p>
+The lower triangular matrix <span style="font-style: italic; font-weight: bold;">L</span>
+is found from<br>
+<br>
+<span style="font-style: italic; font-weight: bold;"></span>
+<p class="MsoNormal"><b><i>L</i></b><i style=""> = <span style="font-weight: bold;">E</span><sub>1</sub><sup>-1</sup>
+<span style="font-weight: bold;">E</span><sub>2</sub><sup>-1</sup>
+... <span style="font-weight: bold;">E</span><sub>n</sub><sup>-1</sup><o:p></o:p></i></p>
+<span style="font-style: italic; font-weight: bold;">L</span>
+will have ones on the diagonal. The <span style="font-weight: bold;">off-diagonal
+elements</span> are zeros above
+the diagonal, while the elements below the diagonal are the multipliers
+required to perform <span style="font-weight: bold;">Gaussian
+elimination</span> on the matrix <span style="font-weight: bold; font-style: italic;">A</span>.
+The element <i>l</i><i style=""><sub>ij</sub></i><br>
+<span style="font-style: italic;"></span>is
+equal to the multiplier used to eliminate the (<span style="font-style: italic;">i</span>, <span style="font-style: italic;">j</span>) position.<br>
+<br>
+<span style="font-weight: bold;">Example:</span><br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+In Matlab, let's find the <span style="font-weight: bold;">LU
+decomposition</span> of the matrix<br>
+<br>
+A = [-2 1 -3; 6 -1 8; 8 3 -7]<br>
+<br>
+Write this instruction in the command window or within a script:<br>
+<br>
+[L, U] = lu(A)<br>
+<br>
+And the Matlab answer is:<br>
+<br>
+L =<br>
+&nbsp;&nbsp; -0.2500&nbsp;&nbsp;
+-0.5385&nbsp;&nbsp;&nbsp; 1.0000<br>
+&nbsp;&nbsp;&nbsp; 0.7500&nbsp;&nbsp; &nbsp;
+1.0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+&nbsp;&nbsp;&nbsp;
+1.0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp; &nbsp; 0 &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; 0<br>
+<br>
+U =<br>
+&nbsp;&nbsp;&nbsp; 8.0000&nbsp;&nbsp;&nbsp;
+3.0000&nbsp;&nbsp; -7.0000<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp; &nbsp; -3.2500&nbsp;&nbsp; 13.2500<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp; &nbsp;
+&nbsp; &nbsp; 2.3846<br>
+<br>
+We can test the answer, by typing<br>
+<br>
+L*U<br>
+<br>
+And, finnally, the Matlab answer is:<br>
+<br>
+ans =<br>
+&nbsp;&nbsp; -2.0000&nbsp;&nbsp;&nbsp;
+1.0000&nbsp;&nbsp; -3.0000<br>
+&nbsp;&nbsp;&nbsp; 6.0000&nbsp;&nbsp;
+-1.0000&nbsp;&nbsp;&nbsp; 8.0000<br>
+&nbsp;&nbsp;&nbsp; 8.0000&nbsp;&nbsp;&nbsp;
+3.0000&nbsp;&nbsp; -7.0000<br>
+<br>
+&gt;&gt; <br>
+<br>
+Showing that <span style="font-style: italic; font-weight: bold;">A
+</span>= <span style="font-style: italic; font-weight: bold;">L</span>*<span style="font-style: italic; font-weight: bold;">U</span>,
+indeed.<br>
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'LU Factorization' to 'Matlab home'</a><br>
+&nbsp;<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/linear-algebra.html" onclick="return FIX.track(this);">From
+'LU Factorization' to 'Linear Algebra Menu'</a><br>
+&nbsp; <br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="LU-Factorization.html#top">Top</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/singular-value-decomposition.html" onclick="return FIX.track(this);">SVD Factorization</a><br style="font-weight: bold;">
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for LU factorization page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; vertical-align: top; background-color: rgb(224, 236, 255); text-align: right;"><br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml -->
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:49:45 10-Aug-2021 -->
+</body></html>

@@ -1,0 +1,544 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Check Writer - How to work with strings in Matlab - change numbers into words</title>
+
+<meta name="Description" content="This Matlab program is a 'check writer', changes numbers into words. You must provide a numerical date, payee of the check, and amount to be written (any number between 1 and 999,999). The code is easy to modify and can be translated to any language...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/check-writer.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Check Writer - How to work with strings in Matlab - change numbers into words" />
+<meta property="og:description" content="This Matlab program is a 'check writer', changes numbers into words. You must provide a numerical date, payee of the check, and amount to be written (any number between 1 and 999,999). The code is easy to modify and can be translated to any language..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/check-writer.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<h1><a name="Check_Writer_&#8211;_how_to_manipulate_strings"></a><span style="" lang="ES-TRAD">Check
+Writer &#8211; how to manipulate strings in Matlab<o:p></o:p></span></h1>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p><br>
+</span></p>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --></td>
+<td>This
+Matlab program is a &#8216;<span style="font-weight: bold;">check
+writer</span>&#8217;. You must provide a <span style="font-weight: bold;">numerical date</span>, <span style="font-weight: bold;">payee of
+the check</span>, and <span style="font-weight: bold;">amount
+to be written</span> (any number between 1.00 and 999,999.99
+dollars). <br>
+<br>
+The program <span style="font-weight: bold;">translates</span>
+the date and amount <span style="font-weight: bold;">to
+words</span>, and prints
+providing some spacing within the check (easily modifiable).<o:p>
+We achieve this task using simple string concatenation in Matlab.</o:p></td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p><br>
+You
+should regard the listing as a <span style="font-weight: bold;">sample</span>
+of a check-writing code. The algorithm
+for <span style="font-weight: bold;">translating numbers
+into words</span> (or working with strings) is general and may
+be easily adapted to other programming languages.<br>
+<o:p>&nbsp;</o:p><br>
+There
+are five sections to convert numbers into words in this Matlab program.<o:p></o:p></span></p>
+<ul>
+<li><span style="" lang="ES-TRAD">Processing
+the thousands</span></li>
+<li><span style="" lang="ES-TRAD">Processing
+the hundreds</span><span style="" lang="ES-TRAD"></span></li>
+<li><span style="" lang="ES-TRAD">Processing
+the tens</span></li>
+<li><span style="" lang="ES-TRAD"></span><span style="" lang="ES-TRAD">Processing
+cents</span><span style="" lang="ES-TRAD"></span></li>
+<li><span style="" lang="ES-TRAD">Main
+code that accesses and controls the other four sections<o:p></o:p></span></li>
+</ul>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">We use
+<span style="font-weight: bold;">cell arrays</span>
+to handle the necessary strings, and the process consists in
+finding the correct <span style="font-weight: bold;">index</span>
+of an initial given &#8216;<span style="font-weight: bold;">dictionary</span>&#8217;.</span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p></span></p>
+<p style="text-align: center;" class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p></span><img style="width: 254px; height: 85px;" alt="numbers into words in Matlab" src="http://www.matrixlab-examples.com/image-files/numbers_to_words_001.gif"></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">The
+Matlab function to work with the first three digits (thousands) is as
+follows.
+The string (named &#8216;words&#8217;) is updated after each digit is evaluated.</span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: blue;">function</span><span style="color: black;"> [words,
+h, u] = thousands(amount)</span><br>
+<span style="color: blue;">global</span><span style="color: black;"> number<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">words =
+[];</span><br>
+<span style="color: forestgreen;">%
+Find if there are thousands</span><br>
+<span style="color: black;">t =
+floor(amount/1000);</span><br>
+<span style="color: blue;">if</span><span style="color: black;"> (t ==
+0)<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>h
+= 0;<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>u
+= 0;<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue;">return<br>
+end<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Find the hundreds</span><br>
+<span style="color: black;">h =
+floor(amount/100000);</span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: blue;">if</span><span style="color: black;"> h &gt;
+0<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>words
+= [number{h} </span><span style="color: rgb(160, 32, 240);">'
+HUNDRED'</span><span style="color: black;">];</span><br>
+<span style="color: blue;">end<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Find the last two digits</span><br>
+<span style="color: black;">u =
+floor(amount/1000) - h*100;</span><br>
+<span style="color: blue;">if</span><span style="color: black;"> (0 &lt;
+u) &amp; (u &lt; 21)<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>words
+= [words </span><span style="color: rgb(160, 32, 240);">'
+'</span><span style="color: black;">
+number{u}];</span><br>
+<span style="color: blue;">else</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span>words = [words tens(u, [])];</span><br>
+<span style="color: blue;">end<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="color: forestgreen; font-family: monospace;">%
+End string with word 'thousand'</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">words
+=
+[words </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'
+THOUSAND'</span><span style="color: black; font-family: monospace;">];</span></p>
+<p class="MsoNormal"></p>
+<span style="" lang="ES-TRAD">The '<span style="font-weight: bold;">check writer</span>'
+function to work with the three digits previous to the
+decimal
+point (hundreds) is as follows. Again, the string (named &#8216;words&#8217;) is
+updated
+after each digit is evaluated and the Matlab algorithm flows in a
+similar way
+than before.<o:p></o:p></span>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: blue;">function</span><span style="color: black;"> words =
+hundreds(amount, words, h, u)</span><br>
+<span style="color: blue;">global</span><span style="color: black;"> number<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Find if there are hundreds</span><br>
+<span style="color: black;">hu =
+floor(amount - h*1e5 - u*1e3);</span><br>
+<span style="color: blue;">if</span><span style="color: black;"> (hu ==
+0)<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>words
+= [words];<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue;">return<br>
+end<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Find the hundreds</span><br>
+<span style="color: black;">h =
+floor(hu/100);</span><br>
+<span style="color: blue;">if</span><span style="color: black;"> h &gt;
+0<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>words
+= [words </span><span style="color: rgb(160, 32, 240);">'
+'</span><span style="color: black;">
+number{h} </span><span style="color: rgb(160, 32, 240);">'
+HUNDRED'</span><span style="color: black;">];</span><br>
+<span style="color: blue;">end<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="color: forestgreen;">%
+Find the last two digits</span><br>
+<span style="color: black;">u = hu -
+h*100;</span><br>
+<span style="color: blue;">if</span><span style="color: black;"> (0 &lt;
+u) &amp; (u &lt; 21)<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>words
+= [words </span><span style="color: rgb(160, 32, 240);">'
+'</span><span style="color: black;">
+number{u}];</span><br>
+<span style="color: blue;">else</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span>words = [words tens(u, [])];</span><br>
+<span style="color: blue;">end</span></p>
+<p class="MsoNormal" style=""><span style=""></span></p>
+<p class="MsoNormal" style=""><span style="">The section to translate the last two digits of
+each
+group of three elements is given below. Note that the <span style="font-weight: bold;">index</span> to locate the
+correct number in the given dictionary (defined in the <span style="font-weight: bold;">control section</span>,
+below)
+works only for numbers <span style="font-weight: bold;">beyond
+the first 20 elements</span> in the list, due to the way
+that English syntax works. &nbsp;For the first 20 elements, it 's
+not necessary to go through this script.</span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: blue;">function</span><span style="color: black;"> words =
+tens(u, words)</span><br>
+<span style="color: blue;">global</span><span style="color: black;"> number<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Work with the last two digits of the group of three</span><br>
+<span style="color: blue;">if</span><span style="color: black;"> u == 0<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>words
+= [words];<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue;">return<br>
+end<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Find the correct index of the appropriate multiple of 10</span><br>
+<span style="color: black;">words =
+[words </span><span style="color: rgb(160, 32, 240);">'
+'</span><span style="color: black;"> number{floor((u
+- 20)/10 + 20)}];<br>
+units =
+u - floor(u/10)*10;</span><br>
+<span style="color: blue;">if</span><span style="color: black;"> units
+== 0<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue;">return<br>
+end<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Add a dash and the appropriate number if there are units</span><br>
+<span style="color: black;">words =
+[words </span><span style="color: rgb(160, 32, 240);">'-'</span><span style="color: black;"> number{units}];</span></p>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;">
+</span>
+<p class="MsoNormal" style=""><span style="color: black;">Now, t</span><span style=""><span style="color: black;">his is the function
+to add the remaining cents to the almost ready final string. It
+converts
+numbers into strings using command '<span style="font-weight: bold;">num2str</span>'.</span><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: blue;">function</span><span style="color: black;"> words =
+cents(amount, words)<br>
+c =
+amount*100 - floor(amount)*100;</span><br>
+<span style="color: blue;">if</span><span style="color: black;"> c &lt;
+10<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>cents
+= [</span><span style="color: rgb(160, 32, 240);">'0'</span><span style="color: black;"> num2str(c)];</span><br>
+<span style="color: blue;">else</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span>cents = num2str(c);</span><br>
+<span style="color: blue;">end<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">words =
+[words </span><span style="color: rgb(160, 32, 240);">'
+AND '</span><span style="color: black;"> cents </span><span style="color: rgb(160, 32, 240);">'/100'</span><span style="color: black;">];</span></p>
+<p class="MsoNormal" style=""><span style=""></span></p>
+<p class="MsoNormal" style=""><span style="">The control module that accesses the previous four
+routines for our check writer is as follows (name it check_writer.m, so
+you can run it from the command window):</span><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">clc;
+clear</span><br>
+<span style="color: blue;">global</span><span style="color: black;"> number<span style="">&nbsp;<br>
+</span><br>
+month =
+{</span><span style="color: rgb(160, 32, 240);">'January'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'February'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'March'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'April'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'May'</span><span style="color: black;">,</span><span style="color: blue;">...</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: rgb(160, 32, 240);">'June'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'July'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'August'</span><span style="color: black;">,</span><span style="color: rgb(160, 32, 240);">'September'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'October'</span><span style="color: black;">,</span><span style="color: blue;">...</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: rgb(160, 32, 240);">'November'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'December'</span><span style="color: black;">};<span style="">&nbsp;</span></span><span style="font-size: 12pt;"></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">number =
+{</span><span style="color: rgb(160, 32, 240);">'ONE'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'TWO'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'THREE'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'FOUR'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'FIVE'</span><span style="color: black;">,</span><span style="color: blue;">...</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: rgb(160, 32, 240);">'SIX'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'SEVEN'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'EIGHT'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'NINE'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'TEN'</span><span style="color: black;">,</span><span style="color: blue;">...</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: rgb(160, 32, 240);">'ELEVEN'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'TWELVE'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'THIRTEEN'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'FOURTEEN'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'FIFTEEN'</span><span style="color: black;">,</span><span style="color: blue;">...</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: rgb(160, 32, 240);">'SIXTEEN'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'SEVENTEEN'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'EIGHTEEN'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'NINETEEN'</span><span style="color: black;">,</span><span style="color: blue;">...</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: rgb(160, 32, 240);">'TWENTY'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'THIRTY'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'FORTY'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'FIFTY'</span><span style="color: black;">,</span><span style="color: blue;">...</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: rgb(160, 32, 240);">'SIXTY'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'SEVENTY'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'EIGHTY'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'NINETY'</span><span style="color: black;">};<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">disp(</span><span style="color: rgb(160, 32, 240);">'Check
+Writer -----'</span><span style="color: black;">)<br>
+disp(</span><span style="color: rgb(160, 32, 240);">'
+'</span><span style="color: black;">)<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">dat =
+input(</span><span style="color: rgb(160, 32, 240);">'Enter
+date (MMDDYY): '</span><span style="color: black;">,
+</span><span style="color: rgb(160, 32, 240);">'s'</span><span style="color: black;">);<br>
+m =
+str2num(dat(1:2));<br>
+<span style=""></span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">name =
+input(</span><span style="color: rgb(160, 32, 240);">'Name
+of payee: '</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'s'</span><span style="color: black;">);<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">a =
+input(</span><span style="color: rgb(160, 32, 240);">'Amount
+of check (include two decimals): '</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'s'</span><span style="color: black;">);<br>
+amount =
+str2num(a);</span><br>
+<span style="color: blue;">if</span><span style="color: black;"> (amount
+&lt; 1)|(amount &gt; 999999.99)<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>disp(</span><span style="color: rgb(160, 32, 240);">'Sorry, amount is out of
+range...'</span><span style="color: black;">)<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue;">return<br>
+end<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">x =
+input(</span><span style="color: rgb(160, 32, 240);">'Prepare
+printer (enter when ready)... '</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'s'</span><span style="color: black;">);<br>
+disp(</span><span style="color: rgb(160, 32, 240);">'
+'</span><span style="color: black;">)<span style="">&nbsp;<br>
+</span><br>
+dat_str
+= [</span><span style="color: rgb(160, 32, 240);">'<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>'</span><span style="color: blue;">...</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>month{m} </span><span style="color: rgb(160, 32, 240);">' '</span><span style="color: black;">
+dat(3:4) </span><span style="color: rgb(160, 32, 240);">',
+'</span><span style="color: black;"> </span><span style="color: rgb(160, 32, 240);">'20'</span><span style="color: black;"> dat(5:6)];<br>
+disp(dat_str)<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">amount_str
+= [</span><span style="color: rgb(160, 32, 240);">'<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>'</span><span style="color: blue;">...</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: rgb(160, 32, 240);">'$'</span><span style="color: black;"> a];<br>
+disp(amount_str)<span style="">&nbsp;&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">name_str
+= [</span><span style="color: rgb(160, 32, 240);">'<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>'</span><span style="color: black;">
+name];<br>
+disp(name_str)<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black; font-family: monospace;">[words,
+h, u] = thousands(amount);<br>
+words =
+[hundreds(amount, words, h, u)];<br>
+words =
+[cents(amount, words) </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'
+DOLLARS'</span><span style="color: black; font-family: monospace;">];<br>
+disp(words)</span></p>
+<p class="MsoNormal" style=""><br>
+</p>
+<hr style="width: 100%; height: 2px;">
+<p class="MsoNormal" style=""><span style="">Now, let&#8217;s try our code, let's change numbers into words for a good application:<o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style=""></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="">Check
+Writer -----<span style="">&nbsp;</span><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="">Enter
+date (MMDDYY): 122309<br>
+Name of payee: Heavenly Bank of Algorithmland<br>
+Amount of check (include two decimals): 23999.00<o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="">Prepare
+printer (enter when ready)... <o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style=""><span style="">&nbsp;</span><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style=""><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>December 23, 2009<o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style=""><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>$23999.00<o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style=""><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Heavenly
+Bank of Algorithmland<o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style=""><span style="font-family: monospace;">TWENTY-THREE
+THOUSAND NINE HUNDRED NINETY-NINE AND 00/100 DOLLARS</span><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style=""><o:p>&nbsp;
+</o:p>
+<hr style="width: 100%; height: 2px;"></span></p>
+<p class="MsoNormal" style=""><span style="">Another run:<o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style=""><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="">Check
+Writer -----<span style="">&nbsp;</span><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="">Enter
+date (MMDDYY): 010110<br>
+Name of payee: Matrixlab-Examples.com<br>
+Amount of check (include two decimals): 734100.15<o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="">Prepare
+printer (enter when ready)... <o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style=""><span style="">&nbsp;</span><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style=""><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>January 01, 2010<o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style=""><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>$734100.15<o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style=""><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;</span>Matrixlab-Examples.com<o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style=""><span style="font-family: monospace;">SEVEN
+HUNDRED THIRTY-FOUR THOUSAND ONE HUNDRED AND
+15/100 DOLLARS&nbsp;</span></span></p>
+<br>
+&nbsp;<a href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From 'Check Writer' to home</a><br>
+<br>
+&nbsp;<a href="http://www.matrixlab-examples.com/matlab-programming-2tier.html" onclick="return FIX.track(this);">From
+'Check Writer' to 'Matlab Programming'</a><br>
+&nbsp; <br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a href="check-writer.html#Check_Writer_%3F_how_to_manipulate_strings">Top</a><br>
+<br>
+<br>
+<a href="http://www.matrixlab-examples.com/string-concatenation.html" onclick="return FIX.track(this);">Video
+about strings</a><br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for check writer page"><a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br>
+</a></p>
+</td>
+<td style="width: 170px; vertical-align: top; background-color: rgb(224, 236, 255); text-align: center;"><br>
+<br>
+<br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:51:28 10-Aug-2021 -->
+</body></html>

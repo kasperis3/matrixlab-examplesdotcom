@@ -1,0 +1,390 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Scilab Piecewise Function</title>
+
+<meta name="Description" content="We're going to define and plot a piecewise function in Scilab. The function has 4 pieces and we'll use a vectorized way to do it...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/scilab-piecewise-function.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Scilab Piecewise Function" />
+<meta property="og:description" content="We're going to define and plot a piecewise function in Scilab. The function has 4 pieces and we'll use a vectorized way to do it..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/scilab-piecewise-function.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/scilab-piecewise-006.gif" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 813px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 145px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 813px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 520px;"><br>
+<h1 style="text-align: center;"><a name="Scilab_Piecewise_Function"></a><span style="" lang="ES-TRAD">Scilab
+Piecewise Function</span></h1>
+<div style="text-align: center;"><span style="" lang="ES-TRAD"><o:p></o:p>A
+piecewise function is a special function that has a very particular
+definition
+along the independent values. For some values of x, the function has
+associated
+a constant or a formula, but for other values of x, it has associated
+another
+formula. Each section is called a piece of the function.<o:p></o:p></span><br>
+<br>
+&nbsp;<!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --> &nbsp;<br>
+</div>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">In
+Scilab programming, there&#8217;s a number of methods to achieve this kind of
+functions. We could use branches (if-else code), or different cases
+(switch-case code), and iterations (for or while-loops) in general. In
+this
+example, we&#8217;re going to use a vectorized approach...</span></p>
+<p style="text-align: right;" class="MsoNormal">&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/piecewise-function.html" onclick="return FIX.track(this);">See
+Piecewise functions in Matlab</a><span style="" lang="ES-TRAD"></span></p>
+<span style="" lang="ES-TRAD"></span>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">First,
+we have to understand some useful built-in functions or Scilab features
+for
+this task...<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">When we
+have a vector like this<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><span style="font-family: monospace;">x
+= -7
+: 7</span><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">or<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><span style="font-family: monospace;">x
+= -7
+-6 -5 -4 -3 -2 -1 0 1 2 3 4 5 6 7</span><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">we can
+find a range of values and a range of indices for those values.<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p></span><br>
+<span style="" lang="ES-TRAD">This
+line <o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><span style="font-family: monospace;">x2
+=
+x(-4 &lt; x &amp; x &lt;= -3)</span><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">is
+going to generate a vector of x-values that meet the condition <span style="font-family: monospace;">-4 &lt; x &lt;=
+-3</span>. Notice the particular syntax. The line uses a
+conditional range (extraction
+of values from a vector) including an &#8216;<span style="font-family: monospace;">and</span>&#8217; operation (<span style="font-family: monospace;">&amp;</span>). It
+gives us the
+x-values that meet both conditions -4 &lt; x and x &lt;= 3.<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">For the
+x-vector above, the result would be just one value<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><span style="font-family: monospace;">x2
+= -3</span><o:p><br>
+&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">This
+line <o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><span style="font-family: monospace;">find(-4
+&lt; x &amp; x &lt;= -3)</span><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">is
+going to generate a vector of indices of the values generated before.<br>
+In this
+particular case, the result would be<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><span style="font-family: monospace;">ans
+= 5</span><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">because
+5 is the index of the value -3 in the given vector x.<br>
+So we
+need to take care of both the values and the corresponding indices in a
+vector.<o:p><br>
+&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Now,
+let&#8217;s say that we have a 4-piece function like this one:<o:p></o:p></span></p>
+<p style="text-align: center;" class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;<img style="width: 234px; height: 107px;" alt="piecewise function to be used in Scilab" src="http://www.matrixlab-examples.com/image-files/scilab-piecewise-005.gif"></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">We can
+design a Scilab function to perform like that described one. It&#8217;s
+called
+piecewise3.sci and accepts a vector as input:<br>
+<o:p>&nbsp;</o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="" lang="ES-TRAD">function<span style="">&nbsp; </span>y = piecewise3(x)<span style="">&nbsp; </span><o:p></o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="" lang="ES-TRAD">//
+first piece - a constant<br>
+y(find(x
+&lt;= -4)) = -1;<o:p>&nbsp;</o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="" lang="ES-TRAD">//
+second piece - a straight line<br>
+x2 =
+x(-4 &lt; x &amp; x &lt;= -3);<br>
+y(find(-4
+&lt; x &amp; x &lt;= -3)) = -4*x2 - 13;<o:p>&nbsp;</o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="" lang="ES-TRAD">//
+third piece - a parabola<br>
+x3 =
+x(-3 &lt; x &amp; x &lt;= 0);<br>
+y(find(-3
+&lt; x &amp; x &lt;= 0)) = x3.^2 + 6*x3 + 8;<o:p>&nbsp;</o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="" lang="ES-TRAD">//
+fourth piece - another constant<br>
+y(find(0
+&lt; x)) = 8;<o:p>&nbsp;</o:p></span></p>
+<span style="" lang="ES-TRAD"><span style="font-family: monospace;">endfunction</span><o:p></o:p></span>
+<br>
+<span style="" lang="ES-TRAD"></span>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">The
+general idea is to find the x-values for the different pieces of the
+function
+and then apply the corresponding formula just to those values.&nbsp;</span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Finally, we have
+to find the correct indices in the output vector to place those values.
+We go
+one piece at a time. In the first and fourth pieces above, we don&#8217;t
+need to
+find the x-values, because the function is a constant. We just have to
+find the
+indices where the constants are going to be placed.<o:p></o:p></span></p>
+<br>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">We can
+call the code from our main script or from any other sci-file, like
+this:<o:p>&nbsp;</o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="" lang="ES-TRAD">//
+Reset the environment<br>
+xdel(winsid());
+clc; clear<o:p>&nbsp;</o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="" lang="ES-TRAD">//
+declare the function to be called<br>
+getf('piecewise3.sci');<br>
+<o:p>&nbsp;</o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="" lang="ES-TRAD">//
+define your independent values in a column row<br>
+x = [-7
+: .1 : 7]';<o:p>&nbsp;</o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="" lang="ES-TRAD">//
+call
+your previously defined function<br>
+y =
+piecewise3(x);<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><span style="font-family: monospace;">//
+plot</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">plot(x,
+y, 'ro')</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">xlabel('x');
+ylabel('y');</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">title('Piecewise
+Function');</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">legend('4-piece
+Function');</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">xgrid</span><br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">The
+resulting plot is this:<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><span style="" lang="ES-TRAD"><o:p>&nbsp;<img style="width: 362px; height: 307px;" alt="Plot result of the piecewise function in Scilab" src="http://www.matrixlab-examples.com/image-files/scilab-piecewise-006.gif"></o:p></span></p>
+<h3><br>
+</h3>
+<h3>Another Example - Vectorization</h3>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td><iframe src="//www.slideshare.net/slideshow/embed_code/45271921" marginwidth="0" marginheight="0" style="border: 1px solid rgb(204, 204, 204); margin-bottom: 5px; max-width: 100%;" allowfullscreen="" frameborder="0" height="420" scrolling="no" width="510"> </iframe> </td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Scilab Piecewise Function' to Matlab home</a><br>
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/scilab.html" onclick="return FIX.track(this);">From
+'Scilab Piecewise Function' to Scilab Examples</a><br style="font-weight: bold;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right; font-weight: bold;"><a href="#Scilab_Piecewise_Function">Top</a></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for scilab piecewise function page"><br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br>
+</a></p>
+</td>
+<td style="vertical-align: top; width: 170px; text-align: center; background-color: rgb(224, 236, 255);"><br>
+<!-- start: SSI translator.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI translator.shtml --><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:45:34 10-Aug-2021 -->
+</body></html>

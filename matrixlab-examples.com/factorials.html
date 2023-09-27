@@ -1,0 +1,387 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Factorials - ways to code them without special functions</title>
+
+<meta name="Description" content="Factorials of positive integers are the product of all positive integers less than or equal to n. Operations are denoted by n!...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/factorials.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Factorials - ways to code them without special functions" />
+<meta property="og:description" content="Factorials of positive integers are the product of all positive integers less than or equal to n. Operations are denoted by n!..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/factorials.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<h1><a name="Top_of_factorials"></a>Factorials
+&#8211; several ideas to code them</h1>
+<h3>Four methods to code and calculate factorials</h3>
+In
+mathematics, <span style="font-weight: bold;">factorials</span>
+of positive integers <i style="">n</i>, are the
+product of all positive
+integers less than or equal to <i style="">n</i>.
+Factorials are denoted by <i style="">n</i>!.<br>
+<br>
+For example:<br>
+6! = 6 x 5 x 4 x 3 x 2 x 1 = 720<br>
+<br>
+Note: 0! is a special case that is defined as&nbsp;1.<br>
+<br>
+<!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+<br>
+<p class="MsoNormal">The factorial operation
+is found in many areas of math, mainly
+in probability and statistics, combinatorics, algebra and data
+analysis. Its
+most basic appearance is due to the fact that there are <i style="">n</i>!
+ways to arrange <i style="">n</i>
+distinct elements into a sequence (permutations of any set of objects).<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">There are a number of
+solutions when we have to code
+factorials and we can experiment with any number-crunching software.<br>
+<o:p>&nbsp;</o:p></p>
+<h3>1. Function &#8216;factorial&#8217;</h3>
+<p class="MsoNormal" style="">In
+Matlab, we can use built-in function &#8216;factorial&#8217;, like
+this:<span style="color: black;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black; font-family: monospace;">n = 9</span><br style="font-family: monospace;">
+<span style="color: forestgreen; font-family: monospace;">%
+use function factorial</span><br style="font-family: monospace;">
+<span style="color: black;"><span style="font-family: monospace;">factorial(n)</span><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal">The answer is 362880.<o:p></o:p></p>
+<p class="MsoNormal" style=""><span style="color: black;"><o:p>&nbsp;&nbsp;</o:p></span></p>
+<h3>2. Function &#8216;prod&#8217; <o:p></o:p></h3>
+<p class="MsoNormal">We can also use built-in
+function &#8216;prod&#8217;. For vectors,
+prod(n) is the product of the elements of n. For matrices, prod(X) is a
+row
+vector with the product of each column.<o:p></o:p></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">n = 9</span><br>
+<span style="color: forestgreen;">%
+use function prod, which multiplicates<br>
+%
+every element in a vector</span><br>
+<span style="color: black;">prod([1
+: n])<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal">The answer is, again,
+362880.<o:p></o:p></p>
+<p class="MsoNormal" style=""><span style="color: black;"><o:p>&nbsp;</o:p></span></p>
+<h3>3. Iterations<o:p></o:p></h3>
+<p class="MsoNormal" style="">We can
+use iterations to get the multiplication of numbers,
+just following the definition of what a factorial is<span style="color: black;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black; font-family: monospace;">n = 9</span><br style="font-family: monospace;">
+<span style="color: forestgreen; font-family: monospace;">%
+use iterations</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">f
+= 1;</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">for</span><span style="color: black; font-family: monospace;"> i = 1:n<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>f
+= f*i;</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">end</span><br style="font-family: monospace;">
+<span style="color: black;"><span style="font-family: monospace;">f</span></span></p>
+<h3><span style="color: black;"><o:p></o:p></span>4.
+Recursion</h3>
+<p class="MsoNormal">We could even use a
+recursive method to calculate a
+factorial. That idea and&nbsp;method is explained in
+detail&nbsp;in the
+article <a href="http://www.matrixlab-examples.com/recursion.html" onclick="return FIX.track(this);">recursion.</a></p>
+<h3>Custom-made formula</h3>
+<p class="MsoNormal">Now, if we want to
+calculate a custom-made formula including
+factorial operations, we can create and optimize a function for that
+specific purpose.
+Let&#8217;s say that we need to calculate<br>
+</p>
+<div style="text-align: center;"><o:p>&nbsp;</o:p><img style="width: 75px; height: 46px;" alt="how to code a factorial operation" src="http://www.matrixlab-examples.com/image-files/factorials-001.gif"><br>
+</div>
+<p class="MsoNormal"><o:p></o:p>without
+using the Matlab factorial function. As a condition,
+we may assume that the user will know that <i style="">n</i>
+&gt; <i style="">m</i>, and that <i style="">n</i>
+and <i style="">m</i> are positive
+integers.</p>
+<p class="MsoNormal">We can optimize the code,
+since we know in advance that<o:p></o:p><br>
+</p>
+<div style="text-align: center;"><span style="position: relative; top: 14pt;"></span><img style="width: 216px; height: 49px;" alt="operations with factorials" src="http://www.matrixlab-examples.com/image-files/factorials-002.gif"><br>
+</div>
+<p class="MsoNormal">Thus, our customized
+function could be:<o:p>&nbsp;</o:p></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="color: blue;">function</span><span style="color: black;"> y =
+special_fact(n, m)</span><br>
+<span style="color: forestgreen;">%
+using 'prod' and appropriate vectors</span><span style="font-size: 12pt;"></span><br>
+<span style="color: black;">y =
+prod([m+1 : n]) / prod([1 : n-m]);</span><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><br>
+or another possibility<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style=""><span style="color: blue; font-family: monospace;">function</span><span style="color: black; font-family: monospace;"> y =
+special_fact1(n, m)</span><br style="font-family: monospace;">
+<span style="color: forestgreen; font-family: monospace;">%
+using loops to calculate the numerator</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">f1
+= 1;</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">for</span><span style="color: black; font-family: monospace;"> i = m+1
+: n<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>f1
+= f1 * i;</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">end</span><br style="font-family: monospace;">
+<span style="color: forestgreen; font-family: monospace;">%
+using loops to calculate the denominator</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">f2
+= 1;</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">for</span><span style="color: black; font-family: monospace;"> i = 1 :
+n-m<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>f2
+= f2 * i;</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">end</span><br style="font-family: monospace;">
+<span style="color: forestgreen; font-family: monospace;">%
+assembling the appropriate terms</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">y
+=
+f1/f2;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><o:p>&nbsp;<br>
+</o:p><br>
+Let&#8217;s test our functions:</p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">n = 19;<br>
+m = 13;<br>
+factorial(n)/(factorial(n-m)*factorial(m))<br>
+special_fact(n,m)<br>
+special_fact1(n,m)</span></p>
+<p class="MsoNormal">And all the answers are
+27132.</p>
+<p class="MsoNormal"><br>
+</p>
+<h3>Double Factorials</h3>
+A note on double factorials... Mathematically, the formulas for DF are
+as follow. <br>
+<br>
+If n is even, then<br>
+n!! = n(n - 2)(n - 4)(n - 6)... (4)(2)<br>
+<br>
+If n is odd, then<br>
+n!! = n(n - 2)(n - 4)(n - 6) ...(3)(1)<br>
+<br>
+<br>
+We can code that with a simple script:<br>
+<span style="font-family: monospace;"></span>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">n =
+input(</span><span style="color: rgb(160, 32, 240);">'Give
+me a number: '</span><span style="color: black;">);<br>
+df = 1;</span><br>
+<span style="color: blue;">for</span><span style="color: black;"> i = n :
+-2 : 1<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>df
+= df * i;</span><br>
+<span style="color: blue;">end</span><br>
+<span style="color: black;">str = [</span><span style="color: rgb(160, 32, 240);">'Double
+Factorial of '</span><span style="color: black;">
+num2str(n) </span><span style="color: rgb(160, 32, 240);">'
+is '</span><span style="color: black;">
+num2str(df)];<br>
+disp(str)</span></p>
+<br>
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Factorials' to Matlab
+Examples home</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/calculus-problems.html" onclick="return FIX.track(this);">From
+'Factorials' to Calculus Problems</a><br style="font-weight: bold;">
+&nbsp; <br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="#Top_of_factorials">Top</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/sequences-and-series.html" onclick="return FIX.track(this);">Series</a><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/sequences-and-series.html" onclick="return FIX.track(this);">
+and Sequences</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/probability-and-statistics.html" onclick="return FIX.track(this);">Prob.
+and Stats</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/recursion.html" onclick="return FIX.track(this);">Recursivity</a><br style="font-weight: bold;">
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for factorials page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; text-align: right; vertical-align: top; background-color: rgb(224, 236, 255);"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div style="text-align: center;"><!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:51:21 10-Aug-2021 -->
+</body></html>

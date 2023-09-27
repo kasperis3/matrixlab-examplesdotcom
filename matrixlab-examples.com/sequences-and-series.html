@@ -1,0 +1,479 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Sequences and Series - some ideas with numerical software</title>
+
+<meta name="Description" content="Sequences and series are very related: a sequence of numbers is a function defined on the set of positive integers. In Matlab...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/sequences-and-series.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Sequences and Series - some ideas with numerical software" />
+<meta property="og:description" content="Sequences and series are very related: a sequence of numbers is a function defined on the set of positive integers. In Matlab..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/sequences-and-series.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<h1><a name="Sequences_and_Series_-_some_ideas_with"></a>Sequences
+and Series - some ideas with Matlab</h1>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+</td>
+<td style="vertical-align: middle;"><span style="font-weight: bold;">Sequences and series</span>
+are very related: a sequence of numbers
+is a function defined on the set of positive integers (the numbers in
+the sequence
+are called <span style="font-weight: bold;">terms</span>).
+In other words, a sequence is a list of numbers generated by
+some mathematical rule and typically expressed in terms of <i style="">n</i>. <br>
+<br>
+In order to construct the sequence, you group consecutive
+integer values into <i style="">n</i>.</td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal">For example,
+the sequence of odd integers is generated by the sequence&nbsp;<br>
+2<i style="">n</i> &#8211; 1. The sequence produce 2(1)-1,
+2(2)-1, 2(3)&#8211;1, 2(4)-1... which
+produces 1, 3, 5, 7...<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="font-weight: bold;">A series is the sum of the terms</span>
+of a sequence. Series are
+based on sums, whereas sequences are not.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">In Matlab, let&#8217;s <span style="font-weight: bold;">generate the sequence</span>
+above (for odd
+numbers), in two ways:<o:p><br>
+&nbsp;</o:p></p>
+<p style="font-weight: bold;" class="MsoNormal">a)
+Using a for-loop in a sequence:</p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+We initialize our sum</span><br>
+<span style="color: black;">s = 0;</span><br>
+<span style="color: forestgreen;">%
+We are going to get the first 5 terms,<br>
+% one-by-one</span><span style="font-size: 12pt;"> </span><span style="color: forestgreen;">in our sequence</span><br>
+<span style="color: blue;">for</span><span style="color: black;"> n = 1 :
+5<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: forestgreen;">% This is the shown formula
+for odd numbers</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span>tn = 2*n-1<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: forestgreen;">% We add-up every term in the
+series</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span>s = s + tn;</span><br>
+<span style="color: blue;">end</span></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen; font-family: monospace;">%
+We display the sum of the series<br>
+</span><span style="color: black; font-family: monospace;">s</span><br>
+<span style="color: black;"><span style=""></span><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">The code
+produces these results:<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">tn = 1<br>
+tn = 3<br>
+tn = 5<br>
+tn = 7<br>
+tn = 9<br>
+s =<span style="">&nbsp; </span>25<o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;"><span style="font-weight: bold;">b)
+Using
+a vectorized way, which is simpler and faster:</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen; font-family: monospace;">%
+We define our first 5 ns</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">n
+= 1 :
+5</span><br style="font-family: monospace;">
+<span style="color: forestgreen; font-family: monospace;">%
+We calculate the terms</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">tn
+= 2*n
+- 1</span><br style="font-family: monospace;">
+<span style="color: forestgreen; font-family: monospace;">%
+We add-up all the terms in the series</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">s
+=
+sum(tn)</span><br>
+<span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal">The code produces these
+results:</p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="font-family: monospace;">n
+= &nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;
+2&nbsp;&nbsp;&nbsp;&nbsp;
+3&nbsp;&nbsp;&nbsp;&nbsp;
+4&nbsp;&nbsp;&nbsp;&nbsp;
+5</span><br>
+tn = <span style="">&nbsp;</span>1<span style="">&nbsp;&nbsp;&nbsp;&nbsp; </span>3<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>5<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>7<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>9<br>
+s =<span style="">&nbsp; </span><span style="">&nbsp;</span>25</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<h3><o:p></o:p>Arithmetic Sequences</h3>
+<p class="MsoNormal">This is a sequence of
+numbers each of which (after the first)
+is obtained by adding to the preceding number a constant called the
+common
+difference. Then, 3, 6, 9, 12, 15... is an arithmetic sequence because
+each
+term is obtained by adding 3 to the preceding number. In the <span style="font-weight: bold;">arithmetic sequence</span>
+500, 450, 400... the common difference is -50.</p>
+<p class="MsoNormal"><span style="font-weight: bold;"><br>
+Formulas for arithmetic sequences:</span><br>
+- The <i style="">n</i><sup>th</sup>
+term, or last term: L = a + (n - 1)d<br>
+- The sum of the first <i style="">n</i>
+terms: S = n/2 (a + L) = n/2 [2a + (n - 1)d]<br>
+<o:p></o:p></p>
+<p class="MsoNormal">where<br>
+a = first term of the sequence<br>
+d = common difference<br>
+n = number of terms<br>
+L = <i style="">n</i><sup>th</sup>
+term, or last term<br>
+S = sum of first <i style="">n</i>
+terms<o:p><br>
+&nbsp;</o:p></p>
+<p style="font-weight: bold;" class="MsoNormal">Example:</p>
+<hr style="width: 100%; height: 2px;">
+<p class="MsoNormal"><br>
+Consider the arithmetic sequence 3, 7, 11, 15...<br>
+where a = 3 and d = 4.<o:p></o:p></p>
+<p class="MsoNormal">The sixth term is:</p>
+<p class="MsoNormal"> L = a + (n - 1)d = 3 +
+(6 - 1)4 = 23.<o:p></o:p><br>
+</p>
+<p class="MsoNormal">The sum of the first six
+terms is<o:p>:</o:p></p>
+<p class="MsoNormal">S = n/2(a + L) = 6/2(3 +
+23) = 78 or<br>
+S = 6/2[2a + (n - 1)d] = 6/2[2(3) + (6 - 1)4] = 78.</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Let&#8217;s do it effortlessly
+with Matlab, without for-loops
+(vectorized way):<br>
+<o:p>&nbsp;</o:p></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="color: forestgreen;">%
+Let's define our sequence, starting with 3,<br>
+%
+using steps of four units, until we reach 999, for example</span><br>
+<span style="color: black;">seq = 3
+: 4 : 999;</span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="color: forestgreen;">%
+Find the 6th element</span><br>
+<span style="color: black;">sn =
+seq(6)</span></p>
+<p class="MsoNormal"><span style="color: forestgreen; font-family: monospace;">%
+Find the sum of the first 6 elements</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">s1_6
+=
+sum(seq(1 : 6))</span><br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The results are:<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="font-family: monospace;">sn = 23</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">s1_6
+=&nbsp;
+78</span><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<h3>Geometric Sequences<o:p></o:p></h3>
+<p class="MsoNormal">A geometric sequence is a
+sequence of numbers each of which
+is obtained by multiplying the preceding number by a constant number
+called the
+common ratio. So 4, 8, 16, 32... is a <span style="font-weight: bold;">geometric sequence</span>
+because each number is
+obtained by multiplying the preceding number by 2. In the geometric
+sequence 64,
+16, 4, l, 1/4... the common ratio is 4.</p>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">
+</span>
+<p class="MsoNormal"><span style="font-weight: bold;"><br>
+Formulas for geometric sequences:</span><br>
+- The <i style="">n</i><sup>th</sup>
+term, or last term: L = ar<sup>n-1</sup><o:p></o:p><br>
+- The sum of the first n terms: </p>
+<p class="MsoNormal">S = a(r<sup>n</sup>
+&#8211; 1)/(r - 1) = (rL-a)/(r - 1)&nbsp; (r&nbsp;<span style="font-family: Symbol;"><span style=""></span></span>and
+1 are different)<o:p></o:p></p>
+<p class="MsoNormal">where<br>
+a = first term<br>
+r = common ratio<br>
+n = number of terms<br>
+L = nth term, or last term<br>
+S = sum of first n terms<o:p><br>
+&nbsp;</o:p></p>
+<p style="font-weight: bold;" class="MsoNormal">Example:</p>
+<hr style="width: 100%; height: 2px;">
+<p class="MsoNormal">Consider the geometric
+sequence 5, 10, 20, 40...<br>
+where a = 5 and r = 2<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The seventh term is:<br>
+L = ar<sup>n-1</sup> = 5(2<sup>7-1</sup>)
+= 5(2<sup>6</sup>) = 320</p>
+<p class="MsoNormal">The sum of the first
+seven terms is:<br>
+S = a(r<sup>n-1</sup>)/(r-1) = 5(2<sup>7</sup>-1)/(2-1)
+=
+635</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
+Let&#8217;s calculate it with Matlab:</p>
+<p class="MsoNormal" style="font-family: monospace;"><o:p></o:p><span style="color: forestgreen; font-family: monospace;">%
+Define your important constants</span><br>
+<span style="color: black;">a = 5; r
+= 2;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Define your sequence</span><br>
+<span style="color: black;">n = 1 :
+7;<br>
+L = a *
+r.^(n-1)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Find the 7th term</span><br>
+<span style="color: black;">L(7)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen; font-family: monospace;">%
+Find sum of first 7 terms</span><br>
+<span style="color: black; font-family: monospace;">sum(L(1:7))</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Matlab response is:</p>
+<p class="MsoNormal"><span style="font-family: monospace;">L
+=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+5&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;
+20&nbsp;&nbsp;&nbsp; 40&nbsp;&nbsp;&nbsp;
+80&nbsp;&nbsp;
+160&nbsp;&nbsp; 320</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">ans
+=&nbsp;&nbsp;&nbsp;
+320</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">ans
+=&nbsp;&nbsp;&nbsp;
+635</span><br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Another way to approach
+it is:<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Define your exponents</span><br>
+<span style="color: black;">n = 0 :
+6</span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Define your sequence</span><br>
+<span style="color: black;">gs =
+2.^n * 5</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Find the 7th term</span><br>
+<span style="color: black;">gs(7)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen; font-family: monospace;">%
+Find the sum of the first 7 terms</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">sum(gs(1
+: 7))</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The answer is:<o:p>&nbsp;</o:p></p>
+<p style="font-family: monospace;" class="MsoNormal">n =<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>0<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>1<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>2<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>3<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>4<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>5<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>6<br>
+gs =<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>5<span style="">&nbsp;&nbsp;&nbsp;
+</span>10<span style="">&nbsp;&nbsp;&nbsp;
+</span>20<span style="">&nbsp;&nbsp;&nbsp;
+</span>40<span style="">&nbsp;&nbsp;&nbsp;
+</span>80<span style="">&nbsp;&nbsp;
+</span>160<span style="">&nbsp;&nbsp;
+</span>320<br>
+ans =<span style="">&nbsp;&nbsp;&nbsp; </span>320<br>
+ans =<span style="">&nbsp;&nbsp;&nbsp; </span>635<o:p>&nbsp;</o:p></p>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Sequences and Series
+' to home</a><br>
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/calculus-problems.html" onclick="return FIX.track(this);">From
+'Sequences and Series ' to&nbsp;Calculus Problems</a><br>
+&nbsp;<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="#Sequences_and_Series_-_some_ideas_with">Top</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/harmonic-series.html" onclick="return FIX.track(this);">Infinite-Harmonic Series</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/iteration.html" onclick="return FIX.track(this);">Iterations</a><br style="font-weight: bold;">
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for series and sequences page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; text-align: right; vertical-align: top;">&nbsp;<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:46:12 10-Aug-2021 -->
+</body></html>

@@ -1,0 +1,513 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Simultaneous Equations: working with matrices in Matlab</title>
+
+<meta name="Description" content="Solving a set of linear simultaneous equations is easy in Matlab. It is, maybe, the most used operation in science and engineering, too. Solving a system of equations on a computer is nowadays as basic as doing arithmetic additions using a calculator. Let's see how easy Matlab makes this task...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/simultaneous-equations.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Simultaneous Equations: working with matrices in Matlab" />
+<meta property="og:description" content="Solving a set of linear simultaneous equations is easy in Matlab. It is, maybe, the most used operation in science and engineering, too. Solving a system of equations on a computer is nowadays as basic as doing arithmetic additions using a calculator. Let's see how easy Matlab makes this task..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/simultaneous-equations.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<h1 style="text-align: left;"><a name="top"></a>Simultaneous
+Equations</h1>
+<h1 style="text-align: left;">- Linear
+Algebra&nbsp;</h1>
+<br>
+Solving a
+system of <span style="font-weight: bold;">simultaneous
+equations</span>&nbsp;is easy in Matlab. It is, maybe, the
+most used
+operation in science and engineering, too. Solving a <span style="font-weight: bold;">set of&nbsp;equations in
+linear algebra&nbsp;</span>on a computer is nowadays as basic
+as doing arithmetic additions using
+a calculator. Let's see how easy Matlab makes this task.<br>
+<br>
+<a style="font-weight: bold;" href="#Video_Summary_-_Linear_Systems">Go to Video Summary</a><br>
+&nbsp; &nbsp;<span id="result_box" class="" lang="en"><span class="hps"></span></span><br>
+<br>
+We'll solve the <span style="font-weight: bold;">set of
+linear equations</span>
+given below.<br>
+<br>
+To solve these equations, no prior
+knowledge of matrix
+algebra or linear methods is required. The first two steps described
+below are really
+basic for most people who know just a little bit of linear algebra...
+<br>
+&nbsp;&nbsp; &nbsp;&nbsp;
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --></td>
+<td><br>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal"><br>
+Consider
+the following set of equations for our example.<br>
+<br>
+-6x = 2y - 2z + 15<br>
+&nbsp;4y - 3z = 3x + 13<br>
+&nbsp;2x + 4y - 7z = -9<br>
+<br>
+</p>
+<h3><span style="font-weight: bold;">First,
+rearrange the equations.</span></h3>
+<p class="MsoNormal">Write each equation with
+all the <span style="font-weight: bold;">unknown
+variables on the left</span>-hand side and all <span style="font-weight: bold;">known quantities on the right</span>
+side. Thus, for the equations given, rearrange them such that all terms
+involving <span style="font-style: italic;">x</span>,
+<span style="font-style: italic;">y</span>
+and <span style="font-style: italic;">z</span> are
+on the left side of the equal sign.<br>
+<br>
+-6<span style="font-style: italic;">x</span> - 2<span style="font-style: italic;">y</span> + 2<span style="font-style: italic;">z</span> = 15<br>
+-3<span style="font-style: italic;">x</span> + 4<span style="font-style: italic;">y</span> - 3<span style="font-style: italic;">z</span> = 13<br>
+&nbsp;2<span style="font-style: italic;">x</span>
++ 4<span style="font-style: italic;">y</span> - 7<span style="font-style: italic;">z</span> = -9<br>
+<br>
+</p>
+<h3><span style="font-weight: bold;">Second,
+write
+the equations in a matrix form</span></h3>
+<p class="MsoNormal">To write the equations in
+the matrix form <span style="font-weight: bold; font-style: italic;">Ax</span>
+= <span style="font-weight: bold; font-style: italic;">b</span>,
+where <span style="font-weight: bold; font-style: italic;">x</span>
+is the vector of unknowns (you have to arrange the unknowns in vector <span style="font-style: italic; font-weight: bold;">x</span>),
+the coefficients of the unknowns in matrix <span style="font-weight: bold; font-style: italic;">A</span>
+and the constants on the rigth hand of the equations in vector <span style="font-style: italic; font-weight: bold;">b</span>.
+In this particualar example, the unknown column&nbsp; vector is<br>
+<br>
+<span style="font-weight: bold; font-style: italic; font-family: monospace;">x</span><span style="font-family: monospace;">
+=&nbsp; [</span><span style="font-style: italic; font-family: monospace;">x</span><span style="font-family: monospace;">&nbsp;</span><span style="font-style: italic; font-family: monospace;">y</span><span style="font-family: monospace;">&nbsp;</span><span style="font-style: italic; font-family: monospace;">z</span><span style="font-family: monospace;">]'</span><br>
+<br>
+the coefficient matrix is<br>
+<br>
+<span style="font-style: italic; font-weight: bold; font-family: monospace;">A</span><span style="font-family: monospace;">
+= [-6 -2&nbsp; 2</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+-3&nbsp; 4 -3</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2&nbsp; 4 -7]</span><br>
+<br>
+and the known constant column vector is<br>
+<br>
+<span style="font-weight: bold; font-style: italic; font-family: monospace;">b</span><span style="font-family: monospace;">
+= [15&nbsp;13&nbsp;-9]'</span><br>
+<br>
+Note than the columns of <span style="font-style: italic; font-weight: bold;">A</span>
+simply are the coefficients of each unknown from all the three
+expressed equations. The <span style="font-weight: bold;">apostrophe
+at the end</span> of vectors <span style="font-weight: bold; font-style: italic;">x</span>
+and <span style="font-weight: bold; font-style: italic;">b</span>
+means that those vectors are column vectors, not row ones (it is Matlab
+notation).<br>
+<br>
+</p>
+<h3><span style="font-weight: bold;">Third,
+solve
+the simultaneous equations in Matlab</span></h3>
+<p class="MsoNormal">Enter the matrix <span style="font-style: italic; font-weight: bold;">A</span>
+and vector <span style="font-style: italic; font-weight: bold;">b</span>,
+and solve for vector <span style="font-style: italic; font-weight: bold;">x</span>
+with the command&nbsp;</p><p style="font-family: monospace; font-weight: bold;" class="MsoNormal">x = A\b</p><p class="MsoNormal">(note that the '<span style="font-weight: bold;">\</span>' symbol is different
+from the ordinary
+division '<span style="font-weight: bold;">/</span>'
+sign).<br>
+</p>
+<br>
+<hr style="width: 100%; height: 2px;">
+<p class="MsoNormal"><br>
+The Matlab answer to the lines above is:<br>
+<br>
+<span style="font-family: monospace;">A =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+-6&nbsp;&nbsp;&nbsp;
+-2&nbsp;&nbsp;&nbsp;&nbsp; 2</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+-3&nbsp;&nbsp;&nbsp;&nbsp;
+4&nbsp;&nbsp;&nbsp; -3</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+2&nbsp;&nbsp;&nbsp;&nbsp;
+4&nbsp;&nbsp;&nbsp; -7</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">b =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+15</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+13</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+-9</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">x =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+-2.7273</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+2.7727</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+2.0909</span><br>
+<br>
+</p>
+<hr style="width: 100%; height: 2px;">
+<p class="MsoNormal"><br>
+You can test the result by performing the substitution and multiplying <span style="font-weight: bold; font-style: italic;">Ax</span>
+to get <span style="font-weight: bold; font-style: italic;">b</span>,
+like this:<br>
+<br>
+<span style="font-family: monospace;">A*x</span><br>
+<br>
+And the Matlab answer is:<br>
+<br>
+<span style="font-family: monospace;">ans =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+15.0000</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+13.0000</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+-9.0000</span><br style="font-family: monospace;">
+<br>
+</p>
+<p class="MsoNormal">which corresponds to
+the column vector <span style="font-weight: bold; font-style: italic;">b</span>,
+indeed.</p>
+<span style="font-weight: bold;">Was this
+system of equations&nbsp;easy
+enough?</span><span style="text-decoration: underline;"><br>
+<br>
+<br>
+</span>
+<h3><a name="Video_Summary_-_Linear_Systems"></a>Video
+Summary - &nbsp;Solve Linear Systems<span style="text-decoration: underline;"></span></h3>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td><iframe src="https://www.youtube.com/embed/2wgsDSlwq1U?rel=0" allowfullscreen="" frameborder="0" height="292" width="519"></iframe></td>
+</tr>
+</tbody>
+</table>
+<span style="font-weight: bold;"><br>
+</span><span style="text-decoration: underline;"></span><span style="text-decoration: underline; font-weight: bold;"></span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Simultaneous Equations' to home</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/linear-algebra.html" onclick="return FIX.track(this);">From
+'Simultaneous Equations' to 'Linear Algebra Menu'</a> <span style="text-decoration: underline;"><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/sitemap.html" onclick="return FIX.track(this);">Table
+of Contents/Search</a><br>
+<br>
+</span>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="simultaneous-equations.html#top">Top</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/linear-algebra-and-its-applications.html" onclick="return FIX.track(this);">Application
+- Circuit Analysis</a><br style="font-weight: bold;">
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/simultaneous-equations-nonlinear.html" onclick="return FIX.track(this);">Nonlinear
+Systems</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/nonlinear-programming.html" onclick="return FIX.track(this);">Curve Fitting</a><br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+&nbsp;<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for simultaneous equations page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; text-align: right; vertical-align: top; background-color: rgb(224, 236, 255);"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br><br><br><br><br>
+<br>
+<br><br>
+<br>
+<br>
+<br>
+<br>
+<div style="text-align: center;"><!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:47:35 10-Aug-2021 -->
+</body></html>

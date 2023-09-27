@@ -1,0 +1,345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Lucas Series are similar to Fibonacci numbers. Let's
+code them...</title>
+
+<meta name="Description" content="The Lucas series (after E. Lucas) are similar to the Fibonacci numbers. Let's create a numerical code...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/lucas-series.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Lucas Series are similar to Fibonacci numbers. Let's
+code them..." />
+<meta property="og:description" content="The Lucas series (after E. Lucas) are similar to the Fibonacci numbers. Let's create a numerical code..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/lucas-series.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<h1><a name="Lucas_Series"></a><span style="" lang="ES-TRAD">Lucas
+Series - a code to find <span style="font-style: italic;">n</span>
+elements</span></h1>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+</td>
+<td style="vertical-align: middle;">The
+French mathematician, Edouard Lucas (19th century), found a sequence of
+numbers (named the <span style="font-weight: bold;">Lucas
+series</span>) similar to the sequence found in the <span style="font-weight: bold;">Fibonacci numbers</span>.<br>
+<br>
+<span style="" lang="ES-TRAD">The
+Fibonacci rule of adding the latest two integers
+to obtain the next number is kept, but here we start from 2 and 1,
+instead of 0
+and 1 used for the Fibonacci series.</span></td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal" style=""><span style="" lang="ES-TRAD"><o:p></o:p><br>
+The
+series, also called the Lucas Numbers
+after him, is defined as follows: where we write its members as <i style="">L</i><sub>n</sub>, for Lucas:<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><i style=""><span style="" lang="ES-TRAD">L<sub>n</sub></span></i><span style="" lang="ES-TRAD"> = <i style="">L<sub>n</sub></i><sub>-1</sub>
++ <i style="">L<sub>n</sub></i><sub>-2</sub>
+for <i style="">n</i> &gt; 2</span><br>
+<i style=""><span style="" lang="ES-TRAD">L</span></i><sub><span style="" lang="ES-TRAD">1</span></sub><span style="" lang="ES-TRAD"> = 2</span><br>
+<i style=""><span style="" lang="ES-TRAD">L</span></i><sub><span style="" lang="ES-TRAD">2</span></sub><span style="" lang="ES-TRAD"> = 1<br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="" lang="ES-TRAD">Like the Fibonacci series,
+each Lucas number
+is defined to be the sum of its two immediate previous terms. The ratio
+between
+two consecutive Lucas numbers converges to the <span style="font-weight: bold;">golden ratio</span>.
+However,
+the first
+two Lucas numbers are <i style="">L</i><sub>1</sub>
+=
+2 and <i style="">L</i><sub>2</sub> = 1
+(instead of Fibonacci's <i style="">F</i><sub>1</sub>
+= 0 and <i style="">F</i><sub>2</sub> =
+1), and the properties
+of Lucas numbers are therefore different from those of Fibonacci
+numbers.<br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="" lang="ES-TRAD">We can generate a fast code
+to obtain the
+Lucas series (<i style="">n</i> is the input
+parameter and it&#8217;s the number of terms that we&#8217;ll calculate for the
+series).<o:p><br>
+&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: blue;">function</span><span style="color: black;"> L =
+lucas_series(n)</span><br>
+<span style="color: forestgreen;">%
+Define the first two elements</span><br>
+<span style="color: black;">L(1) =
+2;<br>
+L(2) =
+1;</span><span style="color: forestgreen;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen; font-family: monospace;">%
+Calculate as many numbers as needed</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">for</span><span style="color: black; font-family: monospace;"> i = 3 :
+n<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>L(i)
+= L(i-1) + L(i-2);</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">end</span><span style="" lang="ES-TRAD"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="" lang="ES-TRAD">Let&#8217;s test that function:<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">clear,
+clc, format </span><span style="color: rgb(160, 32, 240);">long</span><br>
+<span style="color: black;">L =
+lucas_series(15)<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Let's find the ratio of consecutive<br>
+%
+elements in the series</span><br>
+<span style="color: blue;">for</span><span style="color: black;"> i = 1 :
+length(L)-1<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>list
+= [L(i) L(i+1) L(i+1)/L(i)]</span><br>
+<span style="color: blue;">end</span><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="" lang="ES-TRAD">And we get the list of 15
+terms and the ratio of consecutive numbers:<br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="" lang="ES-TRAD">L = 2<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>1<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>3<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>4<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>7<span style="">&nbsp;&nbsp;&nbsp;
+</span>11<span style="">&nbsp;&nbsp;&nbsp;
+</span>18<span style="">&nbsp;&nbsp;&nbsp;
+</span>29<span style="">&nbsp;&nbsp;&nbsp;
+</span>47<span style="">&nbsp;&nbsp;&nbsp;
+</span>76<span style="">&nbsp;&nbsp;
+</span>&nbsp; &nbsp; &nbsp; 123<span style="">&nbsp;&nbsp;
+</span>199<span style="">&nbsp;&nbsp;</span>322<span style="">&nbsp;&nbsp; </span>521<span style="">&nbsp;&nbsp;
+</span>843<o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="" lang="ES-TRAD">list = &nbsp;2.00000000000000<span style="">&nbsp;&nbsp; </span>1.00000000000000<span style="">&nbsp;&nbsp; </span>0.50000000000000<br>
+list = &nbsp;1<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>3<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>3<br>
+list = <span style="">&nbsp;</span>3.00000000000000<span style="">&nbsp;&nbsp; </span>4.00000000000000<span style="">&nbsp;&nbsp; </span>1.33333333333333<br>
+list = <span style="">&nbsp;</span>4.00000000000000<span style="">&nbsp;&nbsp; </span>7.00000000000000<span style="">&nbsp;&nbsp; </span>1.75000000000000<br>
+list = <span style="">&nbsp;</span>7.00000000000000<span style="">&nbsp; </span>11.00000000000000<span style="">&nbsp;&nbsp; </span>1.57142857142857<br>
+list = 11.00000000000000<span style="">&nbsp; </span>18.00000000000000<span style="">&nbsp;&nbsp; </span>1.63636363636364<br>
+list = 18.00000000000000<span style="">&nbsp; </span>29.00000000000000<span style="">&nbsp;&nbsp; </span>1.61111111111111<br>
+list = 29.00000000000000<span style="">&nbsp; </span>47.00000000000000<span style="">&nbsp;&nbsp; </span>1.62068965517241<br>
+list = 47.00000000000000<span style="">&nbsp; </span>76.00000000000000<span style="">&nbsp;&nbsp; </span>1.61702127659574<br>
+list = 1.0e+002 *<br>
+<span style="">&nbsp;&nbsp; </span><span style="">&nbsp;&nbsp;&nbsp;&nbsp;</span>0.76000000000000<span style="">&nbsp;&nbsp; </span>1.23000000000000<span style="">&nbsp;&nbsp; </span>0.01618421052632<br>
+list = 1.0e+002 *<br>
+<span style="">&nbsp;&nbsp; </span><span style="">&nbsp;&nbsp;&nbsp;&nbsp;</span>1.23000000000000<span style="">&nbsp;&nbsp; </span>1.99000000000000<span style="">&nbsp;&nbsp; </span>0.01617886178862<br>
+list = 1.0e+002 *<br>
+<span style="">&nbsp;&nbsp; </span><span style="">&nbsp;&nbsp;&nbsp;&nbsp;</span>1.99000000000000<span style="">&nbsp;&nbsp; </span>3.22000000000000<span style="">&nbsp;&nbsp; </span>0.01618090452261<br>
+list = 1.0e+002 *<br>
+<span style="">&nbsp;&nbsp; </span><span style="">&nbsp;&nbsp;&nbsp;&nbsp;</span>3.22000000000000<span style="">&nbsp;&nbsp; </span>5.21000000000000<span style="">&nbsp;&nbsp; </span>0.01618012422360<br>
+list = 1.0e+002 *<br>
+<span style="">&nbsp;&nbsp; </span><span style="">&nbsp;&nbsp;&nbsp;&nbsp;</span>5.21000000000000<span style="">&nbsp;&nbsp; </span>8.43000000000000<span style="">&nbsp;&nbsp; </span>0.01618042226488<o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p><br>
+We can see that, at the end, we end with a
+ratio that is an approximation to the so called <span style="font-weight: bold;">golden ratio</span>
+(1.6180...).<o:p><br>
+&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="" lang="ES-TRAD">There are some interesting
+facts about the
+Lucas series and the Fibonacci numbers. You can look them <a href="http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fibonacci/lucasNbs.html#Lucas" onclick="return FIX.track(this);" rel="noopener" target="_blank">here</a> (opens new window). </span></p>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Lucas Series' to home</a><br>
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/calculus-problems.html" onclick="return FIX.track(this);">From
+'Lucas
+Series' to Calculus Problems</a><br>
+&nbsp; &nbsp; <br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right; font-weight: bold;"><a href="#Lucas_Series">Top</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/fibonacci-numbers.html" onclick="return FIX.track(this);">Fibonacci
+Series</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/collatz-conjecture.html" onclick="return FIX.track(this);">Collatz
+Conjecture</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/sequences-and-series.html" onclick="return FIX.track(this);">Series
+and Sequences</a><br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for Lucas Series page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; vertical-align: top; text-align: right;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:44:16 10-Aug-2021 -->
+</body></html>

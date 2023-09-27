@@ -1,0 +1,372 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Step function - unit step with Matlab</title>
+
+<meta name="Description" content="How to plot the unit step function - Heaviside - with Matlab. Let's see some examples of discrete operations...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script><!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/step-function.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Step function - unit step with Matlab" />
+<meta property="og:description" content="How to plot the unit step function - Heaviside - with Matlab. Let's see some examples of discrete operations..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/step-function.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/step-function-002.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/step-function-003.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/step-function-004.gif" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<h1 style="text-align: center;"><a name="Heaviside_Unit_Step_Function"></a><span style="" lang="ES-TRAD">Heaviside Unit Step Function</span></h1>
+<div style="text-align: center;"><span style="" lang="ES-TRAD">
+</span><span style="" lang="ES-TRAD">
+<p class="MsoNormal"><span style="" lang="ES-TRAD">The
+unit step function (also known as the Heaviside function) is
+a
+discontinuous function whose value is zero for negative arguments and
+one for positive arguments. The Heaviside function is the integral of
+the <a href="http://www.matrixlab-examples.com/impulse-function.html" onclick="return FIX.track(this);">Dirac delta function</a>.</span><span style="" lang="ES-TRAD"></span></p>
+</span></div>
+<span style="" lang="ES-TRAD"></span>
+<div style="text-align: center;"><span style="" lang="ES-TRAD">
+<p class="MsoNormal"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --></p>
+</span><span style="" lang="ES-TRAD"></span></div>
+<span style="" lang="ES-TRAD">
+<p class="MsoNormal"><span style="" lang="ES-TRAD">
+<p class="MsoNormal">&nbsp;<br>
+This concept can be mathematically expressed as:</p>
+</span></p>
+</span>
+<div style="text-align: center;"><span style="" lang="ES-TRAD">
+<p class="MsoNormal"><img style="width: 122px; height: 52px;" alt="Definition of the step function - Heaviside unit step" src="http://www.matrixlab-examples.com/image-files/step-function-001.gif"></p>
+</span><span style="" lang="ES-TRAD"></span></div>
+<span style="" lang="ES-TRAD"></span>
+<span style="" lang="ES-TRAD">
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Our current intention is not to deal with all
+the formal details. &nbsp;In this brief article we're going to deal
+with it&nbsp;in an informal way, in order to&nbsp;just operate
+with
+it and create some plots in Matlab.</span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p></span>This
+function is commonly utilized&nbsp;in control theory or digital
+signal
+processing (dsp) to&nbsp; represent a signal that switches on at a
+specified time and remains switched on indefinitely.&nbsp;</p>
+</span>
+<p class="MsoNormal" style=""><span style="" lang="ES-TRAD"></span></p>
+<p class="MsoNormal" style=""><span style="" lang="ES-TRAD">The
+function depends on real input parameters. <o:p></o:p></span><span style="" lang="ES-TRAD">We can
+define the function having a scalar number as an input. For
+example,&nbsp;</span><span style="" lang="ES-TRAD"><o:p></o:p>let&#8217;s
+create a&nbsp;discrete plot without using any special toolbox in
+Matlab.<o:p></o:p><o:p></o:p></span><span style="" lang="ES-TRAD"><o:p></o:p></span>
+</p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: blue;">function</span><span style="color: black;"> y =
+step_fun(n)</span><br>
+<span style="color: forestgreen;">%
+We assume a scalar input<br>
+%
+Our default output value is 0</span><br>
+<span style="color: black;">y = 0;<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+We change our output to 1 if the argument is greater&nbsp;<br>
+% than&nbsp;or equal to&nbsp;0</span><br>
+<span style="color: blue;">if</span><span style="color: black;"> n &gt;=
+0<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>y
+= 1;</span><br>
+<span style="color: blue;">end</span><br>
+<span style="color: blue;"></span><span style="color: blue;"></span><span style="font-size: 12pt;"></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><br>
+If we want to
+get a plot from there, we have to iterate utilizing real numbers. If
+the input is an integer, then the function will be a discrete one. To
+stress the fact that we're working with&nbsp;discrete functions
+here,
+we'll use 'stem' instead of 'plot'.</span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><br>
+Let's call the function from another script. For example:&nbsp;</span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+We iterate from -5 to 5 using only integers</span><br>
+<span style="color: blue;">for</span><span style="color: black;"> n = -5
+: 5<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>y
+= step_fun(n);<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>stem(n,
+y)<br>
+<span style="">&nbsp;&nbsp; </span><span style="">&nbsp;</span>hold </span><span style="color: rgb(160, 32, 240);">on</span><br>
+<span style="color: blue;">end</span><br>
+<span style="color: forestgreen;">%
+We adjust our axis values just to visualize better</span><br>
+<span style="color: black;">axis([-5
+5 -1 2])</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>and we get</o:p></span></p>
+<p style="text-align: center;" class="MsoNormal"><span style="" lang="ES-TRAD"><o:p><img style="width: 337px; height: 266px;" alt="unit step function: result from a discrete iteration" src="http://www.matrixlab-examples.com/image-files/step-function-002.gif"></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p></span></p>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;;" lang="ES-TRAD"></span>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Now,
+let&#8217;s say that we have a vector (not a scalar) as an input. We want to
+calculate the Heaviside&nbsp;function for all of the values
+included in the&nbsp;vector.
+We can create another function to considerate this approach:<br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: blue;">function</span><span style="color: black;"> y =
+heaviside(n)</span><br>
+<span style="color: forestgreen;">%
+We assume a vector input<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Our default output value is 0</span><br>
+<span style="color: black;">y = 0 *
+n;</span><br>
+<span style="color: forestgreen;">%
+Now, we find values in n greater than or equal to 0</span><br>
+<span style="color: black;">y(find(n
+&gt;= 0)) = 1;</span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p><br>
+We
+<span style="font-weight: bold;">don&#8217;t need a
+loop</span> now, so our process has been simplified a lot. Let's
+use this new approach.<br>
+<o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">n = -5 :
+5;<br>
+y =
+heaviside(n);<br>
+stem(n,
+y)<br>
+axis([-5
+5 -1 2])</span><span style="font-size: 12pt;"></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p><br>
+The
+result is again:<o:p>&nbsp;</o:p></span></p>
+<p style="text-align: center;" class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p><span style="font-family: monospace;"></span><o:p></o:p></span><img style="width: 339px; height: 271px;" alt="vector output for the Heaviside function" src="http://www.matrixlab-examples.com/image-files/step-function-003.gif"></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">If we
+want to calculate <i style="">y</i> = 4</span><i style=""><span style="" lang="ES-TRAD">H</span></i><span style="" lang="ES-TRAD">(<i style="">n</i>)
++ 3</span><i style=""><span style="" lang="ES-TRAD">H</span></i><span style="" lang="ES-TRAD">(<i style="">n</i>-2), in
+a range of integers that go from -10 to 10, we can do
+simply this:<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="color: black; font-family: monospace;"></span><span style="font-family: monospace;">n = -10 : 10;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">y = 4 *
+heaviside(n) + 3*heaviside(n-2);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">stem(n,
+y)</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">axis([-15
+15 -1 8])</span>
+<span style="font-family: monospace;" lang="ES-TRAD"><o:p>&nbsp;</o:p></span><br>
+<span style="" lang="ES-TRAD"></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">and the
+result is:<o:p><br>
+<br>
+</o:p></span></p>
+<div style="text-align: center;"><span style="" lang="ES-TRAD"><o:p>&nbsp;<img style="width: 335px; height: 269px;" alt="arithmetic operations on the Heaviside unit step function" src="http://www.matrixlab-examples.com/image-files/step-function-004.gif"></o:p></span></div>
+<p class="MsoNormal"></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">We can
+see that every integer&nbsp;in the domain of the
+function&nbsp;counts to add to the final result,&nbsp;and that
+happens
+when the argument is zero for each term. The first term, 4<span style="font-style: italic;">H</span></span><i style=""><span style="" lang="ES-TRAD"></span></i><span style="" lang="ES-TRAD">(<i style="">n</i>),
+adds a height of 4 (coefficient) at n
+= 0; the second term, 3</span><i style=""><span style="" lang="ES-TRAD">H</span></i><span style="" lang="ES-TRAD">(<i style="">n</i>-2),
+adds a magnitude of 3 at n = 2.</span></p>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Step Function'
+to home</a><br>
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-plot-2tier.html" onclick="return FIX.track(this);">From
+'Step
+Function' to 2D-plots Menu</a><br>
+<br>
+&nbsp; <br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --><br>
+</td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="#Heaviside_Unit_Step_Function">Top</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/periodic-function.html" onclick="return FIX.track(this);">Periodic Functions</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/impulse-function.html" onclick="return FIX.track(this);">Impulse Function</a><br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for step function page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; text-align: right; vertical-align: top; background-color: rgb(224, 236, 255);"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div style="text-align: center;"><!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --><br>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:48:47 10-Aug-2021 -->
+</body></html>

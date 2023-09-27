@@ -1,0 +1,351 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Line detection - working images with Matlab...</title>
+
+<meta name="Description" content="This experiment explores line detection (image analysis) with Matlab...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/line-detection.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Line detection - working images with Matlab..." />
+<meta property="og:description" content="This experiment explores line detection (image analysis) with Matlab..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/line-detection.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/imgs/logo.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<h1><a name="Line_detection_in_an_image"></a><span style="" lang="ES-TRAD">Line
+detection on an image</span></h1><span style="" lang="ES-TRAD">This
+experiment explores <span style="font-weight: bold;">line
+detection</span> (for <span style="font-weight: bold;">image
+analysis</span>) with Matlab.<br></span>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+</td>
+<td style="vertical-align: middle;"><span style="" lang="ES-TRAD"></span><span style="" lang="ES-TRAD">Since
+an image can be expressed with two matrices (one matrix being the <span style="font-weight: bold;">color palette</span>
+and the other one being the <span style="font-weight: bold;">reference
+to those colors</span>), we can manipulate pictures
+or images by modifying both the map (palette) and the matrix containing
+the
+values to be displayed.</span></td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">It&#8217;s recommended
+that you first read <a href="http://www.matrixlab-examples.com/rgb-images.html" onclick="return FIX.track(this);">this
+article on RGB images</a>.<o:p><br>
+<br>
+</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">This
+experiment draws some squares in different colors. These are the coded
+details:</span></p>
+<p class="MsoNormal" style=""><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span><br>
+<span style="color: forestgreen; font-family: monospace;">%
+We choose the 'jet' palette</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">colormap
+</span><span style="color: rgb(160, 32, 240); font-family: monospace;">jet<span style="">&nbsp;</span></span><span style="font-size: 12pt; font-family: monospace;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+We define a 90 x 90 matrix, and make it all ones.<br>
+%
+This means that the 'background' will be the first<br>
+%<span style="">&nbsp;&nbsp;&nbsp; </span>element
+found in our palette</span><br>
+<span style="color: black;">r = 90;
+c = r;<br>
+W =
+ones(r, c);<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Define our colors in very specific areas of the matrix</span> <br>
+<span style="color: black;">W(10 :
+40, 10 : 40) = 20;<br>
+W(30 :
+60, 30 : 60) = 40;<br>
+W(50 :
+80, 50 : 80) = 60;<br>
+W(30 :
+40, 30 : 40) = 30;<br>
+W(50 :
+60, 50 : 60) = 50;<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen; font-family: monospace;">%
+Display the image and 'turn off' the axes</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">image(W);
+axis </span><span style="color: rgb(160, 32, 240); font-family: monospace;">off</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">save
+</span><span style="color: rgb(160, 32, 240); font-family: monospace;">color_squares</span><span style="color: black; font-family: monospace;"> </span><span style="color: rgb(160, 32, 240);"><span style="font-family: monospace;">W</span><span style=""></span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal">This is the resulting
+image or picture:</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><o:p></o:p><img style="width: 305px; height: 240px;" alt="image line detection 1" src="http://www.matrixlab-examples.com/image-files/line-detection-001.jpg"></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p>Now,
+we&#8217;ll <span style="font-weight: bold;">inspect the matrix</span>
+pixel-by-pixel (a pixel is a picture element).
+If we
+find different colors between two consecutive pixels, we&#8217;ll write it
+down on
+another&nbsp;matrix that finally will be shown.<br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">We can
+have different approaches to the inpection of consecutive pixels.<br>
+We can
+do these operations, for example (if <span style="font-style: italic;">i</span> and <span style="font-style: italic;">j</span> represent rows
+and columns of the matrix):<br>
+<o:p>&nbsp;</o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="color: black;">(W(i-1,
+j) - W(i,j)) + (W(i+1, j) - W(i,j)) +</span><span style="color: blue;">...</span><br>
+<span style="color: black;">(W(i,
+j-1) - W(i,j)) + (W(i, j+1) - W(i,j));</span><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">or<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="color: black; font-family: monospace;">(W(i-1,
+j) - W(i,j))^2 + (W(i+1, j) - W(i,j))^2 +</span><span style="color: blue; font-family: monospace;">...</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">(W(i,
+j-1) - W(i,j))^2 + (W(i, j+1) - W(i,j))^2;</span><br>
+<span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">If the
+result is greater than 0 it means that we&#8217;ve found <span style="font-weight: bold;">different objects</span>
+(or <span style="font-weight: bold;">edges</span>)
+within a picture and we can annotate that information on another
+matrix, to be
+displayed later.<br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">This is
+the full code to the first approach:<o:p><br>
+&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">load </span><span style="color: rgb(160, 32, 240);">color_squares</span><br>
+<span style="color: black;">[r, c] =
+size(W);<br>
+W2 =
+ones(r, c);</span><span style="color: blue;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: blue;">for</span><span style="color: black;"> i = 2 :
+r-1<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue;">for</span><span style="color: black;"> j = 2 : c-1<br>
+<span style="">&nbsp;&nbsp;&nbsp;
+&nbsp;</span>cl(i, j) = (W(i-1, j) - W(i,j)) +
+(W(i+1, j) - W(i,j)) +</span><span style="color: blue;">...</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>(W(i, j-1) - W(i,j)) + (W(i,
+j+1) - W(i,j));<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="color: blue;">if</span><span style="color: black;"> cl(i,j) &gt; 0<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>W2(i,j)
+= 30;<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span style="color: blue;">end</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: blue;">end<br>
+end</span><br>
+<span style="color: black;">image(W2);
+axis </span><span style="color: rgb(160, 32, 240);">off</span><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">It
+produces this image:<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><span style="" lang="ES-TRAD"><o:p></o:p></span><img style="width: 304px; height: 240px;" alt="line detection 2" src="http://www.matrixlab-examples.com/image-files/line-detection-002.jpg"></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;<br>
+&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">We can
+change some lines in the code to achieve our second approach:<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black; font-family: monospace;">cl(i, j)
+= (W(i-1, j) - W(i,j))^2 + (W(i+1, j) - W(i,j))^2 +</span><span style="color: blue; font-family: monospace;">...</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>(W(i, j-1) - W(i,j))^2 + (W(i, j+1)
+- W(i,j))^2;<o:p></o:p></span><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">which
+produces this picture:<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><span style="" lang="ES-TRAD"><o:p></o:p></span><img style="width: 304px; height: 240px;" alt="edge detection 3" src="http://www.matrixlab-examples.com/image-files/line-detection-003.jpg"></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p>and so
+we have performed an edge or line detection from our original image
+under
+study.<br>
+<o:p>&nbsp;</o:p></span></p>
+<span style="text-decoration: underline; font-weight: bold;"></span>
+<p style="font-weight: bold;" class="MsoNormal"><span style="" lang="ES-TRAD"><o:p><a href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Line Detection' to home</a></o:p></span></p>
+<p style="font-weight: bold;" class="MsoNormal"><span style="" lang="ES-TRAD"><o:p><a href="http://www.matrixlab-examples.com/matlab-programming-2tier.html" onclick="return FIX.track(this);">From
+'Line Detection' to 'Matlab Programming'</a></o:p></span></p>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><br>
+<!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="line-detection.html#Line_detection_in_an_image"><span style="" lang="ES-TRAD"><o:p>Top</o:p></span></a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/rgb-images.html" onclick="return FIX.track(this);">RGB images</a><br style="font-weight: bold;">
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for line detection page"><a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br></a></p>
+</td>
+<td style="width: 170px; text-align: right; vertical-align: top;"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br>
+<br>
+<br><div style="text-align: center;">
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></div></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:44:06 10-Aug-2021 -->
+</body></html>

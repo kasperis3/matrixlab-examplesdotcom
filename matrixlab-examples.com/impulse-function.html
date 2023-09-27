@@ -1,0 +1,406 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Impulse function - Dirac delta with Matlab</title>
+
+<meta name="Description" content="How to plot the impulse function with Matlab. Some examples of Dirac delta or unit function...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/impulse-function.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Impulse function - Dirac delta with Matlab" />
+<meta property="og:description" content="How to plot the impulse function with Matlab. Some examples of Dirac delta or unit function..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/impulse-function.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/impulse-function-003.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/impulse-function-004.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/impulse-function-005.gif" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<h1 style="text-align: left;"><a name="Impulse_function_-_Dirac_Delta"></a><!-- google_ad_section_start --><span style="" lang="ES-TRAD">Impulse
+function - Dirac Delta</span></h1>
+<div style="text-align: center;">
+<div style="text-align: left;"><span style="" lang="ES-TRAD"><o:p></o:p></span><span style="" lang="ES-TRAD">
+<p class="MsoNormal"><span style="" lang="ES-TRAD">The
+&#8216;<span style="font-weight: bold;">Impulse function</span>&#8217;
+is also known as the &#8216;<span style="font-weight: bold;">Dirac
+delta</span>&#8217; function, or </span><span style="font-style: italic; font-weight: bold;" lang="ES-TRAD">&#948;</span><span style="" lang="ES-TRAD"><span style="font-weight: bold;"> function</span> (it was
+introduced
+by
+physicist Paul Dirac). In the context of digital signal processing
+(DSP) it&#8217;s
+often referred to as the &#8216;<span style="font-weight: bold;">unit
+impulse function</span>&#8217;.<o:p></o:p></span></p>
+</span></div>
+<span style="" lang="ES-TRAD"></span><span style="" lang="ES-TRAD"></span></div>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">
+<p class="MsoNormal"><span style="" lang="ES-TRAD"></span><br>
+<span style="" lang="ES-TRAD">It's
+defined as follows:<o:p></o:p></span></p>
+<p style="text-align: center;" class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;<img style="width: 130px; height: 54px;" alt="definition of impulse function - dirac delta" src="http://www.matrixlab-examples.com/image-files/impulse-function-001.gif"></o:p></span></p>
+</span><span style="" lang="ES-TRAD">&nbsp;</span>and
+has to satisfy the
+identity:<o:p>&nbsp;</o:p></p>
+<p style="text-align: center;" class="MsoNormal"><span style="position: relative; top: 8pt;"></span><img style="width: 121px; height: 43px;" alt="impulse function constrain" src="http://www.matrixlab-examples.com/image-files/impulse-function-002.gif"></p>
+<p class="MsoNormal"><o:p></o:p><span style="" lang="ES-TRAD"><o:p></o:p>The
+function depends on real input parameters. The function output is
+infinite when
+the input is exactly 0. The output is zero for any other input value.<span style="">&nbsp;</span><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">The
+Dirac delta is not strictly a function, because any real function that
+is equal
+to zero everywhere but at a single point must have a total integral
+equal to zero,
+but for many purposes this definition can be manipulated as a function.<o:p><br>
+&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Let&#8217;s
+create some discrete plots using Matlab function 'stem'.<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p><br>
+For our
+purposes, we are going to define the function as 1 when the argument of
+the Dirac
+function is 0, and the output will be 0 for any other value of the
+input argument.<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">We can
+define the function having a scalar as an input. For example:</span><!-- google_ad_section_end --><br>
+<span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: blue;">function</span><span style="color: black;"> y =
+dd1(n)</span><br>
+<span style="color: forestgreen;">%
+Our default value is 0</span><br>
+<span style="color: black;">y = 0;<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen; font-family: monospace;">%
+The function is 1 only if the input is 0</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">if</span><span style="color: black; font-family: monospace;"> n == 0<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>y
+= 1;</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">end</span><span style="font-size: 12pt;"></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><br>
+Let&#8217;s
+find the appropriate output for this vector:<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black; font-family: monospace;">n = -2 :
+2</span></p>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;;" lang="ES-TRAD">
+</span>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><br>
+We use
+our function above (&#8216;dd1&#8217;) like this:<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: blue;">for</span><span style="color: black;"> i = 1 :
+length(n)<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>f(i)
+= dd1(n(i));</span><br>
+<span style="color: blue;">end</span><br>
+<span style="color: black;">stem(n,
+f)<br>
+axis([-3
+3 -.5 1.5])<br>
+xlabel(</span><span style="color: rgb(160, 32, 240);">'n'</span><span style="color: black;">)<br>
+ylabel(</span><span style="color: rgb(160, 32, 240);">'Impulse
+Function'</span><span style="color: black;">)<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">The
+result, as expected, is:</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p style="text-align: center;" class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p></span><img style="width: 400px; height: 315px;" alt="impulse function example 1" src="http://www.matrixlab-examples.com/image-files/impulse-function-003.gif"></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Now,
+let&#8217;s assume another vector:<br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black; font-family: monospace;">n = [1 2
+3 0 2 5 0 1]</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span><br>
+<span style="" lang="ES-TRAD">We can
+use our function &#8216;dd1&#8217; to find the delta function output:<o:p>&nbsp;</o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="color: blue;">for</span><span style="color: black;"> i = 1 :
+length(n)<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>f(i)
+= dd1(n(i));</span><br>
+<span style="color: blue;">end</span><br>
+<span style="color: black;">stem(f)</span><br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The result is:</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style="text-align: center;" class="MsoNormal"><img style="width: 387px; height: 305px;" alt="delta dirac example 2" src="http://www.matrixlab-examples.com/image-files/impulse-function-004.gif"></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Now,
+let&#8217;s say that we have a vector (not a scalar) as an input. We want to
+calculate the unit function for all of the values included in the input
+vector.
+We can create another function ('dd') to considerate this approach:<br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: blue;">function</span><span style="color: black;"> y =
+dd(x)</span><br>
+<span style="color: forestgreen;">%
+x is a vector<br>
+%
+We create an output vector of only 0 (our default value)</span><br>
+<span style="color: black;">y =
+zeros(1, length(x));<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen; font-family: monospace;">%
+We find indexes of input values equal to 0,<br>
+%
+and make them 1</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">y(find(x==0))
+= 1;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p><br>
+We
+<span style="font-weight: bold;">don&#8217;t need a
+loop</span> now, so our process has been simplified a lot.<br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">n = [1 2
+3 0 2 5 0 1]<br>
+f =
+dd(n)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p><br>
+The
+result is:<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p><span style="font-family: monospace;">f =
+0&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+0</span><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">If we
+want to calculate <i style="">y</i> = 4</span><i style=""><span style="" lang="ES-TRAD">&#948;</span></i><span style="" lang="ES-TRAD">(<i style="">n</i>)
++ 3</span><i style=""><span style="" lang="ES-TRAD">&#948;</span></i><span style="" lang="ES-TRAD">(<i style="">n</i>-2), in
+a range of integers that go from -10 to 10, we can do
+simply this:<br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="color: black; font-family: monospace;">n = -10
+: 10<br>
+y =
+4*dd(n) + 3*dd(n-2)<br>
+stem(n,
+y)<br>
+xlabel(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'n'</span><span style="color: black; font-family: monospace;">)<br>
+ylabel(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Delta
+Function'</span><span style="color: black; font-family: monospace;">)</span><br>
+<span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">and the
+result is:<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p style="text-align: center;" class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p></span><img style="width: 403px; height: 314px;" alt="unit function example" src="http://www.matrixlab-examples.com/image-files/impulse-function-005.gif"></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">We can
+see that every term in the function only counts as one stem, and that
+happens
+when the argument is zero. The first term, 4</span><i style=""><span style="" lang="ES-TRAD">&#948;</span></i><span style="" lang="ES-TRAD">(<i style="">n</i>),
+has a height of 4 (coefficient) at n
+= 0; the second term, 3</span><i style=""><span style="" lang="ES-TRAD">&#948;</span></i><span style="" lang="ES-TRAD">(<i style="">n</i>-2),
+has a magnitude of 3 (coefficient) at n = 2.</span></p>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Impulse Function'
+to home</a><br>
+<br>
+<span style="font-weight: bold;"></span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-plot-2tier.html" onclick="return FIX.track(this);">From
+'Impulse
+Function' to 2D-plots Menu</a><br>
+&nbsp; <br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; text-align: left; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml -->
+</td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/periodic-function.html" onclick="return FIX.track(this);">Periodic
+Functions</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/step-function.html" onclick="return FIX.track(this);">Unit Step</a><br>
+<br>
+<a style="font-weight: bold;" href="impulse-function.html#Impulse_function_-_Dirac_Delta">Top</a><br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for impulse function page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; text-align: right; vertical-align: top; background-color: rgb(224, 236, 255);"><br>
+<br>
+<div style="text-align: center;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --><br>
+<br>
+<br>
+<!-- start: SSI z120x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script>
+<!-- First-go -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1500170575521750"
+     data-ad-slot="7341812828"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script><!--
+--><!-- end: SSI z120x600.shtml --><br>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:44:18 10-Aug-2021 -->
+</body></html>

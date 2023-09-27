@@ -1,0 +1,434 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>RGB images - an introduction to image processing algorithms in Matlab</title>
+
+<meta name="Description" content="We'll demonstrate some basic ideas on RGB images or image processing in Matlab. These concepts are fundamental and...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/rgb-images.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="RGB images - an introduction to image processing algorithms in Matlab" />
+<meta property="og:description" content="We'll demonstrate some basic ideas on RGB images or image processing in Matlab. These concepts are fundamental and..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/rgb-images.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/image-process008.jpg" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/image-process006.jpg" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.rssit -->
+<style type="text/css">
+    #addSiteTo {
+        width:90%;
+        font-size:85%;
+        text-align:center;
+        padding:8px 0;
+        border:1px solid #000;
+        margin:12px auto;background-color: #FFFFFF;}
+
+    #addSiteTo p {
+        padding:2px 2px 4px;
+        margin:0;
+    }
+
+    #addSiteTo img {
+        border:0;
+        padding:1px 0;
+    }
+
+    #addSiteTo .questionMark {
+        padding:0;
+        margin:1px auto;
+        text-align:center;
+        width:75%;
+    }
+
+    #addSiteTo .questionMark img {
+        margin:0 4px 4px 0;
+        padding:0;
+    }
+    </style><center><div id="addSiteTo"><div class="questionMark"> [<a href="http://www.matrixlab-examples.com/help/rss.html" onclick="javascript:window.open('http://www.matrixlab-examples.com/help/rss.html','help','resizable,status,scrollbars,width=600,height=500');return false;"><span style="font-size:110%;">?</span></a>] Subscribe To This Site</div>
+                <p style="margin-top:4px;">
+                <a href="http://www.matrixlab-examples.com/matlab.xml" target="new"><img style="padding-top:2px;" src="http://www.matrixlab-examples.com/objects/rss.jpg" alt="XML RSS"></a><br><a href="https://feedly.com/i/subscription/feed/http://www.matrixlab-examples.com/matlab.xml" target="new" rel="nofollow"><img src="http://www.matrixlab-examples.com/objects/feedly.gif" alt="follow us in feedly"></a><br><a href="http://add.my.yahoo.com/rss?url=http://www.matrixlab-examples.com/matlab.xml" target="new" rel="nofollow"><img src="http://www.matrixlab-examples.com/objects/addtomyyahoo4.gif" alt="Add to My Yahoo!"></a><br></p>
+            </div></center> <!-- end: tool_blocks.rssit --><br><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a  href="http://www.matrixlab-examples.com/matlab-blog.html">Matrixmania Blog</a></li><li><a  href="http://www.matrixlab-examples.com/sitemap.html">Sitemap / Search</a></li><li><a  href="http://www.matrixlab-examples.com/matlab-books.html">Matlab Books</a></li><li><a  href="http://www.matrixlab-examples.com/programming-forums.html">Forums and Help</a></li><li><a  href="http://www.matrixlab-examples.com/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a  href="http://www.matrixlab-examples.com/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a  href="http://www.matrixlab-examples.com/matlab-tutorial.html">Matlab Tutorial</a></li><li><a  href="http://www.matrixlab-examples.com/matlab-examples.html">Matlab Examples</a></li><li><a  href="http://www.matrixlab-examples.com/matlab-code-3.html">Matlab Flow Control</a></li><li><a  href="http://www.matrixlab-examples.com/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a  href="http://www.matrixlab-examples.com/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a  href="http://www.matrixlab-examples.com/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a  href="http://www.matrixlab-examples.com/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a  href="http://www.matrixlab-examples.com/calculus-problems.html">Calculus</a></li><li><a  href="http://www.matrixlab-examples.com/linear-algebra.html">Linear Algebra</a></li><li><a  href="http://www.matrixlab-examples.com/generic-programming.html">Matlab Cookbook I</a></li><li><a  href="http://www.matrixlab-examples.com/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a  href="http://www.matrixlab-examples.com/electrical-calculations.html">Electrical Calc</a></li><li><a  href="http://www.matrixlab-examples.com/probability-and-statistics.html">Probab and Stats</a></li><li><a  href="http://www.matrixlab-examples.com/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a  href="http://www.matrixlab-examples.com/free-online-calculators.html">Online Calculators</a></li><li><a  href="http://www.matrixlab-examples.com/academic-software.html">Relevant Links</a></li><li><a  href="http://www.matrixlab-examples.com/basics-of-computer-programming.html">Notes on Comp</a></li><li><a  href="http://www.matrixlab-examples.com/it-jokes-2tier.html">Fun!</a></li><li><a  href="http://www.matrixlab-examples.com/scilab.html">Scilab</a></li><li><a  href="http://www.matrixlab-examples.com/Become-a-Webmaster.html">Your own Website?</a></li><li><a  href="http://www.matrixlab-examples.com/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<h1><a name="RGB_images_-_an_introduction_to_image"></a>RGB
+images - &nbsp;an introduction to image
+processing algorithms</h1>
+We&#8217;ll show some basic ideas on <span style="font-weight: bold;">RGB
+images</span> (or <span style="font-weight: bold;">image
+processing</span> in Matlab). These concepts are fundamental and
+don&#8217;t require any special toolbox.<br>
+&nbsp;<br>
+<span style="font-weight: bold;">An image in
+Matlab is a matrix</span> <span style="font-style: italic;">m</span>
+x <span style="font-style: italic;">n</span>
+containing colors to be displayed. The colors have to be defined in a
+color map, which is another matrix. A <span style="font-weight: bold;">color map</span> matrix may
+have any number of rows, but it must
+have exactly three columns.<span style=""> <br>
+&nbsp;</span> <br><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --><br><p class="MsoNormal">&nbsp;<br>
+Each
+row is
+interpreted as a color, with the first element specifying the intensity
+of red
+light, the second green, and the third blue (that&#8217;s why it&#8217;s called an
+<span style="font-weight: bold;">RGB
+image</span> or matrix).<span style="">&nbsp; </span><span style="font-weight: bold;">Color
+intensity</span> can be
+specified on the interval 0.0 to 1.0.&nbsp;<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<h3>First experiment: define some colors and show them</h3>
+<p class="MsoNormal" style=""><o:p>&nbsp;</o:p><br>
+<span style="color: forestgreen; font-family: monospace;">%
+We can define an arbitrary group of colors to be used</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">colors1
+= [<br>
+0 0
+0<span style="">&nbsp;&nbsp; </span></span><span style="color: forestgreen; font-family: monospace;">% First
+element = black</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">0
+0
+1<span style="">&nbsp;&nbsp; </span></span><span style="color: forestgreen; font-family: monospace;">% blue</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">0
+1
+0<span style="">&nbsp;&nbsp; </span></span><span style="color: forestgreen; font-family: monospace;">% green</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">0
+1
+1<span style="">&nbsp;&nbsp; </span></span><span style="color: forestgreen; font-family: monospace;">% cyan</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">1
+0
+0<span style="">&nbsp;&nbsp; </span></span><span style="color: forestgreen; font-family: monospace;">% red</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">1
+0
+1<span style="">&nbsp;&nbsp; </span></span><span style="color: forestgreen; font-family: monospace;">% purple</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">1
+1
+0<span style="">&nbsp;&nbsp; </span></span><span style="color: forestgreen; font-family: monospace;">% yellow</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">1
+1 1]; </span><span style="color: forestgreen; font-family: monospace;">%
+Last element = white<br>
+<span style="">&nbsp;</span></span><span style="font-size: 12pt; font-family: monospace;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+We prepare the matrix that contains the colors to be displayed<br>
+%
+The list refers to the number of the elements in the color list</span><br>
+<span style="color: black;">w = [1 2
+3 4 5 6 7 8];<br>
+<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+We use the 'colormap' function to define the actual<br>
+% palette
+in our workspace</span><br>
+<span style="color: black;">colormap(colors1)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+We use the 'image' instruction to display the matrix</span><br>
+<span style="color: black;">image(w)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+We don't want to show values along the axes, for the moment</span><br>
+<span style="color: black;">axis </span><span style="color: rgb(160, 32, 240);">off</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">This is the image produced</p>
+<p class="MsoNormal"></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><img style="width: 305px; height: 242px;" alt="rgb image 1" src="http://www.matrixlab-examples.com/image-files/image-process001.jpg"><br>
+</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<h3>Second experiment: define random colors and
+display them (5 times)</h3>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Press any key (or click
+the mouse) to change the colors to
+be visualized...</p>
+<p class="MsoNormal" style=""><span style="color: black; font-family: monospace;">w = [1 2
+3 4 5 6 7 8];</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">for</span><span style="color: black; font-family: monospace;"> i = 1 :
+5<br>
+<span style="">&nbsp;&nbsp;&nbsp;
+</span>colors2 = rand(8,3);<br>
+<span style="">&nbsp;&nbsp;&nbsp;
+</span>colormap(colors2)<br>
+<span style="">&nbsp;&nbsp;&nbsp;
+</span>image(w)<br>
+<span style="">&nbsp;&nbsp;&nbsp;
+</span>axis </span><span style="color: rgb(160, 32, 240); font-family: monospace;">off</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;"><span style="">&nbsp;&nbsp;&nbsp;
+</span>disp(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Press
+any key to
+continue...'</span><span style="color: black; font-family: monospace;">)<br>
+<span style="">&nbsp;&nbsp;&nbsp;
+</span>waitforbuttonpress</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">end</span><br style="font-family: monospace;">
+<span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal">These could be two of the
+five images. Since they are random
+colors, you&#8217;ll get different results.</p>
+<p class="MsoNormal" style="text-align: center;" align="center"><o:p>&nbsp;&nbsp;</o:p></p>
+<div style="text-align: center;"><img style="width: 304px; height: 241px;" alt="rgb image 2 - random colors" src="http://www.matrixlab-examples.com/image-files/image-process002.jpg">
+</div>
+<p class="MsoNormal" style="text-align: center;" align="center"><o:p>&nbsp;<img style="width: 304px; height: 240px;" alt="rgb image 3 - another random color" src="http://www.matrixlab-examples.com/image-files/image-process003.jpg"></o:p></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<h3>Third experiment: display predefined color
+palettes<o:p>&nbsp;</o:p></h3>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+There are some color palettes already defined</span><br>
+<span style="color: black;">colors3
+= {</span><span style="color: rgb(160, 32, 240);">'hot'</span><span style="color: black;"> </span><span style="color: rgb(160, 32, 240);">'cool'</span><span style="color: black;"> </span><span style="color: rgb(160, 32, 240);">'jet'</span><span style="color: black;"> </span><span style="color: rgb(160, 32, 240);">'hsv'</span><span style="color: black;"> </span><span style="color: rgb(160, 32, 240);">'flag'</span><span style="color: black;">};</span><br>
+<span style="color: blue;">for</span><span style="color: black;"> i = 1 :
+5<br>
+<span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: forestgreen;">% We get the predefined
+palettes (one at a time)</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span>colormap (colors3{i})<br>
+<span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: forestgreen;">% We create the matrix to be
+shown, with 64 different &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; % elements</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span>w = 1 : 64;<span style="">&nbsp;<br>
+&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: forestgreen;">% Display the image</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span>image(w)<br>
+<span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: forestgreen;">% Use the names of the
+different color groups as a title</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span>title(colors3{i})<br>
+<span style="">&nbsp;&nbsp;&nbsp;
+</span>axis </span><span style="color: rgb(160, 32, 240);">off</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span>waitforbuttonpress</span><br>
+<span style="color: blue;">end</span></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">These are two of the
+palettes:</p>
+<p style="text-align: center;" class="MsoNormal"><o:p>&nbsp;<img style="width: 312px; height: 257px;" alt="color palette named 'hot'" src="http://www.matrixlab-examples.com/image-files/image-process008.jpg"></o:p></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><o:p>&nbsp;</o:p></p>
+<p style="text-align: center;" class="MsoNormal"><o:p></o:p><img style="width: 304px; height: 257px;" alt="color palette named 'jet'" src="http://www.matrixlab-examples.com/image-files/image-process006.jpg"></p>
+<p class="MsoNormal"></p>
+<p class="MsoNormal">Now, the interesting part
+is that we can <span style="font-weight: bold;">process
+images</span> by either
+<span style="font-weight: bold;">modifying the
+color palette</span> or <span style="font-weight: bold;">modifying
+the appropriate element</span>(s) in
+the
+matrix to be displayed.</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
+In this example, we
+change the image by just changing the
+matrix w</p>
+<p class="MsoNormal" style=""><o:p>&nbsp;</o:p><br>
+<span style="color: black; font-family: monospace;">colormap
+</span><span style="color: rgb(160, 32, 240); font-family: monospace;">hot</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">w
+=
+1:4:64;<br>
+subplot(2,
+1, 1); image(w); axis </span><span style="color: rgb(160, 32, 240); font-family: monospace;">off<br>
+<span style=""></span></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">w =
+fliplr(w);<br>
+subplot(2,
+1, 2); image(w); axis </span><span style="color: rgb(160, 32, 240);">off</span><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal">This is the graphic
+result:<o:p></o:p></p>
+<p class="MsoNormal" style=""><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span></p>
+<div style="text-align: center;"><img style="width: 304px; height: 240px;" alt="simple image process algorithm" src="http://www.matrixlab-examples.com/image-files/image-process010.jpg"><br>
+</div>
+<br>
+<br>
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'RGB images' to home</a><br>
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-programming-2tier.html" onclick="return FIX.track(this);">From
+'RGB images' to 'Matlab programming'</a><br>
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/sitemap.html" onclick="return FIX.track(this);">Sitemap</a><br>
+&nbsp;<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --></td>
+<td style="vertical-align: bottom; text-align: right; font-weight: bold;"><a href="rgb-images.html#RGB_images_-_an_introduction_to_image">Top</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/line-detection.html" onclick="return FIX.track(this);">Line
+Detection</a><br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for matlab page"><a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br></a></p>
+</td>
+<td style="width: 170px; text-align: right; vertical-align: top; background-color: rgb(224, 236, 255);"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><div style="text-align: center;">
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></div></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 16:38:04 13-Aug-2021 -->
+</body></html>

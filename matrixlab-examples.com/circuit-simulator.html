@@ -1,0 +1,557 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Circuit Simulator (WinSpice) and Matlab</title>
+
+<meta name="Description" content="The circuit simulator WinSpice is driven from Matlab. In this article, a Matlab routine to drive the WinSPICE simulator is presented. This method can be easily adapted to simulate any circuit entered in a parameterized manner. This driver is illustrated by simulating a simple RC filter...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/circuit-simulator.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Circuit Simulator (WinSpice) and Matlab" />
+<meta property="og:description" content="The circuit simulator WinSpice is driven from Matlab. In this article, a Matlab routine to drive the WinSPICE simulator is presented. This method can be easily adapted to simulate any circuit entered in a parameterized manner. This driver is illustrated by simulating a simple RC filter..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/circuit-simulator.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/rc_low_pass_filter002.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/rc_low_pass_filter003.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/rc_low_pass_filter004.gif" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.rssit -->
+<style type="text/css">
+    #addSiteTo {
+        width:90%;
+        font-size:85%;
+        text-align:center;
+        padding:8px 0;
+        border:1px solid #000;
+        margin:12px auto;background-color: #FFFFFF;}
+
+    #addSiteTo p {
+        padding:2px 2px 4px;
+        margin:0;
+    }
+
+    #addSiteTo img {
+        border:0;
+        padding:1px 0;
+    }
+
+    #addSiteTo .questionMark {
+        padding:0;
+        margin:1px auto;
+        text-align:center;
+        width:75%;
+    }
+
+    #addSiteTo .questionMark img {
+        margin:0 4px 4px 0;
+        padding:0;
+    }
+    </style><center><div id="addSiteTo"><div class="questionMark"> [<a href="http://www.matrixlab-examples.com/help/rss.html" onclick="javascript:window.open('http://www.matrixlab-examples.com/help/rss.html','help','resizable,status,scrollbars,width=600,height=500');return false;"><span style="font-size:110%;">?</span></a>] Subscribe To This Site</div>
+                <p style="margin-top:4px;">
+                <a href="http://www.matrixlab-examples.com/matlab.xml" target="new"><img style="padding-top:2px;" src="http://www.matrixlab-examples.com/objects/rss.jpg" alt="XML RSS"></a><br><a href="https://feedly.com/i/subscription/feed/http://www.matrixlab-examples.com/matlab.xml" target="new" rel="nofollow"><img src="http://www.matrixlab-examples.com/objects/feedly.gif" alt="follow us in feedly"></a><br><a href="http://add.my.yahoo.com/rss?url=http://www.matrixlab-examples.com/matlab.xml" target="new" rel="nofollow"><img src="http://www.matrixlab-examples.com/objects/addtomyyahoo4.gif" alt="Add to My Yahoo!"></a><br></p>
+            </div></center> <!-- end: tool_blocks.rssit --><br> <!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a  href="http://www.matrixlab-examples.com/matlab-blog.html">Matrixmania Blog</a></li><li><a  href="http://www.matrixlab-examples.com/sitemap.html">Sitemap / Search</a></li><li><a  href="http://www.matrixlab-examples.com/matlab-books.html">Matlab Books</a></li><li><a  href="http://www.matrixlab-examples.com/programming-forums.html">Forums and Help</a></li><li><a  href="http://www.matrixlab-examples.com/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a  href="http://www.matrixlab-examples.com/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a  href="http://www.matrixlab-examples.com/matlab-tutorial.html">Matlab Tutorial</a></li><li><a  href="http://www.matrixlab-examples.com/matlab-examples.html">Matlab Examples</a></li><li><a  href="http://www.matrixlab-examples.com/matlab-code-3.html">Matlab Flow Control</a></li><li><a  href="http://www.matrixlab-examples.com/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a  href="http://www.matrixlab-examples.com/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a  href="http://www.matrixlab-examples.com/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a  href="http://www.matrixlab-examples.com/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a  href="http://www.matrixlab-examples.com/calculus-problems.html">Calculus</a></li><li><a  href="http://www.matrixlab-examples.com/linear-algebra.html">Linear Algebra</a></li><li><a  href="http://www.matrixlab-examples.com/generic-programming.html">Matlab Cookbook I</a></li><li><a  href="http://www.matrixlab-examples.com/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a  href="http://www.matrixlab-examples.com/electrical-calculations.html">Electrical Calc</a></li><li><a  href="http://www.matrixlab-examples.com/probability-and-statistics.html">Probab and Stats</a></li><li><a  href="http://www.matrixlab-examples.com/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a  href="http://www.matrixlab-examples.com/free-online-calculators.html">Online Calculators</a></li><li><a  href="http://www.matrixlab-examples.com/academic-software.html">Relevant Links</a></li><li><a  href="http://www.matrixlab-examples.com/basics-of-computer-programming.html">Notes on Comp</a></li><li><a  href="http://www.matrixlab-examples.com/it-jokes-2tier.html">Fun!</a></li><li><a  href="http://www.matrixlab-examples.com/scilab.html">Scilab</a></li><li><a  href="http://www.matrixlab-examples.com/Become-a-Webmaster.html">Your own Website?</a></li><li><a  href="http://www.matrixlab-examples.com/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<h1 style="text-align: center;"><a name="top"></a>Circuit Simulator (WinSpice
+and Matlab, improved interface)</h1>
+<div style="text-align: center;">In this
+article, an improved <span style="font-weight: bold;">Matlab
+routine to drive the </span><span style="font-weight: bold;"></span><span style="font-weight: bold;">WinSpice </span><span style="font-weight: bold;">circuit
+simulator&nbsp;</span><span style="font-weight: bold;"></span>is
+presented. This
+method can also be easily adapted to
+simulate and drive any circuit entered in SPICE. &nbsp; <br>
+</div>
+&nbsp; &nbsp; &nbsp;<br>
+<div style="text-align: center;">
+<!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml -->
+</div>
+<br>
+The
+concept of the Matlab
+driver is illustrated by simulating a very simple&nbsp;RC low-pass
+filter. In this
+example
+we're using Matlab ver. 7.0.1 and WinSpice3 ver. 1.04.07.<br>
+<br>
+A first approach to the circuit driver was <a href="http://www.matrixlab-examples.com/winspice.html" onclick="return FIX.track(this);">presented
+here</a>.<br>
+<br>
+For more information about Matlab, visit <span style="font-weight: bold;">www.mathworks.com</span>.<a href="http://www.mathworks.com/" onclick="return FIX.track(this);" rel="noopener" target="_blank"><span style="font-weight: bold;"></span></a><br>
+<br>
+For more information about WinSpice, visit <span style="font-weight: bold;">www.winspice.com</span>.&nbsp;<a href="http://www.winspice.com/" onclick="return FIX.track(this);" rel="noopener" target="_blank"><span style="font-weight: bold;"></span></a><br>
+<span style="font-weight: bold;">SPICE</span>
+stands for <span style="font-weight: bold;">S</span>imulation
+<span style="font-weight: bold;">P</span>rogram
+with <span style="font-weight: bold;">I</span>ntegrated
+<span style="font-weight: bold;">C</span>ircuit
+<span style="font-weight: bold;">E</span>mphasis<br>
+<br>
+<span style="font-weight: bold;">Interchanging
+information between&nbsp;Matlab and WinSpice</span> allows
+the
+implementation of&nbsp;optimization algorithms and graphical
+possibilities not included in the circuit simulator environment itself.
+The
+approach
+developed now is very flexible and utilizes the inherent capability of
+this SPICE simulator&nbsp;to include other circuit text files with
+parameters, and print data
+to external .csv&nbsp;(comma separated values) files. <br>
+<br>
+<span style="font-weight: bold;">First</span>,
+the circuit&nbsp;in Spice is defined (.cir file). This
+circuit&nbsp;is simulated and tested within the WinSpice
+environment
+before
+any attempt is made to interact with Matlab. We <span style="font-weight: bold;">separate the components of
+interest</span> and include them in a different .cir file (using
+the .include directive in the main file).<br>
+<br>
+<span style="font-weight: bold;">Second</span>,
+we prepare the output of the simulator by writing necessary data to an
+external file, that is, we include&nbsp;'write' commands in
+the main .cir file, so that the results are saved as external
+(.csv) text files
+available to Matlab.<br>
+<br>
+<span style="font-weight: bold;">Third</span>,
+we now generate a&nbsp;version of the .cir file that includes
+parameters using Matlab
+capabilities
+for manipulating&nbsp;strings. We then&nbsp;run the circuit
+simulator from the command line.<br>
+<br>
+After the simulation, we can read the results in the .csv files,
+process them and act accordingly.<br>
+<br>
+<hr style="width: 100%; height: 2px;"><span style="font-weight: bold;"><br>
+First Step:</span><br>
+<br>
+We&nbsp;create, test and simulate this simple RC circuit in
+WinSpice:<br>
+<br>
+<div style="text-align: center;"><img style="width: 132px; height: 85px;" alt="RC low pass filter in our circuit simulator" src="http://www.matrixlab-examples.com/image-files/rc_low_pass_filter001.gif"><br>
+</div>
+<br>
+We initially use these values:<br>
+<br>
+R = 10k ohms, C = 1 nF<br>
+<br>
+The main .cir file (which is also a text file)&nbsp;is:<br>
+<br>
+<span style="font-family: monospace;">---- RC
+- LP filter ----</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">V1&nbsp;
+Vin&nbsp; 0&nbsp;&nbsp; dc 0&nbsp;&nbsp; ac
+1&nbsp;&nbsp; </span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">.include
+param.cir</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">R vin
+out {RES1}</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">C out 0
+{CAP1}</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">.control</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">AC DEC
+10 10 1MEGHZ</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">plot
+vdb(out)</span><br style="font-family: monospace;">
+<span style="font-family: monospace;"></span><span style="font-family: monospace;">.endc</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">.end</span><br>
+<br>
+The actual parameters are located in a separate file named 'param.cir',
+which in this case only contains one line:<br>
+<br>
+<span style="font-family: monospace;">.param
+RES1=10e3 CAP1=1e-009</span><br>
+<span style="font-family: monospace;"></span><br>
+As expected, the AC analysis delivers this result (the cutoff frequency
+is about 16 KHz):<br>
+<br>
+<div style="text-align: center;"><img style="width: 485px; height: 314px;" alt="response of the RC filter" src="http://www.matrixlab-examples.com/image-files/rc_low_pass_filter002.gif"><br>
+</div>
+<br>
+<br>
+<span style="font-weight: bold;">Second Step:</span><br>
+<br>
+We include appropriate '<span style="font-weight: bold;">write</span>'
+commands in the main .cir file, so that the results are saved as
+.csv
+files available to Matlab.<br>
+<br>
+The control block changes into:<br>
+<br>
+<span style="font-family: monospace;">.control</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">AC DEC
+10 10 1MEGHZ</span><br style="font-family: monospace;">
+<span style="font-family: monospace;"></span><span style="font-family: monospace;">write
+RC_LP_filter_ac_out.csv vdb(out)</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">quit</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">.endc</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">.end</span><br>
+<br>
+<span style="font-family: monospace;"></span><br>
+<span style="font-weight: bold;">Third Step:</span><br>
+<br>
+We now create a function (to be run by Matlab) that&nbsp;can
+reproduce the secondary&nbsp;.cir file (including the
+parameters),&nbsp;modify relevant parameters with the command '<span style="font-weight: bold;">num2str</span>' (which
+changes numbers into strings), and launch the circuit
+simulator. This is the full code that accomplishes
+it:<br>
+<br>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: blue;">function</span><span style="color: black;"> [Rac] =
+WS_RC_low_pass(x)</span><br>
+<span style="color: forestgreen;">%
+Create and save the file 'param.cir' to be included in&nbsp;<br>
+% another<span style="">&nbsp;</span>file to be
+run by WinSpice3.<br>
+%
+The built-in function 'num2str' is used to modify parameters<br>
+%
+wherever it is convenient.</span><br>
+<span style="color: black;">p = [</span><span style="color: rgb(160, 32, 240);">'.param
+RES1='</span><span style="color: black;">
+num2str(x(1)) </span><span style="color: rgb(160, 32, 240);">'
+CAP1='</span><span style="color: black;">
+num2str(x(2))];<br>
+dlmwrite(</span><span style="color: rgb(160, 32, 240);">'param.cir'</span><span style="color: black;">, p, </span><span style="color: rgb(160, 32, 240);">'delimiter'</span><span style="color: black;">,</span><span style="color: rgb(160, 32, 240);">''</span><span style="color: black;">);<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Run WinSpice<br>
+%
+Make sure wspice3.exe and .cir files are available&nbsp;<br>
+% in this directory</span><br>
+<span style="color: rgb(178, 140, 0);">!
+wspice3 RC_LP_filter.cir<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Read data saved in .csv files<br>
+%
+(assuming name termination _ac_out.csv)</span><br>
+<span style="color: black;">[Rac] =
+getWSpicedata2(</span><span style="color: rgb(160, 32, 240);">'RC_LP_filter'</span><span style="color: black;">);</span><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"></p>
+<p class="MsoNormal">Compare the simplicity of
+this code against the <a href="http://www.matrixlab-examples.com/winspice.html" onclick="return FIX.track(this);">previously
+developed code</a>.<br>
+<o:p>We eliminated the need to re-build the complete
+'.cir' file with Matlab, and we concentrate only on the <span style="font-weight: bold;">relevant</span> parameters.</o:p></p>
+<hr style="width: 100%; height: 2px;">
+<p class="MsoNormal"><o:p>There is an
+important portion of additional&nbsp;code to read the .csv files.</o:p></p>
+<p class="MsoNormal" style=""><span style="color: blue;">function</span><span style="color: black;"> [Rac] =
+getWSpicedata2(WSpiceBaseFile)</span><br>
+<span style="color: forestgreen;">%
+Read csv files generated by a 'write' in a 'WSpiceBaseFile' (.cir file)<br>
+%
+Rac{1} = Frequency Points<br>
+%
+Rac{2} = AC response<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">ac =
+fopen([WSpiceBaseFile </span><span style="color: rgb(160, 32, 240);">'_ac_out.csv'</span><span style="color: black;">]);<br>
+Rac =
+textscan(ac, </span><span style="color: rgb(160, 32, 240);">'%f
+%*f %f %*f'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'delimiter'</span><span style="color: black;">,</span><span style="color: rgb(160, 32, 240);">','</span><span style="color: black;">,</span><span style="color: rgb(160, 32, 240);">'headerLines'</span><span style="color: black;">, 1);<br>
+fclose(</span><span style="color: rgb(160, 32, 240);">'all'</span><span style="color: black;">);</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<hr style="width: 100%; height: 2px;"><br>
+Now, we're ready to perform some simulations&nbsp;driving
+WinSpice&nbsp;from Matlab.<br>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">clear;
+clc; close </span><span style="color: rgb(160, 32, 240);">all<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+We try some initial components</span><br>
+<span style="color: black;">R1 =
+10e3;<br>
+C1 =
+1e-9;<br>
+x = [R1
+C1];<br>
+[Ra] =
+WS_RC_low_pass(x);<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">figure(1)<br>
+semilogx(Ra{1},Ra{2})<br>
+grid </span><span style="color: rgb(160, 32, 240);">on<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+We try another cutoff frequency by modifying the resistor</span><br>
+<span style="color: black;">R1 =
+1e3;<br>
+x = [R1
+C1];<br>
+[Ra] =
+WS_RC_low_pass(x);<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">figure(2)<br>
+semilogx(Ra{1},Ra{2})<br>
+grid </span><span style="color: rgb(160, 32, 240);">on</span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: rgb(160, 32, 240);"></span></p>
+<hr style="width: 100%; height: 2px;">For R1 =
+10k and C1 = 1 nF, the obtained result is:<br>
+<br>
+<div style="text-align: center;"><img style="width: 392px; height: 294px;" alt="RC low pass filter" src="http://www.matrixlab-examples.com/image-files/rc_low_pass_filter003.gif"><br>
+</div>
+<span style="font-family: monospace;"></span><br>
+<br>
+For R1 = 1k&nbsp;and C1&nbsp;= 1 nF, the obtained result is:<br>
+<br>
+<div style="text-align: center;"><img style="width: 392px; height: 294px;" alt="RC filter response after modification" src="http://www.matrixlab-examples.com/image-files/rc_low_pass_filter004.gif"><br>
+</div>
+<br>
+As before, we can now use WinSpice as if it was another built-in Matlab
+function! <span style="font-weight: bold;"></span>This
+means that we can work through circuit optimization using functions
+such as '<span style="font-weight: bold;">fminbnd</span>'
+or '<span style="font-weight: bold;">fminsearch</span>'...<br>
+<br>
+We
+can try some numbers in our design, we can see the results and use
+Matlab to modify relevant values&nbsp;in the circuit,
+iteratively...<br>
+<span style="font-weight: bold;"><br>
+</span><br>
+<span style="text-decoration: underline;">Reference:</span><br>
+http://desi.iteso.mx/erayas/cad.htm, 2014.<br>
+<br>
+<div style="text-align: center;"><span style="font-weight: bold;"></span>&nbsp;
+&nbsp; <br>
+<!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+<br>
+&nbsp;&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/electronic-experiments.html" onclick="return FIX.track(this);">Electronic Experiments</a>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/creative-electronic-projects.html" onclick="return FIX.track(this);">Creative Electronics</a>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/electrical-calculations.html" onclick="return FIX.track(this);">Electrical Calculations</a>
+<span style="font-weight: bold;">&nbsp; </span><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Circuit Simulator' to home</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-programming-2tier.html" onclick="return FIX.track(this);">From
+'Circuit Simulator' to Matlab Programming</a><br style="font-weight: bold;">
+<br>
+<a style="font-weight: bold;" href="circuit-simulator.html#top">Top</a><br style="font-weight: bold;">
+</div>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for circuit simulator page"><a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br>
+</a></p>
+</td>
+<td style="width: 170px; text-align: right; vertical-align: top;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div style="text-align: center;"><!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 16:37:55 13-Aug-2021 -->
+</body></html>

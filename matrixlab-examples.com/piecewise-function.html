@@ -1,0 +1,640 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Piecewise Function - work them out with Matlab</title>
+
+<meta name="Description" content="A piecewise function is a function whose definition changes depending on the value of the independent variable...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/piecewise-function.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Piecewise Function - work them out with Matlab" />
+<meta property="og:description" content="A piecewise function is a function whose definition changes depending on the value of the independent variable..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/piecewise-function.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/piecewise-function-002.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/piecewise-function-003.gif" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<h1><a name="Piecewise_function"></a>Piecewise
+function - separate ranges in Matlab</h1>
+<br>
+In math, a <span style="font-weight: bold;">piecewise
+function</span> (or piecewise-defined function)
+is a function whose definition changes depending on the value of the
+independent variable. <br>
+&nbsp;<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: middle;">
+<p class="MsoNormal">A
+function <i style="">f</i> of
+a variable <i style="">x </i>(noted <i style="">f</i>(<i style="">x</i>))
+is a relationship whose definition is given differently on different
+subsets of
+its domain.</p>
+<p class="MsoNormal">Piecewise is a term
+also used to describe any property of a
+piecewise function that is true for each piece but may not be true for
+the
+whole domain of the function. The function doesn&#8217;t need to be
+continuous, it
+can be defined arbitrarily.</p>
+</td>
+<td style="width: 308px; text-align: right; vertical-align: top;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --></td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal">We&#8217;re going to experiment
+in Matlab with this type of
+functions. We&#8217;re going to develop three ways to define and graph them.
+The first
+method involves if-statements to classify element-by-element, in a
+vector. The
+second method uses switch-case statements, and the third method uses
+indices to
+define different sections of the domain.</p>
+<p class="MsoNormal">Let&#8217;s say that this is
+our piecewise-defined function<o:p>&nbsp;</o:p><span style=""></span><span style="">&nbsp;</span><span style="position: relative; top: 32pt;"></span><br>
+</p>
+<div style="text-align: center;"><o:p><img style="width: 270px; height: 106px;" alt="how to define piecewise functions in Matlab" src="http://www.matrixlab-examples.com/image-files/piecewise-function-001.gif">&nbsp;</o:p></div>
+<p class="MsoNormal">and we&#8217;d like to graph it
+on the domain of -8 <span style="">&#8804;</span> x <span style="">&#8804;</span> 4</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<h3>Method 1. If-else statements</h3>
+<p class="MsoNormal">Notice that this is not
+the best way to do it in
+Matlab, but I mention the idea&nbsp;because this is the fundamental
+concept, and in some programming languages it cannot be done in a
+dfferent&nbsp;way. It's for study, not for real implementation...</p>
+<p class="MsoNormal"> So, let's define our
+function with if-else statements for the moment. We
+just use different conditions for the different ranges, and assign
+appropriate
+values.</p>
+<p class="MsoNormal"><span style="color: blue; font-family: monospace;">function</span><span style="color: black; font-family: monospace;"> y =
+piecewise1(x)</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">if</span><span style="color: black; font-family: monospace;"> x &lt;=
+-4<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>y
+= 3;</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">elseif</span><span style="color: black; font-family: monospace;"> -4 &lt;
+x &amp; x &lt;= -3<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>y
+= -4*x - 13;</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">elseif</span><span style="color: black; font-family: monospace;"> -3 &lt;
+x &amp; x &lt;= 0<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>y
+= x^2 + 6*x + 8;</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">else</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;"><span style="">&nbsp;&nbsp;&nbsp; </span>y = 8;</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">end</span><o:p></o:p></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Now, we can use scalars
+or arrays to call this function, in
+a classical way:</p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="color: forestgreen;">%
+Define elements</span><br>
+<span style="color: black;">x = [-5
+-4 -3 0 3]</span><br>
+<span style="color: forestgreen;">%
+Submit element-by-element to the function</span><br>
+<span style="color: blue;">for</span><span style="color: black;"> ix = 1
+: length(x)<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>y(ix)
+= piecewise1(x(ix))</span><br>
+<span style="color: blue;">end</span><br>
+<span style="color: forestgreen;">%
+Plot discrete values</span><br>
+<span style="color: black;">plot(x,
+y, </span><span style="color: rgb(160, 32, 240);">'ro'</span><span style="color: black;">)</span><br>
+<span style="color: forestgreen;">%
+Define x and y ranges to display</span><br>
+<span style="color: black;">axis([-8
+4 -2 10])</span><br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The result is:<o:p></o:p></p>
+<p style="text-align: center;" class="MsoNormal"><o:p></o:p><img style="width: 332px; height: 267px;" alt="discrete values of piecewise function" src="http://www.matrixlab-examples.com/image-files/piecewise-function-002.gif"></p>
+<p class="MsoNormal"></p>
+<p class="MsoNormal">Let&#8217;s say that we need
+more values. We can call our function
+this way</p>
+<p class="MsoNormal"><span style="color: black; font-family: monospace;">x = -8 :
+.01 : 4;</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">for</span><span style="color: black; font-family: monospace;"> ix = 1
+: length(x)<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>y(ix)
+= piecewise1(x(ix));</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">end</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">plot(x,
+y)<br>
+axis([-8
+4 -2 9])</span><br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The new graph (which
+obviously gives more information) is:</p>
+<div style="text-align: center;"><o:p>&nbsp;<img style="width: 330px; height: 266px;" alt="more resolution on piecewise functions" src="http://www.matrixlab-examples.com/image-files/piecewise-function-003.gif"></o:p><br>
+<o:p></o:p></div>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<h3>Method 2. Switch-case statements</h3>
+<p class="MsoNormal">Our second method
+classifies the elements using switch-case statements.
+We separate the different ranges in different cases. If that condition
+is true,
+then the switch-expression will match the case-expression, and the
+appropriate
+statement(s) will be executed.<br>
+<o:p></o:p></p>
+<p class="MsoNormal" style=""><span style="color: blue; font-family: monospace;">function</span><span style="color: black; font-family: monospace;"><span style="">&nbsp; </span>y = piecewise2(x)</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">switch</span><span style="color: black; font-family: monospace;"> x<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: forestgreen; font-family: monospace;">% A
+scalar switch_expr matches
+a case_expr if</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;"><span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: forestgreen; font-family: monospace;">%
+switch_expr == case_expr</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;"><span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: forestgreen; font-family: monospace;">% The
+first case must cover
+the x = 0 case</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;"><span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue; font-family: monospace;">case</span><span style="color: black; font-family: monospace;"> x * (-3
+&lt; x &amp; x &lt;= 0)<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>y = x^2 + 6*x + 8;<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue; font-family: monospace;">case</span><span style="color: black; font-family: monospace;"> x * (x
+&lt;= -4)<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>y = 3;<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue; font-family: monospace;">case</span><span style="color: black; font-family: monospace;"> x * (-4
+&lt; x &amp; x &lt;= -3)<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>y = -4*x - 13;<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue; font-family: monospace;">otherwise</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>y = 8;</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">end</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><br>
+One important note is that when x = 0 the result of the
+case-expression is also 0, and the first case is executed. That&#8217;s why
+we
+need to
+place our x = 0 case first in the structure, otherwise we get wrong
+that point.</p>
+<p class="MsoNormal">We can test our second
+piecewise function definition, like
+this:<o:p>&nbsp;</o:p></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="color: black;">x
+= -8 :
+.01 : 4;</span><br>
+<span style="color: blue;">for</span><span style="color: black;"> ix = 1
+: length(x)<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>y(ix)
+= piecewise2(x(ix));</span><br>
+<span style="color: blue;">end</span><br>
+<span style="color: black;">plot(x,
+y)<br>
+axis([-8
+4 -2 9])</span><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">and get the previous
+shown graph, too.<o:p><br>
+&nbsp;</o:p></p>
+<h3>Method 3. Vectorized way</h3>
+<p class="MsoNormal">The above routines assume
+that we&#8217;re entering scalars as
+input parameters. Now, we&#8217;ll assume that we&#8217;re submitting whole
+vectors, and
+we&#8217;ll handle indices for that.<br>
+<o:p></o:p></p>
+<p class="MsoNormal">This video will show you
+how to do it without using loops. After the video, another example is
+given with full code.</p>
+<p class="MsoNormal"></p>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td><iframe src="//www.youtube-nocookie.com/embed/RCzbs7U9YRE?rel=0" allowfullscreen="" frameborder="0" height="360" width="480"></iframe></td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The line&nbsp;</p>
+<p class="MsoNormal"><span style="color: black; font-family: monospace;">x2 = x(-4
+&lt; x &amp; x &lt;= -3);</span><br>
+</p>
+<p class="MsoNormal">assigns to x2 the values
+of vector x that meet the criteria
+of -4 &lt; x <span style="">&#8804;</span> -3.<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The line&nbsp;<span style="color: black; font-family: monospace;"></span><span style="color: black;">&nbsp;</span></p>
+<p class="MsoNormal"><span style="color: black;">y(</span><span style="color: black; font-family: monospace;">-4
+&lt; x &amp; x &lt;= -3</span><span style="color: black;">) = -4*x2 - 13;<span style=""></span></span></p>
+<p class="MsoNormal">works
+with the values in x2, calculates the appropriate function y(x) and
+places the values&nbsp;in the correct indices of vector y.<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">We can combine those two
+ideas to work out all the appropriate
+values for the whole function.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The following code is
+just one way to take full vectors and
+pack them into piecewise functions:</p>
+<p class="MsoNormal" style=""><o:p></o:p><span style="color: blue; font-family: monospace;">function</span><span style="color: black; font-family: monospace;"><span style="">&nbsp; </span>y = piecewise3(x)<span style=""></span></span><br style="font-family: monospace;">
+<span style="color: forestgreen; font-family: monospace;">%
+first range</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">y(x
+&lt;= -4) = 3;<span style="">&nbsp;</span></span><span style="font-size: 12pt; font-family: monospace;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+second range</span><br>
+<span style="color: black;">x2 =
+x(-4 &lt; x &amp; x &lt;= -3);<br>
+y(</span><span style="color: black;">-4 &lt; x
+&amp; x &lt;= -3</span><span style="color: black;">)
+= -4*x2 - 13;<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+third range</span><br>
+<span style="color: black;">x3 =
+x(-3 &lt; x &amp; x &lt;= 0);<br>
+y(</span><span style="color: black;">-3 &lt; x
+&amp; x &lt;= 0</span><span style="color: black;">)
+= x3.^2 + 6*x3 + 8;<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="color: forestgreen; font-family: monospace;">%
+fourth range</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">y(0
+&lt; x) = 8;</span><span style="font-size: 12pt; font-family: monospace;"><o:p></o:p></span><br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Now, we can avoid
+for-loops before graphing this type of
+functions...<br>
+We enter the whole array of the independent variable&nbsp;as
+parameter</p>
+<p class="MsoNormal"><span style="color: black; font-family: monospace;">x = -8 :
+.01 : 4;<br>
+y1 =
+piecewise3(x);<br>
+plot(x,
+y1)<br>
+axis([-8
+4 -2 9])</span><br>
+<o:p></o:p></p>
+<p class="MsoNormal">this produces what we
+know and
+expect...</p>
+<br>
+&nbsp;<a href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From 'Piecewise Functions'
+to home</a><br>
+<br>
+&nbsp;<a href="http://www.matrixlab-examples.com/matlab-code-3.html" onclick="return FIX.track(this);">From 'Piecewise
+Functions' to Flow Control</a><br>
+<br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a href="#Piecewise_function">Top</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/periodic-function.html" onclick="return FIX.track(this);">Periodic
+Functions</a><br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for piecewise functions page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; vertical-align: top; background-color: rgb(224, 236, 255); text-align: center;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:42:51 10-Aug-2021 -->
+</body></html>

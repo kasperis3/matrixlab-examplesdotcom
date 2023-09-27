@@ -1,0 +1,350 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Fibonacci Numbers - how to calculate them in Matlab</title>
+
+<meta name="Description" content="The first two Fibonacci numbers are 0 and 1, and each remaining number is the sum of the previous two. Some sources neglect the initial 0, and instead beginning the sequence with the first two 1s...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/fibonacci-numbers.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Fibonacci Numbers - how to calculate them in Matlab" />
+<meta property="og:description" content="The first two Fibonacci numbers are 0 and 1, and each remaining number is the sum of the previous two. Some sources neglect the initial 0, and instead beginning the sequence with the first two 1s..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/fibonacci-numbers.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 813px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 145px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 813px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<h1><a name="Fibonacci_Numbers_in_Matlab"></a>Fibonacci
+Numbers in Matlab</h1>
+<br>
+<div style="text-align: center;"><img style="width: 420px; height: 230px;" alt="Golden spiral produced with Fibonacci sequence" src="http://www.matrixlab-examples.com/image-files/fibo_001.gif"><br>
+</div>
+<br>
+<br>
+The first two <span style="font-weight: bold;">Fibonacci
+numbers</span> are 0 and 1, and <span style="font-weight: bold;">each remaining</span>
+number
+is the <span style="font-weight: bold;">sum of the
+previous two</span>. Some sources <span style="font-weight: bold;">neglect</span> the initial
+0, and
+instead beginning the sequence with the first two ones. &nbsp;<br>
+<br>
+The
+Fibonnacci numbers are also known as the Fibonacci series. Two <span style="font-weight: bold;">consecutive</span>
+numbers in this series are in a '<span style="font-weight: bold;">Golden
+Ratio</span>'.<br>
+<br>
+<!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+<br>
+<br>
+In mathematics and arts, two quantities are in the golden ratio if the
+ratio of the sum of the quantities to the larger quantity equals the
+ratio of the larger quantity to the smaller one.<br>
+<br>
+The golden ratio is an
+irrational constant, approximately 1.618033988. We're designing below a
+simple function to see how it appears...<br>
+<br>
+The command '<span style="font-weight: bold;">num2string</span>'
+changes a number into a string, so that it can be included in another
+string. The command '<span style="color: black;"><span style="font-weight: bold;">num2str(golden_ratio, 10)</span>'</span>
+shows the number '<span style="font-weight: bold;">golden_ratio</span>'
+with 9 digits after the decimal point.<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+The simple code is here:<br>
+<br>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%Clear
+screen and memory</span><br>
+<span style="color: black;">clear;
+clc; format </span><span style="color: rgb(160, 32, 240);">compact<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Initialize the first two values</span><br>
+<span style="color: black;">f(1) =
+1;<br>
+f(2) =
+1;<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Create the first 30 Fibonacci numbers</span><br>
+<span style="color: blue;">for</span><span style="color: black;"> i = 3 :
+30<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: forestgreen;">% Perform the sum of terms
+accordingly</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span>f(i) = f(i-1) + f(i-2);<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: forestgreen;">% Calculate and display the
+ratio of 2 consecutive elements &nbsp; &nbsp; % of the series</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span>golden_ratio = f(i)/f(i-1);<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>str
+= [num2str(f(i)) </span><span style="color: rgb(160, 32, 240);">' '</span><span style="color: black;">
+num2str(f(i-1)) </span><span style="color: rgb(160, 32, 240);">'
+'</span><span style="color: black;">&nbsp;</span><span style="color: blue;">...</span><span style="color: black;"><br>
+&nbsp;&nbsp; &nbsp;num2str(golden_ratio, 10)];<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>disp(str)</span><br>
+<span style="color: blue;">end</span></p>
+<p class="MsoNormal" style=""><span style="color: blue;"></span></p>
+<hr style="width: 100%; height: 2px;">
+<p class="MsoNormal"><o:p></o:p></p>
+<p class="MsoNormal"><o:p>Each line
+shows three elements: a number in the series, its predecessor and the
+quotient of the first number divided by the second. The results in
+Matlab are here:</o:p></p>
+<p class="MsoNormal"><o:p><br>
+</o:p></p>
+<p class="MsoNormal"><o:p><span style="font-family: monospace;">2 1 2</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">3 2 1.5</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">5 3
+1.666666667</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">8 5 1.6</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">13 8
+1.625</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">21 13
+1.615384615</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">34 21
+1.619047619</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">55 34
+1.617647059</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">89 55
+1.618181818</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">144 89
+1.617977528</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">233 144
+1.618055556</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">377 233
+1.618025751</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">610 377
+1.618037135</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">987 610
+1.618032787</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">1597 987
+1.618034448</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">2584
+1597 1.618033813</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">4181
+2584 1.618034056</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">6765
+4181 1.618033963</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">10946
+6765 1.618033999</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">17711
+10946 1.618033985</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">28657
+17711 1.61803399</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">46368
+28657 1.618033988</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">75025
+46368 1.618033989</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">121393
+75025 1.618033989</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">196418
+121393 1.618033989</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">317811
+196418 1.618033989</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">514229
+317811 1.618033989</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">832040
+514229 1.618033989</span></o:p><comment title=" google_ad_section_end " xmlns="http://disruptive-innovations.com/zoo/nvu"></comment></p>
+<p class="MsoNormal"><o:p></o:p></p>
+<p class="MsoNormal">You can see that, in
+fact, the quotient
+of two consecutive numbers reaches the 'golden ratio' after just a few
+numbers in the series.<br>
+</p>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Fibonacci Numbers'
+to home</a><br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-programming-2tier.html" onclick="return FIX.track(this);">From
+'Fibonacci Numbers' to 'Matlab programming' Menu</a><br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --><br>
+</td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="#Fibonacci_Numbers_in_Matlab">Top</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/recursion.html" onclick="return FIX.track(this);">Recursion</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/lucas-series.html" onclick="return FIX.track(this);">Lucas Series</a><br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for matlab page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; text-align: right; vertical-align: top;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div style="text-align: center;"><!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:48:17 10-Aug-2021 -->
+</body></html>

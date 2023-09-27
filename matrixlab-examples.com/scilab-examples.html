@@ -1,0 +1,455 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Scilab Examples</title>
+
+<meta name="Description" content="These Scilab examples give a practical approach to 2D drawings with this software...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/scilab-examples.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Scilab Examples" />
+<meta property="og:description" content="These Scilab examples give a practical approach to 2D drawings with this software..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/scilab-examples.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/scilab-examples-001.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/scilab-examples-002.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/scilab-examples-003.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/scilab-examples-004.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/scilab-examples-005.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/scilab-examples-006.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/scilab-examples-007.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/scilab-examples-008.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/scilab-examples-009.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/scilab-examples-010.gif" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 813px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 145px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 813px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 520px;"><br>
+<br>
+<h1 style="text-align: center;"><a name="Scilab_Examples_&#8211;_2D_plots"></a><span style="" lang="ES-TRAD">Scilab
+Examples &#8211; 2D plots</span></h1>
+<p style="text-align: center;" class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p>This
+is
+a practical approach to plots in Scilab. Several examples are shown to
+explore
+the capabilities of this software. After each line of code is
+explained, we
+show the result produced.</span></p>
+<p style="text-align: center;" class="MsoNormal">&nbsp;<!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml -->
+&nbsp;</p>
+<h3><span style="" lang="ES-TRAD">Simplest
+forms </span></h3>
+<span style="" lang="ES-TRAD"></span><span style="" lang="ES-TRAD">Function <span style="font-family: monospace;">plot2d</span>
+plots a set of 2D curves. If you are familiar with the <a href="http://www.matrixlab-examples.com/matlab-plot.html" onclick="return FIX.track(this);">Matlab plot</a> syntax, you
+could use function plot. If x and y are vectors, <span style="font-family: monospace;">plot2d(x, y,
+&lt;opt_args&gt;)</span> plots
+vector y versus vector x. x and y vectors must have the same
+size.&nbsp;<o:p>&nbsp;</o:p></span>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><span style="font-family: monospace;">//
+Define your x-values</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">x = 0 :
+.1 : 10*%pi;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">//
+Define your function</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">y = x
+.* cos(x);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">// Plot
+as used in Matlab</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">plot(x,
+y)</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">// Add
+title, labels and legend</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">title('x
+* cos(x)')</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">xlabel('x');
+ylabel('y');</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">legend('y
+= x * cos(x)');</span><o:p></o:p></span></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><img style="width: 362px; height: 302px;" alt="Simplest form of a Scilab Plot" src="http://www.matrixlab-examples.com/image-files/scilab-examples-001.gif"></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><span style="font-family: monospace;">//
+Multiple plot with captions and given tics + style</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">//
+Define your x-values</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">x = [0 :
+0.1 : 2*%pi]';</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">plot2d(x,
+[sin(x) sin(2*x)], [2, 5],...</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">leg =
+"sin(x)@sin(2x)", nax = [2, 5, 1, 5],...<br>
+rect = [0, -1, 2*%pi, 1])</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">// [2,
+5] means lines in blue (2) and red (5)</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">// leg =
+"sin(x)@sin(2x)" are the legends of the lines</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">// nax =
+[2, 5, 1, 5] are the tics and subtics of the</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">//
+horizontal and</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">//
+vertical axis</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">// rect
+= [0, -1, 2*%pi, 1] are the bounds of the axis,&nbsp;<br>
+// from (0,&nbsp;-1) to (2pi, 1).</span></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><br>
+</span></p>
+<p style="text-align: center;" class="MsoNormal"><span style="" lang="ES-TRAD"></span><img style="width: 354px; height: 289px;" alt="A Scilab Example showing two lines on the same window" src="http://www.matrixlab-examples.com/image-files/scilab-examples-002.gif"></p>
+<hr style="width: 100%; height: 2px;"><br>
+<h3><span style="" lang="ES-TRAD">Logarithmic
+Axis &#8211; Plots<o:p></o:p></span></h3>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p><br style="font-family: monospace;">
+<span style="font-family: monospace;">//
+Define your variables</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">t =
+linspace(0, 2*%pi, 300);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">x =
+exp(-t);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">y = t;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">// Use
+the logflag option to define logarithmic or normal axis</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">// n
+for normal, l for logarithmic.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">plot2d(x,
+y, logflag = "ln");</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">// Use
+xgrid to add a grid on your current figure</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">xgrid;</span><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><img style="width: 346px; height: 279px;" alt="Scilab Plot showing logarithmic axis" src="http://www.matrixlab-examples.com/image-files/scilab-examples-003.gif" v:shapes="_x0000_i1026"></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><span style="font-family: monospace;">//
+Open
+a new figure window with scf</span><br>
+<span style="font-family: monospace;">scf();
+plot2d(t, exp(t), logflag = "nl"); xgrid;</span><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><img style="width: 353px; height: 274px;" alt="Scilab Example showing vertical log axes" src="http://www.matrixlab-examples.com/image-files/scilab-examples-004.gif" v:shapes="_x0000_i1027"></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><o:p>&nbsp;</o:p></p>
+<p style="font-family: monospace;" class="MsoNormal">// Both axis are logarithmic now<br>
+scf(); plot2d(exp(t), 50 + exp(2*t), logflag =
+"ll") ; xgrid</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><img style="width: 351px; height: 277px;" alt="Scilab Plot with two logarithmic axis" src="http://www.matrixlab-examples.com/image-files/scilab-examples-005.gif" v:shapes="_x0000_i1028"></p>
+<p class="MsoNormal"></p>
+<hr style="width: 100%; height: 2px;"><br>
+<h3>Polar Plots</h3>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">polarplot
+- Plot polar coordinates<br>
+polarplot(theta,
+rho, &lt;opt_args&gt;)<o:p>&nbsp;</o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="" lang="ES-TRAD">//
+Define your variable<br>
+t =
+linspace(0, 2*%pi, 100);<br>
+//
+Define your polar function<br>
+r =
+sqrt(abs(2 * cos(5*t)));<br>
+// Plot
+in polar coordinates<br>
+polarplot(t,
+r);</span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><img style="width: 259px; height: 265px;" alt="Scilab - polar plot" src="http://www.matrixlab-examples.com/image-files/scilab-examples-006.gif" v:shapes="_x0000_i1029"></p>
+<p style="text-align: right;" class="MsoNormal"><a href="http://www.matrixlab-examples.com/polar-plots.html" onclick="return FIX.track(this);">Polar Plots in Matlab</a></p>
+<hr style="width: 100%; height: 2px;"><br>
+<h3>Histograms in Scilab<o:p>&nbsp;</o:p></h3>
+<p class="MsoNormal">histplot - plot a
+histogram<br>
+histplot(bins, data, &lt;opt_args&gt;)<br>
+<o:p>&nbsp;</o:p></p>
+<p style="font-family: monospace;" class="MsoNormal">// Define your data or get it somehow<br>
+y = 10 * rand(500, 1);<br>
+// Create the histogram. The 5 at the beginning means 5
+bins.<br>
+// The&nbsp;2 at the end means lines in blue.<br>
+histplot(5, y, 2)</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><img style="width: 360px; height: 274px;" alt="histograms in Scilab" src="http://www.matrixlab-examples.com/image-files/scilab-examples-007.gif" v:shapes="_x0000_i1030"><o:p></o:p></p>
+<p style="text-align: right;" class="MsoNormal"><a href="http://www.matrixlab-examples.com/hist.html" onclick="return FIX.track(this);"><o:p>Histograms in Matlab</o:p></a></p>
+<hr style="width: 100%; height: 2px;">
+<h3>Pie Plots</h3>
+<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
+pie - draw a pie<br>
+pie(x [, sp [,txt]]) </p>
+<p class="MsoNormal">x is a scalar or a vector
+of real, positive numbers.<br>
+sp is a real scalar or vector.<br>
+txt means a cell or a vector of strings.<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="font-family: monospace;">pie([1 3 4 5], [1 0 1 0],...<br>
+["Part1
+Exp.","Part2","Part3 Exp.", "P4"]);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">// [1 3
+4 5] is the number and size of sectors</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">// [1 0
+1 0], 1 for exploded sector, 0 for nonexploded</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">//
+["Part1 Exp.","Part2","Part3
+Exp.", "P4"] is the associated<br>
+// text</span><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><img style="width: 285px; height: 304px;" alt="Pie Plot in Scilab" src="http://www.matrixlab-examples.com/image-files/scilab-examples-008.gif" v:shapes="_x0000_i1031"></p>
+<p style="text-align: right;" class="MsoNormal"><a href="http://www.matrixlab-examples.com/pie-plots.html" onclick="return FIX.track(this);"><o:p>Pie Plots in Matlab</o:p></a></p>
+<hr style="width: 100%; height: 2px;"><br>
+<h3>Stems &#8211; Vertical lines</h3>
+<p class="MsoNormal">plot2d3 - 2D plot
+(vertical bars)<br>
+plot2d3([logflags,] x,y,[style,strf,leg,rect,nax])<br>
+plot2d3(x,y &lt;,opt_args&gt;)<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">plot2d3 is the same as
+plot2d but curves are plotted using
+vertical bars.&nbsp;By default, successive plots are superposed. To
+clear the
+previous plot, use clf().<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="font-family: monospace;">// Define your independent
+values</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">x = [0 :
+0.2 : 4*%pi];</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">//
+Define your functions and plot.</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">// The
+default color is black</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">plot2d3(x,
+sin(x))</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">// 5 at
+the end means red line</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">plot2d3(x,
+sin(2*x), 5)</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">//
+Superimpose a red envelope on the red lines</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">plot2d(x,
+sin(2*x), 5)</span><br style="font-family: monospace;">
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><img style="width: 358px; height: 268px;" alt="vertical lines in Scilab plots - stems" src="http://www.matrixlab-examples.com/image-files/scilab-examples-009.gif" v:shapes="_x0000_i1032"></p>
+<p style="text-align: right;" class="MsoNormal"><a href="http://www.matrixlab-examples.com/matlab-plot-3.html" onclick="return FIX.track(this);">Stems in Matlab</a></p>
+<hr style="width: 100%; height: 2px;"><br>
+<h3>Stairs Function</h3>
+Use plot2d2 for this purpose.
+<p style="font-family: monospace;" class="MsoNormal">// Define your variables and functions<br>
+t = linspace(-2*%pi, 2*%pi, 200);<br>
+r = sqrt( abs(2 * cos(4*t)) );<br>
+y = r .* cos(t);<br>
+// Plot using a red line (5) and<br>
+// bound axis from (-1.5, 0) to (1.6, 1.5)<br>
+plot2d2(t, y, 5, rect = [-1.5, 0, 1.6, 1.5]);<br>
+// Add title, labels, legend and grid<br>
+title('Stairs/Steps Function');<br>
+xlabel('x'); ylabel('y');<br>
+legend('y = Step function');<br>
+xgrid;<o:p>&nbsp;</o:p></p>
+<p style="text-align: center;" class="MsoNormal"><o:p>&nbsp;</o:p><img style="width: 361px; height: 304px;" alt="Stairs in Scilab plots" src="http://www.matrixlab-examples.com/image-files/scilab-examples-010.gif" v:shapes="_x0000_i1033"></p>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Scilab Examples' to Matlab home</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/scilab.html" onclick="return FIX.track(this);">From
+'Scilab Examples' to Scilab Menu</a><br>
+&nbsp;<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml -->
+</td>
+<td style="vertical-align: bottom; text-align: right; font-weight: bold;"><a href="#Scilab_Examples_%3F_2D_plots">Top</a></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for scilab examples page"><br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br>
+</a></p>
+</td>
+<td style="vertical-align: top; width: 170px; text-align: right; background-color: rgb(224, 236, 255);"><br>
+<div style="text-align: center; background-color: rgb(224, 236, 255);"><!-- start: SSI translator.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI translator.shtml --><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:45:37 10-Aug-2021 -->
+</body></html>

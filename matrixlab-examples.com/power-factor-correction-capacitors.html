@@ -1,0 +1,355 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Power Factor Correction Capacitors</title>
+
+<meta name="Description" content="Example of the formulas to calculate power factor correction capacitors. These diagrams show the relationship of...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/power-factor-correction-capacitors.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Power Factor Correction Capacitors" />
+<meta property="og:description" content="Example of the formulas to calculate power factor correction capacitors. These diagrams show the relationship of..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/power-factor-correction-capacitors.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/power-factor-003.gif" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 813px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 145px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 813px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 520px;"><br>
+<h1><a name="Power_Factor_Correction_Capacitors"></a>Power
+Factor Correction Capacitors</h1>
+In this article we are going to develop an algorithm or method to find
+out capacitors for power factor correction. This is the simplified
+example that
+we propose for this matter...<br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml -->
+</td>
+<td style="vertical-align: middle;">An inductive load (motor)
+is connected in series to a 60 Hz
+- 220 VAC source and dissipates 5.4 kW with a power factor of 0.82. We
+have to
+calculate the capacitor that we have to connect in parallel to improve
+the
+factor to 0.96.</td>
+</tr>
+</tbody>
+</table>
+
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p><br>This is a graphical
+concept of what we&#8217;re trying to do for
+this correction:</p>
+<p class="MsoNormal" style="text-align: center;"><!--[if gte vml 1]><v:shapetype
+id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+<v:stroke joinstyle="miter"/>
+<v:formulas>
+<v:f eqn="if lineDrawn pixelLineWidth 0"/>
+<v:f eqn="sum @0 1 0"/>
+<v:f eqn="sum 0 0 @1"/>
+<v:f eqn="prod @2 1 2"/>
+<v:f eqn="prod @3 21600 pixelWidth"/>
+<v:f eqn="prod @3 21600 pixelHeight"/>
+<v:f eqn="sum @0 0 1"/>
+<v:f eqn="prod @6 1 2"/>
+<v:f eqn="prod @7 21600 pixelWidth"/>
+<v:f eqn="sum @8 21600 0"/>
+<v:f eqn="prod @7 21600 pixelHeight"/>
+<v:f eqn="sum @10 21600 0"/>
+</v:formulas>
+<v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+<o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1029" type="#_x0000_t75" style='width:195pt;
+height:126pt'>
+<v:imagedata src="file:///C:\DOCUME~1\Jorge\CONFIG~1\Temp\msohtml1\01\clip_image001.gif"
+o:title="power-factor-003"/>
+</v:shape><![endif]--><!--[if !vml]--><img style="width: 251px; height: 162px;" alt="problem of a power factor correction" src="http://www.matrixlab-examples.com/image-files/power-factor-001.gif" v:shapes="_x0000_i1029"><!--[endif]--></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
+where<br>
+Vrms = 220 VAC<br>
+f = 60 Hz<br>
+PF = 0.82<br>
+P = 5.4 kW<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Our task is to find the
+capacitor C to get a corrected PF =
+0.92.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">We know that AC power
+flow has three components: real or
+active power P, measured in watts (W); apparent power S, measured in
+volt-amperes
+(VA); and reactive power Q, measured in reactive volt-amperes (var).
+The
+following right-triangle describes the relationship for those three
+components.<br>
+<o:p></o:p><br>
+</p>
+<div style="text-align: center;"><!--[if gte vml 1]><v:shape
+id="_x0000_i1025" type="#_x0000_t75" style='width:163.5pt;height:115.5pt'>
+<v:imagedata src="file:///C:\DOCUME~1\Jorge\CONFIG~1\Temp\msohtml1\01\clip_image002.gif"
+o:title="power-factor-001"/>
+</v:shape><![endif]--><!--[if !vml]--><img style="width: 218px; height: 217px;" alt="triangle of powers" src="http://www.matrixlab-examples.com/image-files/power-factor-002.gif" v:shapes="_x0000_i1025"><!--[endif]--><o:p>&nbsp;</o:p></div>
+<p class="MsoNormal">If we add a capacitor in
+parallel, the reactive power of the
+system will change (decrease). The difference between the original
+reactive
+power Q<sub>1</sub> and the resulting reactive power Q<sub>2</sub>
+(after placing the
+capacitor) is called Qc. The final capacitor is a value depending on
+the
+reactive power Qc (in var), the frequency (in Hz) and the voltage at
+the load
+(Vrms). This diagram shows the idea and we present the formulas.</p>
+<p class="MsoNormal"><o:p>&nbsp;&nbsp;</o:p></p>
+<p class="MsoNormal" style="text-align: center;"><!--[if gte vml 1]><v:shape
+id="_x0000_i1026" type="#_x0000_t75" style='width:256.5pt;height:155.25pt'>
+<v:imagedata src="file:///C:\DOCUME~1\Jorge\CONFIG~1\Temp\msohtml1\01\clip_image005.gif"
+o:title="power-factor-002"/>
+</v:shape><![endif]--><!--[if !vml]--><img style="width: 345px; height: 344px;" alt="formulas for correcting apparent power" src="http://www.matrixlab-examples.com/image-files/power-factor-003.gif" v:shapes="_x0000_i1026"><!--[endif]--></p>
+<p class="MsoNormal" style=""><o:p></o:p><span style="color: black;"><o:p></o:p><br>
+We can
+develop a very simple code to find out how to correct the power factor
+in the
+system above. We only need a little bit of knowledge of basic
+trigonometry...<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">clear </span><span style="color: rgb(160, 32, 240);">all</span><span style="color: black;">, clc</span><span style="color: rgb(160, 32, 240);"><span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Known data: voltage source, frequency, starting power factor<br>
+%
+and corrected (final) power factor</span><br>
+<span style="color: black;">Vrms =
+220<br>
+f = 60<br>
+P =
+5.4e3<br>
+fp1 =
+0.82<br>
+fp2 =
+0.96<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+We calculate the initial angle, apparent and reactive powers</span><br>
+<span style="color: black;">th1 =
+acosd(fp1)<br>
+S1 =
+P/fp1<br>
+Q1 = S1
+* sind(th1)<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+We calculate the final angle, apparent and reactive powers</span><br>
+<span style="color: black;">th2 =
+acosd(fp2)<br>
+S2 =
+P/fp2<br>
+Q2 = S2
+* sind(th2)<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+We calculate the difference in reactive powers</span><br>
+<span style="color: black;">Qc = Q1
+- Q2<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+We express the capacitor in microfarads</span><br>
+<span style="color: black;">C =
+[num2str(Qc / (2*pi*f * Vrms^2)*1e6, 4) </span><span style="color: rgb(160, 32, 240);">' uF'</span><span style="color: black;">]</span><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The results shown in the
+command window are:<o:p>&nbsp;</o:p></p>
+<p style="font-family: monospace;" class="MsoNormal">Vrms =<span style="">&nbsp;</span>220<br>
+f =<span style="">&nbsp;</span>60<br>
+P =<span style="">&nbsp;</span>5400<br>
+fp1 =<span style="">&nbsp;&nbsp;</span>0.8200<br>
+fp2 =<span style="">&nbsp;&nbsp;</span>0.9600<br>
+th1 =<span style="">&nbsp;&nbsp;</span>34.9152<br>
+S1 =<span style="">&nbsp; </span>6.5854e+003<br>
+Q1 =<span style="">&nbsp; </span>3.7692e+003<br>
+th2 =<span style="">&nbsp;&nbsp;</span>16.2602<br>
+S2 =<span style="">&nbsp;&nbsp;</span>5625<br>
+Q2 =<span style="">&nbsp; </span>1.5750e+003<br>
+Qc =<span style="">&nbsp; </span>2.1942e+003<br>
+C = 120.3 uF</p>
+<br>
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Power Factor Correction Capacitors' to home</a><br>
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/electrical-calculations.html" onclick="return FIX.track(this);">From
+'Power Factor Correction Capacitors' to Electrical Calculations</a><br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml -->
+</td>
+<td style="vertical-align: bottom; text-align: right; font-weight: bold;"><a href="#Power_Factor_Correction_Capacitors">Top</a></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for matlab page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="vertical-align: top; width: 170px; text-align: right; background-color: rgb(224, 236, 255);"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:45:02 10-Aug-2021 -->
+</body></html>

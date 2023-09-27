@@ -1,0 +1,375 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Definite Integrals - how to calculate in Matlab</title>
+
+<meta name="Description" content="Definite integrals or numerical integration can be performed by a number of algorithms that approximate the value of....">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/definite-integrals.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Definite Integrals - how to calculate in Matlab" />
+<meta property="og:description" content="Definite integrals or numerical integration can be performed by a number of algorithms that approximate the value of...." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/definite-integrals.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/definite-integrals-003.gif" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<h1><a name="Definite_integrals_with_a_numerical"></a><span style="" lang="ES-TRAD">Learn to solve definite
+integrals with a numerical software<o:p></o:p></span></h1>
+<h3><span style="" lang="ES-TRAD">How
+to
+calculate integrals with Matlab</span></h3>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+</td>
+<td style="vertical-align: middle;"><span style="" lang="ES-TRAD">In computerized
+or numerical methods, a numerical integration can be performed by a
+number of
+algorithms that calculate the approximate value of <span style="font-weight: bold;">definite integrals</span>.<br>
+<br>
+</span><span style="" lang="ES-TRAD">Numerical
+evaluation of the integral </span><span style="" lang="ES-TRAD"><img style="width: 70px; height: 32px;" alt="definite integral to be performed by Matlab" src="http://www.matrixlab-examples.com/image-files/definite-integrals-001.gif"> </span><span style="" lang="ES-TRAD"><span style=""></span>is
+called quadrature. The
+term &#8216;numerical quadrature&#8217; is more or less a synonym for numerical
+integration, especially if applied to one-dimensional integrals.</span></td>
+</tr>
+</tbody>
+</table>
+<span style="" lang="ES-TRAD"><br>
+We&#8217;re
+going to focus this time on the calculation of definite integrals using
+the
+Matlab already built-in functions.<br>
+</span>
+<h3><br>
+<span style="" lang="ES-TRAD"><o:p></o:p>Why
+we
+can evaluate definite integrals<o:p></o:p></span></h3>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">There&#8217;s
+a number of reasons for carrying out numerical integration. The
+integrand <i style="">f</i>(<i style="">x</i>)
+may be known only at certain points, such as obtained by sampling. Some
+digital
+systems and other computer applications may need integral calculus for
+this
+reason.<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">A
+formula for the integrand could be known, but it may be difficult or
+impossible
+to find an analytical integral.&nbsp;<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">It may
+be possible to find an antiderivative, but it may be easier to compute
+a
+numerical approximation. That may be the case if the exact integral is
+given as
+an infinite series, or if its evaluation requires a special function
+which is
+not available.<br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Matlab
+provides the following built-in functions for numerical integration:<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><span style="font-weight: bold;">quad</span>
+- Uses
+adaptive Simpson quadrature.<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Basic
+form: q = quad(FUN, A, B), which tries to approximate the integral of
+scalar-valued function FUN from A to B to within an error of 1 x 10<sup>-6</sup>
+using recursive adaptive Simpson quadrature. The function <i style="">Y</i> = <i style="">f</i>(<i style="">X</i>) should accept a vector argument <i style="">X</i> and return a vector result <i style="">Y</i>, the integrand evaluated at each
+element of <i style="">X</i>.<span style="">&nbsp;</span><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><span style="font-weight: bold;">quadl</span>
+&#8211;
+Uses adaptive Lobatto quadrature.<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Basic
+form: q = quadl(FUN, A, B), which tries to approximate the integral
+using high
+order recursive adaptive quadrature.<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Let&#8217;s
+work on some examples and learn a little bit about intgral calculus...<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p><br>
+</span></p>
+<h3><span style="" lang="ES-TRAD">Single
+integration<o:p></o:p></span></h3>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p>The
+Gaussian integral (aka Euler-Poisson integral or Poisson integral) is
+the
+integral of the Gaussian function over the entire real numbers.<o:p></o:p></span></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><span style="" lang="ES-TRAD"><o:p>&nbsp;<br>
+&nbsp;<img style="width: 226px; height: 50px;" alt="Gaussian integral to be solved with Matlab" src="http://www.matrixlab-examples.com/image-files/definite-integrals-002.gif"></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Since
+the result is exact for a known interval, let&#8217;s use this function as a
+guinea
+pig.&nbsp;<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">First,
+let&#8217;s plot it to see what we&#8217;re doing. We cannot go from -infinity to
+infinity,
+but we can use a more reasonable interval.<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="color: black; font-family: monospace;">x = -7 :
+.1 : 7;<br>
+y =
+exp(-x.^2);<br>
+plot(x,
+y)</span><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">and we
+get<o:p><br>
+<br>
+</o:p></span></p>
+<div style="text-align: center;"><span style="" lang="ES-TRAD"><o:p><img style="width: 335px; height: 265px;" alt="Gaussian curve - definite integrals" src="http://www.matrixlab-examples.com/image-files/definite-integrals-003.gif">&nbsp;</o:p></span></div>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Now, we
+see that if we integrate in the interval [-8, 8] we can get a very good
+answer.
+We don&#8217;t have to go beyond that.<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">You can
+define a separate function for the integrand, and use its name within
+the quad
+function. In this case, the expression is simple and we&#8217;re going to use
+it
+directly as an argument to the quadrature<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="color: black; font-family: monospace;">format </span><span style="color: rgb(160, 32, 240); font-family: monospace;">long</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">y1
+=
+quad(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'exp(-x.^2)'</span><span style="color: black; font-family: monospace;">, -8, 8)<br>
+y2 =
+quad(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'exp(-x.^2)'</span><span style="color: black; font-family: monospace;">, -20, 20)</span><br>
+<span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">and the
+answers are<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><span style="font-family: monospace;">y1
+= 1.77245489096641</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">y2 =
+1.77245399494936</span><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p>Obviously,
+the second answer is better than the first one </span><span style="" lang="ES-TRAD">(according to sqrt(pi))</span><span style="" lang="ES-TRAD">, due to the longer interval,
+but
+even the first answer is correct to 5 digits.<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">You can
+type <span style="font-weight: bold;">help quad</span>
+or <span style="font-weight: bold;">help quadl</span>
+on your Matlab command window to see a full description
+of the usage and examples of the functions.<o:p></o:p></span><br>
+</p>
+<h3><br>
+<span style="" lang="ES-TRAD">Double
+integration<o:p></o:p></span></h3>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">To
+evaluate definite integrals of the form<o:p></o:p></span></p>
+<div style="text-align: center;"><img style="width: 112px; height: 53px;" alt="definite integrals - double integration" src="http://www.matrixlab-examples.com/image-files/definite-integrals-004.gif">
+</div>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">there&#8217;s
+the function dblquad. The basic syntax for double integration is:<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">II =
+dblquad(&#8216;fxy_fun&#8217;, x_min, x_max, y_min, y_max)<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="" lang="ES-TRAD">Let&#8217;s
+compute the following double integral<o:p></o:p><br>
+<span style="position: relative; top: 16pt;"><br>
+</span></span></p>
+<div style="text-align: center;"><span style="color: black;"><o:p>&nbsp;<img style="width: 133px; height: 52px;" alt="double integrals - example" src="http://www.matrixlab-examples.com/image-files/definite-integrals-005.gif"></o:p></span></div>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">f =
+inline(</span><span style="color: rgb(160, 32, 240);">'x.^2
++ 4*y'</span><span style="color: black;">);<br>
+ii =
+dblquad(f, 11, 14, 7, 10)<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">and the
+result is 1719</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Definite Integrals'
+to home</a><br>
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/calculus-problems.html" onclick="return FIX.track(this);">From
+'Definite
+Integrals' to 'Calculus Problems'</a><br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/trapezoidal-rule.html" onclick="return FIX.track(this);">Trapezium
+Rule</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/simpsons-rule.html" onclick="return FIX.track(this);">Simpson's
+Rule</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/derivative.html" onclick="return FIX.track(this);">Derivatives</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/sequences-and-series.html" onclick="return FIX.track(this);">Series
+and sequences</a><br>
+<br>
+<a style="font-weight: bold;" href="definite-integrals.html#Definite_integrals_with_a_numerical">Top</a><br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for matlab page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; vertical-align: top; text-align: right; background-color: rgb(224, 236, 255);"><br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:46:34 10-Aug-2021 -->
+</body></html>

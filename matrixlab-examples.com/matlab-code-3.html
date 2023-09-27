@@ -1,0 +1,359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Matlab Code - Flow Control (for, while, if...)</title>
+
+<meta name="Description" content="Matlab code has its own syntax for control-flow statements like for-loops, while and if-elseif branching. See these examples...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/matlab-code-3.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Matlab Code - Flow Control (for, while, if...)" />
+<meta property="og:description" content="Matlab code has its own syntax for control-flow statements like for-loops, while and if-elseif branching. See these examples..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/matlab-code-3.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/imgs/logo.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img style="width: 146px; height: 400px;" src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<h1><a name="top"></a>Matlab Code
+- Loops, branches, and control-flow</h1>
+<br>
+The MATLAB code has its own instructions for flow of control statements
+like '<span style="font-weight: bold;">for-loops</span>',
+'<span style="font-weight: bold;">while</span>' and '<span style="font-weight: bold;">if-elseif</span>' branching.<span style="font-weight: bold;"> </span>See details
+and&nbsp;examples...<br>
+&nbsp; &nbsp;
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+</td>
+<td><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/iteration.html" onclick="return FIX.track(this);">For
+loop</a><br>
+The <span style="font-weight: bold;">for</span>
+loop repeats a group of statements a fixed, predetermined number of<br>
+times. A matching <span style="font-weight: bold;">end</span>
+delineates the statements...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matrix-multiplication.html" onclick="return FIX.track(this);">Application
+of Nested Iterations (Matrix Multiplication)</a><br>
+We show a script in Matlab code that performs a <span style="font-weight: bold;">matrix
+multiplication</span> step-by-step. The algorithm
+displays&nbsp;all the
+elements being considered for <br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+the multiplication and shows how the
+resulting matrix is being formed in each step. Obviously, Matlab can do
+it with just one operation, but...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/pascals-triangle.html" onclick="return FIX.track(this);">Pascal's Triangle</a><br>
+Let's calculate the coefficients of binomial expansions...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/armstrong-numbers.html" onclick="return FIX.track(this);">Armstrong Numbers</a><br>
+An
+<span style="font-weight: bold;">Armstrong
+number</span> (sometimes called also <span class="nowrap"><span style="font-style: italic;">narcissistic numbers</span>)
+</span>of three digits is an integer such that
+the sum of the cubes of its digits equals the number itself. For
+example, 407
+is an Armstrong number since 4^3 + 0^3 + 7^3 = 407...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/control-structures.html" onclick="return FIX.track(this);">While
+loop</a><br>
+The <span style="font-weight: bold;">while</span>
+loop repeats a group of statements an indefinite number of times<br>
+under control of a logical condition. A matching <span style="font-weight: bold;">end</span> closes the
+statements...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/square-root-algorithm.html" onclick="return FIX.track(this);">Square
+Root (using while-loops)</a><br>
+<span style="" lang="ES-TRAD">We&#8217;ll
+explore a <span style="font-weight: bold;">square
+root algorithm</span> as an excuse to use
+<span style="font-weight: bold;">while-loops</span>
+in our numerical software. We&#8217;re not going to use the built-in
+function &#8216;<span style="font-weight: bold;">sqrt</span>&#8217;.</span>..<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/collatz-conjecture.html" onclick="return FIX.track(this);">Collatz Sequence (while-loops)</a><br>
+The <span style="font-weight: bold;">Collatz conjecture</span>&nbsp;is
+an
+<span style="font-weight: bold;">unsolved
+conjecture</span> in mathematics. This conjecture is also known
+as <span style="font-weight: bold;">3n + 1</span>&nbsp;or
+the <span style="font-weight: bold;">Syracuse
+problem</span>; the sequence of numbers involved is referred to
+as the <span style="font-weight: bold;">hailstone
+sequence</span>...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/if-statement.html" onclick="return FIX.track(this);">If...
+elseif...
+else... end (branches or decisions)</a><br>
+The <span style="font-weight: bold;">if</span>
+statement evaluates a logical expression and executes a group of<br>
+statements when the expression is <span style="font-style: italic;">true</span>.
+The optional <span style="font-weight: bold;">elseif</span>
+and <span style="font-weight: bold;">else</span>
+keywords provide for the execution of alternate groups of statements...
+<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/break-statement.html" onclick="return FIX.track(this);">Break
+(exit from loops)</a><br>
+The <span style="font-weight: bold;">break</span>
+statement lets you exit early from a <span style="font-weight: bold;">for</span> or <span style="font-weight: bold;">while</span> loop. In nested<br>
+loops, <span style="font-weight: bold;">break</span>
+exits from the innermost loop only...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matrix-inversion.html" onclick="return FIX.track(this);">Control
+Flow: for-loops, if-statements, break (in a Matrix Inversion)</a><br>
+This program performs the <span style="font-weight: bold;">matrix
+inversion</span> of&nbsp;a <span style="font-weight: bold;">square matrix</span>
+step-by-step. The inversion is performed by a modified <span style="font-weight: bold;">Gauss-Jordan elimination</span>
+method. We start with an arbitrary square matrix and a same-size
+identity matrix (all the elements along its diagonal are 1)...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/switch-statement.html" onclick="return FIX.track(this);">Switch-Case-Otherwise</a><br>
+The <span style="font-weight: bold;">switch</span>
+statement executes groups of statements based on the value of a
+variable or expression. The keywords <span style="font-weight: bold;">case</span> and <span style="font-weight: bold;">otherwise</span> delineate
+the groups...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/piecewise-function.html" onclick="return FIX.track(this);">Piecewise Functions</a><br>
+A&nbsp;<span style="font-weight: bold;">piecewise
+function</span> (or piecewise-defined function)
+is a function whose definition changes depending on the value of the
+independent variable... <br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/line-segment.html" onclick="return FIX.track(this);">Equation of Straight lines</a><br>
+<span style="" lang="ES-TRAD">We'll&nbsp;develop
+three functions to work out
+equations of
+straight lines in Matlab with different approaches... </span><br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Matlab Code' to home</a><br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-examples.html" onclick="return FIX.track(this);">To
+'Matlab Examples'</a><br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;">&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/sitemap.html" onclick="return FIX.track(this);">Search
+/ ToC</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/linear-algebra.html" onclick="return FIX.track(this);">Linear
+Algebra</a><br>
+<br>
+<a style="font-weight: bold;" href="matlab-code-3.html#top">Top</a><br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for matlab code - flow control page"><a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br>
+</a></p>
+</td>
+<td style="vertical-align: top; width: 170px; background-color: rgb(224, 236, 255); text-align: center;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:47:10 10-Aug-2021 -->
+</body></html>

@@ -1,0 +1,501 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>ASCII Chart in Matlab</title>
+
+<meta name="Description" content="We&#8217;re going to develop an ascii chart to understand instructions char and double in Matlab; second, we&#8217;ll work with a simple ascii conversion technique...and rot13 method">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/ascii-chart.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="ASCII Chart in Matlab" />
+<meta property="og:description" content="We&amp;#8217;re going to develop an ascii chart to understand instructions char and double in Matlab; second, we&amp;#8217;ll work with a simple ascii conversion technique...and rot13 method" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/ascii-chart.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 520px; text-align: left; vertical-align: middle;"><br>
+<h1><a name="ASCII_Chart_in_Matlab"></a>ASCII
+Chart in Matlab</h1>
+In this article we have three goals: first, we&#8217;re going to
+develop an <span style="font-weight: bold;">ASCII chart</span>
+to understand instructions char and double in Matlab;
+second, we&#8217;re going to work with a simple <span style="font-weight: bold;">ASCII conversion technique</span>
+as an
+example of simple encoding, and third, we&#8217;re going to develop a <span style="font-weight: bold;">rot13</span> method,
+which happens to be another encoding technique.<br>
+<br>
+<h3><o:p></o:p>ASCII Character Set</h3>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: middle;">ASCII
+stands for American Standard Code for Information
+Interchange. Computers can only understand binary numbers, so an ASCII
+code is
+the internal representation of a character such as 'z' or '4'. Matlab
+has two
+useful functions to work with them: char and double.<br>
+<br>
+S = char(X) converts the array X that contains positive
+integers <span style="">&nbsp;&nbsp;&nbsp;&nbsp;</span>representing
+character codes
+into a Matlab </td>
+<td style="width: 308px; text-align: right; vertical-align: top;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --></td>
+</tr>
+</tbody>
+</table>
+<br>
+character array (the first<span style="">&nbsp;</span>127
+codes are ASCII).&nbsp;The actual characters
+displayed depend on the&nbsp;<span style=""></span>character
+set
+encoding for a given font.<span style="">&nbsp; </span>The
+result
+for any elements&nbsp;<span style=""></span>of X
+outside the
+range from 0 to 65535 is not defined (and may vary&nbsp;<span style=""></span>from platform to platform).<span style="">&nbsp;</span>
+<p class="MsoNormal"><span style=""></span>double(S)
+returns the double precision value for S.</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
+We can create a printable ASCII chart or table in Matlab, like this:</p>
+<p class="MsoNormal" style=""><span style="color: blue; font-family: monospace;">for</span><span style="color: black; font-family: monospace;"> i = 32
+: 63<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>str
+= [num2str(i) </span><span style="color: rgb(160, 32, 240); font-family: monospace;">' '</span><span style="color: black; font-family: monospace;"> char(i)
+</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'<span style="">&nbsp;&nbsp;&nbsp;&nbsp; </span>'</span><span style="color: blue; font-family: monospace;">...</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>num2str(i+32) </span><span style="color: rgb(160, 32, 240); font-family: monospace;">' '</span><span style="color: black; font-family: monospace;">
+char(i+32) </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'<span style="">&nbsp;&nbsp;&nbsp;&nbsp; </span>'</span><span style="color: blue; font-family: monospace;">...</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>num2str(i+64) </span><span style="color: rgb(160, 32, 240); font-family: monospace;">' '</span><span style="color: black; font-family: monospace;">
+char(i+64)];<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>disp(str)</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">end</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
+The resulting ASCII chart or table of equivalencies is:<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="font-family: monospace;">32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+64 @&nbsp;&nbsp;&nbsp;&nbsp; 96 `</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">33
+!&nbsp;&nbsp;&nbsp;&nbsp;
+65 A&nbsp;&nbsp;&nbsp;&nbsp; 97 a</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">34
+"&nbsp;&nbsp;&nbsp;&nbsp;
+66
+B&nbsp;&nbsp;&nbsp;&nbsp; 98 b</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">35
+#&nbsp;&nbsp;&nbsp;&nbsp;
+67 C&nbsp;&nbsp;&nbsp;&nbsp; 99 c</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">36
+$&nbsp;&nbsp;&nbsp;&nbsp;
+68 D&nbsp;&nbsp;&nbsp;&nbsp; 100 d</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">37
+%&nbsp;&nbsp;&nbsp;&nbsp;
+69 E&nbsp;&nbsp;&nbsp;&nbsp; 101 e</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">38
+&amp;&nbsp;&nbsp;&nbsp;&nbsp; 70
+F&nbsp;&nbsp;&nbsp;&nbsp;
+102 f</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">39
+'&nbsp;&nbsp;&nbsp;&nbsp;
+71 G&nbsp;&nbsp;&nbsp;&nbsp; 103 g</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">40
+(&nbsp;&nbsp;&nbsp;&nbsp;
+72 H&nbsp;&nbsp;&nbsp;&nbsp; 104 h</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">41
+)&nbsp;&nbsp;&nbsp;&nbsp;
+73 I&nbsp;&nbsp;&nbsp;&nbsp; 105 i</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">42
+*&nbsp;&nbsp;&nbsp;&nbsp;
+74 J&nbsp;&nbsp;&nbsp;&nbsp; 106 j</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">43
++&nbsp;&nbsp;&nbsp;&nbsp;
+75 K&nbsp;&nbsp;&nbsp;&nbsp; 107 k</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">44
+,&nbsp;&nbsp;&nbsp;&nbsp;
+76 L&nbsp;&nbsp;&nbsp;&nbsp; 108 l</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">45
+-&nbsp;&nbsp;&nbsp;&nbsp;
+77 M&nbsp;&nbsp;&nbsp;&nbsp; 109 m</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">46
+.&nbsp;&nbsp;&nbsp;&nbsp;
+78 N&nbsp;&nbsp;&nbsp;&nbsp; 110 n</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">47
+/&nbsp;&nbsp;&nbsp;&nbsp;
+79 O&nbsp;&nbsp;&nbsp;&nbsp; 111 o</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">48
+0&nbsp;&nbsp;&nbsp;&nbsp;
+80 P&nbsp;&nbsp;&nbsp;&nbsp; 112 p</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">49
+1&nbsp;&nbsp;&nbsp;&nbsp;
+81 Q&nbsp;&nbsp;&nbsp;&nbsp; 113 q</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">50
+2&nbsp;&nbsp;&nbsp;&nbsp;
+82 R&nbsp;&nbsp;&nbsp;&nbsp; 114 r</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">51 3
+&nbsp;&nbsp;&nbsp;&nbsp;83
+S&nbsp;&nbsp;&nbsp;&nbsp;
+115 s</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">52
+4&nbsp;&nbsp;&nbsp;&nbsp;
+84 T&nbsp;&nbsp;&nbsp;&nbsp; 116 t</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">53
+5&nbsp;&nbsp;&nbsp;&nbsp;
+85 U&nbsp;&nbsp;&nbsp;&nbsp; 117 u</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">54
+6&nbsp;&nbsp;&nbsp;&nbsp;
+86 V&nbsp;&nbsp;&nbsp;&nbsp; 118 v</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">55
+7&nbsp;&nbsp;&nbsp;&nbsp;
+87 W&nbsp;&nbsp;&nbsp;&nbsp; 119 w</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">56
+8&nbsp;&nbsp;&nbsp;&nbsp;
+88 X&nbsp;&nbsp;&nbsp;&nbsp; 120 x</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">57
+9&nbsp;&nbsp;&nbsp;&nbsp;
+89 Y&nbsp;&nbsp;&nbsp;&nbsp; 121 y</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">58
+:&nbsp;&nbsp;&nbsp;&nbsp;
+90 Z&nbsp;&nbsp;&nbsp;&nbsp; 122 z</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">59
+;&nbsp;&nbsp;&nbsp;&nbsp;
+91 [&nbsp;&nbsp;&nbsp;&nbsp; 123 {</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">60
+&lt;&nbsp;&nbsp;&nbsp;&nbsp; 92
+\&nbsp;&nbsp;&nbsp;&nbsp;
+124 |</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">61
+=&nbsp;&nbsp;&nbsp;&nbsp;
+93 ]&nbsp;&nbsp;&nbsp;&nbsp; 125 }</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">62
+&gt;&nbsp;&nbsp;&nbsp;&nbsp; 94
+^&nbsp;&nbsp;&nbsp;&nbsp;
+126 ~</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">63
+?&nbsp;&nbsp;&nbsp;&nbsp;
+95 _&nbsp;&nbsp;&nbsp;&nbsp; 127 &#127;</span><o:p></o:p></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<h3>ASCII&nbsp;Conversion / Encoding</h3>
+<p class="MsoNormal">ASCII&nbsp;codes are
+useful in the
+interchange of information between
+electronic devices, and they could be encrypted in some cases. Let&#8217;s
+play a
+little game... Let&#8217;s say that the IT department of Special
+International Decoders,
+Inc. is trying to decode intercepted messages. Senior decoders have
+determined
+that a particular company <span style="">&nbsp;</span>encodes
+messages by first converting all characters to their ASCII values and
+then
+reversing the string.</p>
+<p class="MsoNormal">For
+example, consider &#8216;C3&#8217;. The ASCII values are 67 and 51,
+respectively.&nbsp;<br>
+<span style=""></span>Then reverse this
+to get string 15 76 as the coded
+message.<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">We&#8217;re going to write a
+program which reads a coded message
+and decodes it. We&#8217;re going to encode messages, too!<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Let&#8217;s say that first we
+want to encode the sentence &#8220;Hello
+World&#8221;. We can do this:<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="color: forestgreen; font-family: monospace;">%
+Initial message is a string</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">m
+= </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Hello
+World'</span><span style="color: black; font-family: monospace;">;</span><br style="font-family: monospace;">
+<span style="color: forestgreen; font-family: monospace;">%
+Find the ASCII equivalent</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">n
+=
+double(m);</span><br style="font-family: monospace;">
+<span style="color: forestgreen; font-family: monospace;">%
+Convert to string and flip it</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">encoded
+= fliplr(num2str(n))</span><o:p></o:p></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The resulting string is<br>
+<o:p>&nbsp;</o:p></p>
+<p style="font-family: monospace;" class="MsoNormal">encoded =<br>
+001<span style="">&nbsp; </span>801<span style="">&nbsp; </span>411<span style="">&nbsp;
+</span>111<span style="">&nbsp; </span>78<span style="">&nbsp;&nbsp; </span>23<span style="">&nbsp;&nbsp;
+</span>111<span style="">&nbsp; </span>801<span style="">&nbsp; </span>801<span style="">&nbsp;
+</span>101<span style="">&nbsp; </span>27</p>
+<p class="MsoNormal"><o:p></o:p>Now,
+the second part:</p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Take the encoded message and flip it</span><br>
+<span style="color: black;">cf =
+fliplr(encoded);</span><br>
+<span style="color: forestgreen;">%
+Find ASCII equivalents</span><br>
+<span style="color: black;">n =
+str2num(cf);</span><br>
+<span style="color: forestgreen;">%
+Convert to ASCII</span><br>
+<span style="color: black;">decoded
+= char(n)</span></p>
+<p class="MsoNormal"><br>
+As an experiment on your own, try to decode this message...</p>
+<p class="MsoNormal">911<span style="">&nbsp;
+</span>111<span style="">&nbsp; </span>411<span style="">&nbsp;
+</span>411<span style="">&nbsp; </span>111<span style="">&nbsp; </span>901<span style="">&nbsp;
+</span>111<span style="">&nbsp; </span>611<span style="">&nbsp; </span>23<span style="">&nbsp;&nbsp;
+</span>611<span style="">&nbsp; </span>111<span style="">&nbsp; </span>011<span style="">&nbsp;
+</span>23<span style="">&nbsp;&nbsp;
+</span>44<span style="">&nbsp;&nbsp;
+</span>121<span style="">&nbsp;
+</span>79<span style="">&nbsp;&nbsp;
+</span>001<span style="">&nbsp; </span>111<span style="">&nbsp;
+</span>611<span style="">&nbsp; </span>23<span style="">&nbsp;&nbsp; </span>511<span style="">&nbsp;
+</span>611<span style="">&nbsp; </span>411<span style="">&nbsp; </span>79<span style="">&nbsp;&nbsp;
+</span>611<span style="">&nbsp; </span>511<span style="">&nbsp; </span>23<span style="">&nbsp;&nbsp;
+</span>101<span style="">&nbsp; </span>411<span style="">&nbsp; </span>711<span style="">&nbsp;
+</span>611<span style="">&nbsp; </span>711<span style="">&nbsp; </span>201<span style="">&nbsp;
+</span>23<span style="">&nbsp;&nbsp;
+</span>101<span style="">&nbsp;
+</span>401<span style="">&nbsp; </span>611</p>
+<p class="MsoNormal">What do you get?
+Remember, you have to enter a string as
+input, not a numerical vector. So you&#8217;ll use your decoding routine with
+something like encoded = &#8216;...&#8217;</p>
+<h3><br>
+</h3>
+<h3>ROT13</h3>
+<p class="MsoNormal">ROT-13 is an encoding
+easily decodable. It&#8217;s often used on usenet groups when
+someone wants to post a text that should not be retrieved through
+search
+engines, or for posting things that might offend some readers, or
+spoilers. It replaces
+each English letter with the one 13 places forward or back along the
+alphabet. A
+major advantage of rot13 is that it is self-inverse, so the same code
+can be
+used for encoding and decoding.</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
+This is a possible approach in Matlab:</p>
+<p class="MsoNormal" style=""><o:p></o:p><span style="color: forestgreen; font-family: monospace;">%
+Place your string here</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">m
+= </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'your
+message here'</span><br style="font-family: monospace;">
+<span style="color: forestgreen; font-family: monospace;">%
+Find indices of letters that need a +13</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">ix1
+=
+find(65 &lt;= m &amp; m &lt;= 77 | 97 &lt;= m &amp;
+m &lt;= 109);</span><br style="font-family: monospace;">
+<span style="color: forestgreen; font-family: monospace;">%
+Find indices of letters that need a -13</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">ix2
+=
+find(78 &lt;= m &amp; m &lt;= 90 | 110 &lt;= m
+&amp; m &lt;= 122);<span style="">&nbsp;</span></span><span style="font-size: 12pt; font-family: monospace;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Replace letters</span><br>
+<span style="color: black;">m(ix1) =
+m(ix1) + 13;<br>
+m(ix2) =
+m(ix2) - 13;<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="color: forestgreen;">%
+Display encoding</span><br>
+<span style="color: black;">encoded
+= char(m)</span><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><br>
+The result in this case is:</p>
+<p class="MsoNormal"><o:p></o:p><span style="font-family: monospace;">encoded =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">lbhe
+zrffntr urer</span></p>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'ASCII Chart' to home</a><br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/it-jokes-2tier.html" onclick="return FIX.track(this);">From 'ASCII Chart' to Fun!</a><br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="#ASCII_Chart_in_Matlab">Top</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/check-writer.html" onclick="return FIX.track(this);">Concatenate Strings</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/palindromes.html" onclick="return FIX.track(this);">Palindromes</a><br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for matlab page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="vertical-align: top; width: 170px; text-align: right;"><br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:42:35 10-Aug-2021 -->
+</body></html>

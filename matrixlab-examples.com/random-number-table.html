@@ -1,0 +1,391 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Random Number Table - some fast experiments with Matlab</title>
+
+<meta name="Description" content="A random number table is a listing of random numbers where we can choose the quantity of random numbers, maximum and minimum values in the table, and whether or not duplicate numbers are allowed...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/random-number-table.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Random Number Table - some fast experiments with Matlab" />
+<meta property="og:description" content="A random number table is a listing of random numbers where we can choose the quantity of random numbers, maximum and minimum values in the table, and whether or not duplicate numbers are allowed..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/random-number-table.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<br>
+<h1><a name="Random_Number_Table"></a><span style="" lang="ES-TRAD">Random
+Number Table</span></h1>
+<h3><span style="" lang="ES-TRAD">What
+are random numbers?</span></h3>
+<span style="" lang="ES-TRAD">This is
+not a formal mathematical definition, but random numbers are sets of
+digits generated,
+arranged or chosen without somebody deciding in advance</span><br>
+<br>
+<span style="" lang="ES-TRAD"></span>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+</td>
+<td style="vertical-align: middle;"><span style="" lang="ES-TRAD"> its order or value, and
+without any regular pattern. They are randomly sorted, and no
+individual number
+can be predicted from previous knowledge of any other number or group
+of
+digits.<br>
+<br>
+</span>
+<h3><span style="" lang="ES-TRAD">What
+is
+a random number generator?</span></h3>
+<span style="" lang="ES-TRAD"></span><span style="" lang="ES-TRAD">A
+random number generator is an algorithm that produces random numbers.
+Any
+random process can be used to generate random numbers. </span><br>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p>A computer
+cannot
+produce true random numbers and produces only pseudo-random numbers. A
+computer
+can reproduce the same sequence of digits if we repeat exactly the same
+algorithm. Modern algorithms create the illusion of having a true
+random
+generator, but it&#8217;s only an illusion.</span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">In
+Matlab, there are two common functions for generating pseudo-random
+numbers:
+rand and randn.<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Built-in
+function <span style="font-weight: bold;">rand</span>
+is meant for uniformly distributed pseudo-random numbers.
+R = rand(N)
+returns an N-by-N matrix containing pseudo-random values drawn from a
+uniform
+distribution on the unit interval. rand(M, N) returns an M-by-N matrix.<span style="">&nbsp; </span>rand(M, N, P,...) returns
+an
+M-by-N-by-P-by-... array.<span style="">&nbsp; </span>rand
+with no
+arguments returns a scalar.<span style="">&nbsp; </span>rand(size(A))
+returns an array the same size as A.<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Built-in
+function <span style="font-weight: bold;">randn</span>
+is meant for normally distributed pseudo-random numbers.
+R = randn(N)
+returns an N-by-N matrix containing pseudo-random values drawn from a
+normal
+distribution with mean zero and std. deviation one.<span style="">&nbsp;
+</span>randn(M, N) returns an M-by-N matrix. randn(M,
+N, P,...) returns an M-by-N-by-P-by-... array.<span style="">&nbsp;
+</span>randn with no arguments returns a scalar.
+randn(size(A)) returns an
+array the same size as A.<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<h3><span style="" lang="ES-TRAD">Random
+numbers table<o:p></o:p></span></h3>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">A
+random number table is a listing of random numbers where we can choose
+the quantity
+of random numbers desired, the maximum and minimum values of numbers in
+the
+table, and whether or not duplicate numbers are allowed.<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">If we
+need to generate 100 uniform random numbers on the set 0 : 1 in Matlab,
+we can
+just type <span style="font-family: monospace;">rand(100,
+1)</span>.<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">If we
+need to generate 10 uniform integers on the set 1 : n in Matlab, we can
+do this<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="color: forestgreen; font-family: monospace;">%
+Choose your maximum integer, n</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">n
+= 15;</span><br style="font-family: monospace;">
+<span style="color: forestgreen; font-family: monospace;">%
+Generate 10 integers, from 1 to n</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">f
+=
+ceil(n * rand(1, 10));</span><br style="font-family: monospace;">
+<span style="color: forestgreen; font-family: monospace;">%
+Display the first five elements in your table</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">f(1
+: 5)</span><span style="" lang="ES-TRAD"><o:p><br>
+&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">If we
+have a specific group of numbers already defined in a table, and want
+to make a
+random selection of numbers in that table, we can generate a random
+index and
+then see what number of the table is the corresponding one. <o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">For
+example, let&#8217;s say that we have a vector x that has values from -10 to
+10 in
+0.05-steps. We want to take three random elements from that table.<o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Vector from -10 to 10, in 0.05-steps</span><br>
+<span style="color: black;">x = -10
+: 0.05 : 10;<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Generate 3 random indices on the set 1 : length(x)<br>
+%
+Display those indices, just to keep them visible</span><br>
+<span style="color: black;">n =
+length(x);<br>
+ix =
+ceil(n * rand(1, 3))<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="color: forestgreen; font-family: monospace;">%
+Display&nbsp;our corresponding three x-values</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">x(ix)</span><br>
+<span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">We get
+from Matlab<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><span style="font-family: monospace;">ix
+= &nbsp;&nbsp;&nbsp;340&nbsp;&nbsp;
+211&nbsp;&nbsp;&nbsp;
+82</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">ans =
+&nbsp;&nbsp;6.9500&nbsp;&nbsp;&nbsp;
+0.5000&nbsp;&nbsp;
+-5.9500</span><br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">This
+means that our indices were randomly selected from all of the possible
+indices
+in x (401 possible integers, due to the size of the vector), and the
+selected values were within
+the [-10, 10]
+interval and were a multiple of 0.05, as per our specifications.<o:p>
+Of course, if you repeat the experiment, you're going to get different
+indices and values.<br>
+</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><br>
+Now,
+let&#8217;s generate a uniform distribution of random numbers on a specified
+interval
+[a, b]. To do this, multiply the output of rand by (b-a), then add a.
+For
+example, to generate a 4-by-3 array of uniformly distributed random
+numbers on
+the interval [20, 95], we can type<o:p></o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="" lang="ES-TRAD">a
+= 20;
+b = 95;<br>
+x = a +
+(b - a) * rand(4, 3)<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">and we
+could get<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><span style="font-family: monospace;">x
+=</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+35.5350&nbsp;&nbsp;
+63.1361&nbsp;&nbsp;
+43.4514</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+65.5399&nbsp;&nbsp;
+53.8569&nbsp;&nbsp;
+20.9647</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+67.2416&nbsp;&nbsp;
+23.2921&nbsp;&nbsp;
+48.7975</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+47.7858&nbsp;&nbsp;
+22.0389&nbsp;&nbsp;
+71.2337</span><o:p></o:p></span></p>
+<br>
+Think of using built-in functions ceil, floor, unique, intersect,
+union and others to work with specific sub-groups of your numbers, or
+when you have a number of different matrices and want to compare or
+separate your results.<br>
+<br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Random Number Table' to home</a><br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/probability-and-statistics.html" onclick="return FIX.track(this);">From 'Random Number
+Table' to Probability and Stats</a><br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right; font-weight: bold;"><a href="#Random_Number_Table">Top</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/random-numbers.html" onclick="return FIX.track(this);">Simulations
+with numbers<br>
+</a><br>
+<a href="http://www.matrixlab-examples.com/free-online-calculators.html" onclick="return FIX.track(this);">Online
+Statistical Calculators<br>
+</a><br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for random number table page"><a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br></a></p>
+</td>
+<td style="width: 170px; vertical-align: top; background-color: rgb(224, 236, 255); text-align: center;"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:49:35 10-Aug-2021 -->
+</body></html>

@@ -1,0 +1,277 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Online Quadratic Equation Solver - usable spreadsheet</title>
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<style type="text/css">
+#addSiteTo {
+width:90%;
+font-size:85%;
+text-align:center;
+padding:8px 0;
+border:1px solid #000;
+margin:12px auto;
+background-color: #FFFFFF;
+}
+
+#addSiteTo p {
+padding:2px 2px 4px;
+margin:0;
+}
+
+#addSiteTo img {
+border:0;
+padding:1px 0;
+}
+
+#addSiteTo .questionMark {
+ padding:0;
+ margin:1px auto;
+ text-align:center;
+ width:75%;
+ }
+
+ #addSiteTo .questionMark img {
+ margin:0 4px 4px 0;
+ padding:0;
+ }
+</style>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=UTF-8">
+<META Name="Description" Content="Find a quadratic equation solver developed on a simple spreadsheet. It uses the formula to calculate the roots of a quadratic expression...">
+<meta name="Keywords" content="quadratic equation solver, quadratic formula, roots of quadratic expressions">
+<link href="/support-files/classic_footer.css" type="text/css" rel="stylesheet">
+<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
+<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="http://www.matrixlab-examples.com/favicon.ico">
+
+<link rel="canonical" href="http://www.matrixlab-examples.com/z-addthis.html"/>
+
+<script language="JavaScript" type="text/javascript">
+<!--
+
+function MM_swapImgRestore() 
+{
+    var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() 
+{
+    var d=document; 
+    if(d.images)
+    { 
+	if(!d.MM_p) d.MM_p=new Array();
+	var i,j=d.MM_p.length,a=MM_preloadImages.arguments; 
+	for(i=0; i<a.length; i++)
+	    if (a[i].indexOf("#")!=0)
+	    { 
+		d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];
+	    }
+    }
+}
+
+function MM_swapImage() 
+{
+    var i,j=0,x,a=MM_swapImage.arguments; 
+    document.MM_sr=new Array; 
+    for(i=0;i<(a.length-2);i+=3)
+	if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+
+function MM_openBrWindow(theURL,winName,features) 
+{
+    window.open(theURL,winName,features);
+}
+
+function MM_findObj(n, d) 
+{
+    var p,i,x;  
+    if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) 
+    {
+	d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);
+    }
+    if(!(x=d[n])&&d.all) 
+	x=d.all[n]; 
+    for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+    for(i=0;!x&&d.layers&&i<d.layers.length;i++) 
+	x=MM_findObj(n,d.layers[i].document);
+    if(!x && d.getElementById) 
+	x=d.getElementById(n); 
+    return x;
+			
+}
+//-->
+</script>
+
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_displayStatusMsg(msgStr) { //v1.0
+  status=msgStr;
+  document.MM_returnValue = true;
+}
+//-->
+</script>
+
+
+
+<style type="text/css">
+
+body {
+	background-color:#fff;
+	}
+	
+body, td {
+	font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color:#000;
+	margin: 0px;
+	}
+	
+h1, h2, h3 {
+	margin:8px 0px 14px 0px;
+	}
+	
+h1 {
+font-size:26px;
+	}
+	
+h2 {
+	font-size:22px;
+	}
+
+h3	{
+	font-size:18px;
+	}
+
+.thirdColumn {
+width:235px;
+vertical-align:top;
+padding:18px 4px; 
+}
+
+</style>
+</head>
+
+<body>
+<table border="0" cellpadding="0" cellspacing="0" background="http://www.matrixlab-examples.com/imgs/backimage-3col.gif" width="960" align="center">
+<tr>
+<td colspan="3"><img src="http://www.matrixlab-examples.com/imgs/logo.jpg"></td>
+</tr>
+
+<tr>
+<td style="background-image:url(http://www.matrixlab-examples.com/imgs/leftimage-3col.gif); background-position:top left;" valign="top" width="130">
+<div id="Layer1" style="position:absolute; width:130px; z-index:1; top:165px;">
+
+<center><div id="addSiteTo"><div class="questionMark">[<a href="#RSSExplain" 
+onclick="javascript:window.open('http://www.matrixlab-examples.com/help/rss.html','help','resizable,status,scrollbars,width=600,height=500');return false;"><span style="font-weight:bold;font-size:110%;">?</span></a>] Subscribe To This Site</div><p style="margin-top:4px;"><a href="http://www.matrixlab-examples.com/matlab.xml" target="#new" onClick="alert('Sorry, please right-click on this button,  and then copy the shortcut (the URL of this link). Paste that URL into your RSS reader. If this message is confusing, close this window and then please click on the question mark next to &quot;Subscribe to This Site&quot;.'); return false;"></font><img style="padding-top:2px;" src="http://www.matrixlab-examples.com/objects/rss.jpg" alt="XML RSS"></a><br><a href="http://fusion.google.com/add?feedurl=http://www.matrixlab-examples.com/matlab.xml" 
+target="new" rel="nofollow"><img src="http://www.matrixlab-examples.com/objects/googleplus.gif"
+                alt="Add to Google"></a><br><a href="http://add.my.yahoo.com/rss?url=http://www.matrixlab-examples.com/matlab.xml" target="new" rel="nofollow"><img 
+src="http://www.matrixlab-examples.com/objects/addtomyyahoo4.gif"
+               alt="Add to My Yahoo!"></a><br><a href="http://my.msn.com/addtomymsn.armx?id=rss&amp;ut=http://www.matrixlab-examples.com/matlab.xml" target="new" rel="nofollow">
+               <img src="http://www.matrixlab-examples.com/objects/add-mymsn2.gif" alt="Add to My MSN"></a><br><a href="http://www.bloglines.com/sub/http://www.matrixlab-examples.com/matlab.xml" target="new" rel="nofollow"><img 
+src="http://www.matrixlab-examples.com/objects/bloglines.gif" alt="Subscribe with Bloglines"></a></p></div></center><br>
+
+
+
+
+<style type="text/css">
+.navheader {
+display: block;
+width: 130px;
+font-family: Verdana;
+font-size: 15px;
+font-weight: bold;
+
+color: #0000CC;
+text-align: center;
+
+
+border-top-width: 0px;
+border-right-width: 0px;
+border-bottom-width: 0px;
+border-left-width: 0px;
+background-color: #99FFFF
+}
+</style>
+   
+
+<a href="http://www.matrixlab-examples.com/index.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('index','','http://www.matrixlab-examples.com/imgs/index-over.gif',1)"><img name="index" border="0" src="http://www.matrixlab-examples.com/imgs/index.gif" alt="Home"></a><br>
+<span class="navheader">Welcome</span>
+<a href="http://www.matrixlab-examples.com/matlab-blog.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image1','','http://www.matrixlab-examples.com/imgs/matlab-blog-over.gif',1)"><img name="Image1" border="0" src="http://www.matrixlab-examples.com/imgs/matlab-blog.gif" alt="Matrixmania Blog"></a><br>
+<a href="http://www.matrixlab-examples.com/sitemap.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2','','http://www.matrixlab-examples.com/imgs/sitemap-over.gif',1)"><img name="Image2" border="0" src="http://www.matrixlab-examples.com/imgs/sitemap.gif" alt="-&gt; Sitemap / Search &lt;-"></a><br>
+<a href="http://www.matrixlab-examples.com/matlab-books.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image3','','http://www.matrixlab-examples.com/imgs/matlab-books-over.gif',1)"><img name="Image3" border="0" src="http://www.matrixlab-examples.com/imgs/matlab-books.gif" alt="-&gt; Books &lt;-"></a><br>
+<a href="http://www.matrixlab-examples.com/programming-forums.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image4','','http://www.matrixlab-examples.com/imgs/programming-forums-over.gif',1)"><img name="Image4" border="0" src="http://www.matrixlab-examples.com/imgs/programming-forums.gif" alt="Forums and Help"></a><br>
+<a href="http://www.matrixlab-examples.com/contact-us.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image5','','http://www.matrixlab-examples.com/imgs/contact-us-over.gif',1)"><img name="Image5" border="0" src="http://www.matrixlab-examples.com/imgs/contact-us.gif" alt="Contact"></a><br>
+<span class="navheader">Basics</span>
+<a href="http://www.matrixlab-examples.com/matlab-help-2tier.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image7','','http://www.matrixlab-examples.com/imgs/matlab-help-2tier-over.gif',1)"><img name="Image7" border="0" src="http://www.matrixlab-examples.com/imgs/matlab-help-2tier.gif" alt="Quick Matlab Guide"></a><br>
+<a href="http://www.matrixlab-examples.com/matlab-tutorial.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image8','','http://www.matrixlab-examples.com/imgs/matlab-tutorial-over.gif',1)"><img name="Image8" border="0" src="http://www.matrixlab-examples.com/imgs/matlab-tutorial.gif" alt="Matlab Tutorial"></a><br>
+<a href="http://www.matrixlab-examples.com/matlab-examples.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image9','','http://www.matrixlab-examples.com/imgs/matlab-examples-over.gif',1)"><img name="Image9" border="0" src="http://www.matrixlab-examples.com/imgs/matlab-examples.gif" alt="Matlab Examples"></a><br>
+<a href="http://www.matrixlab-examples.com/matlab-code-3.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image10','','http://www.matrixlab-examples.com/imgs/matlab-code-3-over.gif',1)"><img name="Image10" border="0" src="http://www.matrixlab-examples.com/imgs/matlab-code-3.gif" alt="Matlab Flow Control"></a><br>
+<a href="http://www.matrixlab-examples.com/boolean-algebra.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image11','','http://www.matrixlab-examples.com/imgs/boolean-algebra-over.gif',1)"><img name="Image11" border="0" src="http://www.matrixlab-examples.com/imgs/boolean-algebra.gif" alt="Boolean Logic"></a><br>
+<span class="navheader">Plots and GUI</span>
+<a href="http://www.matrixlab-examples.com/matlab-plot-2tier.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image13','','http://www.matrixlab-examples.com/imgs/matlab-plot-2tier-over.gif',1)"><img name="Image13" border="0" src="http://www.matrixlab-examples.com/imgs/matlab-plot-2tier.gif" alt="Matlab 2D Plots"></a><br>
+<a href="http://www.matrixlab-examples.com/3D-plot-2tier.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image14','','http://www.matrixlab-examples.com/imgs/3D-plot-2tier-over.gif',1)"><img name="Image14" border="0" src="http://www.matrixlab-examples.com/imgs/3D-plot-2tier.gif" alt="Matlab 3D Plots"></a><br>
+<a href="http://www.matrixlab-examples.com/matlab-gui-2tier.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image15','','http://www.matrixlab-examples.com/imgs/matlab-gui-2tier-over.gif',1)"><img name="Image15" border="0" src="http://www.matrixlab-examples.com/imgs/matlab-gui-2tier.gif" alt="Matlab GUI"></a><br>
+<span class="navheader">Applications</span>
+<a href="http://www.matrixlab-examples.com/calculus-problems.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image17','','http://www.matrixlab-examples.com/imgs/calculus-problems-over.gif',1)"><img name="Image17" border="0" src="http://www.matrixlab-examples.com/imgs/calculus-problems.gif" alt="Calculus"></a><br>
+<a href="http://www.matrixlab-examples.com/linear-algebra.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image18','','http://www.matrixlab-examples.com/imgs/linear-algebra-over.gif',1)"><img name="Image18" border="0" src="http://www.matrixlab-examples.com/imgs/linear-algebra.gif" alt="Linear Algebra"></a><br>
+<a href="http://www.matrixlab-examples.com/generic-programming.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image19','','http://www.matrixlab-examples.com/imgs/generic-programming-over.gif',1)"><img name="Image19" border="0" src="http://www.matrixlab-examples.com/imgs/generic-programming.gif" alt="Matlab Cookbook I"></a><br>
+<a href="http://www.matrixlab-examples.com/matlab-programming-2tier.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image20','','http://www.matrixlab-examples.com/imgs/matlab-programming-2tier-over.gif',1)"><img name="Image20" border="0" src="http://www.matrixlab-examples.com/imgs/matlab-programming-2tier.gif" alt="Matlab Cookbook II"></a><br>
+<a href="http://www.matrixlab-examples.com/electrical-calculations.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image21','','http://www.matrixlab-examples.com/imgs/electrical-calculations-over.gif',1)"><img name="Image21" border="0" src="http://www.matrixlab-examples.com/imgs/electrical-calculations.gif" alt="Electrical Calculations"></a><br>
+<a href="http://www.matrixlab-examples.com/probability-and-statistics.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image22','','http://www.matrixlab-examples.com/imgs/probability-and-statistics-over.gif',1)"><img name="Image22" border="0" src="http://www.matrixlab-examples.com/imgs/probability-and-statistics.gif" alt="Probability and Stats"></a><br>
+<a href="http://www.matrixlab-examples.com/finance-formulas.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image23','','http://www.matrixlab-examples.com/imgs/finance-formulas-over.gif',1)"><img name="Image23" border="0" src="http://www.matrixlab-examples.com/imgs/finance-formulas.gif" alt="Finance Apps"></a><br>
+<span class="navheader">Other</span>
+<a href="http://www.matrixlab-examples.com/academic-software.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image25','','http://www.matrixlab-examples.com/imgs/academic-software-over.gif',1)"><img name="Image25" border="0" src="http://www.matrixlab-examples.com/imgs/academic-software.gif" alt="Relevant Links"></a><br>
+<a href="http://www.matrixlab-examples.com/basics-of-computer-programming.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image26','','http://www.matrixlab-examples.com/imgs/basics-of-computer-programming-over.gif',1)"><img name="Image26" border="0" src="http://www.matrixlab-examples.com/imgs/basics-of-computer-programming.gif" alt="Notes on Computing"></a><br>
+<a href="http://www.matrixlab-examples.com/free-online-calculators.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image27','','http://www.matrixlab-examples.com/imgs/free-online-calculators-over.gif',1)"><img name="Image27" border="0" src="http://www.matrixlab-examples.com/imgs/free-online-calculators.gif" alt="Online Calculators"></a><br>
+<a href="http://www.matrixlab-examples.com/it-jokes-2tier.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image28','','http://www.matrixlab-examples.com/imgs/it-jokes-2tier-over.gif',1)"><img name="Image28" border="0" src="http://www.matrixlab-examples.com/imgs/it-jokes-2tier.gif" alt="Fun!"></a><br>
+<a href="http://www.matrixlab-examples.com/Become-a-Webmaster.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image29','','http://www.matrixlab-examples.com/imgs/Become-a-Webmaster-over.gif',1)"><img name="Image29" border="0" src="http://www.matrixlab-examples.com/imgs/Become-a-Webmaster.gif" alt="Your own Website?"></a><br>
+<a href="http://www.matrixlab-examples.com/terms-of-service.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image30','','http://www.matrixlab-examples.com/imgs/terms-of-service-over.gif',1)"><img name="Image30" border="0" src="http://www.matrixlab-examples.com/imgs/terms-of-service.gif" alt="Terms/Policies"></a><br>
+<a href="http://www.matrixlab-examples.com/scilab.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image31','','http://www.matrixlab-examples.com/imgs/scilab-over.gif',1)"><img name="Image31" border="0" src="http://www.matrixlab-examples.com/imgs/scilab.gif" alt="Scilab"></a><br>
+
+
+
+</div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage-3col.gif"></td>
+<td valign="top" width="595">
+<table width="550" border="0" cellspacing="0" cellpadding="16" align="center">
+<tr>
+<td>
+
+
+
+<br>
+                        <script src="/ssjs/socializeit.js" type="text/javascript"></script>
+                 <script type="text/javascript">socializeit({pack: 2, domain:'matrixlab-examples.com', payItText:'Enjoy this page?  Please pay it forward. Here\'s how...', szColor:'#FFFF99',whatIsThisUrl:'http://www.matrixlab-examples.com/help/whats-this2.html'});
+                 </script><!-- SB_START: sbitool_blocks.footer -->
+<div class="page_footer_container" >
+    <div class="page_footer_content" >
+        <div class="liner" >
+            <div class="footer_divider_above"></div>
+            <div class="footer_content">© Copyright 2009 - 2012 matrixlab-examples.com</div>
+            <div class="footer_divider_below"></div>
+        </div>    
+    </div> 
+    
+    <div class="powered_by_sbi_banner">
+    <p>
+        <a rel="nofollow" href="http://www.sitesell.com/magicispossible.html" target="_blank"><img src="http://www.matrixlab-examples.com/imgs/SBI.png" border="0" alt="SBI"></a><br><a rel="nofollow" href="http://www.sitesell.com/magicispossible.html" target="blank"><strong>SBI!</strong></a>
+    </p>
+</div>
+ 
+</div>
+<!-- SB_END: sbitool_blocks.footer -->
+
+					</td>
+				</tr>
+			</table>
+		</td>
+			<!-- third col -->
+		<td class="thirdColumn">
+			
+
+
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

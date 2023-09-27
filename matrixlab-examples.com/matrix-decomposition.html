@@ -1,0 +1,597 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Matrix Decomposition (or factorization in Matlab)</title>
+
+<meta name="Description" content="Matlab includes several functions for matrix decomposition or factorization: LU, QR, SVD, Cholesky... Let's see these examples...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/matrix-decomposition.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Matrix Decomposition (or factorization in Matlab)" />
+<meta property="og:description" content="Matlab includes several functions for matrix decomposition or factorization: LU, QR, SVD, Cholesky... Let's see these examples..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/matrix-decomposition.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<h1><a name="top"></a>Matrix
+decomposition</h1>
+A&nbsp;<span style="font-weight: bold;">matrix
+decomposition</span> is a
+factorization of a matrix into some canonical form. <br>
+<br>
+A&nbsp; <span style="font-weight: bold;">canonical</span>
+form (often called <span style="font-weight: bold;">normal&nbsp;or
+standard</span> form) of an object is a standard way of
+presenting that object.<br>
+<br>
+<!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+<br>
+There are many
+different&nbsp; decompositions; each one is&nbsp;used among a
+particular
+class of problems.<br>
+<br>
+Matlab includes several functions for <span style="font-weight: bold;">matrix decomposition</span>
+or <span style="font-weight: bold;">factorization</span>.
+<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<span style="font-weight: bold;">LU
+decomposition</span>: the name of the built-in function is '<span style="font-weight: bold;">lu</span>'. To get the LU
+factorization of a square matrix <span style="font-weight: bold; font-style: italic;">M</span>,
+type the command <span style="font-weight: bold;">[L,U] =
+lu(M)</span>.<br>
+<br>
+Matlab returns a<span style="font-weight: bold;"> lower
+triangular matrix <span style="font-style: italic;">L</span></span>
+and an <span style="font-weight: bold;">upper triangular
+matrix <span style="font-style: italic;">U</span></span>
+such that L*U = M. <br>
+<br>
+<span style="font-weight: bold;">Example:</span><br>
+<br>
+Type<br>
+<br>
+<span style="font-family: monospace;">M = [2 3
+4 5</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+3 2 6 1</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+2 3 1 7</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+9 8 0 2];</span><br>
+&nbsp;<br>
+&nbsp;[l, u] = lu(M)<br>
+&nbsp;l*u<br>
+<br>
+Matlab answer is:<br>
+<br>
+<span style="font-family: monospace;">l =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+0.2222&nbsp;&nbsp;&nbsp;
+1.0000&nbsp;&nbsp;&nbsp;
+0.4583&nbsp;&nbsp;&nbsp; 1.0000</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+0.3333&nbsp;&nbsp; -0.5455&nbsp;&nbsp;&nbsp;
+1.0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+0.2222&nbsp;&nbsp;&nbsp;
+1.0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+1.0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">u =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+9.0000&nbsp;&nbsp;&nbsp;
+8.0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp; 2.0000</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp; 1.2222&nbsp;&nbsp;&nbsp;
+1.0000&nbsp;&nbsp;&nbsp; 6.5556</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp; 6.5455&nbsp;&nbsp;&nbsp;
+3.9091</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp; -3.7917</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">ans =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+2.0000&nbsp;&nbsp;&nbsp;
+3.0000&nbsp;&nbsp;&nbsp;
+4.0000&nbsp;&nbsp;&nbsp; 5.0000</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+3.0000&nbsp;&nbsp;&nbsp;
+2.0000&nbsp;&nbsp;&nbsp;
+6.0000&nbsp;&nbsp;&nbsp; 1.0000</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+2.0000&nbsp;&nbsp;&nbsp;
+3.0000&nbsp;&nbsp;&nbsp;
+1.0000&nbsp;&nbsp;&nbsp; 7.0000</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+9.0000&nbsp;&nbsp;&nbsp;
+8.0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp; 2.0000</span><br style="font-family: monospace;">
+<br>
+<div style="text-align: right;"><a href="http://www.matrixlab-examples.com/LU-Factorization.html" onclick="return FIX.track(this);">See
+another example for LU
+factorization</a><br>
+</div>
+<hr style="width: 100%; height: 2px;"><br>
+<span style="font-weight: bold;">QR
+factorization</span>: the name of the appropriate built-in
+function for this purpose is '<span style="font-weight: bold;">qr</span>'.
+Typing the command <span style="font-weight: bold;">[Q,
+R]
+= qr(M)</span> returns an <span style="font-weight: bold;">orthogonal
+matrix</span> <span style="font-style: italic; font-weight: bold;">Q</span>
+and an <span style="font-weight: bold;">upper triangular
+matrix <span style="font-style: italic;">R</span></span>
+such that Q*R = M.<br>
+<br>
+<span style="font-weight: bold;">Example (</span>assuming
+the same matrix<span style="font-weight: bold;"> <span style="font-style: italic;">M</span> </span>as
+above<span style="font-weight: bold;">)</span>:<br>
+<br>
+Type<br>
+<br>
+[q, r] = qr(M)<br>
+q*r<br>
+<br>
+and the fast Matlab answer is:<br>
+<br>
+<span style="font-family: monospace;">q =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+-0.2020&nbsp;&nbsp;&nbsp; 0.6359&nbsp;&nbsp;
+-0.4469&nbsp;&nbsp; -0.5959</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+-0.3030&nbsp;&nbsp; -0.4127&nbsp;&nbsp;
+-0.8144&nbsp;&nbsp;&nbsp; 0.2731</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+-0.2020&nbsp;&nbsp;&nbsp;
+0.6359&nbsp;&nbsp;&nbsp;
+0.0027&nbsp;&nbsp;&nbsp; 0.7449</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+-0.9091&nbsp;&nbsp; -0.1450&nbsp;&nbsp;&nbsp;
+0.3702&nbsp;&nbsp; -0.1241</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">r =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+-9.8995&nbsp;&nbsp; -9.0914&nbsp;&nbsp;
+-2.8284&nbsp;&nbsp; -4.5457</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp; 1.8295&nbsp;&nbsp;&nbsp;
+0.7028&nbsp;&nbsp;&nbsp; 6.9274</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp; -6.6713&nbsp;&nbsp; -2.2896</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp; 2.2595</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">ans =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+2.0000&nbsp;&nbsp;&nbsp;
+3.0000&nbsp;&nbsp;&nbsp;
+4.0000&nbsp;&nbsp;&nbsp; 5.0000</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+3.0000&nbsp;&nbsp;&nbsp;
+2.0000&nbsp;&nbsp;&nbsp;
+6.0000&nbsp;&nbsp;&nbsp; 1.0000</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+2.0000&nbsp;&nbsp;&nbsp;
+3.0000&nbsp;&nbsp;&nbsp;
+1.0000&nbsp;&nbsp;&nbsp; 7.0000</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+9.0000&nbsp;&nbsp;&nbsp; 8.0000&nbsp;&nbsp;
+-0.0000&nbsp;&nbsp;&nbsp; 2.0000</span><br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<span style="font-weight: bold;">Cholesky
+decomposition</span>: if you have a <span style="font-weight: bold;">positive definite matrix <span style="font-style: italic;">A</span></span>, you
+can factorize the matrix with the built-in function '<span style="font-weight: bold;">chol</span>'. The command <span style="font-weight: bold;">R = chol(A)</span>;
+produces an <span style="font-weight: bold;">upper
+triangular matrix <span style="font-style: italic;">R</span></span>
+such that R'*R = A for a positive definite <span style="font-style: italic; font-weight: bold;">A</span>.<br>
+<br>
+This is a brief reminder of what a positive definite matrix is:<br>
+<br>
+An <span style="font-style: italic;">n</span> by <span style="font-style: italic;">n</span> matrix <span style="font-style: italic; font-weight: bold;">M</span>
+is positive definite if<br>
+<p class="MsoNormal"><b style=""><i style=""><span style="" lang="ES-TRAD">x</span></i></b><sup><span style="" lang="ES-TRAD">T </span></sup><b style=""><i style=""><span style="" lang="ES-TRAD">Mx</span></i></b><span style="" lang="ES-TRAD"> &gt; 0 for all <b style=""><i style="">x</i></b>
+&lt;&gt; 0 and<o:p></o:p></span></p>
+<p class="MsoNormal"><b style=""><i style=""><span style="" lang="ES-TRAD">x</span></i></b><sup><span style="" lang="ES-TRAD">T </span></sup><b style=""><i style=""><span style="" lang="ES-TRAD">Mx</span></i></b><span style="" lang="ES-TRAD"> = 0 implies <b style=""><i style="">x</i></b>
+= 0<o:p></o:p></span></p>
+If matrix <span style="font-weight: bold; font-style: italic;">M</span>
+is symmetric, diagonally dominant, and has positive diagonal elements,
+then <span style="font-weight: bold; font-style: italic;">M</span>
+is positive definite<br>
+<br>
+If matrix <span style="font-weight: bold; font-style: italic;">M</span>
+is positive definite, then <span style="font-weight: bold; font-style: italic;">M</span>
+is diagonally dominant and has positive diagonal elements.<br>
+<br>
+<br>
+<span style="font-weight: bold;">Example</span>:<br>
+<br>
+Type<br>
+<br>
+<span style="font-family: monospace;">M =
+[1&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp; 1</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+2&nbsp;&nbsp;&nbsp;&nbsp;
+3&nbsp;&nbsp;&nbsp;&nbsp; 4</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+3&nbsp;&nbsp;&nbsp;&nbsp;
+6&nbsp;&nbsp;&nbsp; 10</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+4&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp; 20];</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp; <br>
+r = chol(M)<br>
+r'*r<br>
+<br>
+and the Matlab answer is:<br>
+<br>
+<span style="font-family: monospace;">r =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp; 1</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+2&nbsp;&nbsp;&nbsp;&nbsp; 3</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp; 3</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp; 1</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">ans =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp; 1</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+2&nbsp;&nbsp;&nbsp;&nbsp;
+3&nbsp;&nbsp;&nbsp;&nbsp; 4</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+3&nbsp;&nbsp;&nbsp;&nbsp;
+6&nbsp;&nbsp;&nbsp; 10</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+4&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp; 20</span><br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<span style="font-weight: bold;">Singular
+value decomposition (svd)</span>: this is another type of matrix
+decomposition and the name of the built-in
+function is <span style="font-weight: bold;">svd</span>.
+Typing <span style="font-weight: bold;">[U,S,V] = svd(M)</span>;
+produces a diagonal matrix <span style="font-weight: bold; font-style: italic;">S</span>,
+of the same dimension as <span style="font-weight: bold; font-style: italic;">M</span>
+and with nonnegative diagonal elements in decreasing order, and unitary
+matrices <span style="font-weight: bold; font-style: italic;">U</span>
+and <span style="font-weight: bold; font-style: italic;">V</span>
+so that M = U*S*V'.<br>
+<br>
+<span style="font-weight: bold;">Example</span>
+(considering the same matrix M as above)<span style="font-weight: bold;">:</span><br>
+<br>
+Type<br>
+<br>
+[u, s, v] = svd(M)<br>
+u*s*v'<br>
+<br>
+and you get:<br>
+<br>
+<span style="font-family: monospace;">u =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+-0.0602&nbsp;&nbsp; -0.5304&nbsp;&nbsp;&nbsp;
+0.7873&nbsp;&nbsp; -0.3087</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+-0.2012&nbsp;&nbsp; -0.6403&nbsp;&nbsp;
+-0.1632&nbsp;&nbsp;&nbsp; 0.7231</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+-0.4581&nbsp;&nbsp; -0.3918&nbsp;&nbsp;
+-0.5321&nbsp;&nbsp; -0.5946</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+-0.8638&nbsp;&nbsp;&nbsp;
+0.3939&nbsp;&nbsp;&nbsp;
+0.2654&nbsp;&nbsp;&nbsp; 0.1684</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">s =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+26.3047&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;
+2.2034&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;
+0.4538&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp; 0.0380</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">v =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+-0.0602&nbsp;&nbsp; -0.5304&nbsp;&nbsp;&nbsp;
+0.7873&nbsp;&nbsp; -0.3087</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+-0.2012&nbsp;&nbsp; -0.6403&nbsp;&nbsp;
+-0.1632&nbsp;&nbsp;&nbsp; 0.7231</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+-0.4581&nbsp;&nbsp; -0.3918&nbsp;&nbsp;
+-0.5321&nbsp;&nbsp; -0.5946</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+-0.8638&nbsp;&nbsp;&nbsp;
+0.3939&nbsp;&nbsp;&nbsp;
+0.2654&nbsp;&nbsp;&nbsp; 0.1684</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">ans =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+1.0000&nbsp;&nbsp;&nbsp;
+1.0000&nbsp;&nbsp;&nbsp;
+1.0000&nbsp;&nbsp;&nbsp; 1.0000</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+1.0000&nbsp;&nbsp;&nbsp;
+2.0000&nbsp;&nbsp;&nbsp;
+3.0000&nbsp;&nbsp;&nbsp; 4.0000</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+1.0000&nbsp;&nbsp;&nbsp;
+3.0000&nbsp;&nbsp;&nbsp; 6.0000&nbsp;&nbsp; 10.0000</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+1.0000&nbsp;&nbsp;&nbsp; 4.0000&nbsp;&nbsp;
+10.0000&nbsp;&nbsp; 20.0000</span><br>
+<br>
+<br>
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Matrix
+Decomposition' to home</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/generic-programming.html" onclick="return FIX.track(this);">From
+'Matrix
+Decomposition' to 'Matlab Cookbook I'</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/sitemap.html" onclick="return FIX.track(this);">Table
+of Contents</a><br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: left;">
+<div style="text-align: right;"><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/singular-value-decomposition.html" onclick="return FIX.track(this);">&lt;Another
+example
+for SVD&gt;</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="matrix-decomposition.html#top">Top</a><br style="font-weight: bold;">
+<br>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for matrix decomposition"><a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br>
+</a></p>
+</td>
+<td style="width: 170px; vertical-align: top; background-color: rgb(211, 228, 244); text-align: center;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:46:22 10-Aug-2021 -->
+</body></html>

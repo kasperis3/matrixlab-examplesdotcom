@@ -1,0 +1,399 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Nonlinear Programming (NLP) based on Optimization techniques</title>
+
+<meta name="Description" content="This example of nonlinear programming solves a curve fitting problem over a group of unknown variables along with an objective function to be minimized...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/nonlinear-programming.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Nonlinear Programming (NLP) based on Optimization techniques" />
+<meta property="og:description" content="This example of nonlinear programming solves a curve fitting problem over a group of unknown variables along with an objective function to be minimized..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/nonlinear-programming.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/nonlinear-programming-001.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/nonlinear-programming-002.gif" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<h1><a name="Nonlinear_Programming_NLP_based_on"></a>Nonlinear
+Programming (NLP) based on Optimization Techniques</h1>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --></td>
+<td style="vertical-align: middle;">Nonlinear
+programming (also called <span style="font-weight: bold;">NLP</span>,
+for short) is the method or
+process of solving a system of equalities and inequalities (with or
+without constraints), over a group of unknown variables along with an
+<span style="font-weight: bold;">objective
+function</span> to be minimized, where the objective function or
+some of the constraints are nonlinear.<br>
+<br>
+In this brief article we're going to show a very <span style="font-weight: bold;">practical approach to
+solve a curve fitting</span> with Matlab. </td>
+</tr>
+</tbody>
+</table>
+<br>
+This explanation is
+neither formal nor&nbsp;comprehensive, but straightforward and
+useful. Nonlinear programming is a quite broad field, and practical
+approaches are sometimes required for better understanding.<br>
+<br>
+<span style="font-weight: bold;"></span><span style="font-weight: bold;"><span style="font-weight: bold;"><br>
+Example.</span> Curve Fitting</span><br>
+<br>
+Let's
+say that we obtained some&nbsp;data experimentally. We
+want&nbsp;that&nbsp; information (data) to match&nbsp;a
+given equation. That's called&nbsp;curve fitting.<br>
+<br>
+Let's say that we experimentally obtained these points:<br>
+<br>
+<span style="font-family: monospace;">data =
+[0.5243&nbsp;&nbsp;&nbsp; 0.5539</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+&nbsp; &nbsp;
+&nbsp;&nbsp;1.0156&nbsp;&nbsp;&nbsp; 0.5436</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+&nbsp; &nbsp;
+&nbsp;&nbsp;1.6243&nbsp;&nbsp;&nbsp; 0.5294</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+&nbsp; &nbsp;
+&nbsp;&nbsp;2.5266&nbsp;&nbsp;&nbsp; 0.5057</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+&nbsp; &nbsp;
+&nbsp;&nbsp;3.6132&nbsp;&nbsp;&nbsp; 0.4698</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+&nbsp; &nbsp;
+&nbsp;&nbsp;4.5650&nbsp;&nbsp;&nbsp; 0.4013</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+&nbsp; &nbsp; &nbsp; 4.9739&nbsp;&nbsp;&nbsp;
+0.3117</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+&nbsp; &nbsp;
+&nbsp;&nbsp;5.0357&nbsp;&nbsp;&nbsp; 0.2536</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+&nbsp; &nbsp;
+&nbsp;&nbsp;5.0604&nbsp;&nbsp;&nbsp; 0.2223];</span><br>
+<br>
+Let the first column of the table be our independent variable (<span style="font-style: italic; font-weight: bold;">x</span>),
+and the second column be our dependent variable (<span style="font-style: italic; font-weight: bold;">y</span>).<br>
+<br>
+On the other hand, we want to find out the coefficients for an equation
+of the form:<br>
+<br>
+<span style="font-family: monospace;">y = C<font size="-2">1</font> + C<font size="-2">2</font>*x
++ C<font size="-2">3</font>*log(1 - z/5.1)</span>,
+that match the above data, where <br>
+<span style="font-family: monospace;">z =
+1.0255*x - 0.2722</span><br>
+<br>
+<br>
+We can solve this problem using optimization techniques intended for
+typical nonlinear programming cases. A good built-in function to
+achieve this is '<span style="font-weight: bold;">fminsearch</span>'.
+It implements the Nelder-Mead method (simplex direct). <br>
+<br>
+'fminsearch' finds the value of the variables that can produce a
+minimum point in a given function (your <span style="font-weight: bold;">objective function</span>),
+and it's
+a standard function, you don't need any special Matlab toolbox. This
+instruction finds local minima, not global ones.<br>
+<br>
+First, we need to define an objective function (OF). We have to express
+our problem in such a way that <span style="font-weight: bold;">its
+minimum value represents our
+solution</span>. There are many ways to do this, but its
+definition certainly
+impacts the result. We want only a solution to our problem (an
+engineering approach), not the best solution (a mathematical approach).<br>
+<br>
+<br>
+For our example, we can try this Objective Function:<br>
+<p class="MsoNormal" style=""><span style="color: blue;"><o:p></o:p>f<span style="font-family: monospace;">unction</span></span><span style="color: black; font-family: monospace;"> U =
+OF_nl_prog(C)</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">global</span><span style="color: black; font-family: monospace;"> x y z<span style="">&nbsp;</span></span><span style="font-size: 12pt; font-family: monospace;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">y2 =
+C(1) + C(2)*x + C(3)*log(1 - z/5.1);<br>
+U =
+norm(y - y2, 1);</span></p>
+<p class="MsoNormal" style=""><span style="color: black;">This m-file will be iteratively called
+by 'fminsearch'. It modifies the coefficients in <span style="font-style: italic; font-weight: bold;">C</span>
+and finds out the value of the function (<span style="font-style: italic; font-weight: bold;">y2</span>).
+Then, it subtracts it from <span style="font-style: italic; font-weight: bold;">y</span>
+(the original&nbsp;obtained data) and gets the so-called Manhattan
+norm of
+the difference. 'fminsearch' uses this returned scalar number to find
+out the next <span style="font-style: italic; font-weight: bold;">C</span>
+values. It goes on and on until it can't improve any more according to
+a given tolerance that you can define (using 'optimset'). A zero value
+of this objective function means that <span style="font-style: italic; font-weight: bold;">y</span>
+= <span style="font-style: italic; font-weight: bold;">y2</span>
+and that <span style="font-style: italic; font-weight: bold;">C</span>
+contains the&nbsp;best possible coefficients.</span></p>
+<br>
+We can call this objective function with a script like this:<br>
+<p class="MsoNormal" style=""><span style="color: black;"><o:p></o:p><span style="font-family: monospace;">clear;
+clc; format </span></span><span style="color: rgb(160, 32, 240); font-family: monospace;">compact</span><span style="color: black; font-family: monospace;">; close </span><span style="color: rgb(160, 32, 240); font-family: monospace;">all</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">global</span><span style="color: black; font-family: monospace;"> x y z<span style="">&nbsp;</span></span><span style="font-size: 12pt; font-family: monospace;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">data = [<br>
+0.5243<span style="">&nbsp; &nbsp; </span>0.5539<br>
+1.0156<span style="">&nbsp;&nbsp;&nbsp; </span>0.5436<br>
+1.6243<span style="">&nbsp;&nbsp;&nbsp; </span>0.5294<br>
+2.5266<span style="">&nbsp;&nbsp;&nbsp; </span>0.5057<br>
+3.6132<span style="">&nbsp;&nbsp;&nbsp; </span>0.4698<br>
+4.5650<span style="">&nbsp;&nbsp;&nbsp; </span>0.4013<br>
+4.9739<span style="">&nbsp;&nbsp;&nbsp; </span>0.3117<br>
+5.0357<span style="">&nbsp;&nbsp;&nbsp; </span>0.2536<br>
+5.0604<span style="">&nbsp;&nbsp;&nbsp; </span>0.2223];<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">x =
+data(:, 1); y = data(:, 2);<br>
+z = 1.0255*x
+- 0.2722;<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black; font-family: monospace;">fx = </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'OF_nl_prog'</span><span style="color: black;"><span style="font-family: monospace;">;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">C0 = [1
+1 1]</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">[C, f,
+EF, out] = fminsearch(fx, C0)</span></span></p>
+<p class="MsoNormal" style=""><span style="color: black;"></span><span style="font-size: 12pt;"><o:p></o:p></span><span style="font-style: italic; font-weight: bold;">C0</span>
+is the initial <span style="font-weight: bold;">seed</span>.
+Different seeds produce different results. We could change the seed
+several times to see if we get a better or worse fit.</p>
+<p class="MsoNormal" style=""></p>
+<p class="MsoNormal" style="">These are
+our results:</p>
+<p class="MsoNormal" style=""><span style="font-family: monospace;">C
+=&nbsp;0.5488&nbsp;&nbsp;&nbsp;
+0.0130&nbsp;&nbsp;&nbsp; 0.1128</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">f =
+&nbsp;0.0810</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">out
+=&nbsp;iterations: 110</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp; funcCount: 190</span></p>
+We can plot our findings with these instructions:<br>
+<p class="MsoNormal" style=""><span style="color: black;"><o:p></o:p><span style="font-family: monospace;">y2_0 =
+C0(1) + C0(2)*x + C0(3)*log(1 - z/5.1);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">plot(x,
+y2_0,</span></span><span style="color: rgb(160, 32, 240); font-family: monospace;">'r-.^'</span><span style="color: black; font-family: monospace;">, x, y,</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'-o'</span><span style="color: black; font-family: monospace;">)<br>
+title (</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Experimental
+Data and Starting Point'</span><span style="color: black; font-family: monospace;">)<br>
+xlabel(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'x'</span><span style="color: black; font-family: monospace;">)<br>
+ylabel(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'y'</span><span style="color: black; font-family: monospace;">)<br>
+legend(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'starting
+point'</span><span style="color: black; font-family: monospace;">, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'data'</span><span style="color: black; font-family: monospace;">)<br>
+grid </span><span style="color: rgb(160, 32, 240); font-family: monospace;">on</span></p>
+<div style="text-align: center;"><span style="color: rgb(160, 32, 240);"></span><img style="width: 372px; height: 304px;" alt="nonlinear programming - curve fitting before" src="http://www.matrixlab-examples.com/image-files/nonlinear-programming-001.gif"><br>
+</div>
+<p class="MsoNormal"><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span><span style="color: black;"><o:p>&nbsp;</o:p><br>
+<span style="font-family: monospace;">figure</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">y2 =
+C(1) + C(2)*x + C(3)*log(1 - z/5.1);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">plot(x,
+y,</span></span><span style="color: rgb(160, 32, 240); font-family: monospace;">'-o'</span><span style="color: black; font-family: monospace;">, x, y2,</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'r-.^'</span><span style="color: black; font-family: monospace;"> )<br>
+axis([.5
+5.5 .2 .6]);<br>
+title (</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Experimental
+Data and Fit'</span><span style="color: black; font-family: monospace;">)<br>
+xlabel(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'x'</span><span style="color: black; font-family: monospace;">)<br>
+ylabel(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'y'</span><span style="color: black; font-family: monospace;">)<br>
+legend(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'data'</span><span style="color: black; font-family: monospace;">, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'fit'</span><span style="color: black; font-family: monospace;">)<br>
+grid </span><span style="color: rgb(160, 32, 240); font-family: monospace;">on</span></p>
+<p style="text-align: center;" class="MsoNormal"><o:p>&nbsp;<img style="width: 380px; height: 304px;" alt="nonlinear programming - curve fitting after" src="http://www.matrixlab-examples.com/image-files/nonlinear-programming-002.gif"></o:p></p>
+<p class="MsoNormal" style=""><span style="color: black;"><span style="">&nbsp;<span style="font-weight: bold; font-style: italic;">It
+&nbsp;works, right?</span></span></span></p>
+<br>
+&nbsp;<a href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Nonlinear
+Programming' to home</a><br>
+<br>
+&nbsp;<a href="http://www.matrixlab-examples.com/matlab-programming-2tier.html" onclick="return FIX.track(this);">From
+'Nonlinear Programming' to 'Matlab Programming'</a><br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a href="nonlinear-programming.html#Nonlinear_Programming_NLP_based_on">Top</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/simultaneous-equations-nonlinear.html" onclick="return FIX.track(this);">Nonlinear
+Systems</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/linear-regression.html" onclick="return FIX.track(this);">Linear
+Regression</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/curve-fitting.html" onclick="return FIX.track(this);">Curve
+Fitting Video</a><br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><br>
+<p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for nonlinear programming page"><a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br></a></p>
+</td>
+<td style="width: 170px; vertical-align: top; background-color: rgb(211, 228, 244); text-align: center;"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:45:56 10-Aug-2021 -->
+</body></html>

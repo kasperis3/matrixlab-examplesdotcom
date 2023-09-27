@@ -1,0 +1,490 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Gray Code - algorithm in Matlab bin/dec conversions</title>
+
+<meta name="Description" content="The Gray code (also known as reflected binary), is a system where two consecutive values differ in only one bit. We develop a Matlab code to convert between these systems...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/gray-code.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Gray Code - algorithm in Matlab bin/dec conversions" />
+<meta property="og:description" content="The Gray code (also known as reflected binary), is a system where two consecutive values differ in only one bit. We develop a Matlab code to convert between these systems..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/gray-code.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<h1><a name="Gray_Code_in_Matlab_&#8211;_fromto_binary_and"></a><o:p></o:p>Gray
+Code in Matlab &#8211; from/to binary and decimal</h1>
+<p class="MsoNormal"><o:p>
+</o:p></p>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --></td>
+<td>The <span style="font-weight: bold;">Gray
+code</span> (also known as <span style="font-weight: bold;">reflected
+binary code</span>), is a
+binary numerical system where two consecutive values <span style="font-weight: bold;">differ in only one bit</span>.<o:p>&nbsp;</o:p>
+<p class="MsoNormal">The Gray code code
+was originally designed to prevent undesired
+transient states or outputs from electro- mechanical switches. Today,
+this code
+is used to facilitate error correction in digital communications and
+digital-to-analog converters.</p>
+</td>
+</tr>
+</tbody>
+</table>
+&nbsp;<br>
+<o:p></o:p>In this article, we&#8217;re going to
+develop a simple Matlab
+algorithm to make conversions between (from/to) binary and gray
+codes.&nbsp;
+<p class="MsoNormal"><o:p></o:p></p>
+<h3>Convert a binary number to a Gray number</h3>
+<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
+Let&#8217;s understand the algorithm to go from binary to Gray. See
+the conversion from &#8216;11101&#8217; binary to its equivalent in Gray code.</p>
+<p style="text-align: center;" class="MsoNormal"><o:p>&nbsp;<img style="width: 411px; height: 195px;" alt="from binary code to gray code, example in Matlab" src="http://www.matrixlab-examples.com/image-files/gray-code-001.gif">&nbsp;</o:p></p>
+<p class="MsoNormal">The most significant bit
+(MSB) in Gray is taken directly
+from the MSB in binary. The rest of the Gray bits comes from a xor
+operation
+between the precedent binary bit(b(i-1)) and the current binary bit
+(b(i)). In
+the case shown in the figure above:<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">g(1) = b(1)<br>
+g(2) = b(1) xor b(2)<br>
+g(3) = b(2) xor b(3)<br>
+g(4) = b(3) xor b(4)<br>
+g(5) = b(4) xor b(5)</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The <a href="http://www.matrixlab-examples.com/xor.html" onclick="return FIX.track(this);">xor
+operation</a> produces a 1 if the bits are different,
+and produces a 0 if the bits are equal. So, a binary &#8216;11101&#8217; becomes a
+&#8216;10011&#8217;
+in Gray.</p>
+<p class="MsoNormal"><o:p></o:p></p>
+<p class="MsoNormal">Let&#8217;s propose a code in
+Matlab to do it.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style=""><span style="color: blue; font-family: monospace;">function</span><span style="color: black; font-family: monospace;"> g =
+bin2gray(b)<br>
+g(1) =
+b(1);</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">for</span><span style="color: black; font-family: monospace;"> i = 2 :
+length(b);<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>x
+= xor(str2num(b(i-1)), str2num(b(i)));<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>g(i)
+= num2str(x);</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">end</span><span style="color: black;"> </span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The input parameter to
+this function is a binary number
+(expressed in a string), the output is the equivalent Gray number (also
+expressed
+as a string).</p>
+<p class="MsoNormal"><span style="color: black; font-family: monospace;">g =
+bin2gray(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'11101'</span><span style="color: black; font-family: monospace;">)<br>
+g =
+bin2gray(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'10010'</span><span style="color: black; font-family: monospace;">)<br>
+g =
+bin2gray(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'11110'</span><span style="color: black; font-family: monospace;">)<br>
+g =
+bin2gray(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'10000'</span><span style="color: black; font-family: monospace;">)</span><br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">We get these
+string-results from Matlab:</p>
+<p style="font-family: monospace;" class="MsoNormal">g = 10011<br>
+g = 11011<br>
+g = 10001<br>
+g = 11000</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
+We also can test a full sequence. We go from decimal-to-binary (using
+built-in function <span style="font-weight: bold;">dec2bin</span>)
+and then to Gray (using our developed
+function), for example:&nbsp;</p>
+<p class="MsoNormal" style=""><span style="color: blue; font-family: monospace;">for</span><span style="color: black; font-family: monospace;"> d = 0 :
+15<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>b
+= dec2bin(d);<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>g
+= bin2gray(b);<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>disp({d
+b g})</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">end</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The results are (decimal,
+binary, gray):<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+[0]&nbsp;&nbsp;&nbsp; '0'&nbsp;&nbsp;&nbsp;
+'0'</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+[1]&nbsp;&nbsp;&nbsp; '1'&nbsp;&nbsp;&nbsp;
+'1'</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+[2]&nbsp;&nbsp;&nbsp; '10'&nbsp;&nbsp;&nbsp;
+'11'</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+[3]&nbsp;&nbsp;&nbsp; '11'&nbsp;&nbsp;&nbsp;
+'10'</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+[4]&nbsp;&nbsp;&nbsp; '100'&nbsp;&nbsp;&nbsp;
+'110'</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+[5]&nbsp;&nbsp;&nbsp; '101'&nbsp;&nbsp;&nbsp;
+'111'</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+[6]&nbsp;&nbsp;&nbsp; '110'&nbsp;&nbsp;&nbsp;
+'101'</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+[7]&nbsp;&nbsp;&nbsp; '111'&nbsp;&nbsp;&nbsp;
+'100'</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+[8]&nbsp;&nbsp;&nbsp; '1000'&nbsp;&nbsp;&nbsp;
+'1100'</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+[9]&nbsp;&nbsp;&nbsp; '1001'&nbsp;&nbsp;&nbsp;
+'1101'</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+[10]&nbsp;&nbsp;&nbsp; '1010'&nbsp;&nbsp;&nbsp;
+'1111'</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+[11]&nbsp;&nbsp;&nbsp; '1011'&nbsp;&nbsp;&nbsp;
+'1110'</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+[12]&nbsp;&nbsp;&nbsp; '1100'&nbsp;&nbsp;&nbsp;
+'1010'</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+[13]&nbsp;&nbsp;&nbsp; '1101'&nbsp;&nbsp;&nbsp;
+'1011'</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+[14]&nbsp;&nbsp;&nbsp; '1110'&nbsp;&nbsp;&nbsp;
+'1001'</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+[15]&nbsp;&nbsp;&nbsp; '1111'&nbsp;&nbsp;&nbsp;
+'1000'</span><br>
+<o:p>&nbsp;</o:p></p>
+<h3>Convert a Gray number to a binary number</h3>
+<p class="MsoNormal"><o:p></o:p><br>
+Now let&#8217;s understand the algorithm to go from Gray to
+binary. See the conversion from &#8216;10011&#8217; Gray to its binary equivalent.</p>
+<p style="text-align: center;" class="MsoNormal"><o:p>&nbsp;<img style="width: 410px; height: 183px;" alt="Gray to binary, code developed in Matlab" src="http://www.matrixlab-examples.com/image-files/gray-code-002.gif"></o:p></p>
+<p class="MsoNormal"><o:p></o:p><o:p></o:p>The
+most significant bit (MSB) in binary is taken directly
+from the MSB in Gray. The rest of the binary bits comes from a xor
+operation
+between the precedent binary bit (b(i-1)) and the current Gray bit
+(g(i)). In
+the case shown in the figure above:</p>
+<p class="MsoNormal">b(1) = g(1)<br>
+b(2) = b(1) xor g(2)<br>
+b(3) = b(2) xor g(3)<br>
+b(4) = b(3) xor g(4)<br>
+b(5) = b(4) xor g(5)<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><br>
+Our proposed Matlab function to achieve the conversion is:</p>
+<p class="MsoNormal" style=""><span style="color: blue; font-family: monospace;"><br>
+function</span><span style="color: black; font-family: monospace;"> b =
+gray2bin(g)<br>
+b(1) =
+g(1);</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">for</span><span style="color: black; font-family: monospace;"> i = 2 :
+length(g);<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>x
+= xor(str2num(b(i-1)), str2num(g(i)));<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>b(i)
+= num2str(x);</span><br style="font-family: monospace;">
+<span style="color: blue;"><span style="font-family: monospace;">end</span><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="color: blue;"><o:p>&nbsp;</o:p></span><br>
+Let&#8217;s test our function:<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style=""><span style="color: black; font-family: monospace;">b =
+gray2bin(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'10011'</span><span style="color: black; font-family: monospace;">)<br>
+b =
+gray2bin(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'11011'</span><span style="color: black; font-family: monospace;">)<br>
+b =
+gray2bin(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'10001'</span><span style="color: black; font-family: monospace;">)<br>
+b =
+gray2bin(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'11000'</span><span style="color: black;"><span style="font-family: monospace;">)</span><br>
+<span style="">&nbsp;</span><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">We get
+these string-results:<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="color: black; font-family: monospace;">b = 11101<br>
+b = 10010<br>
+b = 11110<br>
+b = 10000</span><br style="font-family: monospace;">
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">And now we test a full
+sequence, going decimal-to-binary,
+binary-to-gray, and gray-to-binary:<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style=""><span style="color: blue; font-family: monospace;">for</span><span style="color: black; font-family: monospace;"> d = 0 :
+15<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>g
+= bin2gray(dec2bin(d));<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>b
+= gray2bin(g);<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>disp({d
+g b})</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">end</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><o:p></o:p><br>
+We get (decimal, gray, binary):</p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="">&nbsp;&nbsp;&nbsp;
+</span>[0]<span style="">&nbsp;&nbsp;&nbsp;
+</span>'0'<span style="">&nbsp;&nbsp;&nbsp;
+</span>'0'<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>[1]<span style="">&nbsp;&nbsp;&nbsp; </span>'1'<span style="">&nbsp; </span><span style="">&nbsp;&nbsp;</span>'1'<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>[2]<span style="">&nbsp;&nbsp;&nbsp; </span>'11'<span style="">&nbsp;&nbsp;&nbsp;
+</span>'10'<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>[3]<span style="">&nbsp;&nbsp;&nbsp; </span>'10'<span style="">&nbsp;&nbsp;&nbsp;
+</span>'11'<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>[4]<span style="">&nbsp;&nbsp;&nbsp; </span>'110'<span style="">&nbsp;&nbsp;&nbsp;
+</span>'100'<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>[5]<span style="">&nbsp;&nbsp;&nbsp; </span>'111'<span style="">&nbsp;&nbsp;&nbsp;
+</span>'101'<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>[6]<span style="">&nbsp;&nbsp;&nbsp; </span>'101'<span style="">&nbsp;&nbsp;&nbsp;
+</span>'110'<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>[7]<span style="">&nbsp;&nbsp;&nbsp; </span>'100'<span style="">&nbsp;&nbsp;&nbsp;
+</span>'111'<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>[8]<span style="">&nbsp;&nbsp;&nbsp; </span>'1100'<span style="">&nbsp;&nbsp;&nbsp;
+</span>'1000'<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>[9]<span style="">&nbsp;&nbsp;&nbsp; </span>'1101'<span style="">&nbsp;&nbsp;&nbsp;
+</span>'1001'<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>[10]<span style="">&nbsp;&nbsp;&nbsp; </span>'1111'<span style="">&nbsp;&nbsp;&nbsp;
+</span>'1010'<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>[11]<span style="">&nbsp;&nbsp;&nbsp; </span>'1110'<span style="">&nbsp;&nbsp;&nbsp;
+</span>'1011'<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>[12]<span style="">&nbsp;&nbsp;&nbsp; </span>'1010'<span style="">&nbsp;&nbsp;&nbsp;
+</span>'1100'<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>[13]<span style="">&nbsp;&nbsp;&nbsp; </span>'1011'<span style="">&nbsp;&nbsp;&nbsp;
+</span>'1101'<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>[14]<span style="">&nbsp;&nbsp;&nbsp; </span>'1001'<span style="">&nbsp;&nbsp;&nbsp;
+</span>'1110'<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>[15]<span style="">&nbsp;&nbsp;&nbsp; </span>'1000'<span style="">&nbsp;&nbsp;&nbsp;
+</span>'1111'</p>
+<br>
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Gray Code' to home</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-programming-2tier.html" onclick="return FIX.track(this);">From
+'Gray Code' to 'Matlab Cookbook II'</a><br>
+&nbsp;<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;">
+<div style="text-align: right;"><a style="font-weight: bold;" href="gray-code.html#Gray_Code_in_Matlab_%3F_fromto_binary_and">Top</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/binary-to-decimal.html" onclick="return FIX.track(this);">Binary-to-dec</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/decimal-to-binary.html" onclick="return FIX.track(this);">Decimal-to-bin</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/binary-to-hexadecimal.html" onclick="return FIX.track(this);">Bin-to-hexadecimal</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/hex-to-binary.html" onclick="return FIX.track(this);">Hex-to-bin</a><br style="font-weight: bold;">
+<br>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for gray code page"><a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br>
+</a></p>
+</td>
+<td style="width: 170px; vertical-align: top; background-color: rgb(211, 228, 244); text-align: center;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:50:39 10-Aug-2021 -->
+</body></html>

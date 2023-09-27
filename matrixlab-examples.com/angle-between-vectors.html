@@ -1,0 +1,426 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Angle between vectors - how to calculate and code it!</title>
+
+<meta name="Description" content="This article describes how to calculate the angle between vectors, the angle between each vector and axis, and the magnitude of each vector. The vectors are given in three dimensional space. The code and examples were developed in Matlab code...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/angle-between-vectors.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Angle between vectors - how to calculate and code it!" />
+<meta property="og:description" content="This article describes how to calculate the angle between vectors, the angle between each vector and axis, and the magnitude of each vector. The vectors are given in three dimensional space. The code and examples were developed in Matlab code..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/angle-between-vectors.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/angle-between-vectors.gif" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 520px; text-align: left; vertical-align: middle;"><br>
+<h1><a name="Angle_between_vectors_"></a><span style="" lang="ES-TRAD">Angle
+between vectors</span><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></h1>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><br>
+This
+article describes how to <span style="font-weight: bold;">calculate
+the angle between vectors</span>, the angle
+between
+each vector and axis, and the magnitude of each vector. The vectors are
+given
+in three-dimensional space. The code and examples were developed in
+Matlab
+code.<br>
+</span></p>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><span style="" lang="ES-TRAD"><o:p>&nbsp;<!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --></o:p></span></td>
+<td>We are going to enter the tip of the
+vectors <span style="font-weight: bold;">assuming that
+they both start at the origin</span>
+point (0, 0, 0). For example, to enter vector V1 that goes from (0, 0,
+0) to (3, 4, 7) we have to enter just the last point, in a row array in
+Matlab, like this: <br>
+<br>
+v1 = [3 4 7] <br>
+<br>
+<span style="" lang="ES-TRAD">We
+now
+develop a function to calculate the values, and another function to
+display
+those values, in order to be</span><br>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">able to call those scripts whenever we
+need them
+and avoid retyping instructions for every couple of vectors that we use.<br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">The
+script to find relevant values is:<br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: blue;">function</span><span style="color: black;"> [m, a]
+= ab2v(v1, v2)</span><br>
+<span style="color: forestgreen;">%
+Magnitude of vector is its norm</span><br>
+<span style="color: black;">m(1) =
+norm(v1);<br>
+m(2) =
+norm(v2);<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Min. angles from vector 1 to axes</span><br>
+<span style="color: black;">a(1 : 3)
+= acosd(v1 / m(1));</span><br>
+<span style="color: forestgreen;">%
+Min. angles from vector 2 to axes</span><br>
+<span style="color: black;">a(4 : 6)
+= acosd(v2 / m(2));<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="color: forestgreen;">%
+Dot product dot(v1, v2) equals sum(v1 .* v2)</span><br>
+<span style="color: black;">a(7) =
+acosd(dot(v1, v2) / m(1) / m(2));</span><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">The
+m-file to display and format those values is:<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: blue;">function</span><span style="color: black;">
+display_angles(m, a)<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">disp(</span><span style="color: rgb(160, 32, 240);">' '</span><span style="color: black;">)<br>
+disp([</span><span style="color: rgb(160, 32, 240);">'Angle
+between vectors: '</span><span style="color: black;">
+num2str(a(7))])<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">disp(</span><span style="color: rgb(160, 32, 240);">' '</span><span style="color: black;">)<br>
+disp(</span><span style="color: rgb(160, 32, 240);">'Vector
+1'</span><span style="color: black;">)<br>
+disp([</span><span style="color: rgb(160, 32, 240);">'Magnitude
+:'</span><span style="color: black;"> num2str(m(1))])<br>
+disp([</span><span style="color: rgb(160, 32, 240);">'Min.
+angle with x-axis: '</span><span style="color: black;">
+num2str(a(1))])<br>
+disp([</span><span style="color: rgb(160, 32, 240);">'Min.
+angle with y-axis: '</span><span style="color: black;">
+num2str(a(2))])<br>
+disp([</span><span style="color: rgb(160, 32, 240);">'Min.
+angle with z-axis: '</span><span style="color: black;">
+num2str(a(3))])<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="color: black; font-family: monospace;">disp(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">' '</span><span style="color: black; font-family: monospace;">)<br>
+disp(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Vector
+2'</span><span style="color: black; font-family: monospace;">)<br>
+disp([</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Magnitude
+:'</span><span style="color: black; font-family: monospace;">
+num2str(m(2))])<br>
+disp([</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Min.
+angle with x-axis: '</span><span style="color: black; font-family: monospace;">
+num2str(a(4))])<br>
+disp([</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Min.
+angle with y-axis: '</span><span style="color: black; font-family: monospace;">
+num2str(a(5))])<br>
+disp([</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Min.
+angle with z-axis: '</span><span style="color: black; font-family: monospace;">
+num2str(a(6))])</span><br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Built-in function &#8216;<span style="font-weight: bold;">num2str</span>&#8217; converts
+numbers to strings, in
+order to concatenate them to other strings and improve the formatting
+previously to display the results on screen.</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="font-weight: bold;">Example 1:</span><br>
+<o:p>&nbsp;
+</o:p></p>
+<hr style="width: 100%; height: 2px;">
+<p class="MsoNormal">Find the angle between a
+diagonal of a cube and a diagonal
+of one of its faces. The cube measures 5x5x5 units.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><img style="width: 323px; height: 258px;" alt="angle between vectors - example" src="http://www.matrixlab-examples.com/image-files/angle-between-vectors.gif"></p>
+<p class="MsoNormal"><o:p>&nbsp;&nbsp;</o:p></p>
+<p class="MsoNormal">We finally create a third
+Matlab script, to try our
+functions above and to drive them effortlessly. This gives us an easy
+way to
+handle all the examples that we&#8217;d like to test...<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">clc;
+clear; close </span><span style="color: rgb(160, 32, 240);">all</span><span style="color: black;">; format </span><span style="color: rgb(160, 32, 240);">compact<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">v1 = [0
+5 5]<br>
+v2 = [5
+5 5]<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="color: black; font-family: monospace;">[m, a] =
+ab2v(v1, v2);<br>
+display_angles(m,
+a)</span><o:p style="font-family: monospace;"></o:p><br>
+<span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">The on-screen
+result is:<br>
+<o:p>&nbsp;</o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="" lang="ES-TRAD">Angle
+between vectors: 35.2644<span style="">&nbsp;</span><o:p></o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="" lang="ES-TRAD">Vector
+1<br>
+Magnitude
+:7.0711<br>
+Min.
+angle with x-axis: 90<br>
+Min.
+angle with y-axis: 45<br>
+Min.
+angle with z-axis: 45<span style="">&nbsp;</span><o:p></o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="" lang="ES-TRAD">Vector
+2<br>
+Magnitude
+:8.6603<br>
+Min.
+angle with x-axis: 54.7356<br>
+Min.
+angle with y-axis: 54.7356<br>
+Min.
+angle with z-axis: 54.7356</span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="font-weight: bold;" lang="ES-TRAD">Example
+2:</span></p>
+<hr style="width: 100%; height: 2px;"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Find
+out the angle between vectors (1, 0, 0) and (1, 1, 0).<br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">It&#8217;s
+nice to have this case as an example, because we can figure it out from
+the
+beginning, right?<br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">We run
+our driver:<br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">clc;
+clear; close </span><span style="color: rgb(160, 32, 240);">all</span><span style="color: black;">; format </span><span style="color: rgb(160, 32, 240);">compact<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">v1 = [1
+0 0]<br>
+v2 = [1
+1 0]<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="color: black; font-family: monospace;">[m, a] =
+ab2v(v1, v2);<br>
+display_angles(m,
+a)</span><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">And find
+the solution:<o:p>&nbsp;</o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="" lang="ES-TRAD">Angle
+between vectors: 45<span style="">&nbsp;</span><o:p></o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="" lang="ES-TRAD">Vector
+1<br>
+Magnitude
+:1<br>
+Min.
+angle with x-axis: 0<br>
+Min.
+angle with y-axis: 90<br>
+Min.
+angle with z-axis: 90<br>
+<span style="">&nbsp;</span><o:p></o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="" lang="ES-TRAD">Vector
+2<br>
+Magnitude
+:1.4142<br>
+Min.
+angle with x-axis: 45<br>
+Min.
+angle with y-axis: 45<br>
+Min.
+angle with z-axis: 90</span></p>
+<br>
+<p class="MsoNormal">&nbsp;<span style="" lang="ES-TRAD"><a href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Angle
+between Vectors' to home</a></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">&nbsp;<a href="http://www.matrixlab-examples.com/matlab-programming-2tier.html" onclick="return FIX.track(this);">From 'Angle
+between Vectors' to 'Matlab Programming'</a></span></p>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><br>
+<!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --><br>
+</td>
+<td style="vertical-align: bottom; text-align: right;"><span style="" lang="ES-TRAD"><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/trigonometry.html" onclick="return FIX.track(this);">Trigonometry</a><br>
+<br>
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/dot-product.html" onclick="return FIX.track(this);">Dot
+Product</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/cross-product.html" onclick="return FIX.track(this);">Cross Product</a><br>
+<br>
+</span><a style="font-weight: bold;" href="angle-between-vectors.html#Angle_between_vectors_"><span style="" lang="ES-TRAD">Top</span></a><br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for angle between vectors page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="vertical-align: top; text-align: right; width: 170px;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:50:17 10-Aug-2021 -->
+</body></html>

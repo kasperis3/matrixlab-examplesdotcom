@@ -1,0 +1,300 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Probability and Statistics - applied examples coded in Matlab</title>
+
+<meta name="Description" content="... we present some examples to solve typical Probability and Statistics problems. We present the Matlab code without using any special toolbox or instruction. Everything is plain...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/probability-and-statistics.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Probability and Statistics - applied examples coded in Matlab" />
+<meta property="og:description" content="... we present some examples to solve typical Probability and Statistics problems. We present the Matlab code without using any special toolbox or instruction. Everything is plain..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/probability-and-statistics.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table style="width: 725px; text-align: left; margin-left: auto; margin-right: auto;" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="vertical-align: top; background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<h1><a name="top"></a>Probability
+and Statistics</h1>
+<span style="font-weight: bold;"><br>
+</span>In this section we present some examples to
+solve typical ' probability
+and statistics ' problems. We present the Matlab code <span style="font-weight: bold;">without using any special toolbox</span>
+or instruction. Everything is plain and simple... You could even code
+the same algorithms in other programming languages without any problem!<br>
+<p class="MsoNormal"><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/permutations-and-combinations.html" onclick="return FIX.track(this);">Permutations
+and Combinations</a><br>
+This algorithm (code in Matlab) calculates the number of <span style="font-weight: bold;">permutations and combinations</span>
+of <span style="font-style: italic;">N</span>
+objects taken <span style="font-style: italic;">D</span>
+at a time. The full Matlab code is...<br>
+</p>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/normal-distribution.html" onclick="return FIX.track(this);">Normal
+Distribution</a><br>
+This algorithm (program in Matlab) calculates the probability and
+frequency of given values on a standard <span style="font-weight: bold;">normal distribution curve</span>
+(Gauss&#8217; bell). You have to enter the mean, the standard deviation and
+the value of interest...<br>
+<br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="text-align: left; vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+</td>
+<td>
+<span style="" lang="ES-TRAD"><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/binomial-distribution.html" onclick="return FIX.track(this);">Binomial
+Distribution</a><br>
+When a <span style="font-weight: bold;">binomial
+distribution</span>&nbsp;is being considered, we&nbsp;use
+this algorithm to calculate the probability
+of&nbsp;a&nbsp;number
+of successes in a given number of <span style="font-weight: bold;">Bernoulli
+trials</span>. It's necessary to provide the probability of
+succes on a single trial...<br>
+<br>
+</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/poisson-distribution.html" onclick="return FIX.track(this);"><span style="" lang="ES-TRAD">Poisson Distribution</span></a><br>
+Using the <span style="font-weight: bold;">Poisson
+distribution</span>, this program calculates the <span style="font-weight: bold;">probability
+of </span><br>
+</td>
+</tr>
+</tbody>
+</table>
+<span style="font-weight: bold;"><br>
+an event</span> occurring a given number of times. &nbsp;<span style="font-weight: bold;"></span>
+You <span style="font-weight: bold;">must know</span>
+the
+expected frequency of the event...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/f-distribution.html" onclick="return FIX.track(this);">F-distribution</a><br>
+This algorithm calculates <span style="font-weight: bold;">percentile
+values </span>for
+given values on an <span style="font-style: italic; font-weight: bold;">F</span><span style="font-weight: bold;">-distribution</span> curve.
+You must provide the <span style="font-weight: bold;">value
+of </span><span style="font-style: italic; font-weight: bold;">F</span>,
+the <span style="font-weight: bold;">degrees of freedom
+in the numerator</span> and the <span style="font-weight: bold;">degrees of freedom in the
+denominator</span>...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/t-distribution.html" onclick="return FIX.track(this);">Student's
+t-distribution</a><br>
+This algorithm (Matlab program) calculates right-tail values for points
+on a <span style="font-weight: bold;">t-distribution</span>
+curve. You must provide the <span style="font-weight: bold;">value
+of </span><span style="font-style: italic; font-weight: bold;">t</span>
+and <span style="font-weight: bold;">the degrees of
+freedom</span>...<span style="text-decoration: underline; font-weight: bold;"><br>
+<br>
+</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/t-statistic.html" onclick="return FIX.track(this);">T-statistic
+- Student&#8217;s t-Test</a><br>
+This program performs the <span style="font-weight: bold;">t-statistic</span>
+and degrees of freedom for Student&#8217;s distribution. The calculations can
+be based on any one of these <span style="font-weight: bold;">three
+hypotheses</span>...<br>
+<span style="text-decoration: underline;"><br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/chi-square.html" onclick="return FIX.track(this);">Chi-square
+distribution</a><br>
+</span>This program calculates
+the tail-end and percentile values
+for points on a <span style="font-weight: bold;">Chi-square</span>
+(<i style="">X</i><sup>2</sup>)
+<span style="font-weight: bold;">distribution
+curve</span>. You must provide the value of <i style="">X</i><sup>2</sup>
+and the degrees of freedom. No special instruction or
+Matlab toolbox is used.<br>
+<span style="text-decoration: underline; font-weight: bold;"><br>
+</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/random-numbers.html" onclick="return FIX.track(this);">Random
+Numbers and Simulations</a><span style="text-decoration: underline;"><br>
+</span>We&#8217;ll use Matlab to generate <span style="font-weight: bold;">random numbers</span> so
+that we can discuss its <span style="font-weight: bold;">statistical
+capabilities</span> and explore <span style="font-weight: bold;">some simulations...<br>
+<br>
+<a href="http://www.matrixlab-examples.com/random-number-table.html" onclick="return FIX.track(this);">Random
+Number Tables</a><br>
+</span><span style="" lang="ES-TRAD">A
+random number table is a listing of random numbers where we can choose
+the quantity
+of random numbers desired, the maximum and minimum values of numbers in
+the
+table, and whether or not duplicate numbers are allowed...</span><br>
+<span style="font-weight: bold;"><br>
+&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Probability and
+Statistics' to home</a><br>
+&nbsp;
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="probability-and-statistics.html#top">Top</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/finance-formulas.html" onclick="return FIX.track(this);">Financial Apps</a><br>
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/sitemap.html" onclick="return FIX.track(this);">Table of Contents/Search</a><br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<span style="font-weight: bold;"><br>
+</span><br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for probability and statistics page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; vertical-align: top; background-color: rgb(224, 236, 255); text-align: center;"><br><br><br><br><br><!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:43:58 10-Aug-2021 -->
+</body></html>

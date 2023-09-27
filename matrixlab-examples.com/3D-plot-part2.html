@@ -1,0 +1,471 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>3D Plot Part 2 - working with Matlab</title>
+
+<meta name="Description" content="The 3D plot functions intended for plotting meshes and surfaces 'mesh' and 'surf', and their several variants 'meshc', 'meshz', 'surfc', and 'surfl', take multiple optional input arguments, the most simple form being 'mesh(z)' or 'surf(z)', where z represents a matrix. See these examples...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/3D-plot-part2.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="3D Plot Part 2 - working with Matlab" />
+<meta property="og:description" content="The 3D plot functions intended for plotting meshes and surfaces 'mesh' and 'surf', and their several variants 'meshc', 'meshz', 'surfc', and 'surfl', take multiple optional input arguments, the most simple form being 'mesh(z)' or 'surf(z)', where z represents a matrix. See these examples..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/3D-plot-part2.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/plot3-3d-using-lines.jpg" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/meshc-3d-using-mesh.jpg" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/surfc-3d-using-surf.jpg" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/imgs/logo.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<h1><a name="top"></a><!-- google_ad_section_start -->3D
+plot &#8211;
+Part 2</h1>
+<h3>Modeling Surfaces, Meshes and 3D variations</h3>
+The 3D plot functions intended for plotting
+meshes and surfaces '<span style="font-weight: bold;">mesh</span>'
+and '<span style="font-weight: bold;">surf</span>',
+and their
+several variants '<span style="font-weight: bold;">meshc</span>',
+'<span style="font-weight: bold;">meshz</span>', '<span style="font-weight: bold;">surfc</span>', and '<span style="font-weight: bold;">surfl</span>', take
+multiple optional input arguments, the most simple form being '<span style="font-weight: bold;">mesh(z)</span>' or '<span style="font-weight: bold;">surf(z)</span>', where z
+represents a matrix. <br>
+&nbsp;
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="text-align: left; vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml -->
+</td>
+<td style="width: 200px; text-align: left; vertical-align: middle;">Usually,
+<span style="font-weight: bold;">tridimensional
+curves</span> are represented by the values of z-coordinates
+samples on a <span style="font-weight: bold;">grid</span>
+of (x,y) values.<br>
+<br>
+Thus, to create a <span style="font-weight: bold;">surface
+</span>or<span style="font-weight: bold;">
+3D
+plot</span> we first need to generate a grid of (x,y) coordinates
+and find the height (z-coordinate) of the surface at each of the grid
+points. Matlab provides the function '<span style="font-weight: bold;">meshgrid</span>' to create
+a grid of points over a specified range.
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<span style="font-weight: bold;">Meshgrid</span><br>
+Suppose that you want to plot the function z =&nbsp;<span style="font-size: 10pt; font-family: &quot;Courier New&quot;;" lang="ES-TRAD">x<sup>2</sup></span> &#8211; 10y
++ 2 over the domain 0 &#8804; x &#8804; 4 and 0 &#8804; y &#8804; 4. To do so, we first take
+several points in the domain, say 25 points, as shown in this Fig.:<br>
+<br>
+<div style="text-align: center;"><img style="width: 234px; height: 229px;" alt="necessary grid to produce 3D plots" src="http://www.matrixlab-examples.com/image-files/grid-for-3d.jpg"><br>
+</div>
+<br>
+We can create two matrices x and y, each of size 5 x 5, and write the
+xy-coordinates of each point in these matrices. We can then evaluate z
+with the command z = x.^2 &#8211; 10*y + 2. <br>
+<br>
+However, creating the two matrices x and y is much easier with the <span style="font-weight: bold;">meshgrid command</span>.<!-- google_ad_section_end --><br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<span style="font-weight: bold;">% creates
+vectors x and y, from 0 to 4</span><br>
+vx = 0 : 4<br>
+vy = vx<br>
+<span style="font-weight: bold;">% creates
+meshgrid to be used in 3D plot</span><br>
+[x,y] = meshgrid(vx,vy)<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+The commands shown above generate the 25 points shown in the figure.
+All we need to do is generate two vectors, vx and vy, to define the <span style="font-weight: bold;">region of interest</span>
+and <span style="font-weight: bold;">distribution or
+density</span> of our grid points. Also, the two vectors need not
+be either same sized or linearly spaced. It is very important to
+understand the use of meshgrid.<br>
+<br>
+Matlab response is as follows:<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<!-- google_ad_section_start(weight=ignore) -->vx =<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+2&nbsp;&nbsp;&nbsp;&nbsp;
+3&nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+<br>
+vy =<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+2&nbsp;&nbsp;&nbsp;&nbsp;
+3&nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+<br>
+x =<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+2&nbsp;&nbsp;&nbsp;&nbsp;
+3&nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+2&nbsp;&nbsp;&nbsp;&nbsp;
+3&nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+2&nbsp;&nbsp;&nbsp;&nbsp;
+3&nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+2&nbsp;&nbsp;&nbsp;&nbsp;
+3&nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+2&nbsp;&nbsp;&nbsp;&nbsp;
+3&nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+<br>
+y =<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp; 0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp; 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+2&nbsp;&nbsp;&nbsp;&nbsp;
+2&nbsp;&nbsp;&nbsp;&nbsp;
+2&nbsp;&nbsp;&nbsp;&nbsp;
+2&nbsp;&nbsp;&nbsp;&nbsp; 2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+3&nbsp;&nbsp;&nbsp;&nbsp;
+3&nbsp;&nbsp;&nbsp;&nbsp;
+3&nbsp;&nbsp;&nbsp;&nbsp;
+3&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+4&nbsp;&nbsp;&nbsp;&nbsp;
+4&nbsp;&nbsp;&nbsp;&nbsp;
+4&nbsp;&nbsp;&nbsp;&nbsp;
+4&nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 1px;"><br>
+</td>
+<td><!-- google_ad_section_end -->See
+the <span style="font-weight: bold;">columns</span>
+of x and the <span style="font-weight: bold;">rows</span>
+of y. When a surface is plotted with the '<span style="font-weight: bold;">mesh(z)</span>' command
+(where z is a matrix), the <span style="font-weight: bold;">tickmarks</span>
+on the x and y axes do not indicate the domain of z but the <span style="font-weight: bold;">row and column indices</span>
+of the z-matrix. Typing '<span style="font-weight: bold;">mesh(x,y,z)</span>'
+or '<span style="font-weight: bold;">surf(x,y,z)</span>'
+(where x and y are vectors used by 'meshgrid' to create a grid), result
+in the surface plot of z, with x and y values shown along the
+respective axes. <br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+The folowing script could be an example of how tho use the '<span style="font-weight: bold;">meshgrid</span>', '<span style="font-weight: bold;">plot3</span>', '<span style="font-weight: bold;">meshc</span>', and '<span style="font-weight: bold;">surfc</span>' commands. <br>
+<br>
+We'll 3D plot the following surface:<br>
+<br>
+<div style="text-align: center;"><img style="width: 348px; height: 63px;" alt="equation to be 3D-plotted" src="http://www.matrixlab-examples.com/image-files/surface-3d-plot.jpg"><br>
+</div>
+<br>
+with this script:<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<span style="font-weight: bold;">% clears
+command window, clears variables and closes figures</span><br>
+clc; clear; close all<br>
+<br>
+<span style="font-weight: bold;">% defines
+vectors x and y</span><br>
+vx = -4 : 0.2: 4;<br>
+vy = -3 : 0.2: 3;<br>
+<br>
+<span style="font-weight: bold;">% calculates
+the necessary grid</span><br>
+[x,y] = meshgrid(vx, vy);<br>
+<br>
+<span style="font-weight: bold;">% calculates
+z and avoids a null denominator adding 'eps'</span><br style="font-weight: bold;">
+<span style="font-weight: bold;">% (eps is the
+least possible number in Matlab)</span><br style="font-weight: bold;">
+z = x .* y .* (x.^2 - y.^2) ./ (x.^2 + y.^2 + eps);<br>
+<br>
+<span style="font-weight: bold;">% generates
+the first figure using 'plot3'</span><br>
+figure<br>
+plot3(x,y,z)<br>
+grid on<br>
+<br>
+<span style="font-weight: bold;">% generates
+the second figure using 'meshc' to include the</span><br style="font-weight: bold;">
+<span style="font-weight: bold;">% contour in
+the figure, and rotates the figure with 'view'</span><br style="font-weight: bold;">
+figure<br>
+meshc(x,y,z)<br>
+view(-37, 15)<br>
+<br>
+<span style="font-weight: bold;">% generates
+the third 3D figure using 'surfc' to include the</span><br style="font-weight: bold;">
+<span style="font-weight: bold;">% contour in
+the image, and also rotates the figure with 'view'</span><br style="font-weight: bold;">
+figure<br>
+surfc(x,y,z)<br>
+view(-47, 25)<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+And the generated results are:<br>
+<br>
+<br>
+<div style="text-align: center;"><img style="width: 420px; height: 315px;" alt="3D plot using lines" src="http://www.matrixlab-examples.com/image-files/plot3-3d-using-lines.jpg"><br>
+</div>
+<div style="text-align: center;"><img style="width: 420px; height: 315px;" alt="3D graphics using the mesh instruction" src="http://www.matrixlab-examples.com/image-files/meshc-3d-using-mesh.jpg"><br>
+</div>
+<br>
+<div style="text-align: center;"><img style="width: 420px; height: 315px;" alt="3D graphs using surfaces function" src="http://www.matrixlab-examples.com/image-files/surfc-3d-using-surf.jpg"><br>
+</div>
+<br>
+Do you like it?<br>
+<br>
+Use the instruction '<span style="font-weight: bold;">rotate3d
+on</span>' to manipulate the view angle of your plot. Include it
+in your script or type it in the command window to change the view with
+your mouse over the figure...<br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'3D Plot part 2' to
+home</a><br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/3D-plot-2tier.html" onclick="return FIX.track(this);">From
+'3D Plot
+part 2' to 3D Main</a><br>
+&nbsp;<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="3D-plot-part2.html#top">Top</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/3D-plot-part1.html" onclick="return FIX.track(this);">Part 1 - <span style="font-weight: bold;">view, subplot</span></a><span style="font-weight: bold;"></span><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/3D-plot-part3.html" onclick="return FIX.track(this);">Part 3 -&nbsp;<span style="font-weight: bold;">plot3, sphere</span></a><span style="font-weight: bold;"><br>
+&nbsp;</span>&nbsp;<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/3D-plot-part4.html" onclick="return FIX.track(this);">Part 4 - <span style="font-weight: bold;">surfaces, mesh</span></a><span style="font-weight: bold;"></span><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/simple-animation-3d.html" onclick="return FIX.track(this);">3D animation</a><br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for 3D Plots and Graphics page"><a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br>
+</a></p>
+</td>
+<td style="width: 170px; vertical-align: top; background-color: rgb(211, 228, 244); text-align: center;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:46:16 10-Aug-2021 -->
+</body></html>

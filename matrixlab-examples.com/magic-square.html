@@ -1,0 +1,492 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Magic Square - properties in Matlab</title>
+
+<meta name="Description" content="Would you like to form a magic square with Matlab? Would you like to know why it is magic? Would you like to learn Matlab?...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/magic-square.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Magic Square - properties in Matlab" />
+<meta property="og:description" content="Would you like to form a magic square with Matlab? Would you like to know why it is magic? Would you like to learn Matlab?..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/magic-square.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<h1><a name="top"></a>The Magic
+Square&nbsp;(an introduction to matrices)</h1>
+<br>
+In Matlab, a matrix is a <span style="font-weight: bold;">rectangular
+array</span> of numbers. A <span style="font-weight: bold;">scalar</span>
+is a
+special 1-by-1 matrix, and matrices with only one row or column, are <span style="font-weight: bold;">vectors</span>. The
+operations in Matlab are
+designed to be as natural as possible.&nbsp; Some programming
+languages work with numbers one at a time,&nbsp; but Matlab allows
+you to work with entire matrices easily and quickly. <br>
+&nbsp; <br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="text-align: center; width: 254px;"><img style="width: 143px; height: 162px;" alt="Durer's magic square detail" src="http://www.matrixlab-examples.com/image-files/magic-square-001.jpg"></td>
+<td style="width: 255px;">There is a
+good and famous matrix, which appears in the <span style="font-weight: bold;">Renaissance
+engraving Melencolia I</span>, by the German artist Albrecht
+Durer. <a href="http://www.princeton.edu/%7Ehis291/Durer_Melancolia.html" onclick="return FIX.track(this);" rel="noopener" style="font-weight: bold;" target="_blank">Click here
+to see the famous image (opens a new window)</a>.&nbsp; <br>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span style="font-weight: bold;">Durer's Magic Square</span></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<br>
+&nbsp; &nbsp; <br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --></td>
+<td>The image is
+filled with mathematical symbolism, and if you look carefully, you will
+see a matrix in the upper right corner.<br>
+<br>
+This matrix is known as a <span style="font-weight: bold;">magic
+square</span> and was believed by many in Durer&#8217;s time to have
+real mystical
+properties. It does have some interesting characteristics worth
+exploring.<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+The best way for you to get started with Matlab is to learn how to
+handle matrices. You can enter matrices into Matlab in several
+different ways:<br>
+<ul>
+<li>Load matrices from external data files.</li>
+<li>Enter your explicit list of elements.</li>
+<li>Generate matrices using built-in
+functions or with your own functions in m-files.</li>
+</ul>
+<br>
+Enter Durer&#8217;s matrix as a list of elements. You only have to follow
+a few conventions:<br>
+<ul>
+<li>Separate the elements of a row with
+blanks or commas.</li>
+<li>Use a semicolon '<span style="font-weight: bold;">;</span>'&nbsp; to
+indicate the
+end of&nbsp;rows.</li>
+<li>Surround the entire list of elements
+with square brackets '[ ]'.</li>
+</ul>
+To enter Durer&#8217;s matrix, simply type in the Command Window<br>
+<span style="font-weight: bold;">M = [16 3 2
+13; &nbsp;5 10 11 8; &nbsp;9 6 7 12; &nbsp;4 15 14 1]</span><br>
+<br>
+Matlab displays the matrix you just entered.<br>
+<br>
+<span style="font-family: monospace;">M =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">16 3 2 13</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">5 10 11 8</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">9 6 7 12</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">4 15 14 1</span><br>
+<br>
+<br>
+This matches the numbers in the picture. Once you have entered the
+matrix, you can refer to it simply as '<span style="font-weight: bold; font-style: italic;">M</span>'.
+Now that you have <span style="font-weight: bold; font-style: italic;">M</span>
+in the
+workspace, take a look at what makes it so appealing. Is it a magic
+square?<br>
+<br>
+You are probably aware that the special properties of a magic square
+have to do with the <span style="font-weight: bold;">various
+ways of summing its elements</span>. If you take
+the sum along any column or row, or along either of the two diagonals,
+you will always get the same number. Let us verify that using Matlab.
+The first statement to try is <span style="font-weight: bold;">sum(M)</span><br>
+<br>
+Matlab replies with<br>
+<br>
+<span style="font-family: monospace;">ans =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">34 34 34
+34</span><br style="font-family: monospace;">
+<br>
+When you do not specify an output variable, Matlab uses the variable
+<span style="font-weight: bold; font-style: italic;">ans</span>,
+to store the results of a calculation. You have found a row
+vector containing the sums of the columns of <span style="font-style: italic; font-weight: bold;">M</span>,
+and each of the columns
+has the <span style="font-weight: bold;">magic sum</span>,
+34.<br>
+<br>
+How about the row sums? The easiest way to get the row sums is to
+transpose the matrix, compute the column sums of the transpose, and
+then transpose the result. The <span style="font-weight: bold;">transpose
+operation</span> is denoted by an
+apostrophe,&nbsp;<span style="font-weight: bold;">'</span>.
+It flips a matrix about its <span style="font-weight: bold;">main
+diagonal</span> and&nbsp;turns a <span style="font-weight: bold;">row vector</span> into a <span style="font-weight: bold;">column vector</span>.<br>
+<br>
+So, <span style="font-weight: bold;">M'</span>
+produces<br>
+<br>
+<span style="font-family: monospace;">ans =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">16 5 9 4</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">3 10 6 15</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">2 11 7 14</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">13 8 12 1</span><br>
+<br>
+And <span style="font-weight: bold;">sum(M')'</span>
+produces a column vector containing the row sums<br>
+<br>
+<span style="font-family: monospace;">ans =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">34</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">34</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">34</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">34</span><br>
+<br>
+The sum of the elements on the main diagonal is obtained with the sum
+and the diag functions.<br>
+<br>
+<span style="font-weight: bold;">diag(M)</span>
+produces<br>
+<br>
+<span style="font-family: monospace;">ans =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">16</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">10</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">7</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">1</span><br>
+<br>
+and <span style="font-weight: bold;">sum(diag(M))</span>
+produces<br>
+<br>
+<span style="font-family: monospace;">ans =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">34</span><br>
+<br>
+You have verified that the matrix in Durer&#8217;s engraving is indeed a
+<span style="font-weight: bold;">magic square</span>
+and have tried a few Matlab matrix operations.<br>
+<br>
+The element in row <span style="font-style: italic;">i</span>
+and column <span style="font-style: italic;">j</span>
+of <span style="font-style: italic;"><span style="font-weight: bold;">M</span></span><span style="font-weight: bold; font-style: italic;"></span>
+is denoted by <span style="font-weight: bold;">M(i,j)</span>.
+For
+example, <span style="font-weight: bold;">M(3,2)</span>
+is the number in the third row and second column. For
+our magic square, M(3,2) is 6. So, to compute the sum of the elements
+in the third column of <span style="font-weight: bold; font-style: italic;">M</span>,
+type<br>
+<br>
+<span style="font-weight: bold;">M(1,3) +
+M(2,3) + M(3,3) + M(4,3)</span><br>
+<br>
+This produces<br>
+<br>
+<span style="font-family: monospace;">ans =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">34</span><br>
+<br>
+<br>
+It is also possible to refer to the elements of a matrix with a single
+subscript, <span style="font-weight: bold;">M(k)</span>.
+This is the common way of referencing row and column
+vectors. But it can also apply to a fully two-dimensional matrix, in
+which case the array is regarded as one long column vector formed from
+the columns of the original<br>
+matrix. So, for our magic square, M(6) is another way of referring to
+the value 10 stored in M(2,2).<br>
+<br>
+The colon &#8216;<span style="font-weight: bold;">:</span>&#8217;
+is one of the most important <span style="font-weight: bold;">Matlab
+operators</span>. It occurs
+in several different forms. The expression <span style="font-weight: bold;">1:8</span> is a row vector
+containing the integers from 1 to 8<br>
+<br>
+<span style="font-family: monospace;">1 2 3 4
+5 6 7 8</span><br>
+<br>
+To obtain spacing, specify an increment. For example, <span style="font-weight: bold;">100 : -7 : 70</span>
+is<br>
+<br>
+100&nbsp;&nbsp;&nbsp; 93&nbsp;&nbsp;&nbsp;
+86&nbsp;&nbsp;&nbsp; 79&nbsp;&nbsp;&nbsp; 72<br>
+<br>
+and <span style="font-weight: bold;">0 : pi/10 : pi/2</span>
+is<br>
+<br>
+<span style="font-family: monospace;">0&nbsp;&nbsp;&nbsp;
+0.3142&nbsp;&nbsp;&nbsp;
+0.6283&nbsp;&nbsp;&nbsp;
+0.9425&nbsp;&nbsp;&nbsp;
+1.2566&nbsp;&nbsp;&nbsp; 1.5708</span><br>
+<br>
+<span style="font-weight: bold;">Subscript
+expressions</span> involving colons refer to sections of a
+matrix.
+<br>
+<span style="font-weight: bold;">M(1:k , j)</span>
+is the first <span style="font-style: italic;">k</span>
+elements of the <span style="font-style: italic;">j</span>th
+column of <span style="font-style: italic; font-weight: bold;">M</span>.
+So,
+<span style="font-weight: bold;">sum(M(1:4,4))</span>
+computes the sum of rows 1 to 4, along&nbsp;column 4. <br>
+<br>
+But there's even a
+better way. The colon by itself refers to all the elements in a row or
+column of a matrix and
+the keyword <span style="font-weight: bold;">end</span>
+refers to the last row or column. So, <span style="font-weight: bold;">sum(M(:,end))</span>
+computes the sum of the elements in the last column of M.<br>
+<br>
+<span style="font-family: monospace;">ans =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">34</span><br style="font-family: monospace;">
+<br>
+Matlab actually has a built-in function that creates magic squares.
+This function is named '<span style="font-weight: bold;">magic</span>'.
+So, <span style="font-weight: bold;">N = magic(4)</span>
+displays a 4-by-4 matrix<br>
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">N =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">16 2
+&nbsp;3&nbsp; 13</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">5
+&nbsp;11 10 8</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">9
+&nbsp;7 &nbsp;6&nbsp; 12</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">4
+&nbsp;14 15 1</span><br>
+<br>
+This matrix is almost the same as the one in the Durer's picture and
+has
+all the same&nbsp;magic properties; the only difference is that the
+two
+middle columns are exchanged. Noticed?<br>
+<br>
+To make this <span style="font-style: italic; font-weight: bold;">N</span>
+into Durer&#8217;s <span style="font-style: italic; font-weight: bold;">M</span>,
+swap the two middle columns:<br>
+<span style="font-weight: bold;">M = N(: , [1
+3 2 4])</span>. This means, for each of the rows of matrix <span style="font-style: italic; font-weight: bold;">N</span>,
+reorder the
+elements in the order 1, 3, 2, 4. It produces<br>
+<br>
+<span style="font-family: monospace;">M =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">16 3
+&nbsp;2 &nbsp;13</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">5
+&nbsp;10 11 8</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">9
+&nbsp;6 &nbsp;7 &nbsp;12</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">4
+&nbsp;15 14 1</span><br>
+<br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Magic Square' to
+home</a><br>
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-help-2tier.html" onclick="return FIX.track(this);">From
+'Magic
+Square' to 'Matlab Help Menu'</a><br>
+<br><br>Credits:<br><a href="https://commons.wikimedia.org/wiki/File:Sator_Square_at_Opp%C3%A8de.jpg" onclick="return FIX.track(this);"></a><a href="https://commons.wikimedia.org/wiki/File:Albrecht_D%C3%BCrer_-_Melencolia_I_-_Google_Art_Project_%28_AGDdr3EHmNGyA%29.jpg" onclick="return FIX.track(this);">Albrecht Dürer</a>, Public domain, via Wikimedia Commons <br><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/vectors.html" onclick="return FIX.track(this);">Vector
+Basics</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matrices.html" onclick="return FIX.track(this);">Matrix
+Basics</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-gui-2.html" onclick="return FIX.track(this);">Magic Trick with GUI</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="magic-square.html#top">Top</a><br style="font-weight: bold;">
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for magic square page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="vertical-align: top; width: 170px; text-align: right;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:51:11 10-Aug-2021 -->
+</body></html>

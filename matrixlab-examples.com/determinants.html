@@ -1,0 +1,308 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Determinants in Matlab</title>
+
+<meta name="Description" content="The symbol for determinants (which consists of the four numbers a1, b1, a2, b2) arranged in two rows and two columns is called a determinant of second order. The four numbers are called elements of the determ...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/determinants.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Determinants in Matlab" />
+<meta property="og:description" content="The symbol for determinants (which consists of the four numbers a1, b1, a2, b2) arranged in two rows and two columns is called a determinant of second order. The four numbers are called elements of the determ..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/determinants.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/imgs/logo.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<h1 style="text-align: center;"><a name="top"></a>Determinants
+in Matlab</h1>
+<p style="text-align: center;" class="MsoNormal"><span style="" lang="ES-TRAD">The determinant (</span><span style="" lang="ES-TRAD">in linear algebra)</span><span style="" lang="ES-TRAD">
+is a value associated with a square matrix, that is a matrix with as
+many rows as columns. It can be calculated from the elements of the
+matrix by a specific arithmetic expression. The determinant provides
+important information in many types of problems, for example, when the
+matrix represent the coefficients of a system of linear
+equations...&nbsp;</span></p>
+<div style="text-align: center;"><span style="" lang="ES-TRAD"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --></span></div>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><br>
+The
+symbol<o:p></o:p></span></p>
+<p class="MsoNormal" style="text-align: center;"><span style="" lang="ES-TRAD"><span style="position: relative; top: 16pt;"></span><o:p></o:p></span><img style="width: 57px; height: 53px;" alt="determinant symbol" src="http://www.matrixlab-examples.com/image-files/determinant_of_second_order_symbol.gif"></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">which consists
+of the four numbers <i style="">a</i><sub>1</sub>,
+<i style="">b</i><sub>1</sub>,
+<i style="">a</i><sub>2</sub>,
+<i style="">b</i><sub>2</sub>
+arranged in two rows and two columns is called a <span style="font-weight: bold;">determinant of second order</span>
+or&nbsp;<span style="font-weight: bold;">of order two</span>.
+The four numbers are called its elements. By definition,<o:p></o:p></span></p>
+<p style="text-align: center;" class="MsoNormal"><span style="" lang="ES-TRAD"><span style="position: relative; top: 16pt;"></span><o:p></o:p></span><img style="width: 148px; height: 59px;" alt="determinant of second order solved" src="http://www.matrixlab-examples.com/image-files/determinant_of_second_order_symbol_solved.gif"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<table style="text-align: left; width: 515px;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="text-align: right; width: 179px;">Then,
+</td>
+<td style="text-align: left; width: 330px;"><span style="" lang="ES-TRAD">&nbsp;<img style="width: 187px; height: 52px;" alt="example of a determinant" src="http://www.matrixlab-examples.com/image-files/determinants_example_1.gif">
+&nbsp;&nbsp;</span></td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Here, the elements 2 and 3 are in the first
+row, and the
+elements 4 and 1 are in the second row. Elements 2 and 4 are in column
+one, and
+elements 3 and 1 are column two.<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">The
+method of <span style="font-weight: bold;">solution of
+linear equations by determinants</span> is called the <span style="font-weight: bold;">Cramer&#8217;s
+Rule</span>. A system of two linear equations in two unknowns may
+be solved using a
+second order <span style="font-weight: bold;">det</span>.
+Given the system of equations<o:p>&nbsp;</o:p></span></p>
+<div style="text-align: center;"><i style=""><span style="" lang="ES-TRAD">a</span></i><sub><span style="" lang="ES-TRAD">1</span></sub><i style=""><span style="" lang="ES-TRAD">x</span></i><span style="" lang="ES-TRAD"> + <i style="">b</i><sub>1</sub><i style="">y</i> = <i style="">c</i><sub>1</sub></span><br>
+<i style=""><span style="" lang="ES-TRAD">a</span></i><sub><span style="" lang="ES-TRAD">2</span></sub><i style=""><span style="" lang="ES-TRAD">x</span></i><span style="" lang="ES-TRAD"> + <i style="">b</i><sub>2</sub><i style="">y</i> = <i style="">c</i><sub>2</sub></span><br>
+<span style="" lang="ES-TRAD"></span></div>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p>it is
+possible to obtain<o:p></o:p></span></p>
+<div style="text-align: center;"><img style="width: 361px; height: 51px;" alt="solution for x and y" src="http://www.matrixlab-examples.com/image-files/system_equations_solved_for_x_y.gif">
+</div>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p>These
+values for <span style="font-style: italic;">x</span>
+and <span style="font-style: italic;">y</span> may
+be written in terms of second order <span style="font-weight: bold;">dets</span>,
+as
+follows:<o:p></o:p></span></p>
+<p style="text-align: center;" class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;<img style="width: 184px; height: 103px;" alt="x and y solved with determinants" src="http://www.matrixlab-examples.com/image-files/x_and_y_solved_with_determinants.gif"></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><span style="position: relative; top: 34pt;"></span><o:p></o:p><span style="font-weight: bold;">Example:</span><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>
+</o:p>
+<hr style="width: 100%; height: 2px;"><br>
+Solve
+the system of equations: <o:p></o:p></span></p>
+<p style="text-align: center;" class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p>2<i style="">x</i>
++ 3<i style="">y</i>
+= 16<br>
+4<i style="">x</i> + <i style="">y</i>
+= -3<o:p></o:p></span></p>
+<table style="text-align: left; width: 507px;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 248px;"><span style="" lang="ES-TRAD">The
+denominator for both <i style="">x</i> and <i style="">y</i> is</span></td>
+<td style="width: 253px;"><span style="" lang="ES-TRAD"><img style="width: 187px; height: 52px;" alt="example of a determinant" src="http://www.matrixlab-examples.com/image-files/determinants_example_1.gif"></span></td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal">&nbsp;</p>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+Then</td>
+<td style="width: 198px;"><span style="" lang="ES-TRAD"><img style="width: 181px; height: 74px;" alt="solution for x" src="http://www.matrixlab-examples.com/image-files/x_solved.gif"><br>
+</span></td>
+<td style="width: 35px;"><br>
+and</td>
+<td style="width: 235px;"><span style="" lang="ES-TRAD"><img style="width: 179px; height: 67px;" alt="solution for y" src="http://www.matrixlab-examples.com/image-files/y_solved.gif"><br>
+</span></td>
+</tr>
+</tbody>
+</table>
+<hr style="width: 100%; height: 2px;">
+<p class="MsoNormal"><span style="" lang="ES-TRAD">In
+Matlab, a determinant can be calculated with the built-in function
+<span style="font-weight: bold;">'det()'</span>.
+<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p>Using
+the same numbers as in the example above, <o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">if A =
+[2 3; 4 1], then det(A) = -10;<br>
+if B =
+[16 3; -3 1], then <i style="">x</i> =
+det(A)/det(B)
+= -2.5;<br>
+if C =
+[2 16; 4 -3], then <i style="">y</i> =
+det(C)/det(A)
+= 7<o:p><br>
+</o:p><br>
+Naturally,
+you can use the function <span style="font-weight: bold;">det()</span>
+to find determinants of higher order. &nbsp;</span></p>
+<p style="text-align: center;" class="MsoNormal"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --><br>
+<br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="cramers-rule.html">Cramer's Rule</a> &nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/simultaneous-equations.html" onclick="return FIX.track(this);">Simultaneous
+equations</a></p>
+<p style="font-weight: bold; text-align: center;" class="MsoNormal"><a href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'determinants' to home</a></p>
+<p style="font-weight: bold; text-align: center;" class="MsoNormal"><a href="http://www.matrixlab-examples.com/linear-algebra.html" onclick="return FIX.track(this);">From
+'determinants' to 'Linear Algebra'</a></p>
+<div style="text-align: center;"><span style="text-decoration: underline;"><span style="font-weight: bold;"></span></span><span style="text-decoration: underline; font-weight: bold;"></span><a style="font-weight: bold;" href="determinants.html#top">Top</a><br>
+</div>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for determinants page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; text-align: right; vertical-align: top; background-color: rgb(224, 236, 255);"><br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --><br>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:48:43 10-Aug-2021 -->
+</body></html>

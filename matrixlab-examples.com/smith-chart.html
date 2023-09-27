@@ -1,0 +1,533 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Smith Chart using Matlab</title>
+
+<meta name="Description" content="The Smith chart is a graphical tool designed for engineers specializing in RF to solve problems related to transmission lines and matching circuits....">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/smith-chart.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Smith Chart using Matlab" />
+<meta property="og:description" content="The Smith chart is a graphical tool designed for engineers specializing in RF to solve problems related to transmission lines and matching circuits...." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/smith-chart.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/smith-chart_001.gif" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<h1><a name="Smith_Chart_plots_with_Matlab"></a>Smith
+Chart &#8211; plots with Matlab</h1>
+<a style="font-weight: bold;" href="#1_intro">1.-
+Aid for RF problems</a><br>
+<br>
+<a style="font-weight: bold;" href="#2_reflection">2.-
+Calculate Reflection Coefficient, VSWR and Return loss</a><br>
+<br>
+<a style="font-weight: bold;" href="#3_video">3.-
+Video: alternative code to draw the chart</a><br>
+<br>
+<br>
+<h3><a name="1_intro"></a>1.-
+Useful for visualization of radio frequency
+&nbsp;and transmission line problems<o:p>&nbsp;</o:p></h3>
+The <span style="font-weight: bold;">Smith chart</span>
+was
+created by Phillip H. Smith in 1939. It&#8217;s a graphical tool designed for
+electrical engineers specializing in <span style="font-style: italic;">radio frequency</span>
+(RF) to solve problems related to <span style="font-weight: bold;">transmission
+lines</span> and matching circuits.<br>
+&nbsp;<br>
+Use of the Smith chart has grown over the years and it&#8217;s still used
+today, not only as a problem solving tool, but as a graphical display
+to show how RF parameters behave at one or more frequencies.<br>
+&nbsp;
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --><br>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal">&nbsp;<br>
+The Smith chart can be
+used to represent many parameters
+including impedances, admittances, reflection and transmission
+coefficients,
+scattering parameters...<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Normalized scaling allows
+the Smith chart to be used for
+problems involving any characteristic or system impedance which is
+represented
+by the center point of the chart. The most commonly used normalization
+impedance is 50 ohms. Once an answer is obtained through the graphical
+method,
+it is easy to convert between the normalized impedance and the
+corresponding
+unnormalized value by multiplying by the characteristic impedance.
+Reflection
+coefficients can be read directly from the chart.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Use of the Smith chart
+and the meaning of the results
+obtained requires a good understanding of AC circuits and transmission
+line
+theory, both of which are needed by RF engineers.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">In the chart, there are
+horizontal circles that represent
+constant resistances; vertical circles represent constant reactances.
+The
+complex impedance (or admittance )is normalized using a reference,
+which
+usually is the characteristic impedance Z<sub>0</sub>.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The chart is part of
+current CAD tools and modern
+measurement equipments. It&#8217;s a graphic of the reflection coefficient in
+polar
+coordinates.<o:p><br>
+&nbsp;</o:p></p>
+<p class="MsoNormal">Let&#8217;s create a chart with
+Matlab.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: blue;">function</span><span style="color: black;">
+draw_smith_chart<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Draw outer circle</span><br>
+<span style="color: black;">t =
+linspace(0, 2*pi, 100);<br>
+x =
+cos(t);<br>
+y =
+sin(t);<br>
+plot(x,
+y, </span><span style="color: rgb(160, 32, 240);">'linewidth'</span><span style="color: black;">, 3); axis </span><span style="color: rgb(160, 32, 240);">equal</span><span style="color: black;">;<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Place title and remove ticks from axes</span><br>
+<span style="color: black;">title(</span><span style="color: rgb(160, 32, 240);">'
+Smith Chart '</span><span style="color: black;">)<br>
+set(gca,</span><span style="color: rgb(160, 32, 240);">'xticklabel'</span><span style="color: black;">,{[]});<br>
+set(gca,</span><span style="color: rgb(160, 32, 240);">'yticklabel'</span><span style="color: black;">,{[]});<br>
+hold </span><span style="color: rgb(160, 32, 240);">on<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Draw circles along horizontal axis</span><br>
+<span style="color: black;">k = [.25
+.5 .75];</span><br>
+<span style="color: blue;">for</span><span style="color: black;"> i = 1 :
+length(k)<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>x(i,:)
+= k(i) + (1 - k(i)) * cos(t);<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>y(i,:)
+= (1 - k(i)) * sin(t);<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>plot(x(i,:),
+y(i,:), </span><span style="color: rgb(160, 32, 240);">'k'</span><span style="color: black;">)</span><br>
+<span style="color: blue;">end<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen; font-family: monospace;">%
+Draw partial circles along vertical axis</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">kt
+=
+[2.5 pi 3.79 4.22];<br>
+k = [.5
+1 2 4];</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">for</span><span style="color: black; font-family: monospace;"> i = 1 :
+length(kt)<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>t
+= linspace(kt(i), 1.5*pi, 50);<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>a(i,:)
+= 1 + k(i) * cos(t);<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>b(i,:)
+= k(i) + k(i) * sin(t);<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>plot(a(i,:),
+b(i,:),</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'k:'</span><span style="color: black; font-family: monospace;">,
+a(i,:), -b(i,:),</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'k:'</span><span style="color: black; font-family: monospace;"> )</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">end</span><br>
+<span style="color: black;"><span style=""></span></span></p>
+<h3><br>
+<span style="color: black;"><span style=""></span></span></h3>
+<h3><span style="color: black;"><span style=""><a name="2_reflection"></a>2.-
+Calculate the Reflection Coefficient, VSWR and Return Loss
+&nbsp;&nbsp;
+</span></span><span style="font-size: 12pt;"><o:p></o:p></span></h3>
+<p class="MsoNormal">Now, let&#8217;s prepare some
+formulas to calculate typical values
+used in RF theory. To plot a reflection coefficient we need a
+normalized
+impedance with magnitude and angle. It&#8217;s a good idea to deliver the
+angle in
+degrees to make it easier to visualize, and also let&#8217;s calculate the
+Voltage
+Standing Wave Ratio (VSWR) and the return loss.</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: blue;">function</span><span style="color: black;"> [m,
+thd, SWR, rloss] = smith_ch_calc(Z0, Zl)<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Draw appropriate chart</span><br>
+<span style="color: black;">draw_smith_chart<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Normalize given impedance</span><br>
+<span style="color: black;">zl =
+Zl/Z0;<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Calculate reflection, magnitude and angle</span><br>
+<span style="color: black;">g = (zl
+- 1)/(zl + 1);<br>
+m =
+abs(g);<br>
+th = angle(g);<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Plot appropriate point</span><br>
+<span style="color: black;">polar(th,
+m, </span><span style="color: rgb(160, 32, 240);">'r*'</span><span style="color: black;">)<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Change radians to degrees</span><br>
+<span style="color: black;">thd = th
+* 180/pi;<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Calculate VSWR and return loss.<br>
+%
+We can add epsilon to&nbsp;magnitude, to avoid div by 0 or log(0)</span><br>
+<span style="color: black;">SWR = (1
++ m)/(1 - m + eps);<br>
+rloss =
+-20 * log10(m + eps);<span style=""></span></span></p>
+<p class="MsoNormal"><o:p><span style="font-family: monospace;">&nbsp;</span><br>
+</o:p>Now, let&#8217;s try our functions:</p>
+<p class="MsoNormal" style=""><span style="color: black; font-family: monospace;">clear,
+clc, close </span><span style="color: rgb(160, 32, 240); font-family: monospace;">all</span><span style="color: black; font-family: monospace;">, format </span><span style="color: rgb(160, 32, 240); font-family: monospace;">compact</span><br style="font-family: monospace;">
+<span style="color: black;"><span style="font-family: monospace;">[m1, d1,
+VSWR1, Rloss1] = smith_ch_calc(50, 50)</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">[m2, d2,
+VSWR2, Rloss2] = smith_ch_calc(50, 100 + 50j)</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">[m3, d3,
+VSWR3, Rloss3] = smith_ch_calc(50, 30 - j*47)</span><br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="color: black;">and the
+results are:<o:p><br>
+</o:p></span></p>
+<div style="text-align: center;"><o:p>&nbsp;<img style="width: 316px; height: 266px;" alt="Smith Chart with Matlab" src="http://www.matrixlab-examples.com/image-files/smith-chart_001.gif"></o:p></div>
+<p style="font-family: monospace;" class="MsoNormal">m1 =<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>0<br>
+d1 =<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>0<br>
+VSWR1 =<span style="">&nbsp;&nbsp;&nbsp; </span>1.0000<br>
+Rloss1 =<span style="">&nbsp; </span>313.0712<o:p>&nbsp;</o:p></p>
+<p style="font-family: monospace;" class="MsoNormal">m2 =<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>0.4472<br>
+d2 =<span style="">&nbsp;&nbsp;&nbsp; </span>26.5651<br>
+VSWR2 =<span style="">&nbsp; </span>2.6180<br>
+Rloss2 = 6.9897<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="font-family: monospace;">m3
+=&nbsp;&nbsp;&nbsp;&nbsp;
+0.5505</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">d3
+=&nbsp;&nbsp;
+-82.6171</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">VSWR3
+=&nbsp;
+3.4494</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">Rloss3 =
+5.1848</span><o:p>&nbsp;</o:p></p>
+<h3><br>
+<span style="font-weight: bold;"><a name="3_video"></a>3.- Video: alternative code to draw
+the chart</span></h3>
+<span style="font-weight: bold;"></span>This
+video shows an alternative code to draw the Smith Chart. You can pause
+the video to take appropriate notes...<br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td><iframe src="//www.youtube-nocookie.com/embed/Y9RFAal6-zw?rel=0" allowfullscreen="" frameborder="0" height="360" width="480"></iframe></td>
+</tr>
+</tbody>
+</table>
+<h3></h3>
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Smith Chart' to home</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-plot-2tier.html" onclick="return FIX.track(this);">From
+'Smith
+Chart' to '2D Graphics Menu'</a><br style="font-weight: bold;">
+&nbsp; <br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="#Smith_Chart_plots_with_Matlab">Top</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-gui.html" onclick="return FIX.track(this);">GUIs</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/sitemap.html" onclick="return FIX.track(this);">Search Site</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-programs.html" onclick="return FIX.track(this);">Draw
+Circles</a><br style="font-weight: bold;">
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for smith chart page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; text-align: right; vertical-align: top; background-color: rgb(224, 236, 255);"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div style="text-align: center;"><!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:42:51 10-Aug-2021 -->
+</body></html>

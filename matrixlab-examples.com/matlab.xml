@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <atom:link href="http://www.matrixlab-examples.com/matlab.xml" rel="self" type="application/rss+xml" />
+        <title>Matlab examples - the blog...</title>
+        <link>http://www.matrixlab-examples.com/matlab-blog.html</link>
+
+        <description>In this blog I propose some interesting Matlab exercises, examples and tutorials to cover powerful programming instructions to work with matrices, vectors and arrays.</description>
+        <language>en-us</language>
+        <category>matlab</category>
+        <pubDate>Fri, 13 Aug 2021 16:36:19 -0400</pubDate>
+        <lastBuildDate>Fri, 13 Aug 2021 16:36:19 -0400</lastBuildDate>
+        <copyright>matrixlab-examples.com</copyright>
+    <item>
+            <title>Create Matlab GUI - video</title>
+            <link>https://www.matrixlab-examples.com/matlab-gui-3.html</link><guid isPermaLink="false">3863f30778f12619945952db2545ae4e</guid><description>Video demonstration of how a Matlab GUI is created, drag-and-drop capabilities, and callback functions introduction...</description>
+            <pubDate>Wed, 20 Mar 2019 00:03:13 -0400</pubDate>
+        </item>
+    <item>
+            <title>Power Factor Correction Capacitors</title>
+            <link>https://www.matrixlab-examples.com/power-factor-correction-capacitors.html</link><guid isPermaLink="false">cb71cd7be8e907adde8520ecf2507dc0</guid><description>Example of the formulas to calculate power factor correction capacitors. These diagrams show the relationship of...</description>
+            <pubDate>Tue, 19 Mar 2019 23:22:37 -0400</pubDate>
+        </item>
+    <item>
+            <title>Card Trick with Matlab GUI</title>
+            <link>https://www.matrixlab-examples.com/card-trick.html</link><guid isPermaLink="false">72df4bb6a8e7715a03ff774c7df8a89d</guid><description>In this article we&amp;#8217;re going to develop another computerized card trick using callback-functions in Matlab GUIs. I strongly suggest you read the first and second articles in this series, to know how to start and how to use the very important three instructions &amp;#8216;get&amp;#8217;, &amp;#8216;set&amp;#8217; and &amp;#8216;guidata&amp;#8217;...</description>
+            <pubDate>Tue, 19 Mar 2019 23:21:56 -0400</pubDate>
+        </item>
+    <item>
+            <title>WinSpice Simulator and Matlab</title>
+            <link>https://www.matrixlab-examples.com/winspice.html</link><guid isPermaLink="false">57bd1c5f5be695b00c2bacdf9b07c6fc</guid><description>WinSpice Simulator driven from Matlab. In this article, a Matlab routine to drive the WinSPICE simulator is presented. This method can be easily adapted to simulate any circuit entered in a fully parameterized manner. The performance of the Matlab driver is illustrated by simulating a simple amplifier...</description>
+            <pubDate>Tue, 19 Mar 2019 23:21:41 -0400</pubDate>
+        </item>
+    <item>
+            <title>Line detection - working images with Matlab...</title>
+            <link>https://www.matrixlab-examples.com/line-detection.html</link><guid isPermaLink="false">08e955cc57d65c6eac9a2c8f382149e9</guid><description>This experiment explores line detection (image analysis) with Matlab...</description>
+            <pubDate>Tue, 19 Mar 2019 23:03:40 -0400</pubDate>
+        </item>
+    <item>
+            <title>Fourier Analysis - introduction from a practical point of view</title>
+            <link>https://www.matrixlab-examples.com/fourier-analysis.html</link><guid isPermaLink="false">03b975ae4646abe0f0d1f6c809c48cb1</guid><description>Fourier analysis has many applications in science, physics, digital signal processing, imaging, numerical analysis, acoustics... Let's use math software to...</description>
+            <pubDate>Tue, 19 Mar 2019 23:03:40 -0400</pubDate>
+        </item>
+    <item>
+            <title>3D Plot Part 2 - working with Matlab</title>
+            <link>https://www.matrixlab-examples.com/3D-plot-part2.html</link><guid isPermaLink="false">c300616bec5e6be0e088eec111f1daf3</guid><description>The 3D plot functions intended for plotting meshes and surfaces 'mesh' and 'surf', and their several variants 'meshc', 'meshz', 'surfc', and 'surfl', take multiple optional input arguments, the most simple form being 'mesh(z)' or 'surf(z)', where z represents a matrix. See these examples...</description>
+            <pubDate>Sun, 17 Feb 2019 23:23:39 -0500</pubDate>
+        </item>
+    <item>
+            <title>Polynomials in Matlab</title>
+            <link>https://www.matrixlab-examples.com/polynomials.html</link><guid isPermaLink="false">c820e03caf078453906362be1faa9463</guid><description>Polynomials are used so commonly in algebra, geometry and math in general that Matlab has special commands to deal with them. The polynomial 2x4 + 3x3 &amp;#8722; 10x2 &amp;#8722; 11x + 22 is represented in Matlab by the array [2, 3, -10, -11, 22] (coefficients...</description>
+            <pubDate>Wed, 13 Feb 2019 01:08:27 -0500</pubDate>
+        </item>
+    <item>
+            <title>Polynomial Regression in Matlab - easy least squares fitting</title>
+            <link>https://www.matrixlab-examples.com/polynomial-regression.html</link><guid isPermaLink="false">de480ebe3d8270ab837329297cc03b0f</guid><description>We'll demonstrate how to work out polynomial regression in Matlab (also known as polynomial least squares fittings)...</description>
+            <pubDate>Wed, 13 Feb 2019 01:04:12 -0500</pubDate>
+        </item>
+    <item>
+            <title>Periodic Function - some codes without special toolboxes in Matlab</title>
+            <link>https://www.matrixlab-examples.com/periodic-function.html</link><guid isPermaLink="false">6141795452e8ddd0798370a26f77d9f8</guid><description>A periodic function repeats its values in regular periods or intervals. We explore codes for square and sawtooth waves without any special toolbox needed...</description>
+            <pubDate>Wed, 13 Feb 2019 01:03:45 -0500</pubDate>
+        </item>
+    <item>
+            <title>Calculating BMI - another GUI in Matlab</title>
+            <link>https://www.matrixlab-examples.com/calculating-bmi.html</link><guid isPermaLink="false">01dfaa49f6a89aa614792f4c66556ef7</guid><description>In this project, we are going to develop a GUI in Matlab to calculate the BMI (body mass index). We are going to introduce the radio button...</description>
+            <pubDate>Wed, 13 Feb 2019 01:03:24 -0500</pubDate>
+        </item>
+    <item>
+            <title>Numerical Gradient - code in Matlab</title>
+            <link>https://www.matrixlab-examples.com/gradient.html</link><guid isPermaLink="false">f9ebedb29e14b779850b0e7a6d83dd38</guid><description>We are going to include the concepts in our Derivative function created before, to develop a Matlab function to calculate the gradient of a multidimensional scalar function. The function is going to have the following functionality...</description>
+            <pubDate>Sat, 9 Feb 2019 00:55:04 -0500</pubDate>
+        </item>
+    <item>
+            <title>Polygon Area - calculate with Matlab</title>
+            <link>https://www.matrixlab-examples.com/polygon-area.html</link><guid isPermaLink="false">8a708c2268d0f84312cbea034ea2d2d9</guid><description>This program calculates a polygon area, using Matlab. You must supply the x and y coordinates of all vertices. Coordinates must be entered in order of successive vertices...</description>
+            <pubDate>Sat, 9 Feb 2019 00:37:31 -0500</pubDate>
+        </item>
+    <item>
+            <title>T statistic - Student's t-distribution Test in Matlab</title>
+            <link>https://www.matrixlab-examples.com/t-statistic.html</link><guid isPermaLink="false">97e18cd1e0c70e14b7354d6bfd21f306</guid><description>This algorithm performs the t statistic and degrees of freedom for Student&amp;#8217;s distribution, in Matlab code. The calculations can be based on any one of these three hypotheses...</description>
+            <pubDate>Sat, 9 Feb 2019 00:35:39 -0500</pubDate>
+        </item>
+    <item>
+            <title>Permutations and Combinations - calculate its number in Matlab</title>
+            <link>https://www.matrixlab-examples.com/permutations-and-combinations.html</link><guid isPermaLink="false">c61d51bad288e23421c9f3ae5b95c820</guid><description>This algorithm (code in Matlab) calculates the number of permutations and combinations of N objects taken D at a time. The full Matlab code is...</description>
+            <pubDate>Sat, 9 Feb 2019 00:33:47 -0500</pubDate>
+        </item>
+    <item>
+            <title>Scilab 3D Plot</title>
+            <link>https://www.matrixlab-examples.com/scilab-3d-plot.html</link><guid isPermaLink="false">7429cda55d89a54205380e08224ed642</guid><description>Create your first Scilab 3D Plot with these functions. See about plot3d, meshgrid and others...</description>
+            <pubDate>Sat, 9 Feb 2019 00:31:53 -0500</pubDate>
+        </item>
+    <item>
+            <title>Calculate Square Feet - online spreadsheet</title>
+            <link>https://www.matrixlab-examples.com/calculate-square-feet.html</link><guid isPermaLink="false">13c340815b3793ee7117e3fa75063d78</guid><description>How to calculate square feet - see this online converter for feet and inches...</description>
+            <pubDate>Fri, 8 Feb 2019 22:27:29 -0500</pubDate>
+        </item>
+    <item>
+            <title>Callback Function - GUIs in Matlab</title>
+            <link>https://www.matrixlab-examples.com/callback-function.html</link><guid isPermaLink="false">77b0c818a5a03fdef4cdd7de71a16204</guid><description>In this article we&amp;#8217;re going to build-up a simple adder. Our adder (by means of relevant callback function s) is going to have two &amp;#8216;edit text&amp;#8217; components, two &amp;#8216;static text&amp;#8217; components, and one &amp;#8216;push button&amp;#8217; element.</description>
+            <pubDate>Fri, 8 Feb 2019 22:26:17 -0500</pubDate>
+        </item>
+    <item>
+            <title>Matlab Plot - using stems (vertical lines) for discrete
+functions</title>
+            <link>https://www.matrixlab-examples.com/matlab-plot-3.html</link><guid isPermaLink="false">c381631ddfa6379a413df7601f575127</guid><description>In this example, we study the Matlab plot 'stem' instruction to illustrate functions. It draws vertical lines (with little circles on the tip) proportional to the value of the function at that horizontal value...</description>
+            <pubDate>Fri, 8 Feb 2019 21:53:59 -0500</pubDate>
+        </item>
+    <item>
+            <title>Smith Chart using Matlab</title>
+            <link>https://www.matrixlab-examples.com/smith-chart.html</link><guid isPermaLink="false">fcb0b66b7b05486e786cc0a55481e5cb</guid><description>The Smith chart is a graphical tool designed for engineers specializing in RF to solve problems related to transmission lines and matching circuits....</description>
+            <pubDate>Fri, 8 Feb 2019 21:51:35 -0500</pubDate>
+        </item>
+    <item>
+            <title>Recursion - a conceptual example in Matlab</title>
+            <link>https://www.matrixlab-examples.com/recursion.html</link><guid isPermaLink="false">ced318b1ae5e04eb3060958a521174ea</guid><description>Recursion is a kind of tricky and smart construction which allows a function to call itself. The Matlab programming language supports it...</description>
+            <pubDate>Fri, 8 Feb 2019 21:48:40 -0500</pubDate>
+        </item>
+    <item>
+            <title>Nodal Analysis - learn about KCL and solve it easily
+with Matlab</title>
+            <link>https://www.matrixlab-examples.com/nodal-analysis.html</link><guid isPermaLink="false">6b4870f17cb79a3f43d7f20e076abb64</guid><description>How a nodal analysis can let you find voltages in an electrical circuit. Use this math software to work out the arithmetic operations...</description>
+            <pubDate>Fri, 8 Feb 2019 21:47:33 -0500</pubDate>
+        </item>
+    <item>
+            <title>Exponential Regression with Matlab</title>
+            <link>https://www.matrixlab-examples.com/exponential-regression.html</link><guid isPermaLink="false">1b082a181a3c25d9df4935157e8441ae</guid><description>We&amp;#8217;ll work with exponential regression in a curve fitting in Matlab. The following three methods find the coefficients of an equation for an exp. curve...</description>
+            <pubDate>Fri, 8 Feb 2019 21:46:15 -0500</pubDate>
+        </item>
+    <item>
+            <title>Curve Fitting in Scilab</title>
+            <link>https://www.matrixlab-examples.com/curve-fitting-scilab.html</link><guid isPermaLink="false">460a282cb4b6a37dbe6e4c31d71da750</guid><description>We show how curve fitting is done in Scilab. We show the polyfit and polyval functions equivalent to Matlab's...</description>
+            <pubDate>Fri, 8 Feb 2019 21:44:46 -0500</pubDate>
+        </item>
+    <item>
+            <title>Scilab Commands and Types</title>
+            <link>https://www.matrixlab-examples.com/scilab-commands.html</link><guid isPermaLink="false">9b3b38480ec7da9271eb62b81a07f7b4</guid><description>Basic Scilab commands and data types are introduced with basic examples, see these descriptions...</description>
+            <pubDate>Fri, 8 Feb 2019 19:31:11 -0500</pubDate>
+        </item>
+    <item>
+            <title>Half-life Calculator - Exponential Decay</title>
+            <link>https://www.matrixlab-examples.com/half-life-calculator.html</link><guid isPermaLink="false">abed847878e19e28165d2dfe612048e9</guid><description>This Half-life calculator is used to know the period of time it takes for a substance undergoing decay to decrease by half...</description>
+            <pubDate>Fri, 8 Feb 2019 19:28:08 -0500</pubDate>
+        </item>
+    <item>
+            <title>Horizontal Lines - plotting in Matlab</title>
+            <link>https://www.matrixlab-examples.com/horizontal-lines.html</link><guid isPermaLink="false">1617cd705931c60651b2ce8570f1afc8</guid><description>We show you how to draw horizontal lines (and vertical lines) in Matlab, and add them to any given plot...</description>
+            <pubDate>Fri, 8 Feb 2019 19:23:38 -0500</pubDate>
+        </item>
+    <item>
+            <title>Calculate Simple Interest and compound one... code in
+Matlab</title>
+            <link>https://www.matrixlab-examples.com/calculate-simple-interest.html</link><guid isPermaLink="false">33df66f3d045654ccc3538e0bde1c6b7</guid><description>How to calculate simple interest and the compounded one with a numerical software in this article. We have to start with some definitions, though...</description>
+            <pubDate>Fri, 8 Feb 2019 19:13:15 -0500</pubDate>
+        </item>
+    <item>
+            <title>Curve fit for experimental data in Scilab</title>
+            <link>https://www.matrixlab-examples.com/curve-fit.html</link><guid isPermaLink="false">3e505b12c6e73ba088d46b827313289a</guid><description>In this article we're curve fitting experimental data using the function datafit in Scilab...</description>
+            <pubDate>Fri, 8 Feb 2019 19:06:25 -0500</pubDate>
+        </item>
+    <item>
+            <title>Binary to decimal numbers - Four ways to convert them in
+Matlab</title>
+            <link>https://www.matrixlab-examples.com/binary-to-decimal.html</link><guid isPermaLink="false">1aee026bbd7e9ac218c5004afc3f6278</guid><description>We present four variations of a binary to decimal conversion in Matlab; that is, we're going to convert binary numbers (numbers with only symbols '0' and '1') to decimal numbers (numbers with 10 different symbols, from '0' to '9')...</description>
+            <pubDate>Fri, 8 Feb 2019 19:02:37 -0500</pubDate>
+        </item>
+    <item>
+            <title>Matlab GUI - First steps...</title>
+            <link>https://www.matrixlab-examples.com/matlab-gui.html</link><guid isPermaLink="false">c3ac781e966c5edd42da75fe16e864dc</guid><description>We are going to develop a simple Matlab GUI. We&amp;#8217;ll use the Matlab GUIDE (Graphical User Interface Development Environment) which is pretty handy... This article is a super-fast introduction, but very convenient because with some ingenuity you can learn it in 10 minutes... or so...</description>
+            <pubDate>Fri, 8 Feb 2019 19:00:52 -0500</pubDate>
+        </item>
+    <item>
+            <title>Polar plots in Matlab - Functions: Compass, Polar and
+Rose</title>
+            <link>https://www.matrixlab-examples.com/polar-plots.html</link><guid isPermaLink="false">3558e4ea4a9b521aed5c76de6a316704</guid><description>Polar plots use magnitudes and angles. In this article we&amp;#8217;ll show the Matlab built-in commands 'compass', 'polar' and 'rose'...</description>
+            <pubDate>Fri, 8 Feb 2019 18:56:50 -0500</pubDate>
+        </item>
+    <item>
+            <title>Binary to hexadecimal numbers - algorithm in Matlab</title>
+            <link>https://www.matrixlab-examples.com/binary-to-hexadecimal.html</link><guid isPermaLink="false">db46112b6daa273a5692aa98f171c9e1</guid><description>To convert from binary to hexadecimal numbers, we first need to know what a hexadecimal number is. A major numbering method in digital systems is the hexadecimal system...</description>
+            <pubDate>Fri, 8 Feb 2019 18:55:21 -0500</pubDate>
+        </item>
+    <item>
+            <title>Scilab Examples</title>
+            <link>https://www.matrixlab-examples.com/scilab-examples.html</link><guid isPermaLink="false">f28cd75e5f2acd82de618f130e10617a</guid><description>These Scilab examples give a practical approach to 2D drawings with this software...</description>
+            <pubDate>Fri, 8 Feb 2019 18:53:53 -0500</pubDate>
+        </item>
+    <item>
+            <title>Matrix Multiplication - step-by-step</title>
+            <link>https://www.matrixlab-examples.com/matrix-multiplication.html</link><guid isPermaLink="false">ecc40061d49926e04b5112408a1ff5d1</guid><description>In this example, we show a code in Matlab that performs a matrix multiplication step-by-step. The algorithm displays all the elements being considered for the multiplication and shows how the resulting matrix is being formed in each step...</description>
+            <pubDate>Fri, 8 Feb 2019 18:52:36 -0500</pubDate>
+        </item>
+    <item>
+            <title>Piecewise Function - work them out with Matlab</title>
+            <link>https://www.matrixlab-examples.com/piecewise-function.html</link><guid isPermaLink="false">1e10ffb792d3f660284399a26ae1687e</guid><description>A piecewise function is a function whose definition changes depending on the value of the independent variable...</description>
+            <pubDate>Fri, 8 Feb 2019 18:51:07 -0500</pubDate>
+        </item>
+    <item>
+            <title>3D Polygon - draw a box with Matlab</title>
+            <link>https://www.matrixlab-examples.com/3d-polygon.html</link><guid isPermaLink="false">d964a8d6435bc08819da981ea354c93d</guid><description>Draw a 3D polygon with Matlab, specifically a 6-faces box using the built-in function fill3 ...</description>
+            <pubDate>Fri, 8 Feb 2019 18:49:50 -0500</pubDate>
+        </item>
+    <item>
+            <title>Matrix Inversion in Matlab - Gauss-Jordan method</title>
+            <link>https://www.matrixlab-examples.com/matrix-inversion.html</link><guid isPermaLink="false">8c8e23cb300919dcf59d7dc568af139a</guid><description>This program performs the matrix inversion of a square matrix step-by-step. The inversion is performed by a modified Gauss-Jordan elimination method. We start with an arbitrary square matrix and a same-size identity matrix ...</description>
+            <pubDate>Tue, 5 Feb 2019 23:00:59 -0500</pubDate>
+        </item>
+    <item>
+            <title>Factorials - ways to code them without special functions</title>
+            <link>https://www.matrixlab-examples.com/factorials.html</link><guid isPermaLink="false">908b0896a3de100c406ed5f1af3aa062</guid><description>Factorials of positive integers are the product of all positive integers less than or equal to n. Operations are denoted by n!...</description>
+            <pubDate>Tue, 5 Feb 2019 22:58:38 -0500</pubDate>
+        </item>
+    <item>
+            <title>3D graphs - plots, shapes and volumes in Matlab</title>
+            <link>https://www.matrixlab-examples.com/3d-graphs.html</link><guid isPermaLink="false">bf5d4d164a920257336ff040f1078db2</guid><description>Three-dimensional plots ( or 3D graphs ) can be created by Matlab. It provides lots of facilities for visualization of 3D information or data...</description>
+            <pubDate>Tue, 5 Feb 2019 22:30:05 -0500</pubDate>
+        </item>
+    <item>
+            <title>Armstrong Numbers - a code in Matlab</title>
+            <link>https://www.matrixlab-examples.com/armstrong-numbers.html</link><guid isPermaLink="false">96e03795a9a5c80d8c74f444ed7d1d08</guid><description>Armstrong numbers of three digits are integers such that the sum of the cubes of its digits equals the number itself. For example, 153 is an Armstrong number since 1^3 + 5^3 + 3^3 = 153...</description>
+            <pubDate>Tue, 5 Feb 2019 22:27:27 -0500</pubDate>
+        </item>
+    <item>
+            <title>Bisection Method in Matlab</title>
+            <link>https://www.matrixlab-examples.com/bisection-method.html</link><guid isPermaLink="false">d8f91017260e578c7f940bb380c9808d</guid><description>A Bisection Method is proposed to find roots on continuous functions in a given interval...</description>
+            <pubDate>Tue, 5 Feb 2019 22:26:16 -0500</pubDate>
+        </item>
+    <item>
+            <title>Pascal's triangle - a code with for-loops in Matlab</title>
+            <link>https://www.matrixlab-examples.com/pascals-triangle.html</link><guid isPermaLink="false">a53e7b4da35d1d04c1fd1dc79be480ae</guid><description>Let's calculate the elements of this Pascals triangle by coding simple Matlab iterations. The idea is to practice our for-loops and use our logic...</description>
+            <pubDate>Tue, 5 Feb 2019 20:08:44 -0500</pubDate>
+        </item>
+    <item>
+            <title>Quadratic Equations - solve them with this simple code</title>
+            <link>https://www.matrixlab-examples.com/quadratic-equations.html</link><guid isPermaLink="false">7e0a220db02bc63ec8fcfb09e84bd411</guid><description>We're creating now a Matlab program that calculates the quadratic roots (of quadratic equations ). The equation must be in the following form: ax2 + bx + c = 0, where a, b, and c are real coefficients...</description>
+            <pubDate>Tue, 5 Feb 2019 20:07:37 -0500</pubDate>
+        </item>
+    <item>
+            <title>Interpolation - easy code with Matlab</title>
+            <link>https://www.matrixlab-examples.com/interpolation.html</link><guid isPermaLink="false">72a571d6ba6e9cfda3cad1f59068d28f</guid><description>This code calculates the y-coordinates of points on a line given their x-coordinates ( interpolation ). It is necessary to know coordinates of two points on the same line. The point is interpolated using the following formula...</description>
+            <pubDate>Tue, 5 Feb 2019 20:05:37 -0500</pubDate>
+        </item>
+    <item>
+            <title>Taylor Expansion - code series with Matlab</title>
+            <link>https://www.matrixlab-examples.com/taylor-expansion.html</link><guid isPermaLink="false">4fb587a253f98fd8fb88846da95e4930</guid><description>A Taylor expansion (series) is a more generic form of the Maclaurin series, and it can be centered at any x-value. In Matlab, we're....</description>
+            <pubDate>Tue, 5 Feb 2019 19:59:48 -0500</pubDate>
+        </item>
+    <item>
+            <title>ASCII Chart in Matlab</title>
+            <link>https://www.matrixlab-examples.com/ascii-chart.html</link><guid isPermaLink="false">11dcd1ef6b7d528b0ed7b414271154cc</guid><description>We&amp;#8217;re going to develop an ascii chart to understand instructions char and double in Matlab; second, we&amp;#8217;ll work with a simple ascii conversion technique...and rot13 method</description>
+            <pubDate>Tue, 5 Feb 2019 19:56:39 -0500</pubDate>
+        </item>
+    <item>
+            <title>Impulse function - Dirac delta with Matlab</title>
+            <link>https://www.matrixlab-examples.com/impulse-function.html</link><guid isPermaLink="false">065ff77cc861eacd3bb2fca15426842a</guid><description>How to plot the impulse function with Matlab. Some examples of Dirac delta or unit function...</description>
+            <pubDate>Tue, 5 Feb 2019 19:55:12 -0500</pubDate>
+        </item>
+    <item>
+            <title>Step function - unit step with Matlab</title>
+            <link>https://www.matrixlab-examples.com/step-function.html</link><guid isPermaLink="false">d514b3f11b0c51c0b52ac0f85bbc70de</guid><description>How to plot the unit step function - Heaviside - with Matlab. Let's see some examples of discrete operations...</description>
+            <pubDate>Tue, 5 Feb 2019 19:54:04 -0500</pubDate>
+        </item>        
+    </channel>
+</rss>

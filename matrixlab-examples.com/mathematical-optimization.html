@@ -1,0 +1,525 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Mathematical Optimization with numerical methods
+(Matlab-coded)</title>
+
+<meta name="Description" content="Let's explore mathematical optimization with Matlab functions 'fminbnd' and 'fminsearch' to achieve minimization of functions...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/mathematical-optimization.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Mathematical Optimization with numerical methods
+(Matlab-coded)" />
+<meta property="og:description" content="Let's explore mathematical optimization with Matlab functions 'fminbnd' and 'fminsearch' to achieve minimization of functions..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/mathematical-optimization.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/mathematical_optimization_001.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/mathematical_optimization_002.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/mathematical_optimization_003.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/mathematical_optimization_004.gif" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/imgs/logo.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<h1><a name="Mathematical_Optimization"></a>Mathematical
+Optimization</h1>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --></td>
+<td style="vertical-align: middle;">Matlab
+includes at least two standard functions intended for numerical
+or <span style="font-weight: bold;">mathematical
+optimization</span>. These instructions are &#8216;<span style="font-weight: bold;">fminbnd</span>&#8217; (for one
+single variable) and &#8216;<span style="font-weight: bold;">fminsearch</span>&#8217;
+(for one or more variables).<br>
+<br>
+Built-in function &#8216;<span style="font-weight: bold;">fminbnd</span>&#8217;
+tries to find a minimum of a function of one variable within a fixed
+interval. <br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+Built-in function &#8216;<span style="font-weight: bold;">fminsearch</span>&#8217;
+finds the minimum of a scalar function of several variables, starting
+at an initial estimate. This can be also considered as unconstrained
+nonlinear optimization. Both functions obtain a <span style="font-weight: bold;">local minimum</span>, not a
+global one.<br>
+<br>
+Since we can explore and express a function in terms of a predefined
+error, minimizing this error function equals optimizing the function.<br>
+<br>
+Let&#8217;s work with this expression:<br>
+<br>
+<div style="text-align: center;"><img style="width: 92px; height: 23px;" alt="expression to work with mathematical optimization" src="http://www.matrixlab-examples.com/image-files/mathematical_optimization_005.gif"><br>
+</div>
+<p class="MsoNormal" style="">It can be
+defined in this way:<span style="color: blue;"><o:p>&nbsp;</o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="color: blue;">function</span><span style="color: black;"> y =
+xcos2(x)<br>
+y =
+x*cos(2*x);</span><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="">and it
+can be easily plotted like this:<span style="color: black;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">ezplot(</span><span style="color: rgb(160, 32, 240);">'x*cos(2*x)'</span><span style="color: black;">)<br>
+axis([-6
+6 -6 5])<br>
+grid </span><span style="color: rgb(160, 32, 240);">on</span></p>
+<p class="MsoNormal" style="text-align: center;"><span style="color: rgb(160, 32, 240);"><img style="width: 369px; height: 323px;" alt="plot of function for mathematical optimization" src="http://www.matrixlab-examples.com/image-files/mathematical_optimization_001.gif"></span></p>
+<p class="MsoNormal" style=""><o:p></o:p>We
+can implement a minimization method in the range [-5, 0],
+like this (the fminbnd algorithm is based on <span style="font-weight: bold;">golden section</span>
+search and
+<span style="font-weight: bold;">parabolic
+interpolation</span>):<span style="color: black;"><o:p>&nbsp;</o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="color: black;">options
+= optimset(</span><span style="color: rgb(160, 32, 240);">'Display'</span><span style="color: black;">,</span><span style="color: rgb(160, 32, 240);">'iter'</span><span style="color: black;">,</span><span style="color: rgb(160, 32, 240);">'TolX'</span><span style="color: black;">,0.001);<br>
+[xc,
+FunVal, EF, output] = fminbnd(&#8216;xcos2&#8217;, -5, 0, options)</span><br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Matlab displays the
+following answer. We get the number of
+times that the function was evaluated, the point of evaluation and the
+function
+value at each iterate.<o:p></o:p></p>
+<p style="font-family: monospace;" class="MsoNormal"><a name="OLE_LINK1">Func-count<span style="">&nbsp;&nbsp;&nbsp;&nbsp; </span>x<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>f(x)<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Procedure</a><br>
+<span style=""><span style="">&nbsp;&nbsp;&nbsp;
+</span>1<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-3.09017<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-3.07384<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>initial<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>2<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-1.90983<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>1.48735<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>golden<br>
+<span style="">&nbsp;&nbsp; </span><span style="">&nbsp;</span>3<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-3.81966<span style="">&nbsp;&nbsp;&nbsp;
+</span>-0.813651<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>golden<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>4<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-3.02998<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-2.95481<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>parabolic<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>5<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-3.21391<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-3.18035<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>parabolic<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>6<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-3.22291<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-3.18038<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>parabolic<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>7<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-3.21865<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-3.1805<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>parabolic<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>8<span style="">&nbsp; </span><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>-3.21832<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>-3.1805<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>parabolic<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>9<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-3.21899<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-3.1805<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>parabolic<br>
+<span style="">&nbsp;</span></span></p>
+<span style="font-family: monospace;"></span>
+<p style="font-family: monospace;" class="MsoNormal">Optimization terminated:<br>
+<span style=""></span>the current x
+satisfies the termination criteria using OPTIONS.TolX of 1.000000e-003<br>
+<o:p>&nbsp;</o:p></p>
+<p style="font-family: monospace;" class="MsoNormal">xc =<span style="">&nbsp;</span>-3.2187<br>
+FunVal =<span style="">&nbsp;</span>-3.1805<br>
+EF =<span style="">&nbsp;</span>1<br>
+output =<span style="">&nbsp;<br>
+&nbsp;&nbsp; </span>&nbsp;iterations: 8<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>funcCount: 9<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>algorithm:
+'golden section search, parabolic interpolation'<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>message: [1x112
+char]</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
+The value xc = -3.2187 is the best value found after our mathematical
+optimization. If we change the &#8216;<span style="font-weight: bold;">TolX</span>&#8217;
+parameter of the options included in
+the optimization function (fminbnd), we get a different amount of
+function
+evaluations
+and, naturally, a slightly different minimum value. We must be aware
+that
+changes in tolerances naturally affect our results.</p>
+<p style="font-family: monospace;" class="MsoNormal"><o:p></o:p><br>
+<span style="color: black;">options
+= optimset(</span><span style="color: rgb(160, 32, 240);">'Display'</span><span style="color: black;">,</span><span style="color: rgb(160, 32, 240);">'iter'</span><span style="color: black;">,</span><span style="color: rgb(160, 32, 240);">'TolX'</span><span style="color: black;">,0.1);</span><br>
+<o:p>&nbsp;</o:p></p>
+<p style="font-family: monospace;" class="MsoNormal">Func-count<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>x<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>f(x)<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Procedure<br>
+<span style="">&nbsp;</span><span style="">&nbsp;&nbsp; </span>1<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-3.09017<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-3.07384<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>initial<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>2<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-1.90983<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>1.48735<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>golden<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>3<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-3.81966<span style="">&nbsp;&nbsp;&nbsp;
+</span>-0.813651<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>golden<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>4<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-3.02998<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-2.95481<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>parabolic<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>5<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-3.21391<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-3.18035<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>parabolic<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>6<span style="">&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="">&nbsp;&nbsp;</span>-3.24725<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-3.17502<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>parabolic<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>7<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-3.18058<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-3.17092<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>parabolic<br>
+<span style="">&nbsp;</span></p>
+<p style="font-family: monospace;" class="MsoNormal">Optimization terminated:</p>
+<p class="MsoNormal"><span style="font-family: monospace;">the current x
+satisfies the termination criteria using OPTIONS.TolX of 1.000000e-001</span><br>
+<o:p></o:p></p>
+<p style="font-family: monospace;" class="MsoNormal">xc =&nbsp;<span style=""></span>-3.2139<br>
+FunVal =&nbsp;<span style=""></span>-3.1804<br>
+EF =&nbsp;<span style=""></span>1<br>
+output =<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>iterations:
+6<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>funcCount: 7<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>algorithm:
+'golden section search, parabolic interpolation'<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>message: [1x112
+char]<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><o:p></o:p>If
+we now change the range of exploration to [0, 6], we find
+another minimum:<br>
+<o:p></o:p></p>
+<p style="font-family: monospace;" class="MsoNormal">Func-count<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>x<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>f(x)<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Procedure<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>1<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>3.81966<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>0.813651<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>initial<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>2<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>6.18034<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>6.05006<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>golden<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>3<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>2.36068<span style="">&nbsp;&nbsp;&nbsp;
+</span>0.0211764<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>golden<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>4<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>2.47085<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>0.561649<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>parabolic<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>5<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>1.45898<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-1.42265<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>golden<br>
+<span style="">&nbsp; </span><span style="">&nbsp;&nbsp;</span>6<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>1.66467<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-1.63542<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>parabolic<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>7<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>1.69841<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-1.64339<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>parabolic<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>8<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>1.73174<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-1.6428<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>parabolic<span style="">&nbsp;</span></p>
+<p style="font-family: monospace;" class="MsoNormal">Optimization terminated:<br>
+<span style=""></span>the current x
+satisfies the termination criteria using OPTIONS.TolX of 1.000000e-001<o:p>&nbsp;</o:p></p>
+<p style="font-family: monospace;" class="MsoNormal">xc =&nbsp;<span style=""></span>1.6984<br>
+FunVal =&nbsp;<span style=""></span>-1.6434<br>
+EF =&nbsp;<span style=""></span>1<br>
+output =<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>iterations:
+7<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>funcCount: 8<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>algorithm:
+'golden section search, parabolic interpolation'<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>message: [1x112
+char]<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><o:p></o:p></p>
+<p class="MsoNormal">Now, let&#8217;s explore the
+same function with <span style="font-weight: bold;">fminsearch</span>.
+We&#8217;re
+going to run <span style="font-weight: bold;">different
+starting points</span>, with this code:&nbsp;<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">fun = </span><span style="color: rgb(160, 32, 240);">'xcos2'</span><span style="color: black;">;<br>
+options
+= optimset(</span><span style="color: rgb(160, 32, 240);">'Display'</span><span style="color: black;">,</span><span style="color: rgb(160, 32, 240);">'iter'</span><span style="color: black;">,</span><span style="color: rgb(160, 32, 240);">'TolX'</span><span style="color: black;">,0.1);</span><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">i = 1;</span><br>
+<span style="color: blue;">for</span><span style="color: black;"> sx = -5
+: .1 : 5<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>[xc,
+FunVal, EF, output] = fminsearch(fun,
+sx, options);<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>x(i)
+= sx;<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>xo(i)
+= xc;<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>oi(i)
+= output.iterations;<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>of(i)
+= output.funcCount;<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>i
+= i+1;</span><br>
+<span style="color: blue;">end</span></p>
+We get these graphics:<br>
+<br>
+<div style="text-align: center;"><img style="width: 390px; height: 326px;" alt="mathematical optimization 2" src="http://www.matrixlab-examples.com/image-files/mathematical_optimization_002.gif"><br>
+</div>
+<br>
+<br>
+<div style="text-align: center;"><img style="width: 394px; height: 326px;" alt="mathematical optimization 3" src="http://www.matrixlab-examples.com/image-files/mathematical_optimization_003.gif"><br>
+</div>
+<br>
+<div style="text-align: center;"><img style="width: 390px; height: 326px;" alt="math optimization 4" src="http://www.matrixlab-examples.com/image-files/mathematical_optimization_004.gif"><br>
+</div>
+<br>
+<p class="MsoNormal">These graphics say that
+if we start with x = -3, the minimum
+found after our mathematical optimization is y = -3.22, it takes 6
+iterations to reach that value, and 12
+function
+evaluations are needed to reach that minimum. If we start with x = 4,
+the
+minimum found is 4.8, it takes 9 iterations, and 18 function
+evaluations to
+reach that minimum.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">We must be very aware
+that <span style="font-weight: bold;">different initial
+conditions and
+tolerances lead us to different results</span>. Mathematical
+optimization is not
+straigthforward most of the times.</p>
+<p class="MsoNormal"><br>
+<span style="font-weight: bold;">&nbsp;</span><o:p style="font-weight: bold;"><a href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Mathematical Optimization' to home</a></o:p></p>
+<p style="font-weight: bold;" class="MsoNormal"><o:p>&nbsp;<a href="http://www.matrixlab-examples.com/matlab-programming-2tier.html" onclick="return FIX.track(this);">From
+'Mathematical Optimization' to Matlab Programming</a></o:p></p>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><br>
+<!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="mathematical-optimization.html#Mathematical_Optimization"><o:p>Top</o:p></a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/nonlinear-programming.html" onclick="return FIX.track(this);">Curve Fitting</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/linear-programming.html" onclick="return FIX.track(this);">Linear Programming</a><br style="font-weight: bold;">
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<o:p></o:p><!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for mathematical optimization page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; vertical-align: top; background-color: rgb(211, 228, 244); text-align: center;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:51:19 10-Aug-2021 -->
+</body></html>

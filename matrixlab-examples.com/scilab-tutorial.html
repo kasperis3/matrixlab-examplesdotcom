@@ -1,0 +1,401 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Scilab Tutorial - Hello World!</title>
+
+<meta name="Description" content="In this Scilab tutorial we'll start with the always welcomed Hello World! code...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/scilab-tutorial.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Scilab Tutorial - Hello World!" />
+<meta property="og:description" content="In this Scilab tutorial we'll start with the always welcomed Hello World! code..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/scilab-tutorial.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/scilab-000.gif" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 813px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 145px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 813px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 520px;"><br>
+<br>
+<h1 style="text-align: center;"><a name="Scilab_Tutorial_-_Hello_World"></a>Scilab
+Tutorial - Hello, World!</h1>
+<p style="text-align: center;" class="MsoNormal">Now
+that you have
+installed Scilab or Scicoslab (they
+started being the same software), you're prepared for the basics. Let's
+get
+right down to start learning how to program on these possible
+matrix-lab
+alternatives.&nbsp;</p>
+&nbsp;
+<div style="text-align: center;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+</div>
+<br>
+<o:p></o:p>
+<h3>Starting Scilab &#8211; Scicoslab</h3>
+<p class="MsoNormal"><o:p></o:p>These
+are the regular icons for each software.</p>
+<table style="text-align: left; margin-left: 52px; width: 400px; height: 82px;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 184px; text-align: right;"><img style="width: 125px; height: 65px;" alt="Scilab icon" src="http://www.matrixlab-examples.com/image-files/numerical-software_001.gif"> &nbsp;</td>
+<td style="width: 210px; text-align: left;">&nbsp;
+&nbsp;<img style="width: 73px; height: 74px;" alt="Scicoslab icon" src="http://www.matrixlab-examples.com/image-files/numerical-software_002.gif"></td>
+</tr>
+</tbody>
+</table>
+&nbsp;<br>
+<h3>The Scilab Screen</h3>
+<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
+After Scilab is loaded, your screen looks something like
+this:</p>
+<p style="text-align: center;" class="MsoNormal"><img style="width: 455px; height: 291px;" alt="Opening screen for Scilab" src="http://www.matrixlab-examples.com/image-files/scilab-000.gif"></p>
+<p class="MsoNormal">This "Welcome" message
+appears each time you start
+Scilab (the image actually corresponds to a Scicoslab session). The
+screen
+offers you two options: <o:p>&nbsp;</o:p></p>
+<ul style="margin-top: 0cm;" type="disc">
+<li class="MsoNormal" style="">You
+can type &#8220;help&#8221; on the command window to see Scilab's built-in help
+system.</li>
+<li class="MsoNormal" style="">You
+can start to code there or use the editor.&nbsp;<o:p>&nbsp;</o:p></li>
+</ul>
+<p class="MsoNormal">You can type &#8220;clc&#8221; to
+clear the command window. That&#8217;s clearing
+the screen to begin typing.&nbsp;<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">You can open the Editor
+by using the top menu.</p>
+<p style="text-align: center;" class="MsoNormal"><o:p>&nbsp;<img style="width: 312px; height: 81px;" alt="Scilab - top menu" src="http://www.matrixlab-examples.com/image-files/scilab-002.gif"></o:p></p>
+<p class="MsoNormal">Let's begin with a look
+at the various elements of the Scilab
+screen that will help you create programs and process text.&nbsp;<o:p><br>
+&nbsp;</o:p></p>
+<h3>The Scipad Editor</h3>
+<p class="MsoNormal">You can open the editor
+using the top menu of the command
+window or by typing <span style="font-family: monospace;">scipad()</span>.&nbsp;<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The cursor indicates
+where the next character you type will
+appear on the screen.</p>
+<p style="text-align: center;" class="MsoNormal"><o:p>&nbsp;<img style="width: 449px; height: 243px;" alt="scipad editor" src="http://www.matrixlab-examples.com/image-files/scilab-005.gif"></o:p></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
+In the lower bar of the editor window there are two numbers.
+They indicate the current location of the cursor. The first number
+tells you
+which row (line) the cursor is in; the second number tells you which
+column the
+cursor is in.&nbsp;<span style="">&nbsp;</span></p>
+<p class="MsoNormal">Across the top of the
+screen or current window is the menu
+bar. The menu bar contains the names for all the Scilab drop-down
+menus.&nbsp;<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">You can work in only one
+window at a time, although it's
+easy to switch between the two (just click on the one that you need).
+The
+window you're currently working in is called the active window. <span style="">&nbsp;</span>Note that the title of the
+Editor window
+remains &#8220;Untitled&#8221; until you name the program you type and save it on
+disk.&nbsp;<o:p><br>
+&nbsp;</o:p></p>
+<h3>Your First Program with Scilab or Scicoslab<o:p></o:p><br>
+</h3>
+<p class="MsoNormal">Now that you've had a
+little hands-on experience with Scilab,
+you're ready to type in your first program. Typing in a program is
+quite straightforward.
+All you need to do is type in the lines exactly as we show them here,
+and press
+Enter at the end of each line.&nbsp;<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Use the Editor, type the
+following two lines: &nbsp;<o:p>&nbsp;</o:p></p>
+<p style="font-family: monospace;" class="MsoNormal">clc<br>
+disp('Hello, World!')</p>
+<p class="MsoNormal">Save the file as
+&#8216;hello_world&#8217;. The extension .sce will be
+added automatically.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">You should have something
+similar to this image:</p>
+<p style="text-align: center;" class="MsoNormal"><img style="width: 450px; height: 141px;" alt="Scilab - hello world!" src="http://www.matrixlab-examples.com/image-files/scilab-006.gif"></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<h3>Running or Executing your code&nbsp;<o:p>&nbsp;</o:p></h3>
+<p class="MsoNormal">To run your first script
+(or program, or code, whatever you
+want to call it) use the Execute menu, on the editor window.&nbsp;<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">You&#8217;ll clear the output
+window (command window) with the
+first line, and then the words Hello, World! will be displayed, like
+this:</p>
+<p style="text-align: center;" class="MsoNormal">&nbsp;<br>
+<img style="width: 440px; height: 141px;" alt="Scilab firs program" src="http://www.matrixlab-examples.com/image-files/scilab-007.gif"></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">What you just typed in,
+although it's only two lines long,
+is a complete Scilab program.</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">You've learned about one
+Scilab keyword, <span style="font-family: monospace;">disp</span>
+(for display),
+which 1ets your program put information on the screen. Another Scilab
+keyword
+is <span style="font-family: monospace;">clc</span>
+(for CLear Command window) which allows your script to completely erase
+the output screen.&nbsp;<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">You can also run your
+Scilab script by typing&nbsp;<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="font-family: monospace;">exec
+hello_world.sce&nbsp;</span><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">on your command window.
+The final effect will be the same.</p>
+<p class="MsoNormal">The line above assumes
+that you&#8217;re working in the same
+directory that you used when you saved your file. If you&#8217;re not working
+in the
+same directory, you have to change that, otherwise Scilab won&#8217;t run
+your code
+and will display an error.&nbsp;<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="font-family: monospace;">pwd</span> is a
+command used to verify your working directory.<br>
+<span style="font-family: monospace;">cd</span>
+is a command used to change your current directory.</p>
+<p class="MsoNormal"><o:p></o:p>You
+can always look for the details of commands and
+functions by typing&nbsp;<o:p>&nbsp;</o:p></p>
+<p style="font-family: monospace;" class="MsoNormal">help <i style="">built-in
+function</i></p>
+<p class="MsoNormal"><o:p></o:p>on
+your command window, and you&#8217;ll get an explanation from the
+Scilab&#8217;s online help.&nbsp;<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">A variation on the line
+to execute your file could be
+something like this:&nbsp;<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="font-family: monospace;">exec('C:\scilab_files\hello_world.sce')</span>&nbsp;</p>
+<p class="MsoNormal">where we&#8217;re assuming that
+you&#8217;re working in the directory
+called <span style="font-family: monospace;">C:\scilab_files</span>
+in a Windows environment.&nbsp;<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">You can also type <span style="font-family: monospace;">tk_getfile</span> on
+the command window, which creates
+a dialog window for file selection.&nbsp;<span style=""></span></p>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Scilab Tutorial' to Matlab home</a><br style="font-weight: bold;">
+<a href="http://www.matrixlab-examples.com/scilab.html" onclick="return FIX.track(this);"><span style="font-weight: bold;"></span></a><br>
+<a href="http://www.matrixlab-examples.com/scilab.html" onclick="return FIX.track(this);"><span style="font-weight: bold;">&nbsp;From 'Scilab Tutorial'
+to Scilab</span></a><br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --><br>
+</td>
+<td style="vertical-align: bottom; text-align: right; font-weight: bold;"><a href="#Scilab_Tutorial_-_Hello_World">Top</a></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for matlab page"><br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br>
+</a></p>
+</td>
+<td style="vertical-align: top; width: 170px; text-align: right; background-color: rgb(224, 236, 255);"><br>
+<br>
+<br>
+<br>
+<div style="text-align: center;"><!-- start: SSI translator.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI translator.shtml --><br>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div style="text-align: center;"><!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --><br>
+</div>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:50:45 10-Aug-2021 -->
+</body></html>

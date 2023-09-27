@@ -1,0 +1,407 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Math Magic Trick - the 1089 problem</title>
+
+<meta name="Description" content="Funny math magic trick that you can test with Matlab. We&#8217;ll solve this problem with our numerical software as an excuse...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/math-magic-trick.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Math Magic Trick - the 1089 problem" />
+<meta property="og:description" content="Funny math magic trick that you can test with Matlab. We&amp;#8217;ll solve this problem with our numerical software as an excuse..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/math-magic-trick.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<h1 style="text-align: center;"><a name="Math_magic_trick_-_The_1089_problem"></a>Math
+magic trick - The 1089 problem</h1>
+<h3 style="text-align: center;">Have fun with
+Matlab</h3>
+<div style="text-align: center;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+</div>
+<br>
+<br>
+Here&#8217;s
+a funny <span style="font-weight: bold;">math magic trick</span>
+that you can test with
+Matlab. We&#8217;ll solve this problem with our numerical software as an
+excuse to explore
+built-in functions num2str (number to string), str2number (string to
+number),
+and fliplr (flip vector or matrix in left/right direction).<br>
+<br>
+<br>
+This is what we&#8217;re going to do:<br>
+<ol>
+<li>Pick a three-digit number. The three numbers
+used must
+be different, for example 531.<o:p></o:p></li>
+<li>Reverse that number: 531 becomes 135.<o:p>&nbsp;</o:p></li>
+<li><o:p></o:p> Get the absolute
+difference of the numbers: 531 &#8211; 135 =
+396. If the result is a two-digit number, write a 0 at the beginning to
+make it
+a three-digit one (for example, if you get 99, change it to 099).</li>
+<li>Take the answer and reverse that number: 396
+becomes 693.<o:p></o:p></li>
+<li>Add that number to the answer of the
+subtraction. 693 + 396
+= 1089.<br>
+</li>
+</ol>
+
+<p class="MsoNormal"><o:p></o:p><br>
+<span style="font-weight: bold;">The answer
+will always be 1089! </span><span style="font-style: italic;">(well...
+almost!)</span></p><div style="text-align: center;"><o:p>&nbsp;&nbsp;</o:p><img style="width: 380px; height: 194px;" alt="reading minds with math" src="http://www.matrixlab-examples.com/image-files/1089-magic-ball.jpg"><br></div><p class="MsoNormal">
+Now, here we go with our approach in Matlab. First, you need
+to know the difference between <span style="font-weight: bold;">numbers</span>
+and <span style="font-weight: bold;">strings</span>.
+Sometimes they look
+similar, but there&#8217;s an important difference and you must act
+accordingly...
+You can do arithmetical operations with numbers, but you cannot do them
+with
+strings. </p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
+Function <span style="font-style: italic;">num2str</span>
+changes numbers into strings, so
+num2str(531) results in string &#8216;531&#8217;. Note that if you type size(531)
+on the
+command window, Matlab will answer 1 1, meaning that you have a
+&#8216;matrix&#8217; with
+one row and one column only (that happens to be a scalar!). If you type
+size(&#8216;531&#8217;) - using single quotes for the parameter - on the command
+window, Matlab
+will answer 1 3, meaning that you have a matrix with one row and three
+columns.
+That&#8217;s not a scalar, right? It&#8217;s a string with three elements or
+characters,
+even though you see it as a number.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Function <span style="font-style: italic;">str2num</span> changes
+strings into numbers. A str2num(&#8216;123&#8217;)
+will produce the scalar number 123.<span style="">&nbsp;</span><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Function <span style="font-style: italic;">fliplr</span> flips
+strings (not numbers) from left to
+right, or invert them so to speak. fliplr(&#8216;351&#8217;) will produce the
+string &#8216;153&#8217;.</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
+This is the code that could perform the algorithm above:<br>
+<o:p></o:p></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">clear,
+clc</span><span style="color: rgb(160, 32, 240);"><span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+this is your initial number</span><br>
+<span style="color: black;">a =
+123<span style="">&nbsp; </span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+change it to string</span><br>
+<span style="color: black;">as =
+num2str(a)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+flip the string</span><br>
+<span style="color: black;">asi =
+fliplr(as)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+change back the inverted string to number</span><br>
+<span style="color: black;">b =
+str2num(asi)<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+get the difference</span><br>
+<span style="color: black;">c =
+abs(a-b)</span><span style="font-size: 12pt;"></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+change to string</span><br>
+<span style="color: black;">cs =
+num2str(c)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+flip the string</span><br>
+<span style="color: black;">csi =
+fliplr(cs)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+change back the inverted string to number</span><br>
+<span style="color: black;">d =
+str2num(csi)<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen; font-family: monospace;">%
+add and get 1089</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">e
+= c +
+d</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Note that there are <span style="font-weight: bold;">two
+instructions that were not
+considered in the code</span>. First, the digits should be
+different, and
+second, if
+the resulting difference is two-digit only, you should write a 0 at the
+beginning. Those issues were not considered, but now you could design
+an iteration to see which 3-digit
+numbers didn&#8217;t
+produce 1089 after the code given.</p>
+<p class="MsoNormal" style="">Let&#8217;s
+rework our code:<span style="color: blue; font-family: monospace;"></span><span style="font-size: 12pt;"><o:p></o:p></span>
+</p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">correct
+= 0;<br>
+wrong =
+0;</span><br>
+<span style="color: forestgreen;">%
+These are your starting numbers</span><br>
+<span style="color: blue;">for</span><span style="color: black;"> a = 100
+: 999<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: forestgreen;">% flip them</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span>b = str2num(fliplr(num2str(a)));<span style="">&nbsp;&nbsp; </span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: forestgreen;">% get the difference</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span>c = abs(a-b);<span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: forestgreen;">% flip the difference</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span>d = str2num(fliplr(num2str(c)));<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black; font-family: monospace;"><span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: forestgreen; font-family: monospace;">% add
+and get 1089</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;"><span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue; font-family: monospace;">if</span><span style="color: black; font-family: monospace;"> (c + d) ==
+1089<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>correct = correct + 1;<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue; font-family: monospace;">else</span><br>
+<span style="color: forestgreen; font-family: monospace;">&nbsp;
+&nbsp; %if not,
+display count, starting number and result</span><br>
+<span style="color: black; font-family: monospace;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>wrong = wrong + 1;<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>disp ([wrong a c+d])<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue; font-family: monospace;">end<br>
+end</span><br>
+<span style="color: black; font-family: monospace;">correct</span><br>
+<span style="font-family: monospace;">wrong</span><span style="color: black; font-family: monospace;"></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><o:p></o:p><br>
+And you&#8217;ll get the list of numbers that didn&#8217;t have
+different digits or that produced a two-digit difference... Besides,
+you counted the "correct" numbers and displayed and counted the "wrong"
+ones.</p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>1<span style="">&nbsp;&nbsp;
+</span>100<span style="">&nbsp;&nbsp;
+</span>198<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>2<span style="">&nbsp;&nbsp;
+</span>101<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>0<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>3<span style="">&nbsp;&nbsp;
+</span>102<span style="">&nbsp;&nbsp;
+</span>198<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>4<span style="">&nbsp;&nbsp;
+</span>110<span style="">&nbsp;&nbsp;
+</span>198<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>5<span style="">&nbsp;&nbsp;
+</span>111<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>0<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>...<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>...<br>
+<span style="">&nbsp;&nbsp; </span>258<span style="">&nbsp;&nbsp; </span>989<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>0<br>
+<span style="">&nbsp;&nbsp; </span>259<span style="">&nbsp;&nbsp; </span>998<span style="">&nbsp;&nbsp;
+</span>198<br>
+<span style="">&nbsp;&nbsp; </span>260<span style="">&nbsp;&nbsp; </span>999<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>0<br>
+<o:p>&nbsp;</o:p></p>
+<p style="font-family: monospace;" class="MsoNormal">correct = 640<br>
+wrong =<span style="">&nbsp;&nbsp; </span>260</p>
+<br>
+<div style="text-align: center;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --><br>
+<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-gui-2.html" onclick="return FIX.track(this);">Mental trick</a> &nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/card-trick.html" onclick="return FIX.track(this);">Card
+Trick</a> &nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-gui-2tier.html" onclick="return FIX.track(this);">Work with GUIs</a>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/creative-electronic-projects.html" onclick="return FIX.track(this);">Electronic Projects</a><br>
+<br>
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Math Magic Trick ' to
+home</a> &nbsp;<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/it-jokes-2tier.html" onclick="return FIX.track(this);">From
+'Math Magic
+Trick ' to IT Jokes</a><br style="font-weight: bold;">
+&nbsp; &nbsp;<br>
+<a style="font-weight: bold;" href="math-magic-trick.html#Math_magic_trick_-_The_1089_problem">Top</a><br style="font-weight: bold;">
+</div>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for math magic trick page"><a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br></a></p>
+</td>
+<td style="text-align: right; vertical-align: top; width: 170px;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><div style="text-align: center;">
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></div></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:48:31 10-Aug-2021 -->
+</body></html>

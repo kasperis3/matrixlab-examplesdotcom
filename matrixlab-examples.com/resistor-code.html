@@ -1,0 +1,725 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Resistor Code with a Matlab GUI (free download)</title>
+
+<meta name="Description" content="We're going to develop a Resistor Code - Matlab GUI. The intention is to be able to automatically decode the colors of four-band resistors...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/resistor-code.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Resistor Code with a Matlab GUI (free download)" />
+<meta property="og:description" content="We're going to develop a Resistor Code - Matlab GUI. The intention is to be able to automatically decode the colors of four-band resistors..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/resistor-code.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<h1><a name="Resistor_Code_with_Matlab_GUI"></a>Resistor
+Code with Matlab GUI</h1>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 1px;"><br>
+</td>
+<td>In this article we're going to decipher the
+colored <span style="font-weight: bold;">Resistor Code</span>
+with
+a&nbsp;<span style="font-weight: bold;">Matlab GUI</span>.
+The
+intention
+is to be able to use pull-down menus to decode the colors of four-band
+resistors.<br>
+<br>
+Colorbands
+are commonly used (especially on resistors) because they are easily
+printed on tiny components, decreasing manufacturing costs. <br>
+&nbsp; <br>
+<!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+&nbsp; <br>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal" style="text-align: right; font-weight: bold;"><a href="http://www.matrixlab-examples.com/support-files/resistor_code.zip" onclick="return FIX.track(this);"><o:p>Download</o:p>
+files (right-click and save)</a></p>
+Use the following table and explanation to distinguish a color band's
+value
+and how to use it.<br>
+<br>
+<table style="width: 306px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 100px;">Black = 0<br>
+Brown = 1<br>
+Red = 2<br>
+Orange = 3<br>
+Yellow = 4</td>
+<td style="width: 100px;">Green = 5<br>
+Blue = 6<br>
+Violet = 7<br>
+Gray = 8<br>
+White = 9</td>
+<td style="width: 100px;">Gold =
+&nbsp; +/-5%<br>
+<div style="text-align: left; width: 108px;">Silver
+= +/-10%</div>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+Find one of the four-band resistors. Hold the resistor with the gold or
+silver band to the right. The first two bands from the left show the
+value. If they are red and red, the value is 22. The third band shows
+the number of zeros after the value. If it is yellow, then the number
+of zeros is 4.<br>
+<br>
+<div style="text-align: center;"><img style="width: 191px; height: 57px;" alt="resistor code explanation" src="http://www.matrixlab-examples.com/image-files/resistor_code_006.jpg"><br>
+</div>
+<br>
+So the above resistor is 220000, or 220 K ohms (for easier reading).<br>
+The 'K' multiplier means 1,000 (kilo-ohms); the 'M' multiplier means
+1,000,000 (mega-ohms).<br>
+<br>
+The gold band indicates that the resistors are of 5% tolerance. A
+silver band indicates a 10% tolerance.<br>
+<br>
+An orange-red-brown-gold code equals a 320 +/-5% resistor.<br>
+<br>
+Now with Matlab...<br>
+<br>
+<br>
+If this is your first GUI, I suggest you read these two initial
+articles, <br>
+<div style="text-align: center;"><a href="http://www.matrixlab-examples.com/matlab-gui.html" onclick="return FIX.track(this);">Matlab
+GUI intro</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/callback-function.html" onclick="return FIX.track(this);">Callback
+functions</a><br>
+</div>
+and then come-back and continue with this new project.<br>
+<br>
+If you're ready, then type on the command window<br>
+<br>
+<span style="font-family: monospace;">&gt;
+guide</span><br>
+<br>
+and a GUI window appears. Choose 'Blank GUI' and you'll get something
+like this figure:<br>
+<br>
+<div style="text-align: center;"><img style="width: 334px; height: 238px;" alt="matlab gui help" src="http://www.matrixlab-examples.com/image-files/resistor_code_001.jpg"><br>
+</div>
+<br>
+Use the buttons on the left to drag-and-drop 4 'pop-up' menus, 4
+'axes', and 3 'static-text' boxes. <br>
+<br>
+'<span style="font-weight: bold;">Static-text1</span>'
+is used to give the message below the menus. It's 'String' property is '<span style="font-weight: bold;">Select one color from each
+pull-down menu</span>'. You can make it a bold font (double-click
+on each menu and choose the different properties).<br>
+<br>
+'<span style="font-weight: bold;">Static-text2</span>'
+is used to display the resistor value. It starts with a '<span style="font-weight: bold;">0</span>' (zero) in its
+string property. '<span style="font-weight: bold;">Static-text3</span>'
+just displays the word '<span style="font-weight: bold;">ohms</span>'.<br>
+<br>
+Arrange the elements and change their properties to achieve
+something like this:<br>
+<br>
+<div style="text-align: center;"><img style="width: 390px; height: 227px;" alt="preparing resistor code gui in matlab" src="http://www.matrixlab-examples.com/image-files/resistor_code_003.jpg"><br>
+</div>
+<br>
+Include these values in the 'String' property&nbsp;of the first 3
+pop-up menus<br>
+(double-click on each menu and choose the 'String' property):<br>
+<br>
+<div style="text-align: center;"><img style="width: 476px; height: 237px;" alt="resistor code gui going on" src="http://www.matrixlab-examples.com/image-files/resistor_code_004.jpg"><br>
+</div>
+<br>
+For the 4th menu, you have to write ' 5% gold' and '10% silver' in its
+'String' property.<br>
+<br>
+Save the figure as resistor_code.fig. A template code is automatically
+created with the name 'resitor_code.m'. We're going to modify it and
+we're going to create other functions to make it work...<br>
+<br>
+We'll create some Matlab functions and then we'll link them to this
+initial template.<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+First, a function to initialize the GUI axes. I suggest the following
+code:<br>
+<br>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Initialize resistor code (bands)<br>
+% Show 0 ohm +/- 5%</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">function</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">
+init_bands(handles)<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">axes(handles.axes1);<br>
+image(imread(</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'black.jpg'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">));<br>
+axis </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">off</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">;<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">axes(handles.axes2);<br>
+</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">image(imread(</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'black.jpg'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">));<br>
+</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">axis </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">off</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">;</span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">axes(handles.axes3);<br>
+</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">image(imread(</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'black.jpg'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">));<br>
+axis </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">off</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">;<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">axes(handles.axes4);<br>
+</span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">image(imread(</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'gold.jpg'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;">));<br>
+axis </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);">off</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;">;</span><span style="font-family: &quot;Courier New&quot;;"><o:p></o:p></span></p>
+<br>
+This will display a 0-value with a 5% tolerance code in the GUI (colors
+for the 4 bands are black &nbsp;- black - black - gold).<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+Now, to update the colors when the values are entered using the
+pull-down menus, I suggest the following code:<br>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">function</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">
+update_color(ax, val, handles)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Select the appropriate color to update</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">switch</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> ax<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">case</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> 1<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>axes(handles.axes1);<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">case</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> 2<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>axes(handles.axes2);<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">case</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> 3<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>axes(handles.axes3);<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">case</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> 4<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>axes(handles.axes4);</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">end</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Choose the correct image to display</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">color = val(5 : length(val));<br>
+image(imread([color </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'.jpg'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;">]));<br>
+axis </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);">off</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;">;</span><br>
+<span style="font-family: &quot;Courier New&quot;;"><o:p></o:p></span></p>
+The input parameters of this function are 'ax' (includes the correct
+band number), 'val' (includes the selected option), and 'handles' (all
+the handles to the objects in our created figure). We have to choose
+the correct image to display. The name of the image is included in the
+'val' parameter. You have to have .jpg images for each color.<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+Then, to update the total value of the resistor (values are entered
+using the pull-down menus, too) I suggest the following code:<br>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;">function</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">
+update_value(handles)<br>
+b = handles.b;<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">b_ttl = (b(1) + b(2)) * b(3);<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">if</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> b_ttl &lt; 1000<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>b_str
+=
+num2str(b_ttl);</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">end<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Format the number to make it more readable<br>
+% Consider to format only values &gt;= 1000 k ohms</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">bs1 = num2str(b(1)/10);<br>
+bs2 = num2str(b(2));</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">switch</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> b(3)<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">case</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> 1e2<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>b_str =
+[bs1 </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'.'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> bs2 </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">' K'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">];<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">case</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> 1e3<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>b_str =
+[bs1 bs2 </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">' K'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">];<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">case</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> 1e4<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>b_str =
+[bs1 bs2 </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'0 K'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">];<span style=""><br>
+&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">case</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> 1e5<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>b_str =
+[bs1 </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'.'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> bs2 </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">' M'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">];<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">case</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> 1e6<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>b_str =
+[bs1 bs2 </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">' M'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">];<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">case</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> 1e7<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>b_str =
+[bs1 bs2 </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'<st1:metricconverter productid="0 M" w:st="on">0 M</st1:metricconverter>'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">];<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">case</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> 1e8<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>b_str =
+[bs1 </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'.'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> bs2 </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">' G'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">];<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">case</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> 1e9<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>b_str =
+[bs1 bs2 </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">' G'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">];</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">end</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Actual display of the value in the 'static
+text'</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">set(handles.text2, </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'String'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">, b_str);</span><br>
+<span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+This function reads the total value of the resistor bands and formats
+it to make it more readable. It displays the number as a string, not as
+a number, and adds appropriate multipliers (such as 'K' or 'M'). The
+resulting string is displayed in 'Static-Text2'. <br>
+<br>
+Please note that <span style="font-weight: bold;">not all
+the combinations are real standard resistor values</span>.<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+This is a portion of the script that appears in the 'resistor_code.m'
+file (the template created by Matlab). We have to fill in the necessary
+code to achieve what we need.<br>
+<br>
+Instructions <span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">contents = get(hObject,'String'), </span><span style="font-size: 10pt; color: black;" lang="EN-US"></span><span style="font-size: 10pt; color: black;" lang="EN-US">and
+</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><br>
+contents{get(hObject,'Value')}</span> are the key Matlab
+functions to read data from a pull down menu.<br>
+<br>
+This code is for pop-up menu1. We read the menu, then we call our
+previous function to update the color of the corresponding image, we
+update the value of the resistor and finally save current data in the
+handles. This has to be adapted for the other three menus and axes.
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">%&nbsp;- Executes on selection change in
+popupmenu1.</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">function</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">
+popupmenu1_Callback(hObject, eventdata, handles)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Hints:<br>
+% contents = get(hObject,'String') returns menu1
+contents as<br>
+% cell array<br>
+% contents{get(hObject,'Value')} returns selected item
+from<br>
+% menu1</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">contents = get(hObject,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'String'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">);<br>
+v = contents{get(hObject,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'Value'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">)};</span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Update color of appropriate band</span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">update_color(1, v, handles);</span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Update resistor value</span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">handles.b(1) = str2num(v(1)) * 10;</span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">update_value(handles);</span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Save data</span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">guidata(hObject, handles);</span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<hr style="width: 100%; height: 2px;">
+<p class="MsoNormal" style="">This is a
+sample run:</p>
+<p class="MsoNormal" style="text-align: center;"><img style="width: 357px; height: 151px;" alt="sample run for Resistor Code - Matlab GUI" src="http://www.matrixlab-examples.com/image-files/resistor_code_005.jpg"></p>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+The full code for the main routine is:<br>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">function</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> varargout =
+resistor_code(varargin)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% RESISTOR_CODE M-file for resistor_code.fig<br>
+%<br>
+% See also: GUIDE, GUIDATA, GUIHANDLES<br>
+% Last Modified by GUIDE v2.5 09-Jan-2010 19:48:33<br>
+% Begin initialization code - DO NOT EDIT</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">gui_Singleton = 1;<br>
+gui_State = struct(</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'gui_Name'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">,<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>mfilename, </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">...</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'gui_Singleton'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">,<span style="">&nbsp; </span>gui_Singleton,
+</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">...</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'gui_OpeningFcn'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">, @resistor_code_OpeningFcn, </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">...</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'gui_OutputFcn'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">,<span style="">&nbsp; </span>@resistor_code_OutputFcn,
+</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">...</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'gui_LayoutFcn'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">,<span style="">&nbsp; </span>[]
+, </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">...</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'gui_Callback'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">,<span style="">&nbsp;&nbsp;
+</span>[]);</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">if</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> nargin
+&amp;&amp; ischar(varargin{1})<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>gui_State.gui_Callback
+= str2func(varargin{1});</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">end<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">if</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> nargout<br>
+<span style="">&nbsp;&nbsp;&nbsp;
+</span>[varargout{1:nargout}] =
+gui_mainfcn(gui_State, varargin{:});<br>
+</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">else</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;
+</span>gui_mainfcn(gui_State,
+varargin{:});</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">end</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% End initialization code - DO NOT EDIT<span style=""></span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% --- Executes just before resistor_code is
+made
+visible.</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">function</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">
+resistor_code_OpeningFcn(hObject, eventdata, handles, varargin)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% This function has no output args, see
+OutputFcn.<br>
+% hObject<span style="">&nbsp;&nbsp;&nbsp;
+</span>handle to figure<br>
+% handles<span style="">&nbsp;&nbsp;&nbsp;
+</span>structure with handles and user data (see
+GUIDATA)<br>
+% varargin<span style="">&nbsp;&nbsp;
+</span>command line arguments to resistor_code (see
+VARARGIN)<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Choose default command line output for
+resistor_code</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">clc<br>
+handles.output = hObject;<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Initialize color of bands</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">init_bands(handles);</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Initialize and save resistor value</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">b(1) = 0;<br>
+b(2) = 0;<br>
+b(3) = 1;<br>
+handles.b = b;<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Update handles structure</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">guidata(hObject, handles);<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% --- Outputs from this function are returned
+to the
+command line.</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">function</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> varargout =
+resistor_code_OutputFcn(hObject, eventdata, handles)<br>
+varargout{1} = handles.output;<br>
+<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% --- Executes on selection change in
+popupmenu1.</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">function</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">
+popupmenu1_Callback(hObject, eventdata, handles)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Hints:<br>
+% contents = get(hObject,'String') returns menu1
+contents as cell array<br>
+% contents{get(hObject,'Value')} returns selected item
+from menu1</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">contents = get(hObject,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'String'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">);<br>
+v = contents{get(hObject,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'Value'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">)};</span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Update color of appropriate band</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">update_color(1, v, handles);</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US"></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Update resistor value</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">handles.b(1) = str2num(v(1)) * 10;<br>
+update_value(handles);</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US"></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Save data</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">guidata(hObject, handles);<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% - Executes during object creation, after
+setting
+all properties.</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">function</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">
+popupmenu1_CreateFcn(hObject, eventdata, handles)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">if</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> ispc &amp;&amp;
+isequal(get(hObject,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'BackgroundColor'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">), </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">...</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>get(0,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'defaultUicontrolBackgroundColor'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">))<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>set(hObject,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'BackgroundColor'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'white'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">);</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">end<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% --- Executes on selection change in
+popupmenu2.</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">function</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">
+popupmenu2_Callback(hObject, eventdata, handles)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Hints:<br>
+% contents = get(hObject,'String') returns menu1
+contents as cell array<br>
+% contents{get(hObject,'Value')} returns selected item
+from menu1</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">contents = get(hObject,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'String'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">);<br>
+v = contents{get(hObject,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'Value'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">)};</span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Update color of appropriate band</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">update_color(2, v, handles);</span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Update resistor value</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">handles.b(2) = str2num(v(1));<br>
+update_value(handles);</span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Save data</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">guidata(hObject, handles);<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% --- Executes during object creation, after
+setting
+all properties.</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">function</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">
+popupmenu2_CreateFcn(hObject, eventdata, handles)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">if</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> ispc &amp;&amp;
+isequal(get(hObject,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'BackgroundColor'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">), </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">...</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>get(0,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'defaultUicontrolBackgroundColor'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">))<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>set(hObject,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'BackgroundColor'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'white'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">);</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">end<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% --- Executes on selection change in
+popupmenu3.</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">function</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">
+popupmenu3_Callback(hObject, eventdata, handles)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Hints:<br>
+% contents = get(hObject,'String') returns menu1
+contents as cell array<br>
+% contents{get(hObject,'Value')} returns selected item
+from menu1</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">contents = get(hObject,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'String'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">);<br>
+v = contents{get(hObject,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'Value'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">)};</span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Update color of appropriate band</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">update_color(3, v, handles);</span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Update resistor value</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">handles.b(3) = 10^(str2num(v(1)));<br>
+update_value(handles);</span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Save data</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">guidata(hObject, handles);<br>
+<span style=""></span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% --- Executes during object creation, after
+setting
+all properties.</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">function</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">
+popupmenu3_CreateFcn(hObject, eventdata, handles)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">if</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> ispc &amp;&amp;
+isequal(get(hObject,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'BackgroundColor'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">), </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">...</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>get(0,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'defaultUicontrolBackgroundColor'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">))<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>set(hObject,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'BackgroundColor'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'white'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">);</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">end<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% --- Executes on selection change in
+popupmenu4.</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">function</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">
+popupmenu4_Callback(hObject, eventdata, handles)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Hints:<br>
+% contents = get(hObject,'String') returns menu1
+contents as cell array<br>
+% contents{get(hObject,'Value')} returns selected item
+from menu1</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">contents = get(hObject,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'String'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">);</span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Update color of appropriate band</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">update_color(4, contents{get(hObject,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'Value'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">)}, handles);</span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Save data</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">guidata(hObject, handles);<br>
+<span style=""></span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% --- Executes during object creation, after
+setting
+all properties.</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">function</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">
+popupmenu4_CreateFcn(hObject, eventdata, handles)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">if</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> ispc &amp;&amp;
+isequal(get(hObject,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'BackgroundColor'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">), </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">...</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>get(0,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'defaultUicontrolBackgroundColor'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">))<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>set(hObject,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'BackgroundColor'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'white'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">);</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;">end</span><span style="font-family: &quot;Courier New&quot;;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="text-align: right; font-weight: bold;"><a href="http://www.matrixlab-examples.com/support-files/resistor_code.zip" onclick="return FIX.track(this);"><o:p>Download</o:p>
+files (right-click and save)</a></p>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Resistor Code' to
+home</a><br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-gui-2tier.html" onclick="return FIX.track(this);">From
+'Resistor
+Code' to 'Matlab GUI Menu'</a><br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --><br>
+</td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="resistor-code.html#Resistor_Code_with_Matlab_GUI">Top</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-gui-2.html" onclick="return FIX.track(this);">Magic Trick with GUI</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/electrical-calculations.html" onclick="return FIX.track(this);">Electrical Calculations</a><br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><br>
+<p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for resistor code page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; vertical-align: top; background-color: rgb(224, 236, 255); text-align: center;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:47:19 10-Aug-2021 -->
+</body></html>

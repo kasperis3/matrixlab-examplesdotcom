@@ -1,0 +1,619 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>More MATLAB Commands</title>
+
+<meta name="Description" content="On this page we introduce some basic MATLAB commands. You can download a list of commands...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/matlab-commands-2.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="More MATLAB Commands" />
+<meta property="og:description" content="On this page we introduce some basic MATLAB commands. You can download a list of commands..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/matlab-commands-2.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img style="width: 146px; height: 400px;" src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<h1 style="text-align: center;"><a name="top"></a>More
+MATLAB Commands...</h1>
+<div style="text-align: center;"><br>
+On this page we present the
+use of some very basic MATLAB commands and <span style="font-weight: bold;">functions</span>. With
+Matlab, you can perform
+simple operations, as if you were working with a calculator.<br>
+<br>
+<br>
+</div>
+<table x:str="" style="border-collapse: collapse; width: 331px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="0" cellspacing="0">
+<col style="width: 115pt;" width="153">
+<col style="width: 41pt;" width="55"><col style="width: 47pt;" width="63"><tbody>
+<tr style="height: 13.5pt; font-weight: bold;" height="18">
+<td class="xl22" style="height: 13.5pt; font-weight: bold; text-align: left; width: 132px;" height="18"><span style="" lang="ES-TRAD">Operation</span></td>
+<td class="xl22" style="border-left: medium none; font-weight: bold; text-align: center; width: 70px;">Symbol</td>
+<td class="xl22" style="border-left: medium none; font-weight: bold; text-align: center; width: 124px;">Example</td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl23" style="border-top: medium none; height: 13.5pt; text-align: left; width: 132px;" height="18"><span style="" lang="ES-TRAD">Addition,
+a+b</span></td>
+<td class="xl23" style="border-top: medium none; border-left: medium none; text-align: center; width: 70px;">+</td>
+<td class="xl23" style="border-top: medium none; border-left: medium none; text-align: center; width: 124px;">5
++ 3</td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl23" style="border-top: medium none; height: 13.5pt; text-align: left; width: 132px;" height="18"><span style="" lang="ES-TRAD">Subtraction,
+a-b</span></td>
+<td class="xl23" style="border-top: medium none; border-left: medium none; text-align: center; width: 70px;">-</td>
+<td class="xl24" style="border-top: medium none; border-left: medium none; text-align: center; width: 124px;" x:num="40076">20 - 9</td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl23" style="border-top: medium none; height: 13.5pt; text-align: left; width: 132px;" height="18"><span style="" lang="ES-TRAD">Multiplication,
+ab</span></td>
+<td class="xl23" style="border-top: medium none; border-left: medium none; text-align: center; width: 70px;">*</td>
+<td class="xl23" style="border-top: medium none; border-left: medium none; text-align: center; width: 124px;">8.7
+* 9.2</td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl23" style="border-top: medium none; height: 13.5pt; text-align: left; width: 132px;" height="18"><span style="" lang="ES-TRAD">Division,
+a/b</span><span style="" lang="ES-TRAD"></span></td>
+<td class="xl23" style="border-top: medium none; border-left: medium none; text-align: center; width: 70px;">/</td>
+<td class="xl23" style="border-top: medium none; border-left: medium none; text-align: center; width: 124px;">40
+/ 8</td>
+</tr>
+<tr style="height: 15.75pt;" height="21">
+<td class="xl23" style="border-top: medium none; height: 15.75pt; text-align: left; width: 132px;" height="21"><span style="" lang="ES-TRAD">Power,
+a<font class="font5"><sup>b</sup></font></span><span style="" lang="ES-TRAD"></span></td>
+<td class="xl23" style="border-top: medium none; border-left: medium none; text-align: center; width: 70px;">^</td>
+<td class="xl23" style="border-top: medium none; border-left: medium none; text-align: center; width: 124px;">5^3
+</td>
+</tr>
+</tbody>
+</table>
+<div style="text-align: center;"><br>
+<!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+</div>
+<hr style="width: 100%; height: 2px;"><span style="font-weight: bold;"><br>
+Common
+Functions</span><br>
+<table x:str="" style="border-collapse: collapse; width: 321px;" border="0" cellpadding="0" cellspacing="0" width="160">
+<col span="2" style="width: 60pt;" width="80"> <tbody>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt; width: 60pt;" height="17" width="80">abs(x)</td>
+<td style="width: 242px;">absolute value</td>
+</tr>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt;" height="17">acos(x)</td>
+<td style="width: 242px;">inverse
+cosine, result in radians</td>
+</tr>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt;" height="17">angle(x)</td>
+<td style="width: 242px;">angle of
+complex number</td>
+</tr>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt;" height="17">asin(x)</td>
+<td style="width: 242px;">inverse sine,
+result in radians</td>
+</tr>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt;" height="17">atan(x)</td>
+<td style="width: 242px;">inverse tangent</td>
+</tr>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt;" height="17">ceil(x)</td>
+<td style="width: 242px;">round towards
+plus infinity</td>
+</tr>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt;" height="17">conj(x)</td>
+<td style="width: 242px;">complex
+conjugate</td>
+</tr>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt;" height="17">cos(x)</td>
+<td style="width: 242px;">cosine</td>
+</tr>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt;" height="17">exp(x)</td>
+<td style="width: 242px;">exponential</td>
+</tr>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt;" height="17">fix(x)</td>
+<td style="width: 242px;">round towards
+zero</td>
+</tr>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt;" height="17">floor(x)</td>
+<td style="width: 242px;">round towards
+minus infinity</td>
+</tr>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt;" height="17">imag(x)</td>
+<td style="width: 242px;">complex
+imaginary part</td>
+</tr>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt;" height="17">log(x)</td>
+<td style="width: 242px;">natural
+logarithm</td>
+</tr>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt;" height="17">log10(x)</td>
+<td style="width: 242px;">common (base
+10) logarithm</td>
+</tr>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt;" height="17">real(x)</td>
+<td style="width: 242px;">complex real
+part</td>
+</tr>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt;" height="17">round(x)</td>
+<td style="width: 242px;">round towards
+nearest integer</td>
+</tr>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt;" height="17">sign(x)</td>
+<td style="width: 242px;">signum function</td>
+</tr>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt;" height="17">sin(x)</td>
+<td style="width: 242px;">sine</td>
+</tr>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt;" height="17">sqrt(x)</td>
+<td style="width: 242px;">square root</td>
+</tr>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt;" height="17">tan(x)</td>
+<td style="width: 242px;">tangent</td>
+</tr>
+</tbody>
+</table>
+<br>
+<hr style="width: 100%; height: 2px;">
+<div style="text-align: right;"><a href="http://www.matrixlab-examples.com/support-files/quick_reference_matlab_functions.pdf" onclick="return FIX.track(this);">Download
+<span style="font-weight: bold;">Quick
+Reference - Matlab Functions</span> (click here)</a><br>
+</div>
+<hr style="width: 100%; height: 2px;"><br>
+Matlab
+doesn't care about spaces between operands, and multiplications are
+performed before additions. Type these operations on the command window
+(only the
+part just after '&gt;&gt;', and Matlab will give the answers):<br>
+&nbsp;<br>
+&gt;&gt; 2&nbsp; +&nbsp; 1&nbsp; +&nbsp; 3<br>
+ans =<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 6<br>
+<br>
+&gt;&gt; 8*9&nbsp; -&nbsp; 6*5&nbsp; +&nbsp; 3*4<br>
+ans =<br>
+&nbsp;&nbsp;&nbsp; 54<br>
+<br>
+&gt;&gt; x=2<br>
+x =<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 2<br>
+<br>
+&gt;&gt; y=3<br>
+y =<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 3<br>
+<br>
+&gt;&gt; cos(x)+sqrt(y)+tan(x+y)<br>
+ans =<br>
+&nbsp;&nbsp; -2.0646<br>
+&gt;&gt; <br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+You can keep values in variables:<br>
+<br>
+&gt;&gt; apples=2<br>
+apples =<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 2<br>
+<br>
+&gt;&gt; bananas=5<br>
+bananas =<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 5<br>
+<br>
+&gt;&gt; peaches=4<br>
+peaches =<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+<br>
+&gt;&gt; fruit=apples+bananas+peaches<br>
+fruit =<br>
+&nbsp;&nbsp;&nbsp; 11<br>
+<br>
+<br>
+Ending the instruction with a ';' sign tells Matlab to make the
+operation but not to display the answer.<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+To see a list of your variables in memory you can use the commands
+'who' or 'whos'.<br>
+<br>
+&gt;&gt; whos<br>
+<table x:str="" style="border-collapse: collapse; width: 248px;" border="0" cellpadding="0" cellspacing="0" width="278">
+<col style="width: 47pt;" width="63">
+<col style="width: 29pt;" width="39"><col style="width: 31pt;" width="41"><col style="width: 41pt;" width="55"><col style="width: 60pt;" width="80"><tbody>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl24" style="height: 13.5pt; width: 47pt; font-weight: bold;" height="18" width="63"><span style="" lang="ES-TRAD">Name</span></td>
+<td class="xl26" style="width: 29pt; font-weight: bold; text-align: center;" width="39">Size</td>
+<td style="width: 31pt; font-weight: bold; text-align: center;" width="41">Bytes</td>
+<td class="xl24" style="width: 41pt; font-weight: bold; text-align: center;" width="55">Class</td>
+<td class="xl25" style="text-align: center; width: 46px;"></td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl24" style="height: 13.5pt;" height="18"></td>
+<td style="text-align: center;" class="xl24"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;" class="xl24"></td>
+<td style="text-align: center; width: 46px;" class="xl25"></td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl24" style="height: 13.5pt;" height="18"><span style="" lang="ES-TRAD">ans</span></td>
+<td style="text-align: center;" class="xl24">1x1</td>
+<td style="text-align: center;" x:num="">8</td>
+<td style="text-align: center;" class="xl24">double</td>
+<td style="text-align: center; width: 46px;" class="xl25">array</td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl24" style="height: 13.5pt;" height="18"><span style="" lang="ES-TRAD">apples</span></td>
+<td style="text-align: center;" class="xl24">1x1</td>
+<td style="text-align: center;" x:num="">8</td>
+<td style="text-align: center;" class="xl24">double</td>
+<td style="text-align: center; width: 46px;" class="xl25">array</td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl24" style="height: 13.5pt;" height="18"><span style="" lang="ES-TRAD">bananas</span></td>
+<td style="text-align: center;" class="xl24">1x1</td>
+<td style="text-align: center;" x:num="">8</td>
+<td style="text-align: center;" class="xl24">double</td>
+<td style="text-align: center; width: 46px;" class="xl25">array</td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl24" style="height: 13.5pt;" height="18"><span style="" lang="ES-TRAD">fruit</span></td>
+<td style="text-align: center;" class="xl24">1x1</td>
+<td style="text-align: center;" x:num="">8</td>
+<td style="text-align: center;" class="xl24">double</td>
+<td style="text-align: center; width: 46px;" class="xl25">array</td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl24" style="height: 13.5pt;" height="18"><span style="" lang="ES-TRAD">peaches</span></td>
+<td style="text-align: center;" class="xl24">1x1</td>
+<td style="text-align: center;" x:num="">8</td>
+<td style="text-align: center;" class="xl24">double</td>
+<td style="text-align: center; width: 46px;" class="xl25">array</td>
+</tr>
+</tbody>
+</table>
+<br>
+Grand total is 5 elements using 40 bytes<br>
+<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+Variables are sensitive to lower/upper case. They have to start with a
+letter and can contain also numbers and underscores.<br>
+<br>
+<table x:str="" style="border-collapse: collapse; width: 368px;" border="0" cellpadding="0" cellspacing="0" width="437">
+<col style="width: 115pt;" width="153">
+<col style="width: 213pt;" width="284"><tbody>
+<tr style="height: 13.5pt; font-weight: bold;" height="18">
+<td class="xl25" style="height: 13.5pt; font-weight: bold; width: 130px;" height="18"><span style="" lang="ES-TRAD">Special
+Names</span></td>
+<td class="xl25" style="font-weight: bold; width: 236px;">Value</td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl24" style="height: 13.5pt; width: 130px;" height="18"><span style="" lang="ES-TRAD">ans</span></td>
+<td style="width: 236px;" class="xl24">Default
+for results</td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl24" style="height: 13.5pt; width: 130px;" height="18"><span style="" lang="ES-TRAD">pi</span></td>
+<td style="width: 236px;" class="xl24">3.141592...</td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl24" style="height: 13.5pt; width: 130px;" height="18"><span style="" lang="ES-TRAD">eps</span></td>
+<td style="width: 236px;" class="xl24">Smallest
+possible number in Matlab</td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl24" style="height: 13.5pt; width: 130px;" height="18"><span style="" lang="ES-TRAD">inf</span></td>
+<td style="width: 236px;" class="xl24">Infinite</td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl24" style="height: 13.5pt; width: 130px;" height="18"><span style="" lang="ES-TRAD">NaN</span></td>
+<td style="width: 236px;" class="xl24">Not
+a number</td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl24" style="height: 13.5pt; width: 130px;" height="18"><span style="" lang="ES-TRAD">i</span></td>
+<td style="width: 236px;" class="xl24">square
+root of -1</td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl24" style="height: 13.5pt; width: 130px;" height="18"><span style="" lang="ES-TRAD">j</span></td>
+<td style="width: 236px;" class="xl24">square
+root of -1</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span style="font-weight: bold;"></span><br>
+To delete variables you can use the 'clear' command.<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+Operations with <span style="font-weight: bold;">Complex
+Numbers</span><br>
+<br>
+&gt;&gt; c1 = 1 - 2i <br>
+c1 =<br>
+&nbsp;&nbsp; 1.0000 - 2.0000i<br>
+<br>
+&gt;&gt; c2 = 6 - 9j<br>
+c2 =<br>
+&nbsp;&nbsp; 6.0000 - 9.0000i<br>
+<br>
+&gt;&gt; c3 = sqrt(-2)<br>
+c3 =<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0 + 1.4142i<br>
+<br>
+&gt;&gt; c4 = c1 + c2 - c3<br>
+c4 =<br>
+&nbsp;&nbsp; 7.0000 -12.4142i<br>
+&gt;&gt;<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<span style="font-weight: bold;">M-files</span><br>
+Matlab
+allows you to place your commands on a simple text file. You should
+name this file with the '.m' extension. Giving Matlab the name of this
+file while in the command window, makes Matlab to execute the script.<br>
+<br>
+For example, <span style="font-weight: bold;">name</span>
+a text file '<span style="font-weight: bold;">primer.m</span>'.<br>
+Make it contain the following text:<br>
+<br>
+a = 3; b = -4; c = 8;<br>
+d = a*b-c<br>
+<br>
+When you execute this from the command window<br>
+<br>
+&gt;&gt; <span style="font-weight: bold;">primer</span><br>
+<br>
+you obtain this information from MATLAB:<br>
+<br>
+d&nbsp; =<br>
+<br>
+-20<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<span style="font-weight: bold;">M-File
+functions</span><br>
+<table x:str="" style="border-collapse: collapse; width: 526px; height: 132px;" border="0" cellpadding="0" cellspacing="0">
+<col style="width: 85pt;" width="113">
+<col style="width: 422pt;" width="562"><tbody>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt; width: 153px;" height="17">disp(ans)</td>
+<td style="width: 519px;">show results
+without showing the variable name</td>
+</tr>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt; width: 153px;" height="17">input</td>
+<td style="width: 519px;">prompt for
+user input</td>
+</tr>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt; width: 153px; vertical-align: top;">keyboard</td>
+<td style="width: 519px;">stops
+execution of the m-file and gives control to the <br>
+user's keyboard ('return' to quit)</td>
+</tr>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt; width: 153px; vertical-align: top;">pause</td>
+<td style="width: 519px;">causes a
+procedure to stop and wait for the user to <br>
+strike any key before continuing</td>
+</tr>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt; width: 153px;" height="17">pause(n)</td>
+<td style="width: 519px;">pauses for n
+seconds</td>
+</tr>
+<tr style="height: 12.75pt;" height="17">
+<td style="height: 12.75pt; width: 153px;" height="17">waitforbuttonpress</td>
+<td style="width: 519px;">wait for
+key/buttonpress over figure</td>
+</tr>
+</tbody>
+</table>
+<br>
+<p style="text-align: left;">&nbsp;<a href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From 'Matlab Commands' to home</a>&nbsp;&nbsp;&nbsp;</p>
+<p style="text-align: left;">&nbsp;<a href="http://www.matrixlab-examples.com/matlab-help-2tier.html" onclick="return FIX.track(this);">From 'Matlab Commands'
+to&nbsp;Matlab Help Menu</a></p>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><br>
+<!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><br>
+<a href="matlab-commands-2.html#top">Top</a><br>
+<br>
+<a href="matlab-commands-2.html#top">Vector
+basics</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/getting-started-with-matlab.html" onclick="return FIX.track(this);">Video:
+Getting started</a><br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<span style="text-decoration: underline;"><br>
+</span>
+<p style="text-align: left;"><!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --></p>
+<p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for matlab commands page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; text-align: right; vertical-align: top; background-color: rgb(224, 236, 255);"><!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:47:22 10-Aug-2021 -->
+</body></html>

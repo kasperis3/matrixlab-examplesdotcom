@@ -1,0 +1,437 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Data Analysis - reading text files with Matlab</title>
+
+<meta name="Description" content="We're going to do data analysis by reading text files with Matlab, processing data and writing output to another text file...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/data-analysis.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Data Analysis - reading text files with Matlab" />
+<meta property="og:description" content="We're going to do data analysis by reading text files with Matlab, processing data and writing output to another text file..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/data-analysis.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 520px;"><br>
+<h1><a name="Data_Analysis_-_reading_text_files_and"></a>Data
+Analysis - reading text files and processing them with Matlab</h1>
+In this article, we're going to <span style="font-weight: bold;">read
+text files</span> with
+Matlab,
+perform&nbsp;<span style="font-weight: bold;">data
+analysis</span> or processing, and finally we are going to
+write out our results to another text file. The procedure is easily
+adaptable to many situations.<br>
+&nbsp;
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+</td>
+<td><br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+Let's assume that we have 3 text
+files (<span style="font-style: italic;">it could be
+hundreds</span>). They all have to have the same format,
+and have to have a basic file name, with numbered tag endings
+(otherwise it is harder to automate the reading process).<br>
+<br>
+For example, we have files '<span style="font-weight: bold;">data_sheet1.txt</span>',
+'<span style="font-weight: bold;">data_sheet2.txt</span>'
+and '<span style="font-weight: bold;">data_sheet3.txt</span>'.<br>
+<br>
+So,
+the basic file name is 'data_sheet'; then, the numbered tag&nbsp;is
+1,
+2 or 3, respectively, and they all end with the '.txt' extension.<br>
+<br>
+Let the content for each file be something simple, for example, for
+'data_sheet1.txt' &nbsp;the hypothetical content is:<br>
+<br>
+dummy line 1<br>
+dummy line 2<br>
+dummy line 3<br>
+<br>
+1 1234<br>
+2 2345<br>
+3 4320<br>
+4 4567<br>
+5 9876<br>
+<br>
+This file has four text lines (three dummy lines and one blank line) at
+the beginning, and then the real data in two columns. <br>
+<br>
+In our case, the content for 'data_sheet2.txt' &nbsp;is:<br>
+<br>
+dummy line 1<br>
+dummy line 2<br>
+dummy line 3<br>
+<br>
+1 12340<br>
+2 23452<br>
+3 43203<br>
+4 45674<br>
+5 98765<br>
+<br>
+and the content for&nbsp;'data_sheet3.txt' is<br>
+<br>
+dummy line 1<br>
+dummy line 2<br>
+dummy line 3<br>
+<br>
+1 123<br>
+2 234<br>
+3 432<br>
+4 456<br>
+5 987<br>
+<br>
+Note
+that all the three files have four text lines at the beginning and all
+of them have the <span style="font-weight: bold;">relevant
+data in the same format</span>, with the same number
+of elements (two columns and five rows). The number of columns or rows
+is not relevant for our purpose, but the files have to keep the same
+format or structure.<br>
+<br>
+We are going to use Matlab functions
+'fopen', 'textscan' and 'num2str' to read data from all those '.txt'
+files (it's a good idea if you investigate those three functions a
+little bit, but I'll give you the recipe).<br>
+<br>
+We are not interested
+in the four&nbsp;text lines at the beginning of the files, and we
+want
+to read the first column of the first file (which is the same for all
+the files, let's say for identification purposes) and the second column
+of each of the files, so, we want to end with&nbsp;something like<br>
+<br>
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1234&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+12340&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+123</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2345&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+23452&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+234</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4320&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+43203&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+432</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4567&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+45674&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+456</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+9876&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+98765&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+987</span><br>
+<br>
+In this way, we now have the information&nbsp;in
+one&nbsp;matrix, and we can do data analysis thereafter.<br>
+<br>
+This
+is the function that I propose to read the files. You have two input
+parameters (the base file name and the number of files to read) and one
+output (one cell array with your relevant data). Fair, isn't it?<br>
+<br>
+To automatically change the name of the file we use an array in this
+form:<br>
+<br>
+[BaseFile num2str(i) '.txt']<br>
+<br>
+This
+array concatenates the string BaseFile name (input parameter) with a
+counting number (by changing the iteration counter into a string), and
+then concatenates
+the '.txt' extension.<br>
+<br>
+For the first file, the idea could be represented by:<br>
+<br>
+[BaseFile '1' '.txt'], or better [BaseFile '1.txt']<br>
+<br>
+The full code would be:<br>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">function</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> R =
+get_data(BaseFile, n)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Open the first file</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">d(1) = fopen([BaseFile </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'1.txt'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">]);</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Read the first two columns, skip the first 4
+headerlines</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">R = textscan(d(1), </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'%f %f'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">, </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'headerLines'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">, 4);</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Close the file, you don't need it any longer</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">fclose(d(1));<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">for</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> i = 2 : n<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Open consecutively each of the remaining files</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;
+</span>d(i) =
+fopen([BaseFile num2str(i) </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'.txt'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">]);<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Skip the first column of the new file (an '*'
+to do this) &nbsp; &nbsp; % and keep on&nbsp;building the
+array</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;
+</span>R = [R
+textscan(d(i), </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'%*f %f'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">, </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'headerLines'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">, 4)];</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">&nbsp; &nbsp; % Close the file</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;">fclose(d(i));</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;">end</span><span style="font-family: &quot;Courier New&quot;;"><o:p></o:p></span></p>
+You end with your data in cell array R. Instruction '<span style="font-weight: bold;">textscan</span>' produces
+a cell array (not an ordinary array) so you have to alter this (only if
+necessary).<br>
+<br>
+<br>
+How are you going to use the above function to read text files and
+process data from Matlab?<br>
+<br>
+This is one suggestion. You may process it the way you want...<br>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Reset your memory and clear your screen</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">clear; clc<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Provide base file name and number of files to
+be
+read</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">BaseFile = </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'data_sheet'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">;<br>
+n = 3;<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Use the developed function to read data</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">R = get_data(BaseFile, n);<span style="">&nbsp;</span></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Transform your cell array into an ordinary
+matrix&nbsp;<br>
+% and show your data</span><br>
+<span style="font-family: monospace;">my_data
+= cell2mat(R)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"></span></p>
+<span style="font-size: 10pt; color: forestgreen;" lang="EN-US"><span style="color: black;"><br>
+At
+this point 'my_data' is a matrix that has the information as you need
+it (exactly as shown before). <br>
+<br>
+You can study&nbsp;it, or plot it... or perform data analysis of
+any kind...</span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US"><span style="color: black;"></span></span>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Calculate the average of all of the columns
+and show</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">my_average = mean(my_data)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Calculate the standard deviation for each
+column</span> <br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">my_std = std(my_data)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Calculate the maximum&nbsp;</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">my_max = max(my_data)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Calculate the minimum&nbsp;</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">my_min = min(my_data)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US"></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Arrange your information to be saved</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">my_results = [my_average' my_std' my_max'
+my_min']</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US"></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Save your 'my_results' matrix in file
+'data_out.txt'</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">save </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">data_out.txt</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">-ascii</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">my_results</span></p>
+<span style="font-weight: bold; color: red;"><br>
+Done!</span>
+&nbsp;Now, you have a text file with your data analysis or
+processed information.<br>
+&nbsp;<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Data Analysis' to home</a><br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/generic-programming.html" onclick="return FIX.track(this);">From
+'Data Analysis' to 'Matlab Cookbook Menu'</a><br>
+&nbsp;<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/excel-programming.html" onclick="return FIX.track(this);">Video:
+Importing External Data</a><br style="font-weight: bold;">
+<br>
+<a style="font-weight: bold;" href="data-analysis.html#Data_Analysis_-_reading_text_files_and">Top</a><br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><br>
+<p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for data analysis page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="vertical-align: top; width: 170px; text-align: right; background-color: rgb(224, 236, 255);"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:48:04 10-Aug-2021 -->
+</body></html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Taylor Expansion - code series with Matlab</title>
+
+<meta name="Description" content="A Taylor expansion (series) is a more generic form of the Maclaurin series, and it can be centered at any x-value. In Matlab, we're....">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/taylor-expansion.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Taylor Expansion - code series with Matlab" />
+<meta property="og:description" content="A Taylor expansion (series) is a more generic form of the Maclaurin series, and it can be centered at any x-value. In Matlab, we're...." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/taylor-expansion.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/taylor-expansion-003.gif" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 520px;"><br>
+<h1 style="text-align: left;"><a name="Taylor_expansion_-_series_experiments"></a><span style="color: black;" lang="ES-TRAD">Taylor
+expansion - series experiments with Matlab</span></h1>
+<span style="" lang="ES-TRAD">Once
+you know how <span style="font-weight: bold;">Maclaurin
+series</span> work, <span style="font-weight: bold;">Taylor
+series</span> are easier to
+understand.
+</span><br>
+<span style="" lang="ES-TRAD">&nbsp;
+</span><br>
+<span style="" lang="ES-TRAD"></span><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+<br>
+<br>
+<span style="" lang="ES-TRAD"><span style="font-weight: bold;">Taylor
+expansions</span> are very similar to <span style="font-weight: bold;">Maclaurin expansions</span>
+because
+Maclaurin
+series actually are Taylor series centered at <i style="">x</i>
+= 0. <br>
+<br>
+Thus, a <span style="font-weight: bold;">Taylor series</span>
+is a more generic form of the
+Maclaurin series, and it<span style="font-weight: bold;">
+can be centered at any </span><i style="font-weight: bold;">x</i><span style="font-weight: bold;">-value</span>.
+<br>
+<br>
+</span><span style="" lang="ES-TRAD">The
+goal of a <span style="font-weight: bold;">Taylor
+expansion</span> is
+to approximate function values.&nbsp;</span><br>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">You&#8217;ll have a good
+approximation only if you&#8217;re close to the series&#8217;
+center.<o:p></o:p></span><br>
+<span style="" lang="ES-TRAD"><o:p></o:p><br>
+Taylor
+series look almost identical to Maclaurin series:<o:p>&nbsp;</o:p></span></p>
+<p style="text-align: center;" class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;<img style="width: 140px; height: 58px;" alt="taylor series formula" src="http://www.matrixlab-examples.com/image-files/taylor-expansion-001.gif"></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Note:<br>
+- The derivatives in Taylor series are
+evaluated at <i style="">x</i> = <i style="">c</i>,
+the center of the approximation, </span><span style="" lang="ES-TRAD">not at <i style="">x</i>
+= 0.<br>
+- You
+raise the quantity (x &#8211; c) to the <i style="">n</i>
+power, not just <i style="">x</i>.<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Other
+than that, the formulas (Maclaurin&#8217;s and Taylor&#8217;s) are identical. <o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><br>
+As an
+<span style="font-weight: bold;">example</span>,
+let&#8217;s use a cosine series to approximate cos(1.6), using just
+three
+terms in the <span style="">&nbsp;</span>Taylor
+polynomial for <i style="">f</i>(<i style="">x</i>)
+= cos(<i style="">x</i>) centered at <i style="">x</i>
+= pi/2&nbsp;<br>
+(x is approx. 1.57). In this
+problem, <i style="font-weight: bold;">f</i><span style="font-weight: bold;">(</span><i style="font-weight: bold;">x</i><span style="font-weight: bold;">)
+= cos(</span><i style="font-weight: bold;">x</i><span style="font-weight: bold;">)</span> and <i style="font-weight: bold;">c</i><span style="font-weight: bold;">
+= pi/2</span>.<o:p><br>
+<br>
+&nbsp;</o:p></span></p>
+<p style="text-align: center;" class="MsoNormal"><span style="" lang="ES-TRAD"><o:p><img style="width: 448px; height: 84px;" alt="taylor expansion - example of code" src="http://www.matrixlab-examples.com/image-files/taylor-expansion-002.gif"></o:p></span></p>
+<p class="MsoNormal">And we&#8217;ll need to take
+three derivatives (<i style="">n</i> = 0 to 2) of
+the function and then
+evaluate them at <i style="">x</i> = pi/2.<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="font-weight: bold;">Definition 1</span>: <i style="">f</i><sup>(0)</sup>(<i style="">x</i>)
+is the function itself, in this case
+cos(x). It's not a derivative!<br>
+<span style="font-weight: bold;">Definition 2</span>:
+0! = 1.</p>
+<p style="font-family: monospace;" class="MsoNormal">f<sup>(0)</sup>(<i style="">x</i>)
+= cos(<i style="">x</i>) <span style="">&nbsp;
+</span>f<sup>(0)</sup>(pi/2) = cos(pi/2)
+= 0<br>
+f<sup>(1)</sup>(<i style="">x</i>)
+= -sin(x)<span style="">&nbsp; </span>f<sup>(1)</sup>(pi/2)
+= -sin(pi/2)
+= -1<br>
+f<sup>(2)</sup>(<i style="">x</i>)
+= -cos(x)<span style="">&nbsp; </span>f<sup>(2)</sup>(pi/2)
+= -cos(pi/2)
+= 0</p>
+<p class="MsoNormal"><o:p>&nbsp;<br>
+</o:p>Let&#8217;s create a fast script in
+Matlab to evaluate the series just
+with 3 terms (0 to 2):<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">clear,
+clc<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Let's see more decimals</span><br>
+<span style="color: black;">format </span><span style="color: rgb(160, 32, 240);">long</span><span style="color: black;"><span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+We go from n = 0 to n = 2</span><br>
+<span style="color: black;">n = 0 :
+2;<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Center and point to evaluate</span><br>
+<span style="color: black;">c =
+pi/2;<br>
+x = 1.6;<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+These are the derivatives for each term</span><br>
+<span style="color: black;">d = [0
+-1 0];<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+We form the sequence, following the Taylor formula</span><br>
+<span style="color: black;">seq = d
+.* (x - c).^n ./(factorial(n))<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+We add-up to get the Taylor approximation</span><br>
+<span style="color: black;">approx =
+sum(seq)<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen; font-family: monospace;">%
+Let's compare with the official number</span><br style="font-family: monospace;">
+<span style="color: black;"><span style="font-family: monospace;">real_value
+= cos(x)</span><span style=""></span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span><br>
+The resuls are:</p>
+<p style="font-family: monospace;" class="MsoNormal">seq =<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;</span>0<span style="">&nbsp; </span>-0.02920367320510<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>0<br>
+approx =<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>-0.02920367320510<br>
+real_value =<span style="">&nbsp;&nbsp;
+</span>-0.02919952230129</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">We&#8217;ve got almost the
+exact value by using only 3 terms of
+the series (and <span style="font-weight: bold;">two
+values are zero</span> because the derivative is zero for
+those
+terms!!). If we had used <i style="">n</i> = 10, it
+would have been an even better approximation.<br>
+<o:p></o:p><span style="" lang="ES-TRAD"><o:p></o:p></span></p>
+<p class="MsoNormal">Now, let&#8217;s develop an
+automated series to express the cosine
+function (centered at pi/2) using the Taylor expansion and let&#8217;s
+compare the
+results with different number of terms included.</p>
+<p class="MsoNormal"><o:p>&nbsp;&nbsp;</o:p></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: blue;">function</span><span style="color: black;"> stp =
+taylor_cosine(c, x, n)</span><br>
+<span style="color: forestgreen;">%
+c = center of the function<br>
+%
+x = a vector with values around c<br>
+%
+n = number of terms in the series<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Start the series with 0</span><br>
+<span style="color: black;">smp = 0;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Consider all the possible derivatives</span><br>
+<span style="color: black;">deriv =
+[0 -1 0 1]';<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Iterate n times (from 0 to n-1)</span><br>
+<span style="color: blue;">for</span><span style="color: black;"> i = 0 :
+n-1</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: forestgreen;">% Implement the Taylor
+expansion</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span>t(i+1, :) = deriv(1) * (x-c).^(i) /
+factorial(i);</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: forestgreen;">% Find derivative for the next
+term</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span>deriv = circshift(deriv, -1);</span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: blue;">end</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen; font-family: monospace;">%
+Add-up the calculated terms</span><br style="font-family: monospace;">
+<span style="color: black;"><span style="font-family: monospace;">stp =
+sum(t);</span><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">Note:
+the above code is not very efficient, because we&#8217;re calculating and
+adding
+terms even when their derivative is zero, which is a waste of 50% of
+the time,
+more or less. We&#8217;ll leave it as-is just to keep and show the natural
+flow of
+the formula...<o:p><br>
+&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">Now,
+let&#8217;s create a script to test and use the function above.<br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">clear,
+clc, close </span><span style="color: rgb(160, 32, 240);">all</span><span style="color: black;"></span><span style="color: rgb(160, 32, 240);"><span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Work with values around center c</span><br>
+<span style="color: black;">c =
+pi/2;<br>
+x = -4 :
+.1 : 6;<br>
+y =
+cos(x);<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Plot the goal</span><br>
+<span style="color: black;">plot(x,
+y, </span><span style="color: rgb(160, 32, 240);">'g'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'Linewidth'</span><span style="color: black;">, 3)<br>
+title(</span><span style="color: rgb(160, 32, 240);">'Study
+of Taylor series'</span><span style="color: black;">)<br>
+xlabel(</span><span style="color: rgb(160, 32, 240);">'x'</span><span style="color: black;">)<br>
+ylabel(</span><span style="color: rgb(160, 32, 240);">'cos(x)
+with different number of terms'</span><span style="color: black;">)<br>
+axis([-4
+6 -3 3])<br>
+grid </span><span style="color: rgb(160, 32, 240);">on</span><br>
+<span style="color: black;">hold </span><span style="color: rgb(160, 32, 240);">on<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Consider 4 terms in the series</span><br>
+<span style="color: black;">smp =
+taylor_cosine(c, x, 4);<br>
+plot(x,
+smp, </span><span style="color: rgb(160, 32, 240);">'ro'</span><span style="color: black;">)<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Consider 6 terms</span><br>
+<span style="color: black;">smp =
+taylor_cosine(c, x, 6);<br>
+plot(x,
+smp, </span><span style="color: rgb(160, 32, 240);">'b-.'</span><span style="color: black;">)<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Consider 10 terms</span><br>
+<span style="color: black;">smp =
+taylor_cosine(c, x, 10);<br>
+plot(x,
+smp, </span><span style="color: rgb(160, 32, 240);">'k'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'linewidth'</span><span style="color: black;">, 3)<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen; font-family: monospace;">%
+Label the calculated lines</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">legend(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'cos(x)'</span><span style="color: black; font-family: monospace;">, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'4-term
+series'</span><span style="color: black; font-family: monospace;">, </span><span style="color: blue; font-family: monospace;">...</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: rgb(160, 32, 240); font-family: monospace;">'6
+terms'</span><span style="color: black; font-family: monospace;">, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'10
+terms'</span><span style="color: black;"><span style="font-family: monospace;">)</span><span style=""></span></span></p>
+<p class="MsoNormal"><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span><br>
+<span style="color: black;"><o:p></o:p></span>The
+results are:<o:p></o:p></p>
+<div style="text-align: center;"><img style="width: 390px; height: 321px;" alt="Taylor expansion - cosine series" src="http://www.matrixlab-examples.com/image-files/taylor-expansion-003.gif">
+</div>
+<p class="MsoNormal">We see that all of the
+Taylor expansions work well when we
+are close to pi/2 (x approx. 1.57). More terms approximate better a
+larger
+portion of the cosine curve.<o:p></o:p></p>
+<div style="text-align: center;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --><br>
+<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/maclaurin-series.html" onclick="return FIX.track(this);">Maclaurin
+Series</a> &nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/sequences-and-series.html" onclick="return FIX.track(this);">Sequences</a>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/fourier-analysis.html" onclick="return FIX.track(this);">Fourier Analysis - intro</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/fourier-series.html" onclick="return FIX.track(this);">Fourier Series</a><br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Taylor Expansion ' to
+home</a><br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/calculus-problems.html" onclick="return FIX.track(this);">From
+'Taylor Expansion ' to Calculus Problems</a><br>
+&nbsp; <br>
+<a style="font-weight: bold;" href="taylor-expansion.html#Taylor_expansion_-_series_experiments">Top</a><br>
+</div>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for Taylor expansion page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="vertical-align: top; width: 170px; text-align: right; background-color: rgb(224, 236, 255);"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div style="text-align: center;"><!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:42:59 10-Aug-2021 -->
+</body></html>

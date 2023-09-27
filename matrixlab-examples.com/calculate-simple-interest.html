@@ -1,0 +1,478 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Calculate Simple Interest and compound one... code in
+Matlab</title>
+
+<meta name="Description" content="How to calculate simple interest and the compounded one with a numerical software in this article. We have to start with some definitions, though...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/calculate-simple-interest.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Calculate Simple Interest and compound one... code in
+Matlab" />
+<meta property="og:description" content="How to calculate simple interest and the compounded one with a numerical software in this article. We have to start with some definitions, though..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/calculate-simple-interest.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<br>
+<h1><a name="Calculate_Simple_Interest_and_Compound"></a>Calculate
+Simple Interest and Compound Interest &#8211; easy
+exercises with Matlab</h1>
+<br>
+We&#8217;ll
+see how to <span style="font-weight: bold;">calculate the
+simple interest</span> and the
+<span style="font-weight: bold;">compound
+one</span> in this article. We have to start with some
+definitions, though.<br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 307px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+</td>
+<td style="vertical-align: top;"><span style="font-weight: bold;">Interest</span>
+is money paid by an individual or organization for the use of a sum of
+money
+called the <span style="font-weight: bold;">principal</span>.
+The interest is usually paid at the end of specified
+equal <span style="font-weight: bold;">periods of time</span>
+(such as monthly, quarterly, or annually).<br>
+<br>
+<br>
+The
+sum of the
+principal and the interest is called the <span style="font-weight: bold;">amount</span>.</td>
+</tr>
+</tbody>
+</table>
+<h3><br>
+</h3>
+<h3>1.- Simple Interest</h3>
+<p class="MsoNormal">To help us work and <span style="font-weight: bold;">calculate
+the simple interest</span>,
+we have
+these two easy formulas:</p>
+<p class="MsoNormal">I = P r t<br>
+A = P + P r t<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">where<br>
+I = simple interest<br>
+P = principal<br>
+r = interest rate per year<br>
+t = time in years<br>
+A = amount<br>
+<o:p>&nbsp;</o:p></p>
+We can also conclude that<br>
+A = P(1 + r t) and<br>
+I = A - P
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style="font-weight: bold;" class="MsoNormal">Examples</p>
+<hr style="width: 100%; height: 2px;">
+<p class="MsoNormal">If an individual borrows
+$1000 at 5% per year for 1.5 years,
+how much interest must be paid on the loan?</p>
+<p class="MsoNormal">I = P r t<br>
+I = 1000 (0.05) (1.5)<br>
+I = $75<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">If an organization
+invests $13000 at 4% per year for 3
+years, how much will the investment be worth at the end of the 3 years?</p>
+<p class="MsoNormal">A = P + Prt<br>
+A = $13000 + $13000 (0.04) (3)<br>
+A = $14560<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><o:p>&nbsp;
+</o:p></p>
+<hr style="width: 100%; height: 2px;">
+<h3><span style="font-weight: bold;">2.-
+Compound Interest</span></h3>
+<p class="MsoNormal"><span style="font-weight: bold;">Compound interest</span>
+means that the interest is paid
+periodically over the term of the loan which results in a new principal
+at the
+end of each interval of time.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The ending balance is
+given by:<o:p>&nbsp;</o:p></p>
+<p style="text-align: center;" class="MsoNormal"><span style="position: relative; top: 14pt;"></span><img style="width: 103px; height: 51px;" alt="compute compound interest formula in Matlab" src="http://www.matrixlab-examples.com/image-files/calculate-compound-interest-001.gif"></p>
+<p class="MsoNormal">where<br>
+A = amount, or ending balance<br>
+P = principal<br>
+r = annual interest rate<br>
+n = compounded times per year<br>
+t = number of years &nbsp;</p>
+<p class="MsoNormal"><br>
+The
+following video shows an example and a solution using a calculator
+specially prepared for such purpose. After the video, we show how to
+solve the problem by creating in Matlab our own function for the task...<o:p></o:p></p>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;;"><br style="page-break-before: always;" clear="all">
+</span>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td><iframe src="//www.youtube-nocookie.com/embed/TCLFSKV87k4?rel=0" allowfullscreen="" frameborder="0" height="360" width="480"></iframe></td>
+</tr>
+</tbody>
+</table>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;;"></span>
+<p style="font-weight: bold;" class="MsoNormal"></p>
+<p style="font-weight: bold;" class="MsoNormal">Let's
+create our code! - Example</p>
+<hr style="width: 100%; height: 2px;">
+<p class="MsoNormal">Find the amount of an
+investment if $10,000 is invested at 5%
+compounded monthly for three years.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Fortunately, we can
+create a function in Matlab for the
+compound interest formula, like this:<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="color: blue; font-family: monospace;">function</span><span style="color: black; font-family: monospace;"> A =
+comp_int(P, r, n, t)<br>
+A = P*(1
++ r/n)^(n*t);</span><br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">and we can call it from
+another m-file, script, or from the
+command window, in this way:<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">P =
+10000;<br>
+r =
+0.05;<br>
+n = 12;<br>
+t = 3;<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="color: black; font-family: monospace;">format </span><span style="color: rgb(160, 32, 240); font-family: monospace;">bank</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">A
+=
+comp_int(P, r, n, t)</span><br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The answer is:<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="font-family: monospace;">A = 11614.72</span><br>
+<o:p></o:p></p>
+<h3></h3>
+<hr style="width: 100%; height: 2px;">
+<h3>3.- Continuously Compounded Interest</h3>
+<p class="MsoNormal">When the interest is
+compounded more frequently, we get to a
+situation of <span style="font-weight: bold;">continuously
+compounded interest</span>. This formula works it out:<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">A = Pe<sup>rt<o:p></o:p></sup></p>
+<p class="MsoNormal">where<br>
+A = amount, or ending balance<br>
+P = principal<br>
+e = 2.718281...<br>
+t = number of years<br>
+r = annual interest rate<br>
+<o:p>&nbsp;</o:p></p>
+<p style="font-weight: bold;" class="MsoNormal">Example</p>
+<hr style="width: 100%; height: 2px;">
+<p class="MsoNormal">Find the amount of an
+investment if $10000 is invested at 5%
+compounded continuously for three years.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Fortunately again, we can
+create another function to
+calculate the formula above, like this:<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="color: blue; font-family: monospace;">function</span><span style="color: black; font-family: monospace;"> A =
+comp_int_2(P, r, t)<br>
+A = P *
+exp(r*t);</span><o:p>&nbsp;</o:p><br>
+</p>
+<p class="MsoNormal">and we can call it from
+another script or from the command
+window, in this way:<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="color: black; font-family: monospace;">P = 10000<br>
+r = 0.05<br>
+t = 3<br>
+A =
+comp_int_2(P, r, t)</span><br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The answer is:</p>
+<p style="font-family: monospace;" class="MsoNormal">A = 11618.34</p>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Calculate Simple
+Interest ' to home</a><br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/finance-formulas.html" onclick="return FIX.track(this);">From 'Calculate
+Simple Interest ' to Finance Formulas</a><br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="#Calculate_Simple_Interest_and_Compound">Top</a><br>
+<br>
+<a style="color: red; font-weight: bold;" href="http://www.matrixlab-examples.com/simple-interest-formula.html" onclick="return FIX.track(this);">Online calculator</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/calculate-future-value.html" onclick="return FIX.track(this);">Future
+value</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/salvage-value.html" onclick="return FIX.track(this);">Salvage
+value</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/initial-investments.html" onclick="return FIX.track(this);">Initial
+investments</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/effective-interest-rate.html" onclick="return FIX.track(this);">Effective
+interest rate</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/calculate-loan-payment.html" onclick="return FIX.track(this);">Calculate
+loan payment</a><br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for calculate simple interest page"><a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br>
+</a></p>
+</td>
+<td style="width: 170px; vertical-align: top; background-color: rgb(211, 228, 244); text-align: center;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:44:26 10-Aug-2021 -->
+</body></html>

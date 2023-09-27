@@ -1,0 +1,460 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>RC circuit - Transient analysis with Matlab</title>
+
+<meta name="Description" content="Let's explore how a RC circuit charges or discharges with Matlab, plot the exponential rise...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/rc-circuit.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="RC circuit - Transient analysis with Matlab" />
+<meta property="og:description" content="Let's explore how a RC circuit charges or discharges with Matlab, plot the exponential rise..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/rc-circuit.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/rc-circuit-008.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/rc-circuit-009.gif" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 813px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 145px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 813px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 520px;"><br>
+<br>
+<br>
+<h1><a name="RC_Circuit_"></a>RC
+Circuit&nbsp;</h1>
+<h1>Transient Analysis with Matlab</h1>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><br>
+</td>
+<td style="vertical-align: top;"></td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal">Considering the RC
+Circuit (also called RC network) shown in
+this figure<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="text-align: center;"><img style="width: 164px; height: 114px;" alt="simple RC circuit" src="http://www.matrixlab-examples.com/image-files/rc-circuit-001.gif" v:shapes="_x0000_i1025"></p>
+<p class="MsoNormal">we can use the
+Kirchhoff&#8217;s current law (KCL) to write the
+following equation<o:p></o:p></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><o:p>&nbsp;</o:p><span style="position: relative; top: 12pt;"><img style="width: 135px; height: 49px;" alt="KCL equation for a RC circuit" src="http://www.matrixlab-examples.com/image-files/rc-circuit-002.gif" v:shapes="_x0000_i1026"></span></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<div style="text-align: left;">and we can
+rearrange into the equation<br>
+</div>
+<div style="text-align: center;"><span style="position: relative; top: 12pt;"><img style="width: 124px; height: 52px;" alt="differential equation - RC transient response" src="http://www.matrixlab-examples.com/image-files/rc-circuit-003.gif" v:shapes="_x0000_i1027"></span></div>
+<p class="MsoNormal">The solution to the
+equation above is<o:p></o:p></p>
+<div style="text-align: center;"><o:p>&nbsp;</o:p><span style="position: relative; top: 6pt;"><img style="width: 103px; height: 43px;" alt="analytical solution discharging RC circuit" src="http://www.matrixlab-examples.com/image-files/rc-circuit-004.gif" v:shapes="_x0000_i1028"></span></div>
+<p class="MsoNormal">where<br>
+<i style="">V<sub>m</sub></i>
+is
+the initial voltage across the capacitor<br>
+<i style="">RC</i> is the time
+constant<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">This solution represents
+the voltage across a discharging
+capacitor.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Now, to obtain the
+voltage across a charging capacitor, let
+us consider this figure that includes a voltage source<o:p>&nbsp;</o:p></p>
+<div style="text-align: center;"><img style="width: 215px; height: 144px;" alt="charging RC circuit" src="http://www.matrixlab-examples.com/image-files/rc-circuit-005.gif" v:shapes="_x0000_i1029"><br>
+</div>
+<p class="MsoNormal"><o:p></o:p>Again,
+using KCL, the equation describing the charging RC
+circuit is<o:p></o:p></p>
+<div style="text-align: center;"><span style="position: relative; top: 12pt;"><img style="width: 170px; height: 52px;" alt="charging resistor capacitor circuit" src="http://www.matrixlab-examples.com/image-files/rc-circuit-006.gif" v:shapes="_x0000_i1030"></span></div>
+<p class="MsoNormal"></p>
+<p class="MsoNormal">If the capacitor is not
+charged initially, that is v<sub>0</sub>(t)
+= 0 when t = 0, then the solution to the equation above is given by<o:p>&nbsp;</o:p></p>
+<div style="text-align: center;"><span style="position: relative; top: 19pt;"><img style="width: 137px; height: 62px;" alt="analytical response - charging capacitor" src="http://www.matrixlab-examples.com/image-files/rc-circuit-007.gif" v:shapes="_x0000_i1031"></span><br>
+</div>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><o:p></o:p>The
+following examples illustrate the use of Matlab for
+solving problems<br>
+related to RC circuits.<o:p></o:p></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<h3>Example 1 &#8211; Charging circuit<o:p></o:p></h3>
+<p class="MsoNormal">Assume that for the
+charging RC circuit above Vs = 10 volts
+and C = 10 microfarads. Plot the voltage across the capacitor if R
+equals 5k ohm,
+10k ohms and 20k ohms. This just means that we are going to explore
+three time
+constants.&nbsp;<o:p><br>
+&nbsp;</o:p></p>
+<p class="MsoNormal">This code is one simple
+solution to the problem&nbsp;<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Define the voltage source</span><br>
+<span style="color: black;">Vs = 10;</span><br>
+<span style="color: forestgreen;">%
+Define the capacitor in the circuit</span><br>
+<span style="color: black;">C =
+10e-6;</span><br>
+<span style="color: forestgreen;">%
+Define the time lapse that we're going to explore</span><br>
+<span style="color: black;">t = 0 :
+0.005 : 0.35;<br>
+<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Define the resistors in each time constant and<br>
+%
+calculate the voltage across the capacitor</span><br>
+<span style="color: black;">R1 =
+5e3;<br>
+tau1 =
+R1*C;<br>
+V1 = Vs
+* ( 1 - exp(-t/tau1) );<br>
+<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">R2 =
+10e3;<br>
+tau2 =
+R2*C;<br>
+V2 = Vs
+* ( 1 - exp(-t/tau2) );<br>
+<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">R3 =
+20e3;<br>
+tau3 =
+R3*C;<br>
+V3 = Vs
+* ( 1 - exp(-t/tau3) );<br>
+<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen; font-family: monospace;">%
+Plot the responses, all at once</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">plot(t,
+V1, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'b-'</span><span style="color: black; font-family: monospace;">, t, V2, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'ro'</span><span style="color: black; font-family: monospace;">, t, V3, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'k*'</span><span style="color: black; font-family: monospace;">)<br>
+grid </span><span style="color: rgb(160, 32, 240); font-family: monospace;">on</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">title(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Transient
+Analysis - RC circuit'</span><span style="color: black; font-family: monospace;">)<br>
+xlabel(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Time
+(s)'</span><span style="color: black; font-family: monospace;">)<br>
+ylabel(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Voltage
+across capacitor (V)'</span><span style="color: black; font-family: monospace;">)<br>
+legend([</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'RC_1
+= '</span><span style="color: black; font-family: monospace;">
+num2str(tau1)],</span><span style="color: blue; font-family: monospace;">...</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>[</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'RC_2
+= '</span><span style="color: black; font-family: monospace;">
+num2str(tau2)],</span><span style="color: blue; font-family: monospace;">...</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>[</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'RC_3
+= '</span><span style="color: black; font-family: monospace;">
+num2str(tau3)], </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'location'</span><span style="color: black; font-family: monospace;">, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'best'</span><span style="color: black; font-family: monospace;">)</span><br>
+<span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="font-size: 12pt;"><o:p></o:p></span>The
+resulting plot is<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><img style="width: 401px; height: 327px;" alt="V response to different time constants" src="http://www.matrixlab-examples.com/image-files/rc-circuit-008.gif" v:shapes="_x0000_i1032"><o:p></o:p></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
+From the resulting plot of our transient analysis, we see
+that if the time constant is small, it takes a shorter time for the
+capacitor
+to charge up (the smaller the time constant the faster the circuit
+response). We
+also can see that when the time constant is reached by each response,
+we have
+obtained more or less the 63% of the total voltage to be taken (that&#8217;s
+why the
+RC value is called the time constant).&nbsp;<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<h3>Example 2 -<span style="">&nbsp;
+</span>Charging
+/ discharging RC circuit<o:p></o:p></h3>
+<p class="MsoNormal">In the same charging
+circuit above, the input voltage is now
+a rectangular pulse with an amplitude of 10 volts and a width of 0.5
+seconds. If
+C = 10 microfarads, we&#8217;ll plot the output voltage, v<sub>0</sub>(t),
+for&nbsp;a resistance R equal to 5k ohms, and 20k ohms. The plots
+should start from 0s and end at 1s.&nbsp;<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">We are going to develop a
+function that will return the
+voltage and corresponding time of the response. We need to use the two
+formulas
+mentioned previously and that&#8217;s why we separate our code in two halves.</p>
+<p class="MsoNormal">The input parameters are
+the voltage source (vs), the
+resistor (r) and capacitor (c).&nbsp;<br>
+<o:p></o:p></p>
+<p class="MsoNormal"></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: blue;">function</span><span style="color: black;"> [v, t]
+= rectangular_RC(vs, r, c)<br>
+tau = r
+* c;<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+First half of the pulse: 0.01 to 0.5 seconds<br>
+%
+Use the correct formula.</span><br>
+<span style="color: black;">t1 =
+linspace(.01, 0.5, 50);<br>
+v1 = vs
+* (1 - exp(-t1/tau));<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Second half of the pulse: 0.51 to 1 seconds.<br>
+%
+Take into account the max voltage reached.<br>
+%
+Use the appropriate formula.</span><br>
+<span style="color: black;">Vm =
+v1(end);<br>
+t2 =
+linspace(0.51, 1, 50);<br>
+v2 = Vm
+* exp(-t1/tau);<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<span style="color: forestgreen; font-family: monospace;">%
+Assemble the final vectors to return</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">t
+= [t1
+t2];</span><br style="font-family: monospace;">
+<span style="font-size: 10pt; color: black; font-family: monospace;">v
+= [v1 v2];</span>
+<p class="MsoNormal"></p>
+<p class="MsoNormal">Now, we are going to call
+the function from our main code,
+like this<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Given constants</span><br>
+<span style="color: black;">vs = 10;<br>
+c =
+10e-6;<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Case 1. R = 5k ohms</span><br>
+<span style="color: black;">r1 =
+5e3;<br>
+[v1, t1]
+= rectangular_RC(vs, r1, c);<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Case 2. R = 20k ohms</span><br>
+<span style="color: black;">r2 =
+20e3;<br>
+[v2, t2]
+= rectangular_RC(vs, r2, c);<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Plot the responses</span><br>
+<span style="color: black;">plot(t1,
+v1, </span><span style="color: rgb(160, 32, 240);">'bo'</span><span style="color: black;">, t2, v2, </span><span style="color: rgb(160, 32, 240);">'r+'</span><span style="color: black;">)<br>
+grid on<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="color: forestgreen; font-family: monospace;">%
+Add labels</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">title(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'RC
+circuit - rectangular input'</span><span style="color: black; font-family: monospace;">)<br>
+xlabel(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Time
+(s)'</span><span style="color: black; font-family: monospace;">)<br>
+ylabel(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Voltage
+(V)'</span><span style="color: black; font-family: monospace;">)<br>
+legend([</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'R_1
+=
+'</span><span style="color: black; font-family: monospace;">
+num2str(r1)], </span><span style="color: blue; font-family: monospace;">...</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>[</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'R_2
+= '</span><span style="color: black; font-family: monospace;">
+num2str(r2)]</span><span style="color: rgb(160, 32, 240); font-family: monospace;"></span><span style="color: black; font-family: monospace;"></span><span style="color: rgb(160, 32, 240); font-family: monospace;"></span><span style="color: black; font-family: monospace;">)</span><br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p>The
+resulting plot is<o:p></o:p></p>
+<p class="MsoNormal" style="text-align: center;"><img style="width: 394px; height: 330px;" alt="Charging/ discharching RC circuit - time analysis" src="http://www.matrixlab-examples.com/image-files/rc-circuit-009.gif" v:shapes="_x0000_i1033"></p>
+<p class="MsoNormal"><o:p></o:p><br>
+We can see that the first circuit reaches the maximum
+voltage of the source. The second circuit started its discharge before
+reaching
+the maximum voltage.<o:p></o:p></p>
+<br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'RC circuit' to Matlab home</a><br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/electrical-calculations.html" onclick="return FIX.track(this);">From 'RC circuit' to
+Electrical Calculations</a><br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --><br>
+</td>
+<td style="vertical-align: bottom; text-align: right; font-weight: bold;"><a href="#RC_Circuit_">Top</a></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for matlab page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="vertical-align: top; background-color: rgb(211, 228, 244); width: 170px; text-align: center;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:50:48 10-Aug-2021 -->
+</body></html>

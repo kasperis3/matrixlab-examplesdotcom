@@ -1,0 +1,660 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Calculating BMI - another GUI in Matlab</title>
+
+<meta name="Description" content="In this project, we are going to develop a GUI in Matlab to calculate the BMI (body mass index). We are going to introduce the radio button...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script><!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/calculating-bmi.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Calculating BMI - another GUI in Matlab" />
+<meta property="og:description" content="In this project, we are going to develop a GUI in Matlab to calculate the BMI (body mass index). We are going to introduce the radio button..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/calculating-bmi.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/bmi-calculator-001.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/bmi-calculator-007.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/bmi-calculator-003.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/bmi-calculator-004.gif" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 813px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 145px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 813px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 520px;"><br>
+<span style="" lang="ES-TRAD"><br>
+</span>
+<h1><a name="top"></a><span style="" lang="ES-TRAD">Calculating
+BMI &#8211; another GUI in Matlab</span></h1><p class="MsoNormal"><span style="" lang="ES-TRAD">In this
+project, we are going to develop a GUI in Matlab to calculate the BMI
+(body
+mass index) of any people. We are going to introduce the radio button,
+which we
+haven&#8217;t explored before in this site, and we&#8217;re going to include a
+button to
+save the data in an external spreadsheet. We could use these concepts
+to
+develop complex databases, but we are going to keep things very simple
+in this
+case.&nbsp;</span></p><p class="MsoNormal">If you do not want to create a GUI but to use an online calculator, go <a style="font-weight: bold;" href="http://www.matrixlab-examples.com/calculate-your-body-mass-index.html" onclick="return FIX.track(this);">here</a>.<span style="" lang="ES-TRAD"><o:p></o:p></span></p>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+</td>
+<td style="vertical-align: top;"></td>
+</tr>
+</tbody>
+</table>
+
+<p class="MsoNormal"><span style="" lang="ES-TRAD"></span><br><span style="" lang="ES-TRAD">If you
+haven&#8217;t read the main concepts of GUI development, I suggest you read
+them
+before you continue with this experiment. You can find <a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-gui.html" onclick="return FIX.track(this);">here
+the basics of GUI</a>
+development, and <a style="font-weight: bold;" href="http://www.matrixlab-examples.com/callback-function.html" onclick="return FIX.track(this);">here the basics of callbacks</a>.
+It&#8217;s important that you
+understand those concepts first.&nbsp;<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">&nbsp;<br>
+Note:
+the BMI calculator that we&#8217;re going to develop here is like an
+experiment with
+a scientific toy, and it&#8217;s not intended for serious purposes. <b style=""><span style="color: blue;">Use at your
+own
+risk.</span></b><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;&nbsp;</o:p><br>
+Open
+the guide tool in Matlab and choose the blank GUI option.<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Then, replicate
+this screen and save your project as bmi.fig.<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><span style="" lang="ES-TRAD"><img style="width: 466px; height: 386px;" alt="BMI calculator - GUI in Matlab" src="http://www.matrixlab-examples.com/image-files/bmi-calculator-001.gif" v:shapes="_x0000_i1025"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p>The
+window is going to have four edit boxes (or objects) to be used as
+name, age,
+weight and height inputs. The name and age are just for documentation
+purposes,
+and obviously they don&#8217;t matter at all for the calculation process.
+Each edit
+box has an informative associated label. The labels can be obtained
+with text
+objects.&nbsp;</span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><br>
+This
+GUI is going to have a group of two radio buttons (within a panel
+object) to
+let the user select the units (anglo or metric), and it&#8217;s going to have
+three
+buttons, one to reset or clear the input, another to perform the
+calculations
+and, the third button for saving the information in a separate file, in
+this
+case it&#8217;ll be an Excel spreadsheet.<br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">These
+are the components utilized in my GUI. Blank spaces mean the
+default&nbsp;<span style=""></span>value
+provided by Matlab:<o:p></o:p></span></p>
+<p style="text-align: center;" class="MsoNormal"><span style="" lang="ES-TRAD"><o:p><img style="width: 482px; height: 305px;" alt="table of elements in GUI for BMI calculation" src="http://www.matrixlab-examples.com/image-files/bmi-calculator-007.gif">&nbsp;</o:p></span></p>
+<br>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">The tag
+names are associated with the functions generated by the guide tool,
+that&#8217;s why
+it&#8217;s important to follow them. The initial strings and values are the
+initial
+conditions of the GUI and that&#8217;s what the user sees when executing the
+script.&nbsp;<o:p><br>
+&nbsp;</o:p></span></p>
+<h3><span style="" lang="ES-TRAD">Initial
+Conditions<o:p></o:p></span></h3>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p>When
+you save the bmi.fig file with the objects drawn and named as detailed
+above,
+Matlab creates a kind of template. You have to &#8220;fill-in the blanks&#8221; to
+make it
+work...<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Almost
+at the top of your new template, you&#8217;ll see something like this
+function, but
+with less lines. Make sure that at the end, you have all these
+lines...&nbsp;&nbsp;<o:p>&nbsp;<br>
+&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen; font-family: monospace;">%
+--- Executes just before bmi is made visible.</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">function</span><span style="color: black; font-family: monospace;">
+bmi_OpeningFcn(hObject, eventdata, handles, varargin)</span><br style="font-family: monospace;">
+<span style="color: forestgreen; font-family: monospace;">%
+This function has no output args, see OutputFcn.<br>
+%
+hObject<span style="">&nbsp;&nbsp;&nbsp; </span>handle
+to figure<br>
+%
+eventdata<span style="">&nbsp;</span>reserved -
+to be defined in a
+future version of MATLAB<br>
+%
+handles<span style="">&nbsp;</span>structure
+with handles and
+user data (see GUIDATA)<br>
+%
+varargin<span style="">&nbsp;</span>command line
+arguments to bmi
+(see VARARGIN)<span style="">&nbsp;</span><br>
+%
+Choose default command line output for bmi</span><br style="font-family: monospace;">
+<span style="color: black;"><span style="font-family: monospace;">handles.output
+= hObject;&nbsp;</span><br>
+</span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">handles.metric
+= 0;<br>
+handles.wu
+= </span><span style="color: rgb(160, 32, 240);">'lb'</span><span style="color: black;">;<br>
+handles.hu
+= </span><span style="color: rgb(160, 32, 240);">'in'</span><span style="color: black;">;<br>
+handles.name
+= </span><span style="color: rgb(160, 32, 240);">''</span><span style="color: black;">;<br>
+handles.age
+= </span><span style="color: rgb(160, 32, 240);">''</span><span style="color: black;">;<br>
+handles.bmi
+= 0;<br>
+handles.weight
+= </span><span style="color: rgb(160, 32, 240);">''</span><span style="color: black;">;<br>
+handles.height
+= </span><span style="color: rgb(160, 32, 240);">''</span><span style="color: black;">;<br>
+handles.result
+= </span><span style="color: rgb(160, 32, 240);">''</span><span style="color: black;">;<br>
+handles.condition
+= </span><span style="color: rgb(160, 32, 240);">''</span><span style="color: black;">;<span style="">&nbsp;</span></span></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen; font-family: monospace;">%
+Update handles structure</span><br>
+<span style="color: black;"><span style="font-family: monospace;">guidata(hObject,
+handles)</span>;<span style="">&nbsp;</span></span></p>
+<p class="MsoNormal"><span style="font-size: 12pt;"><o:p></o:p></span><br>
+<span style="" lang="ES-TRAD">These
+variables are necessary if the user doesn&#8217;t use the GUI as intended. If
+the
+user doesn&#8217;t enter data as expected and we don&#8217;t use the initial
+conditions,
+the GUI doesn&#8217;t behave correctly and crashes. The conditions above are
+useful
+to give stability to our design.<o:p><br>
+&nbsp;</o:p></span></p>
+<h3><span style="" lang="ES-TRAD">Entering
+Name and Age</span><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></h3>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">I&#8217;m going
+to mention only the changes that you have to make to your template. The
+auto-generated template contains many comments. Leave them in your code
+if you
+want, but I won&#8217;t copy all those comments here. Use the name of the
+functions
+to follow and make the relevant modifications.<br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+--- Executes on text input in name_text.</span><br>
+<span style="color: blue;">function</span><span style="color: black;">
+name_text_Callback(hObject, eventdata, handles)<br>
+handles.name
+= get(hObject,</span><span style="color: rgb(160, 32, 240);">'String'</span><span style="color: black;">);<br>
+guidata(hObject,
+handles)</span><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="color: forestgreen; font-family: monospace;">%
+--- Executes on text input in age_text.</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">function</span><span style="color: black; font-family: monospace;">
+age_text_Callback(hObject, eventdata, handles)<br>
+handles.age
+= get(hObject,</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'String'</span><span style="color: black; font-family: monospace;">);<br>
+guidata(hObject,
+handles)</span><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<h3>Selecting Units<o:p>&nbsp;</o:p></h3>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+--- Executes on button press in anglo_radio.</span><br>
+<span style="color: blue;">function</span><span style="color: black;">
+anglo_radio_Callback(hObject, eventdata, handles)<br>
+handles.anglo
+= get(hObject,</span><span style="color: rgb(160, 32, 240);">'Value'</span><span style="color: black;">);<br>
+set(handles.weight_label,
+</span><span style="color: rgb(160, 32, 240);">'String'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'Weight (lb):'</span><span style="color: black;">)<br>
+set(handles.height_label,
+</span><span style="color: rgb(160, 32, 240);">'String'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'Height (in):'</span><span style="color: black;">)<br>
+set(handles.metric_radio,
+</span><span style="color: rgb(160, 32, 240);">'Value'</span><span style="color: black;">, 0)<br>
+handles.metric
+= 0;<br>
+handles.wu
+= </span><span style="color: rgb(160, 32, 240);">'lb'</span><span style="color: black;">;<br>
+handles.hu
+= </span><span style="color: rgb(160, 32, 240);">'in'</span><span style="color: black;">;<br>
+guidata(hObject,
+handles)<span style=""></span></span></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen; font-family: monospace;">&nbsp;<br>
+%
+--- Executes on button press in metric_radio.</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">function</span><span style="color: black; font-family: monospace;">
+metric_radio_Callback(hObject, eventdata, handles)<br>
+handles.metric
+= get(hObject,</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Value'</span><span style="color: black; font-family: monospace;">);<br>
+set(handles.weight_label,
+</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'String'</span><span style="color: black; font-family: monospace;">, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Weight
+(kg):'</span><span style="color: black; font-family: monospace;">)<br>
+set(handles.height_label,
+</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'String'</span><span style="color: black; font-family: monospace;">, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Height
+(cm):'</span><span style="color: black; font-family: monospace;">)<br>
+set(handles.anglo_radio,
+</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Value'</span><span style="color: black; font-family: monospace;">, 0)<br>
+handles.anglo
+= 0;<br>
+handles.wu
+= </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'kg'</span><span style="color: black; font-family: monospace;">;<br>
+handles.hu
+= </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'cm'</span><span style="color: black;"><span style="font-family: monospace;">;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">guidata(hObject,
+handles)</span><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;"><o:p>&nbsp;</o:p></span></p>
+<h3><span style="color: black;">Entering
+Weight and Height</span><span style="color: black;"><o:p>&nbsp;</o:p></span></h3>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+--- Executes on text input in weight_text.</span><br>
+<span style="color: blue;">function</span><span style="color: black;">
+weight_text_Callback(hObject, eventdata, handles)<br>
+num =
+str2double(get(hObject,</span><span style="color: rgb(160, 32, 240);">'String'</span><span style="color: black;">));</span><br>
+<span style="color: blue;">if</span><span style="color: black;">
+isnan(num)<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>set(hObject,</span><span style="color: rgb(160, 32, 240);">'String'</span><span style="color: black;">, 0);</span><br>
+<span style="color: blue;">end</span><br>
+<span style="color: black;">handles.weight
+= num;<br>
+guidata(hObject,
+handles)</span><span style="color: blue;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: blue;"><o:p></o:p></span><br>
+<span style="color: forestgreen; font-family: monospace;">%
+--- Executes on text input in height_text.</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">function</span><span style="color: black; font-family: monospace;">
+height_text_Callback(hObject, eventdata, handles)<br>
+num =
+str2double(get(hObject,</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'String'</span><span style="color: black; font-family: monospace;">));</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">if</span><span style="color: black; font-family: monospace;"> isnan(num)<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>set(hObject,</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'String'</span><span style="color: black; font-family: monospace;">, 0);</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">end</span><br style="font-family: monospace;">
+<span style="color: black;"><span style="font-family: monospace;">handles.height
+= num;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">guidata(hObject,
+handles);</span><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<h3>Calulating BMI<o:p>&nbsp;</o:p></h3>
+<p class="MsoNormal">The formula for the BMI
+calculation is<br>
+</p>
+<div style="text-align: center;"><span style="font-family: monospace;">BMI = 10</span><sup style="font-family: monospace;">4</sup><span style="font-family: monospace;"> x (weight in kg) / (height
+in cm)</span><sup style="font-family: monospace;">2</sup></div>
+<p class="MsoNormal">&nbsp;<br>
+if you want to use pounds and inches instead, the formula is<br>
+</p>
+<div style="text-align: center;"><span style="font-family: monospace;">BMI = 10</span><sup style="font-family: monospace;">4</sup><span style="font-family: monospace;"> x (weight in lbs/2.2046) /
+(height in
+in/0.3937)</span><sup style="font-family: monospace;">2</sup><br>
+</div>
+<p class="MsoNormal"><o:p>&nbsp;&nbsp;</o:p><br>
+The table to determine the&nbsp;condition is</p>
+<p class="MsoNormal"><span style="font-family: monospace;">&nbsp; &nbsp;
+&nbsp; &nbsp;BMI &lt; 18.5 Underweight</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+18.5 &#8211; 24.9
+Normal</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+25 &nbsp;&nbsp;&#8211; 29.9 Overweight</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp;&gt;
+30&nbsp;&nbsp;&nbsp;Obese</span><o:p><br>
+&nbsp;</o:p></p>
+<p class="MsoNormal">The formula to calculate
+BMI and the code to look-up the
+table can be coded as follows:</p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+--- Executes on button press in calculate_button.</span><br>
+<span style="color: blue;">function</span><span style="color: black;">
+calculate_button_Callback(hObject, eventdata, handles)</span><span style="font-size: 12pt;"><o:p></o:p></span><br>
+<span style="color: blue;">if</span><span style="color: black;">
+handles.metric<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>w
+= handles.weight;<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>h
+= handles.height;</span><br>
+<span style="color: blue;">else</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span>w = handles.weight/2.2046;<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>h
+= handles.height/0.3937;</span><br>
+<span style="color: blue;">end</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: blue;"><span style=""></span></span><span style="color: black;">bmi =
+1e4 * w/h^2;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: blue;">if</span><span style="color: black;"> bmi
+&lt; 18.5<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>s
+= </span><span style="color: rgb(160, 32, 240);">'
+Underweight'</span><span style="color: black;">;</span><br>
+<span style="color: blue;">elseif</span><span style="color: black;"> 18.5
+&lt;= bmi &amp; bmi &lt; 25<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>s
+= </span><span style="color: rgb(160, 32, 240);">'
+Normal'</span><span style="color: black;">;</span><br>
+<span style="color: blue;">elseif</span><span style="color: black;"> 25
+&lt;= bmi &amp; bmi &lt; 30<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>s
+= </span><span style="color: rgb(160, 32, 240);">'
+Overweight'</span><span style="color: black;">;</span><br>
+<span style="color: blue;">else</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span>s = </span><span style="color: rgb(160, 32, 240);">' Obese'</span><span style="color: black;">;</span><br>
+<span style="color: blue;">end</span><span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black; font-family: monospace;">bmis =
+[num2str(bmi, 3) s];<span style="">&nbsp;</span><br>
+set(handles.result_text,
+</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'String'</span><span style="color: black;"><span style="font-family: monospace;">, bmis);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">handles.result
+= bmi;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">handles.condition
+= s;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">guidata(hObject,handles);</span><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<h3>Clearing the Graphic Interface</h3>
+<p class="MsoNormal"><span style="color: forestgreen; font-family: monospace;">%
+--- Executes on button press in clear_button.</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">function</span><span style="color: black; font-family: monospace;">
+clear_button_Callback(hObject, eventdata, handles)<br>
+set(handles.name_text,
+</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'String'</span><span style="color: black; font-family: monospace;">, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">''</span><span style="color: black; font-family: monospace;">)<br>
+handles.name
+= </span><span style="color: rgb(160, 32, 240); font-family: monospace;">''</span><span style="color: black; font-family: monospace;">;<br>
+set(handles.age_text,
+</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'String'</span><span style="color: black; font-family: monospace;">, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">''</span><span style="color: black; font-family: monospace;">)<br>
+handles.age
+= </span><span style="color: rgb(160, 32, 240); font-family: monospace;">''</span><span style="color: black; font-family: monospace;">;<br>
+set(handles.weight_text,
+</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'String'</span><span style="color: black; font-family: monospace;">, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'0'</span><span style="color: black; font-family: monospace;">)<br>
+handles.weight
+= 0;<br>
+set(handles.height_text,
+</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'String'</span><span style="color: black; font-family: monospace;">, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'0'</span><span style="color: black; font-family: monospace;">)<br>
+handles.height
+= 0;<br>
+set(handles.result_text,
+</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'String'</span><span style="color: black; font-family: monospace;">, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">''</span><span style="color: black; font-family: monospace;">)<br>
+handles.result
+= 0;<br>
+handles.condition
+= </span><span style="color: rgb(160, 32, 240); font-family: monospace;">''</span><span style="color: black; font-family: monospace;">;</span><br>
+<o:p>&nbsp;</o:p></p>
+<h3>Saving the data in an Excel file</h3>
+<p class="MsoNormal"><o:p></o:p>This
+process can be done in many ways. In this case we&#8217;re
+going to keep things simple and use just the functions xlsread and
+xlswrite.
+With xlsread we&#8217;re going to read the number of lines of information
+(registers)
+that the file has, and we&#8217;re using xlswrite to write one more line
+(register of
+eight columns or fields) to the file. <a style="font-weight: bold;" href="http://www.matrixlab-examples.com/ms-excel.html" onclick="return FIX.track(this);">Here, you can read a full article about
+data interchange between Matlab and Excel.</a><br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Beforehand, we&#8217;re going
+to prepare a spreadsheet named
+bmi.xls, and we&#8217;re going to save it in the same working directory that
+we&#8217;re
+using with Matlab. A file like this:</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style="text-align: center;" class="MsoNormal"><img style="width: 474px; height: 183px;" alt="Spreadsheet needed for BMI GUI" src="http://www.matrixlab-examples.com/image-files/bmi-calculator-008.gif" v:shapes="_x0000_i1026"></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">We have eight columns,
+for all the information that our
+graphical interface is going to produce. In cell B1, we have this
+formula: +COUNT( G3 : G65536 ). It just counts all the registers that
+we have in
+the spreadsheet. We can later hide that line (row 1) to avoid
+distractions.<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">At the beginning, the
+count is 0 (as shown), of course. That
+means that we could add a register in line 3, which is the first line
+available. If we had a count of 5, we could add a register in<span style="">&nbsp; </span>the 8th line. The count is
+read with Matlab built-in function
+xlsread. Then, we prepare the 8-field register in a cell-array in
+Matlab and
+save it tho the sheet 1 of the file &#8216;bmi.xls&#8217;.<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">We can even think of a
+pop-up window to display success or
+failure of the saving process...<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">That&#8217;s accomplished with
+this code:<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+--- Executes on button press in save_button.</span><br>
+<span style="color: blue;">function</span><span style="color: black;">
+save_button_Callback(hObject, eventdata, handles)<br>
+d{1, 1}
+= handles.name;<br>
+d{1, 2}
+= handles.age;<br>
+d{1, 3}
+= handles.weight;<br>
+d{1, 4}
+= handles.wu;<br>
+d{1, 5}
+= handles.height;<br>
+d{1, 6}
+= handles.hu;<br>
+d{1, 7}
+= handles.result;<br>
+d{1, 8}
+= handles.condition;<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">c =
+xlsread(</span><span style="color: rgb(160, 32, 240);">'bmi'</span><span style="color: black;">, 1 , </span><span style="color: rgb(160, 32, 240);">'b1'</span><span style="color: black;">);<br>
+position
+= [</span><span style="color: rgb(160, 32, 240);">'a'</span><span style="color: black;"> num2str(c+3)];<br>
+[status,
+message] = xlswrite(</span><span style="color: rgb(160, 32, 240);">'bmi'</span><span style="color: black;">, d, 1, position);</span><br>
+<span style="color: blue;"></span></p>
+<p class="MsoNormal" style=""><span style="color: blue; font-family: monospace;">if</span><span style="color: black; font-family: monospace;"> status<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>helpdlg(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Data
+saved ok...'</span><span style="color: black; font-family: monospace;">, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Save
+Spreadsheet'</span><span style="color: black; font-family: monospace;">);</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">else</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;"><span style="">&nbsp;&nbsp;&nbsp; </span>errordlg(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Could
+not save data'</span><span style="color: black; font-family: monospace;">, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Save
+Spreadsheet'</span><span style="color: black; font-family: monospace;">);</span><br style="font-family: monospace;">
+<span style="color: blue;"><span style="font-family: monospace;">end</span><span style=""></span></span><span style="font-size: 12pt;"></span></p>
+<p class="MsoNormal"><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span><br>
+Save your files and you&#8217;re ready to run it...<br>
+</p>
+<p class="MsoNormal">These are some
+screenshots...</p>
+<p class="MsoNormal"><span style="">&nbsp;</span></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><img style="width: 373px; height: 296px;" alt="One register filled-in" src="http://www.matrixlab-examples.com/image-files/bmi-calculator-003.gif" v:shapes="_x0000_i1027"></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><img style="width: 271px; height: 135px;" alt="Data saved ok notice" src="http://www.matrixlab-examples.com/image-files/bmi-calculator-006.gif" v:shapes="_x0000_i1028"></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><img style="width: 373px; height: 296px;" alt="Second filled-in register" src="http://www.matrixlab-examples.com/image-files/bmi-calculator-004.gif" v:shapes="_x0000_i1029"></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><img style="width: 520px; height: 86px;" alt="Spreadsheet with data from Matlab" src="http://www.matrixlab-examples.com/image-files/bmi-calculator-009.gif" v:shapes="_x0000_i1030"></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">So the project seems to
+be working fine!<o:p></o:p></p>
+<br>
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Calculating BMI' to Matlab home</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-gui-2tier.html" onclick="return FIX.track(this);">From
+'Calculationg BMI' to Matlab GUIs</a><br style="font-weight: bold;">
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --><br>
+</td>
+<td style="vertical-align: bottom; text-align: right; font-weight: bold;"><a href="#top">Top</a></td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for matlab page"><a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br>
+</a></p>
+</td>
+<td style="vertical-align: top; background-color: rgb(211, 228, 244); width: 170px; text-align: center;"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:50:51 10-Aug-2021 -->
+</body></html>

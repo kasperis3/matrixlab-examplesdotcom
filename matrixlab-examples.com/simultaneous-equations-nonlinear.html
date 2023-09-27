@@ -1,0 +1,464 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Simultaneous Equations - solving nonlinear systems with
+Matlab</title>
+
+<meta name="Description" content="Nonlinear Simultaneous Equations - how to develop a function to solve systems. We&#8217;ll use &#8216;fminsearch&#8217; to find the intersection of the curves...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/simultaneous-equations-nonlinear.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Simultaneous Equations - solving nonlinear systems with
+Matlab" />
+<meta property="og:description" content="Nonlinear Simultaneous Equations - how to develop a function to solve systems. We&amp;#8217;ll use &amp;#8216;fminsearch&amp;#8217; to find the intersection of the curves..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/simultaneous-equations-nonlinear.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/nl_simultaneous_equations_002.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/nl_simultaneous_equations_004.gif" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<h1><a name="Nonlinear_Simultaneous_Equations"></a><span style="" lang="ES-TRAD"><span style="color: rgb(0, 0, 238);">Nonlinear
+Simultaneous Equations</span><o:p></o:p></span></h1>
+<span style="" lang="ES-TRAD">We&#8217;re
+going to develop a Matlab function to solve systems of <span style="font-weight: bold;">nonlinear simultaneous equations</span>.<br>
+&nbsp;</span>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 308px; text-align: left; vertical-align: top;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --></td>
+<td><span style="" lang="ES-TRAD">We&#8217;ll
+use the &#8216;<span style="font-weight: bold;">fminsearch</span>&#8217;
+function to find the intersection of the given
+curves or functions with several variables. The method ends when a <span style="font-weight: bold;">solution</span> is
+found, when a <span style="font-weight: bold;">maximum
+number of iterations</span> is reached, or when some
+specifications of <span style="font-weight: bold;">tolerances</span>
+are met, according to the default options for
+fminsearch.<br>
+<br>
+</span><span style="" lang="ES-TRAD"><span style=""></span></span>For
+each system of
+nonlinear equations and <span style="font-weight: bold;">starting&nbsp;</span><br>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal"><span style="font-weight: bold;">points</span>, we
+need to be aware of the solution found, the number of iterations
+needed, the
+number of function evaluations needed, and the exit flag value. This
+helps us
+know whether the found solution is good or bad.&nbsp;<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">It&#8217;s important to note
+that this <span style="font-weight: bold;">minimization</span>
+or <span style="font-weight: bold;">optimization</span>
+function (fminsearch) doesn&#8217;t solve simultaneous equations. We have to <span style="font-weight: bold;">adapt</span>
+the system <span style="font-weight: bold;">or formulate
+the problem</span> in such a way that we can accomplish this.
+In this particular case, we&#8217;re going to express the nonlinear system as
+a <span style="font-weight: bold;">scalar</span>
+value, and it&#8217;s going to be reduced to its minimum value by fminsearch.
+That
+value will be the solution to our problem.&nbsp;<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Naturally, different
+tolerances or starting points deliver
+different results. Only one intersection is found for every starting
+point,
+even though the nonlinear system may have more than one
+solution.&nbsp;<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">If we have this nonlinear
+system of simultaneous equations:</p>
+<p class="MsoNormal" style="text-align: center;" align="center">
+<img style="width: 85px; height: 79px;" alt="nonlinear simultaneous equations 1" src="http://www.matrixlab-examples.com/image-files/nl_simultaneous_equations_001.gif"></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><o:p><img style="width: 370px; height: 304px;" alt="nonlinear systems 1" src="http://www.matrixlab-examples.com/image-files/nl_simultaneous_equations_002.gif">&nbsp;</o:p><span style="position: relative; top: 25pt;"></span><o:p></o:p></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p><br>
+</span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">We can
+express the system in Matlab as a function delivering a scalar:<o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span><br>
+<span style="color: blue; font-family: monospace;">function</span><span style="color: black; font-family: monospace;"> y =
+nls1(x)<br>
+y1 = 2 *
+x;<br>
+y2 = 4*
+x^2 + x;<br>
+y3 =
+exp(2 * x) - 1;<span style="">&nbsp;</span></span><span style="font-size: 12pt; font-family: monospace;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">e1 =
+abs(y1 - y2);<br>
+e2 =
+abs(y2 - y3);<br>
+e3 =
+abs(y1 - y3);<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">y =
+max([e1 e2 e3]);</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p><br>
+The
+<span style="font-weight: bold;">important
+part is how we define our goal to be minimized</span>. We want
+the
+differences of the functions to be as close to zero as possible. If the
+diferences
+of the functions (or errors between them) are not very close to zero,
+then we
+don&#8217;t have a good solution. We expect <span style="font-style: italic;">y</span> to be zero at the
+end (<span style="font-weight: bold;">where the curves
+intersect</span>). 'fminsearch' will find the value of <span style="font-style: italic;">x</span> that minimizes
+the maximum error
+between each pair of curves (that's called a <span style="font-weight: bold;">minimax</span> approach).
+Of course, we can formulate or express the system
+in different ways, this is only one idea. This function is called the
+&#8216;objective function&#8217; (how we are going to measure the result), in
+numerical optimization terms.<br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Finally,
+we can minimize this type of systems with an optimization instruction.
+We pass
+two parameters: the name of the nonlinear system and the starting point
+(we&#8217;re
+using the default options, which can be modified with &#8216;optimset&#8217;).<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black; font-family: monospace;">fx = </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'nls1'</span><span style="color: black; font-family: monospace;">;<br>
+x0 = -5<br>
+[x_sol, y_sol, EF, out] = fminsearch(fx, x0)</span><br>
+<span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">The
+answer is:<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p><span style="font-family: monospace;">x_sol =
+0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">y_sol
+=&nbsp;0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">EF =
+&nbsp;&nbsp;&nbsp;1</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">out =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+iterations: 20</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+funcCount: 40</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+algorithm: 'Nelder-Mead simplex direct
+search'</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp; message: [1x196 char]</span><span style=""><span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;
+</span><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p><br>
+This answer means that the intersection of the curves occurs at <span style="font-style: italic;">x_sol</span> = 0, and <span style="font-style: italic;">y_sol</span> = 0.&nbsp;</span></p>
+<p class="MsoNormal" style=""><span style="" lang="ES-TRAD">Now, we
+can try a different starting point, to compare solutions:</span><span style="color: black;"><o:p>&nbsp;</o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="color: black;">x0
+= 10<br>
+[x_sol, y_sol, EF, out] = fminsearch(fx, x0)</span><br>
+<span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">The new
+answer is:<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><span style="font-family: monospace;">x_sol
+=
+0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">y_sol
+=&nbsp;0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">EF =
+&nbsp;&nbsp;&nbsp;1</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">out =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+iterations: 22</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+funcCount: 44</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+algorithm: 'Nelder-Mead simplex direct
+search'</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+message: [1x196 char]</span><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Note
+that the solution in both cases is the same, but the number of function
+evaluations to get to the solution is not the same. &nbsp;</span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">If the &nbsp;curves &nbsp;are very
+complex, with many&nbsp;</span>ups and downs, the algorithm
+might not get a good answer. You should try then several starting
+points.<span style="" lang="ES-TRAD"><o:p></o:p></span></p>
+<p class="MsoNormal"><br>
+<span style="" lang="ES-TRAD"><o:p>
+</o:p>
+<hr style="width: 100%; height: 2px;"></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Another
+example. Let&#8217;s solve this system:<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><span style="" lang="ES-TRAD"><span style="position: relative; top: 17pt;"></span><o:p></o:p></span><img style="width: 118px; height: 55px;" alt="nonlinear system 2" src="http://www.matrixlab-examples.com/image-files/nl_simultaneous_equations_003.gif"></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><span style="" lang="ES-TRAD"><o:p></o:p></span><img style="width: 372px; height: 307px;" alt="nonlinear simultaneous equations 2" src="http://www.matrixlab-examples.com/image-files/nl_simultaneous_equations_004.gif"></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p><br>
+Our
+&#8216;<span style="font-weight: bold;">objective function</span>&#8217;
+is defined:<br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="color: blue; font-family: monospace;">function</span><span style="color: black; font-family: monospace;"> y =
+nls3(x)<br>
+y1 = (x
+- 4)^2 + 2;<br>
+y2 = -(x
+- 3)^2 + 5;<br>
+y =
+norm(y1 - y2, 2);</span><br>
+<span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>The function is minimizing the
+absolute error between&nbsp;<span style="font-style: italic;">y1</span>
+and <span style="font-style: italic;">y2</span>.</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">Each run finds only one answer. We must try
+different starting points to find different intersections. We run
+the script like this:<o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span><br>
+<span style="color: black; font-family: monospace;">fx
+= </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'nls3'</span><span style="color: black; font-family: monospace;">;<br>
+x0 = -20<br>
+[x_sol,
+f, EF, out] = fminsearch(fx, x0)<span style="">&nbsp;</span></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">x0 = 15<br>
+[x_sol,
+f, EF, out] = fminsearch(fx, x0)</span><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">The
+two solutions are:<br>
+<o:p>&nbsp;</o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal"><span style="" lang="ES-TRAD">x_sol
+=
+2.3820<br>
+f = 3.5793e-005<br>
+EF = 1<br>
+out =<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>iterations:
+23<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>funcCount: 47<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><span style="font-family: monospace;"></span><span style="font-family: monospace;">x_sol =
+4.6180</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">f =
+1.0069e-004</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">EF = 1</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">out =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+iterations: 21<br>
+&nbsp;&nbsp;&nbsp; funcCount: 43</span><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">We find
+both solutions, <span style="font-style: italic;">x</span>1
+= 2.382 when we start at <span style="font-style: italic;">x</span>0
+= -20, and <span style="font-style: italic;">x</span>2
+= 4.618 when we
+start at <span style="font-style: italic;">x</span>0
+= 15.</span></p>
+<p class="MsoNormal"><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Nonlinear Simultaneous Equations' to home</a></p>
+<p class="MsoNormal"><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-programming-2tier.html" onclick="return FIX.track(this);">From
+'Nonlinear Simultaneous Equations' to Matlab Programming</a></p>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="simultaneous-equations-nonlinear.html#Nonlinear_Simultaneous_Equations">Top</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/simultaneous-equations.html" onclick="return FIX.track(this);">Linear
+Systems</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/find-intersections.html" onclick="return FIX.track(this);">Intersections</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/nonlinear-programming.html" onclick="return FIX.track(this);">Curve Fitting</a><br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for nonlinear simultaneous equations page"><a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br>
+</a></p>
+</td>
+<td style="width: 170px; vertical-align: top; background-color: rgb(211, 228, 244); text-align: center;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:49:49 10-Aug-2021 -->
+</body></html>

@@ -1,0 +1,463 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Matrices - learn how to use them in Matlab</title>
+
+<meta name="Description" content="These examples show you to arrange and manipulate matrices in Matlab...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/matrices.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Matrices - learn how to use them in Matlab" />
+<meta property="og:description" content="These examples show you to arrange and manipulate matrices in Matlab..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/matrices.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<h1 style="text-align: center;"><a name="top"></a>Matrices</h1>
+<div style="text-align: center;">The terms
+matrices and arrays are often used
+interchangeably. A matrix is a two-dimensional array of real or complex
+numbers that represent something.<br>
+<br>
+<!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+</div>
+<br>
+<br>
+The algebraic operations defined on matrices have applications in a
+broad variety of technical fields. Matlab has dozens of functions that
+create different kinds of matrices.<span style="font-weight: bold;"><br>
+&nbsp;<br>
+Arrays</span>
+of numbers can also compose <span style="font-weight: bold;">matrices</span>.
+To create a <span style="font-weight: bold;">matrix</span>,
+<span style="font-weight: bold;">spaces</span>
+or
+<span style="font-weight: bold;">commas</span>
+separate the elements in <span style="font-weight: bold;">columns</span>,
+<span style="font-weight: bold;">semicolons</span>
+separate <span style="font-weight: bold;">rows</span>.<br>
+<br>
+&gt;&gt; g&nbsp; =&nbsp; [1&nbsp; 2&nbsp;
+3&nbsp; 4;&nbsp; 5&nbsp; 6&nbsp; 7&nbsp; 8]<br>
+<br>
+g&nbsp; =<br>
+<br>
+1&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;
+3&nbsp;&nbsp;&nbsp; 4<br>
+5&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp;
+7&nbsp;&nbsp;&nbsp; 8<br>
+<br>
+In this case <span style="font-style: italic;">g</span>
+is a <span style="font-weight: bold;">matrix</span>
+of 2 <span style="font-weight: bold;">rows</span>
+and 4 <span style="font-weight: bold;">columns</span>
+(2x4).<br>
+Naturally, all of the rows must have the same number of columns.<br>
+<br>
+<span style="font-weight: bold;">Math with
+matrices and scalars</span><br>
+To an array or matrix, arithmetic with scalars equal to perform the
+operation of every element with the scalar.<br>
+<br>
+&gt;&gt;&nbsp; g+3&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br>
+<br>
+ans&nbsp; =&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br>
+4&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;
+6&nbsp;&nbsp;&nbsp; 7<br>
+8&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp;&nbsp;
+10&nbsp;&nbsp;&nbsp; 11<br>
+<br>
+&gt;&gt;&nbsp; 2*g-2&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br>
+<br>
+ans&nbsp; =&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br>
+0&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;
+4&nbsp;&nbsp;&nbsp; 6<br>
+8&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;
+12&nbsp;&nbsp;&nbsp; 14<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<span style="font-weight: bold;">Math between
+matrices</span><br>
+When two arrays have the <span style="font-weight: bold;">same
+dimensions</span>, you can add or subtract one
+to/from the other element by element, like this:<br>
+<br>
+&gt;&gt;&nbsp; A&nbsp; =&nbsp; [1&nbsp;
+2&nbsp; 3&nbsp; 4;&nbsp; 5&nbsp; 6&nbsp;
+7&nbsp; 8;&nbsp; 9&nbsp; 10&nbsp; 11&nbsp; 12]<br>
+<br>
+A&nbsp; =<br>
+<br>
+1&nbsp;&nbsp;&nbsp;
+&nbsp;2&nbsp;&nbsp;&nbsp;
+&nbsp;3 &nbsp; &nbsp; 4<br>
+5&nbsp;&nbsp;&nbsp;
+&nbsp;6&nbsp;&nbsp;&nbsp;
+&nbsp;7&nbsp; &nbsp;&nbsp; 8<br>
+9&nbsp;&nbsp;&nbsp; 10&nbsp;&nbsp;&nbsp;
+11&nbsp;&nbsp;&nbsp; 12<br>
+<br>
+&gt;&gt;&nbsp; B&nbsp; =&nbsp; [1&nbsp;
+1&nbsp; 1&nbsp; 1;&nbsp; 2&nbsp; 2&nbsp;
+2&nbsp; 2;&nbsp; 2&nbsp; 2&nbsp; 2&nbsp; 2]<br>
+<br>
+B&nbsp; =<br>
+<br>
+1&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp; 1<br>
+2&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;
+2&nbsp;&nbsp;&nbsp; 2<br>
+2&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;
+2&nbsp;&nbsp;&nbsp; 2<br>
+<br>
+&gt;&gt;&nbsp; A&nbsp; +&nbsp;
+B&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <br>
+<br>
+ans&nbsp; =&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br>
+2&nbsp;&nbsp;&nbsp; &nbsp; 3&nbsp;
+&nbsp;&nbsp;
+4 &nbsp; &nbsp;&nbsp; 5<br>
+7&nbsp;&nbsp;&nbsp; &nbsp; 8 &nbsp; &nbsp;
+9&nbsp; &nbsp; &nbsp; 10<br>
+11&nbsp;&nbsp;&nbsp; 12&nbsp;&nbsp;&nbsp;
+13&nbsp;&nbsp;&nbsp; 14<br>
+<br>
+&gt;&gt; 2*A&nbsp; -&nbsp; B<br>
+<br>
+ans&nbsp; =<br>
+1&nbsp;&nbsp;&nbsp; &nbsp; 3
+&nbsp;&nbsp;&nbsp;
+5&nbsp; &nbsp;&nbsp; 7<br>
+8&nbsp;&nbsp;&nbsp; &nbsp; 10&nbsp;&nbsp;
+12&nbsp;&nbsp;&nbsp; 14<br>
+16&nbsp;&nbsp;&nbsp; 18&nbsp;&nbsp;&nbsp;
+20&nbsp;&nbsp;&nbsp; 22<br>
+<br>
+For multiplication, division or power operations, you use the
+'<span style="font-weight: bold;">element-wise</span>'
+operators (with '<span style="font-weight: bold;">.*</span>',
+'<span style="font-weight: bold;">./</span>', or '<span style="font-weight: bold;">.^</span>').<br>
+<br>
+&gt;&gt;&nbsp; A.*B<br>
+<br>
+ans&nbsp; =&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <br>
+1&nbsp;&nbsp;&nbsp; &nbsp; 2&nbsp;
+&nbsp;&nbsp;
+3 &nbsp; &nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp; <br>
+10&nbsp;&nbsp;&nbsp; 12&nbsp;&nbsp;&nbsp;
+14&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp;&nbsp; <br>
+18&nbsp;&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp;
+22&nbsp;&nbsp;&nbsp; 24&nbsp;&nbsp;&nbsp; <br>
+<br>
+&gt;&gt;&nbsp; A./B&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <br>
+<br>
+ans&nbsp; =&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <br>
+1.0000&nbsp;&nbsp;&nbsp;
+2.0000&nbsp;&nbsp;&nbsp;
+3.0000&nbsp;&nbsp;&nbsp; 4.0000<br>
+2.5000&nbsp;&nbsp;&nbsp;
+3.0000&nbsp;&nbsp;&nbsp;
+3.5000&nbsp;&nbsp;&nbsp; 4.0000<br>
+4.5000&nbsp;&nbsp;&nbsp;
+5.0000&nbsp;&nbsp;&nbsp;
+5.5000&nbsp;&nbsp;&nbsp; 6.0000<br>
+<br>
+&gt;&gt;&nbsp; A.^2&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <br>
+ans&nbsp; =&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <br>
+1&nbsp;&nbsp;&nbsp; &nbsp; 4 &nbsp;&nbsp;
+&nbsp;&nbsp;
+9 &nbsp; &nbsp; &nbsp; 16&nbsp;&nbsp;&nbsp; <br>
+25&nbsp;&nbsp;&nbsp; &nbsp;36 &nbsp; &nbsp;
+49&nbsp; &nbsp;&nbsp; 64&nbsp;&nbsp;&nbsp; <br>
+81&nbsp;&nbsp;&nbsp; 100&nbsp;&nbsp;&nbsp;
+121&nbsp;&nbsp;&nbsp; 144&nbsp;&nbsp;&nbsp; <br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<span style="font-weight: bold;">Matrix
+Addressing</span><br>
+This notation refers to the element of row <span style="font-style: italic;">r</span> and column <span style="font-style: italic;">c</span> within matrix
+<span style="font-style: italic;">A</span>.<br>
+A(r, c)&nbsp;&nbsp;&nbsp; <br>
+<br>
+This notation refers to all of the elements of row <span style="font-style: italic;">r</span> in matrix <span style="font-style: italic;">A</span>.<br>
+A(r, :)&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br>
+<br>
+This notation refers to all of the elements of column <span style="font-style: italic;">c</span> in matrix <span style="font-style: italic;">A</span>.<br>
+A(:, c)&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<span style="font-weight: bold;">Matrix
+Functions</span>&nbsp;<br>
+<table x:str="" style="border-collapse: collapse; width: 443px;" border="0" cellpadding="0" cellspacing="0">
+<col style="width: 53pt;" width="71">
+<col style="width: 60pt;" width="80"><tbody>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl22" style="height: 13.5pt; width: 53pt;" height="18" width="71">det(A)</td>
+<td class="xl22" style="width: 374px;">determinant
+of the square matrix A</td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl22" style="height: 13.5pt;" height="18">inv(A)</td>
+<td style="width: 374px;" class="xl22">inverse
+of the square matrix A</td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl22" style="height: 13.5pt;" height="18">norm(A)</td>
+<td style="width: 374px;" class="xl22">largest
+singular value of A</td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl22" style="height: 13.5pt; vertical-align: top;">rank(A)</td>
+<td style="width: 374px;" class="xl22">provides
+an estimate of the number of linearly&nbsp;independent rows or
+columns of a matrix A</td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl22" style="height: 13.5pt; vertical-align: top;">trace(A)</td>
+<td style="width: 374px;" class="xl22">sum
+of the diagonal elements of A, which is&nbsp;also the sum of the
+eigenvalues of A</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span style="font-weight: bold;">Special
+Matrices</span><br>
+<table x:str="" style="border-collapse: collapse; width: 439px;" border="0" cellpadding="0" cellspacing="0">
+<col style="width: 53pt;" width="71">
+<col style="width: 60pt;" width="80"><tbody>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl24" style="height: 13.5pt; width: 53pt; vertical-align: top;">eye(N)</td>
+<td class="xl24" style="width: 379px;">is
+the N-by-N identity matrix</td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl24" style="height: 13.5pt; vertical-align: top;">magic(N)</td>
+<td style="width: 379px;" class="xl24">an
+N-by-N matrix constructed from the integers 1 through N^2</td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl24" style="height: 13.5pt;" height="18">ones(N)</td>
+<td style="width: 379px;" class="xl24">an
+N-by-N matrix of ones</td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl24" style="height: 13.5pt; vertical-align: top;">rand(N)</td>
+<td style="width: 379px;" class="xl24">an
+N-by-N matrix containing pseudo-random values drawn from a uniform
+distribution on the unit interval.</td>
+</tr>
+<tr style="height: 13.5pt;" height="18">
+<td class="xl24" style="height: 13.5pt;" height="18">zeros(N)</td>
+<td style="width: 379px;" class="xl24">an
+N-by-N matrix of zeros</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Matrices' to home</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-help-2tier.html" onclick="return FIX.track(this);">From
+'Matrices' to 'Matlab Help Menu'</a><br>
+&nbsp;<br>
+<div style="text-align: left;">
+<!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --><br>
+<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-tutorial.html" onclick="return FIX.track(this);">Matlab
+Basic Tutorials</a> &nbsp;<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-examples.html" onclick="return FIX.track(this);">Matlab
+Basic Examples</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/generic-programming.html" onclick="return FIX.track(this);">Intermediate
+Examples</a> &nbsp;<br>
+&nbsp; &nbsp;<br>
+<div style="text-align: right;"><a style="font-weight: bold;" href="matrices.html#top">Top</a><br>
+</div>
+</div>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><br>
+<p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for matrices page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; text-align: right; vertical-align: top; background-color: rgb(224, 236, 255);"><!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:44:52 10-Aug-2021 -->
+</body></html>

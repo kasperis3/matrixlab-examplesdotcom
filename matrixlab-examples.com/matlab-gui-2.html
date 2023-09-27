@@ -1,0 +1,886 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Matlab GUI - Magic Trick!</title>
+
+<meta name="Description" content="We are going to develop a Matlab GUI that performs a magic trick! (You can download the code!) We&#8217;re going to work on an interface to read your mind! Don&#8217;t be scared... it&#8217;s safe (as far as I know...). It&#8217;s an old trick that has been around for at least 40 years (maybe more), but this is my version with Matlab...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/matlab-gui-2.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Matlab GUI - Magic Trick!" />
+<meta property="og:description" content="We are going to develop a Matlab GUI that performs a magic trick! (You can download the code!) We&amp;#8217;re going to work on an interface to read your mind! Don&amp;#8217;t be scared... it&amp;#8217;s safe (as far as I know...). It&amp;#8217;s an old trick that has been around for at least 40 years (maybe more), but this is my version with Matlab..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/matlab-gui-2.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/trick_002.jpg" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/trick_003.jpg" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/trick_004.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/trick_005.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/trick_012.jpg" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/trick_013.jpg" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/trick_014.jpg" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/trick_015.jpg" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/imgs/logo.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<h1><a name="top"></a>Matlab GUI -
+&nbsp;Magic Trick!</h1>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+</td>
+<td>We are going to develop a <span style="font-weight: bold;">Matlab
+GUI</span> that performs a <span style="font-weight: bold;">magic
+trick</span>! <br>
+<br>
+We&#8217;re going to work on an interface to read your
+mind! Don&#8217;t be
+scared... it&#8217;s safe (as far as I know...). It&#8217;s an old trick that has
+been
+around for at least 40 years (maybe more), but this is <span style="font-weight: bold;">my version with Matlab</span>.<br>
+<br>
+It&#8217;s the <span style="font-weight: bold;">choose-a-card
+type</span>
+trick...<br>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal"><span style="font-weight: bold;">Effect</span>: the user
+sees 21 <span style="font-weight: bold;">shuffled cards</span>
+(absolutely random),
+arranged along 3 columns. He/she <span style="font-weight: bold;">chooses
+a card</span> but <span style="font-weight: bold;">tells
+nobody</span>... the card is
+only in his/her mind. The happy user indicates the column where the
+chosen
+card is,
+and does this two more times. Every time the cards are <span style="font-weight: bold;">randomly rearranged</span>.
+After a complicated artificially-inteligent algorithm, and using the
+most
+advanced artificial neural networks (??), our program guesses the
+chosen card... Is
+<span style="font-weight: bold;">computerized
+ESP</span> possible? &nbsp;<span style="color: rgb(51, 51, 255);">&nbsp;<a href="http://www.matrixlab-examples.com/support-files/trick1.zip" onclick="return FIX.track(this);">(Download
+the code here!)</a></span></p>
+<p class="MsoNormal"><br>
+I strongly suggest you
+read the <a href="http://www.matrixlab-examples.com/matlab-gui.html" onclick="return FIX.track(this);">first</a>
+and <a href="http://www.matrixlab-examples.com/callback-function.html" onclick="return FIX.track(this);">second</a>
+articles in
+this series, where I explain in detail how to create a Matlab GUI, and
+how to
+use the
+three most important instructions for GUIs (<span style="font-weight: bold;">set</span>, <span style="font-weight: bold;">get</span> and <span style="font-weight: bold;">guidata</span>). In this
+article, I&#8217;m going to elaborate on how to use the &#8216;<span style="font-weight: bold;">axes</span>&#8217; and &#8216;<span style="font-weight: bold;">radio</span>&#8217; buttons,
+as well as the associated <span style="font-weight: bold;">callback-functions</span>.</p>
+<p class="MsoNormal">First, type &#8216;<span style="font-weight: bold;">guide</span>&#8217; on your
+command window. Select the
+default option (blank gui).</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
+You can see on the left several buttons that you can drag-and-drop
+onto your gui &#8216;<span style="font-weight: bold;">canvas</span>&#8217;
+or layout area.</p>
+<p class="MsoNormal" style="text-align: center;" align="center"><img style="width: 240px; height: 235px;" alt="buttons that can be included in a Matlab GUI" src="http://www.matrixlab-examples.com/image-files/trick_001.gif"></p>
+<p class="MsoNormal">Add an &#8216;<span style="font-weight: bold;">axes</span>&#8217; button and
+double-click on it to inspect and
+<span style="font-weight: bold;">modify its
+properties</span>. Set its position to [x y width heigth] = [10
+22 8 2.5]. Try
+to reproduce this figure:</p>
+<p style="text-align: center;" class="MsoNormal"><img style="width: 402px; height: 355px;" alt="modifying the properties of an axes button" src="http://www.matrixlab-examples.com/image-files/trick_002.jpg"></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Click once on &#8216;<span style="font-weight: bold;">axes1</span>&#8217; and
+copy-paste (Ctl-C, Ctl-V) this
+element six more times (vertically). You can align the objects by
+clicking on
+the &#8216;<span style="font-weight: bold;">Align Objects</span>&#8217;
+icon, on the top menu.</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><img style="width: 333px; height: 356px;" alt="align objects icon on the GUI canvas" src="http://www.matrixlab-examples.com/image-files/trick_003.jpg"></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Select all of the 7 &#8216;<span style="font-weight: bold;">axes</span>&#8217; and copy-paste
+two more times
+(horizontally). You have now 21 axes on a 7x3 matrix. Add then a &#8216;<span style="font-weight: bold;">Static box</span>&#8217;
+to the right of your &#8216;canvas&#8217;, and you get something similar to this
+figure:</p>
+<p style="text-align: center;" class="MsoNormal"><img style="width: 424px; height: 473px;" alt="building up our GUI for the magic trick!" src="http://www.matrixlab-examples.com/image-files/trick_004.gif"></p>
+<p class="MsoNormal" style="text-align: center;" align="center"></p>
+<p class="MsoNormal"><o:p></o:p>Add
+more elements (and modify their properties) until you
+match the figure below:</p>
+<p class="MsoNormal" style="text-align: center;" align="center"><o:p>&nbsp;<img style="width: 443px; height: 488px;" alt="our Matlab GUI is almost finished" src="http://www.matrixlab-examples.com/image-files/trick_005.gif"></o:p><br>
+</p>
+<p class="MsoNormal"><o:p></o:p>You
+have 22 &#8216;<span style="font-weight: bold;">axes</span>&#8217;,
+3 &#8216;<span style="font-weight: bold;">Static boxes</span>&#8217;,
+3 &#8216;<span style="font-weight: bold;">Radio buttons</span>&#8217;,
+and
+1 &#8216;<span style="font-weight: bold;">Push button</span>&#8217;,
+right? You can modify their sizes by dragging the &#8216;<span style="font-weight: bold;">anchors</span>&#8217; on
+the corners.<br>
+<o:p></o:p><br>
+For the 3 &#8216;<span style="font-weight: bold;">Static boxes</span>&#8217;,
+update their properties like this:</p>
+<table style="text-align: left; width: 499px;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="font-weight: bold;">Property
+&nbsp;
+</td>
+<td style="font-weight: bold;">Box 1 </td>
+<td style="font-weight: bold;">Box 2 </td>
+<td style="font-weight: bold;">Box 3 </td>
+</tr>
+<tr align="center">
+<td style="text-align: left; width: 140px;">Tag</td>
+<td style="width: 143px; text-align: left;">text1</td>
+<td style="width: 104px; text-align: left;">text2</td>
+<td style="width: 104px; text-align: left;">text3</td>
+</tr>
+<tr align="center">
+<td style="text-align: left; width: 140px;">String</td>
+<td style="width: 143px; text-align: left;">This
+is a great trick!</td>
+<td style="width: 104px; text-align: left;">(empty)</td>
+<td style="width: 104px; text-align: left;">(empty)</td>
+</tr>
+<tr align="center">
+<td style="text-align: left; width: 140px;">FontAngle</td>
+<td style="width: 143px; text-align: left;">italic</td>
+<td style="width: 104px; text-align: left;">normal</td>
+<td style="width: 104px; text-align: left;">normal</td>
+</tr>
+<tr align="center">
+<td style="text-align: left; width: 140px;">FontSize</td>
+<td style="width: 143px; text-align: left;">10</td>
+<td style="width: 104px; text-align: left;">8</td>
+<td style="width: 104px; text-align: left;">8</td>
+</tr>
+<tr align="center">
+<td style="text-align: left; width: 140px;">FontWeight</td>
+<td style="width: 143px; text-align: left;">bold</td>
+<td style="width: 104px; text-align: left;">bold</td>
+<td style="width: 104px; text-align: left;">bold</td>
+</tr>
+<tr align="center">
+<td style="text-align: left; width: 140px;">HorizontalAlignment</td>
+<td style="width: 143px; text-align: left;">left</td>
+<td style="width: 104px; text-align: left;">left</td>
+<td style="width: 104px; text-align: left;">right</td>
+</tr>
+</tbody>
+</table>
+<o:p><br>
+</o:p>
+<p class="MsoNormal">For the 3 &#8216;<span style="font-weight: bold;">Radio buttons</span>&#8217;, just
+erase their &#8216;<span style="font-weight: bold;">String</span>&#8217;
+property and reduce their sizes to fit each column.</p>
+<p class="MsoNormal">For the &#8216;<span style="font-weight: bold;">Push button</span>&#8217;, update
+its properties like this:</p>
+<table style="text-align: left; width: 288px;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr style="font-weight: bold;">
+<td style="font-weight: bold; width: 143px;">Property</td>
+<td style="width: 141px;"><span style="font-weight: bold;">Button</span></td>
+</tr>
+<tr>
+<td style="width: 143px;">Tag<br>
+String<br>
+FontAngle<br>
+FontSize<br>
+FontWeight<br>
+ForegroundColor</td>
+<td style="width: 141px;">pushbutton1<br>
+<span style=""></span>Do it again,
+please!<br>
+italic<br>
+8<br>
+bold<br>
+blue</td>
+</tr>
+</tbody>
+</table>
+<br>
+<p class="MsoNormal"><span style="font-weight: bold;">Save</span> the Matlab GUI
+(I
+used the name &#8216;trick1.fig&#8217;), and <span style="font-weight: bold;">Matlab
+will produce a template</span> for your figure (named
+&#8216;trick1.m&#8217;), with appropriate
+names and comments or suggestions to get the values of the elements on
+it.</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">For our trick, we&#8217;ll need
+<span style="font-weight: bold;">5 functions</span>
+that will be handled
+from our <span style="font-weight: bold;">main module</span>
+(&#8216;trick1.m&#8217;). These functions will be:</p>
+<ul style="margin-top: 0cm;" type="disc">
+<li class="MsoNormal" style=""><span style="font-weight: bold;">initialize_trick</span>: to
+shuffle the cards, show them for the first time and perform a reset</li>
+<li class="MsoNormal" style=""><span style="font-weight: bold;">showcards</span>: to
+display 21 out of 52 cards available</li>
+<li class="MsoNormal" style=""><span style="font-weight: bold;">display_instructions</span>:
+to display instructions on the &#8216;Static text&#8217; boxes to let the user know
+what&#8217;s going on and what&#8217;s next</li>
+<li class="MsoNormal" style=""><span style="font-weight: bold;">go_on</span>: to keep the
+trick going once the user selects the column of his/her card</li>
+<li class="MsoNormal" style=""><span style="font-weight: bold;">rearrange</span>: to
+pick-up the cards, rearrange and deal them again on the 7x3 matrix</li>
+</ul>
+<br>
+<hr style="width: 100%; height: 2px;">
+<p class="MsoNormal">This is the
+implementation of the function named
+&#8216;<span style="font-weight: bold;">initialize_trick.m</span>&#8217;.
+These names are going to be associated with a <span style="font-style: italic;">jpg</span> file.</p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Copyright 2009 by www.matrixlab-examples.com</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">function</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">
+initialize_trick()</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">global</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> ha cards<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Define the 52 cards to be used</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">card_deck = {</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'ad'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'ah'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'as'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'ac'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'2d'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'2h'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'2s'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'2c'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">...</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'3d'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'3h'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'3s'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'3c'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'4d'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'4h'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'4s'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'4c'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">...</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'5d'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'5h'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'5s'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'5c'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'6d'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'6h'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'6s'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'6c'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">...</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'7d'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'7h'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'7s'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'7c'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'8d'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'8h'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'8s'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'8c'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">...</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'9d'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'9h'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'9s'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'9c'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'10d'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'10h'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'10s'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'10c'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">...</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'jd'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'jh'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'js'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'jc'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'qd'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'qh'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'qs'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'qc'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">...</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);">'kd'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;">
+</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);">'kh'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;">
+</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);">'ks'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;">
+</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);">'kc'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">};<br>
+card_nr = 52;<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Select 21 random cards from the deck (7 x 3
+matrix)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">for</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> i = 1 : 7<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">for</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> j = 1 : 3<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Select one random card from the remaining deck</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>r =
+ceil(card_nr .* rand);<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>cards{i,j}
+= card_deck{r};<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Delete that card from the deck</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>card_deck(r)
+= [];<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Reduce the card account in the remaining deck</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>card_nr
+= card_nr - 1;<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">end<br>
+end<br>
+<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Display cards and first instructions</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">showcards;<br>
+display_instructions(1);<span style="">&nbsp;&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Make sure to delete the last guess</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">str = </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">''</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">;<br>
+set(ha(24),</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'String'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">,str);<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Hide button</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">set(ha(25),</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'Visible'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'off'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">);<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Make the radio-buttons available</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">set(ha(26),</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'Visible'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'on'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">)<br>
+set(ha(27),</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'Visible'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'on'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">)<br>
+set(ha(28),</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'Visible'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'on'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">)</span><br>
+<span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+<hr style="width: 100%; height: 2px;">
+<p class="MsoNormal" style=""><span style="color: black;">This is
+the implementation of the function named &#8216;<span style="font-weight: bold;">showcards.m</span>&#8217;. Here
+we actually
+associate a <span style="font-style: italic;">jpg</span>
+file (a card) with its corresponding place on the matrix. We
+show a plain <span style="font-weight: bold;">gray image</span>
+on the &#8216;<span style="font-weight: bold;">axes22</span>&#8217;
+position.<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Copyright 2009 by www.matrixlab-examples.com</span><br>
+<span style="color: blue;">function</span><span style="color: black;">
+showcards()</span><br>
+<span style="color: blue;">global</span><span style="color: black;"> ha
+cards<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Take one .jpg file for each 'axes' (21 cards to deal).</span><br>
+<span style="color: blue;">for</span><span style="color: black;"> i = 1 :
+21<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>axes(ha(i));<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>[bg]
+= imread(strcat(cards{i},</span><span style="color: rgb(160, 32, 240);">'.jpg'</span><span style="color: black;">));<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>image(bg);<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>axis
+</span><span style="color: rgb(160, 32, 240);">off</span><span style="color: black;">;</span><br>
+<span style="color: blue;">end<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Delete the guess</span><br>
+<span style="color: black;">axes(ha(22));<br>
+[bg] =
+imread(</span><span style="color: rgb(160, 32, 240);">'gray.jpg'</span><span style="color: black;">);<br>
+image(bg);<br>
+axis </span><span style="color: rgb(160, 32, 240);">off</span><span style="color: black;">;</span></p>
+<hr style="width: 100%; height: 2px;">
+<p class="MsoNormal" style=""><span style="color: black;">This is
+the implementation of the function named &#8216;<span style="font-weight: bold;">display_instructions</span><br style="font-weight: bold;">
+<span style="font-weight: bold;">.m</span>&#8217;.
+It
+launches instructions on the &#8216;<span style="font-weight: bold;">text2</span>&#8217;
+Static-box, according to the evolution of
+the trick.<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Copyright 2009 by www.matrixlab-examples.com</span><br>
+<span style="color: blue;">function</span><span style="color: black;">
+display_instructions(i)</span><br>
+<span style="color: blue;">global</span><span style="color: black;"> ha<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Display instructions according to evolution of trick</span><br>
+<span style="color: blue;">switch</span><span style="color: black;"> i<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue;">case</span><span style="color: black;"> 1<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>str = {</span><span style="color: rgb(160, 32, 240);">'Step 1: '</span><span style="color: black;">;<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: rgb(160, 32, 240);">''</span><span style="color: black;">;<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;</span></span><span style="color: rgb(160, 32, 240);">'Think of a card and
+select its
+column below...'</span><span style="color: black;">};<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style="">&nbsp;&nbsp;&nbsp;</span>set(ha(23),</span><span style="color: rgb(160, 32, 240);">'String'</span><span style="color: black;">,str);<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue;">case</span><span style="color: black;"> 2<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>str = {</span><span style="color: rgb(160, 32, 240);">'Step 2: '</span><span style="color: black;">;<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: rgb(160, 32, 240);">''</span><span style="color: black;">;<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: rgb(160, 32, 240);">'Hard to guess...'</span><span style="color: black;">;<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: rgb(160, 32, 240);">''</span><span style="color: black;">;<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: rgb(160, 32, 240);">'Could you please select
+its
+column again?'</span><span style="color: black;">};<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>set(ha(23),</span><span style="color: rgb(160, 32, 240);">'String'</span><span style="color: black;">,str);<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue;">case</span><span style="color: black;"> 3<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>str = {</span><span style="color: rgb(160, 32, 240);">'I cannot see it
+clearly... '</span><span style="color: black;">;<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: rgb(160, 32, 240);">''</span><span style="color: black;">;<br>
+<span style="">&nbsp;&nbsp;</span></span><span style="color: rgb(160, 32, 240);">'Please concentrate and
+select its
+column only once more...'</span><span style="color: black;">};<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>set(ha(23),</span><span style="color: rgb(160, 32, 240);">'String'</span><span style="color: black;">,str);<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue;">case</span><span style="color: black;"> 4<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>str = </span><span style="color: rgb(160, 32, 240);">''</span><span style="color: black;">;<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>set(ha(23),</span><span style="color: rgb(160, 32, 240);">'String'</span><span style="color: black;">,str);<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>str = {</span><span style="color: rgb(160, 32, 240);">'Ah! Got it! '</span><span style="color: black;">;<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: rgb(160, 32, 240);">'Your card is: '</span><span style="color: black;">};<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>set(ha(24),</span><span style="color: rgb(160, 32, 240);">'String'</span><span style="color: black;">,str);</span><br>
+<span style="color: blue;">end</span></p>
+<p class="MsoNormal" style=""><span style="color: blue;"></span></p>
+<hr style="width: 100%; height: 2px;">
+<p class="MsoNormal" style=""><span style="color: black;">This is
+the implementation of the function named &#8216;<span style="font-weight: bold;">go_on.m</span>&#8217;. It&#8217;s
+executed each time the
+user clicks on a radio button to choose a column. After three clicks,
+the
+selection is revealed!</span><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Copyright 2009 by www.matrixlab-examples.com</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">function</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">
+go_on(hObject,handles,c)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">global</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> ha cards<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Take into account the number of choices by
+the user</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">handles.t = handles.t + 1;</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Reset the current radio-button</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">set(hObject,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'Value'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">,0);<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Display the cards in a new order.</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">rearrange(c);</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">if</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> handles.t &lt;
+4<span style="">&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp; </span>showcards();<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>display_instructions(handles.t);</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">else</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Perform the trick!</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;
+</span>display_instructions(4);<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>axes(ha(22));<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>[bg]
+=
+imread(strcat(cards{4,2},</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'.jpg'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">));<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>image(bg);<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>axis
+</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">off</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">;<span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Make the pushbutton appear</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;
+</span>set(ha(25),</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'Visible'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'on'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">)<span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Make the radio-buttons disappear</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;
+</span>set(ha(26),</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'Visible'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'off'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">)<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>set(ha(27),</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'Visible'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'off'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">)<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>set(ha(28),</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'Visible'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">,</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'off'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">end<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">guidata(hObject,handles);</span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<hr style="width: 100%; height: 2px;">
+<p class="MsoNormal" style=""><span style="color: black;">This is
+the implementation of the function named &#8216;<span style="font-weight: bold;">rearrange.m</span>&#8217;. It
+takes the three
+columns of cards, each time the column with the selected card is put in
+second
+place. The other two columns are irrelevant for this trick.</span><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Copyright 2009 by www.matrixlab-examples.com</span><br>
+<span style="color: blue;">function</span><span style="color: black;">
+rearrange(c)</span><br>
+<span style="color: blue;">global</span><span style="color: black;"> cards<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Take the cards and the column of the selected card<br>
+%
+is kept as second column</span><br>
+<span style="color: blue;">switch</span><span style="color: black;"> c<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue;">case</span><span style="color: black;"> 1<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>cards_aux = {cards{:,3} cards{:,1}
+cards{:,2}};<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue;">case</span><span style="color: black;"> 2<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>cards_aux = {cards{:,3} cards{:,2}
+cards{:,1}};<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue;">otherwise</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>cards_aux = {cards{:,2} cards{:,3}
+cards{:,1}};</span><br>
+<span style="color: blue;">end<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="border: medium none ; padding: 0cm; font-family: monospace;"><span style="color: forestgreen;">%
+Deal the cards with the new order</span><br>
+<span style="color: black;">k = 1;</span><br>
+<span style="color: blue;">for</span><span style="color: black;"> i = 1 :
+7<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue;">for</span><span style="color: black;"> j = 1 : 3<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>cards{i,j} = cards_aux{k};<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>k = k + 1;<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue;">end<br>
+end</span></p>
+<p class="MsoNormal" style="border: medium none ; padding: 0cm;"><span style="color: blue;"><br>
+<o:p></o:p>
+<hr style="width: 100%; height: 2px;"></span></p>
+<p class="MsoNormal" style=""><span style="">This is the main
+wrapper (&#8216;<span style="font-weight: bold;">trick1.m</span>&#8217;).
+I <span style="font-weight: bold;">deleted some</span>
+of the comments automatically written by
+the Matlab GUI -DE (Development Environment), to simplify the
+explanation.<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Copyright 2009 by www.matrixlab-examples.com</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">function</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> varargout =
+trick1(varargin)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Begin initialization code - DO NOT EDIT</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">gui_Singleton = 1;<br>
+gui_State = struct(</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'gui_Name'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">,<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>mfilename, </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">...</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'gui_Singleton'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">,<span style="">&nbsp; </span>gui_Singleton,
+</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">...</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'gui_OpeningFcn'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">, @trick1_OpeningFcn, </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">...</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'gui_OutputFcn'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">,<span style="">&nbsp; </span>@trick1_OutputFcn,
+</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">...</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'gui_LayoutFcn'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">,<span style="">&nbsp; </span>[]
+, </span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">...</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(160, 32, 240);" lang="EN-US">'gui_Callback'</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">,<span style="">&nbsp;&nbsp;
+</span>[]);</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">if</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> nargin
+&amp;&amp; ischar(varargin{1})<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span>gui_State.gui_Callback
+= str2func(varargin{1});</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">end<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">if</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> nargout<br>
+<span style="">&nbsp;&nbsp;&nbsp;
+</span>[varargout{1:nargout}] =
+gui_mainfcn(gui_State, varargin{:});</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">else</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"><span style="">&nbsp;&nbsp;&nbsp;
+</span>gui_mainfcn(gui_State, varargin{:});</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">end</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% End initialization code - DO NOT EDIT<span style=""></span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% --- Executes just before trick1 is made
+visible.</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">function</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">
+trick1_OpeningFcn(hObject, eventdata, handles,varargin)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% This function has no output args, see
+OutputFcn.<br>
+% hObject<span style="">&nbsp;&nbsp;&nbsp;
+</span>handle to figure<br>
+% handles<span style="">&nbsp;&nbsp;&nbsp;
+</span>structure with handles and user data (see
+GUIDATA)<br>
+% varargin<span style="">&nbsp;&nbsp;
+</span>command line arguments to trick1 (see VARARGIN)<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Choose default command line output for trick1</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">handles.output = hObject;</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">global</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;">
+ha<br>
+</span><span style="font-size: 10pt; color: black;">clc</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;"><br>
+</span><span style="font-size: 10pt; color: black;">ha(1)
+= handles.axes1;
+ha(8) = handles.axes8;<span style="">&nbsp;&nbsp; </span>ha(15)
+=
+handles.axes15;<br>
+ha(2) = handles.axes2; ha(9) = handles.axes9;<span style="">&nbsp;&nbsp;
+</span>ha(16) = handles.axes16;<br>
+ha(3) =
+handles.axes3; ha(10) = handles.axes10; ha(17) = handles.axes17;<br>
+ha(4) =
+handles.axes4; ha(11) = handles.axes11; ha(18) = handles.axes18;<br>
+ha(5) =
+handles.axes5; ha(12) = handles.axes12; ha(19) = handles.axes19;<br>
+ha(6) =
+handles.axes6; ha(13) = handles.axes13; ha(20) = handles.axes20;<br>
+ha(7) =
+handles.axes7; ha(14) = handles.axes14; ha(21) = handles.axes21;</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;"></span><span style="font-family: &quot;Courier New&quot;;"></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; color: black;">ha(22) =
+handles.axes22;<span style="">&nbsp;</span></span><o:p></o:p></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; color: black;" lang="EN-US">ha(23)
+=
+handles.text2;<br>
+ha(24) = handles.text3;<span style="">&nbsp;</span></span><o:p></o:p></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; color: black;" lang="EN-US">ha(25)
+= handles.pushbutton1;<span style="">&nbsp;</span></span><o:p></o:p></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; color: black;" lang="EN-US">ha(26)
+= handles.radiobutton1;<br>
+ha(27) = handles.radiobutton2;<br>
+ha(28) = handles.radiobutton3;<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">initialize_trick;<br>
+handles.t = 1;<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Update handles structure</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">guidata(hObject, handles);<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% UIWAIT makes trick1 wait for user response
+(see
+UIRESUME)<br>
+% uiwait(handles.figure1);<span style=""></span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% --Outputs from this function are returned to
+the
+command line.</span><br>
+<span style="font-size: 10pt; color: blue;" lang="EN-US">function</span><span style="font-size: 10pt; color: black;" lang="EN-US">
+varargout =
+trick1_OutputFcn(hObject, eventdata, handles)</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> </span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; color: forestgreen;" lang="EN-US">%
+varargout<span style="">&nbsp;
+</span>cell array for returning output args (see
+VARARGOUT);</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% hObject<span style="">&nbsp;&nbsp;&nbsp;
+</span>handle to figure</span><br>
+<span style="font-size: 10pt; color: forestgreen;" lang="EN-US">% eventdata<span style="">&nbsp;
+</span>reserved - to be defined in a future version
+of MATLAB</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% handles<span style="">&nbsp;&nbsp;&nbsp;
+</span>structure with handles and user data (see
+GUIDATA)<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Get default command line output from handles
+structure</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">varargout{1} = handles.output;<br>
+<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% --- Executes on button press in radiobutton1.</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">function</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">
+radiobutton1_Callback(hObject, eventdata, handles)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% hObject<span style="">&nbsp;&nbsp;&nbsp;
+</span>handle to radiobutton1 (see GCBO)</span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% handles<span style="">&nbsp;&nbsp;&nbsp;
+</span>structure with handles and user data (see
+GUIDATA)</span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span><br>
+<span style="font-size: 10pt; color: forestgreen;" lang="EN-US">% Hint: get(hObject,'Value') returns toggle
+state of
+radiobutton1</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">global</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> ha<span style=""></span><br>
+go_on(hObject,handles,1);<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% --- Executes on button press in radiobutton2.</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">function</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">
+radiobutton2_Callback(hObject, eventdata, handles)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">global</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> ha<br>
+go_on(hObject,handles,2);<br>
+<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% --- Executes on button press in radiobutton3.</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">function</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">
+radiobutton3_Callback(hObject, eventdata, handles)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">global</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> ha<br>
+go_on(hObject,handles,3);<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% --- Executes on button press in pushbutton1.</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">function</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">
+pushbutton1_Callback(hObject, eventdata, handles)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% hObject<span style="">&nbsp;&nbsp;&nbsp;
+</span>handle to pushbutton1 (see GCBO)<br>
+% handles<span style="">&nbsp;&nbsp;&nbsp;
+</span>structure with handles and user data (see
+GUIDATA)</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: blue;" lang="EN-US">global</span><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US"> ha<br>
+initialize_trick;<br>
+handles.t = 1;<span style="">&nbsp;</span></span><span style="font-family: &quot;Courier New&quot;;" lang="EN-US"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: forestgreen;" lang="EN-US">% Update handles structure</span><br>
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: black;" lang="EN-US">guidata(hObject, handles);</span><span style="" lang="EN-US"><o:p></o:p></span><br>
+<span style=""><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style=""><o:p></o:p>
+<hr style="width: 100%; height: 2px;"><br>
+To run the program and see the Matlab GUI, save
+all these files with their respective names, put them into a single
+directory,
+go to that directory with Matlab and just type &#8216;<span style="font-weight: bold;">trick1</span>&#8217; on your
+command window.</span></p>
+<p class="MsoNormal" style="">Here's a
+sample run.&nbsp;</p>
+<div style="text-align: center;"><img style="width: 270px; height: 294px;" alt="wr're requested to choose a card..." src="http://www.matrixlab-examples.com/image-files/trick_012.jpg"></div>
+<p class="MsoNormal" style="">Let's say
+that we choose the ace of spades, so we click on the right radio button.</p>
+<p class="MsoNormal" style="text-align: center;"><img style="width: 270px; height: 294px;" alt="We choose another card, 2nd click..." src="http://www.matrixlab-examples.com/image-files/trick_013.jpg"></p>
+<p class="MsoNormal" style="text-align: left;">The
+cards are reshuffled and we now click on the central radio button...</p>
+<p class="MsoNormal" style="text-align: center;"><img style="width: 270px; height: 294px;" alt="we choose the right column again, 3rd click" src="http://www.matrixlab-examples.com/image-files/trick_014.jpg"></p>
+<p class="MsoNormal" style="">We
+concentrate once more, to send clearer thoughts through our mental
+interface... click on the right column again and...</p>
+<p class="MsoNormal" style="text-align: center;"><span style=""><img style="width: 270px; height: 294px;" alt="Our great trick has worked! We developed a mental interface!" src="http://www.matrixlab-examples.com/image-files/trick_015.jpg"></span></p>
+<p class="MsoNormal" style=""><span style="">Nice trick, isn't it?&nbsp;<br>
+<br>
+</span></p>
+<p class="MsoNormal" style=""><span style=""><span style="font-style: italic; color: red; font-weight: bold;">Enjoy!</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp;&nbsp; <a style="font-weight: bold;" href="http://www.matrixlab-examples.com/support-files/trick1.zip" onclick="return FIX.track(this);">(Download
+here all the
+necessary files)</a></span></p>
+<br>
+&nbsp;<a href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Matlab GUI' to home</a><br>
+<br>
+&nbsp;<a href="http://www.matrixlab-examples.com/matlab-gui-2tier.html" onclick="return FIX.track(this);">From
+'Matlab
+GUI' to GUI menu</a><br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a href="matlab-gui-2.html#top">Top</a><br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for matlab gui page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; vertical-align: top; background-color: rgb(224, 236, 255); text-align: center;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:43:57 10-Aug-2021 -->
+</body></html>

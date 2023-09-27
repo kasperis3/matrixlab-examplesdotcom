@@ -1,0 +1,82 @@
+.Navigation {
+min-width: 130px;
+}
+
+#PageWrapper #NavColumn .Navigation h3 {
+margin-left: -4px;
+margin-right: -4px;
+}
+
+.Navigation h3 {
+font-family: Verdana, Geneva, sans-serif;
+font-size: 18px;
+font-weight: bold;
+font-style: normal;
+color: #000000;
+text-align: left;
+text-decoration: none;
+letter-spacing: 0px;
+line-height: 23px;
+border-top: 0;
+border-right: 0;
+border-bottom: 0;
+border-left: 0;
+margin: 0;
+padding: 0;
+background: none;
+display: block; 
+}
+
+#PageWrapper #NavColumn .Navigation ul {
+margin-left: -4px;
+margin-right: -4px;
+}
+
+.Navigation ul {
+list-style-type: disc;
+width: 130px;
+border-top: 0;
+border-right: 0;
+border-bottom: 0;
+border-left: 0;
+margin: 0;
+padding: 0;
+background: none;
+}
+
+.Navigation li {
+text-align: left;
+font-variant: normal;
+display: block;
+border-top: 0;
+border-right: 0;
+border-bottom: 0;
+border-left: 0;
+margin: 0;
+padding: 0;
+background: none;
+}
+
+.Navigation a {
+font-family: Verdana, Geneva, sans-serif;
+font-size: 13px;
+font-weight: normal;
+font-style: normal;
+font-variant: normal;
+color: #FFFFFF;
+text-align: center;
+text-decoration: none;
+letter-spacing: 0px;
+line-height: 31px;
+height: 31px;
+display: block;
+overflow: hidden;
+border-top: 0;
+border-right: 0;
+border-bottom: 0;
+border-left: 0;
+margin: 0;
+padding: 0;
+background: transparent url(../image-files/navimage.gif) no-repeat 0% 0%;
+*zoom: 1;
+}

@@ -1,0 +1,428 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>2D drawing - summary of plots with Matlab</title>
+
+<meta name="Description" content="You can find examples of 2D drawing functions. Many of them take optional arguments. These are just some ideas to give you basic understanding or how to use these built-in functions...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/2d-drawing.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="2D drawing - summary of plots with Matlab" />
+<meta property="og:description" content="You can find examples of 2D drawing functions. Many of them take optional arguments. These are just some ideas to give you basic understanding or how to use these built-in functions..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/2d-drawing.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<h1><a name="2D_drawing_&#8211;_plots_and_graphs_in_Matlab"></a><span style="" lang="ES-TRAD">2D
+drawing &#8211; plots and graphs in Matlab</span></h1>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>
+</o:p>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --></td>
+<td><span style="" lang="ES-TRAD">Matlab
+<span style="font-weight: bold;">2D
+drawing</span> or plotting functions and tools direct their
+output to a window that
+is separate from the command window (referred to as a figure). By
+default, Matlab
+uses <span style="font-weight: bold;">line styles</span>
+and <span style="font-weight: bold;">colors</span>
+to distinguish the <span style="font-weight: bold;">data
+sets</span> plotted in the graph.
+<br>
+<br>
+You can change the appearance of the graphic components or add
+annotations to the graph to explain your data for presentation.</span></td>
+</tr>
+</tbody>
+</table>
+<br>
+Below
+you can find examples of some <span style="font-weight: bold;">2D
+drawing functions</span>. Many of them take optional
+arguments. These are just some ideas to give you basic understanding or
+how to
+use these built-in functions and what to expect from them. For more
+information, see the online <span style="font-weight: bold;">Matlab
+help</span> (type &#8216;<span style="font-weight: bold;">help
+function</span>&#8217; on your command
+window or see the Help menu).<o:p> &nbsp;Some of these
+examples have a full article on those functions.&nbsp;</o:p></span></p><span style="" lang="ES-TRAD"><o:p><br></o:p></span><table class="MsoTableGrid" style="border: medium none ; border-collapse: collapse;" border="1" cellpadding="0" cellspacing="0">
+<tbody>
+<tr style="">
+<td style="border: 1pt solid windowtext; padding: 0cm 5.4pt; width: 82.35pt;" valign="top" width="110">
+<p style="width: 72px;" class="MsoNormal"><span style="" lang="ES-TRAD">fplot<o:p></o:p></span></p>
+</td>
+<td style="border-style: solid solid solid none; border-color: windowtext windowtext windowtext -moz-use-text-color; border-width: 1pt 1pt 1pt medium; padding: 0cm 5.4pt; width: 131.1pt;" valign="top" width="175">
+<p class="MsoNormal" style=""><span style="color: black;">fplot(</span><span style="color: rgb(160, 32, 240);">'x.*cos(5*x)'</span><span style="color: black;">,</span></p>
+<p class="MsoNormal" style=""><span style="color: black;">[0 4*pi])</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td style="border-style: solid solid solid none; border-color: windowtext windowtext windowtext -moz-use-text-color; border-width: 1pt 1pt 1pt medium; padding: 0cm 5.4pt; width: 235.45pt;" valign="top" width="314">
+<p class="MsoNormal" style="text-align: center;" align="center"><span style="" lang="ES-TRAD"><o:p></o:p></span><img style="width: 287px; height: 226px;" alt="2D drawing - fplot" src="http://www.matrixlab-examples.com/image-files/2d-drawing-001.gif"></p>
+</td>
+</tr>
+<tr style="">
+<td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt; padding: 0cm 5.4pt; width: 82.35pt;" valign="top" width="110">
+<p class="MsoNormal"><a href="http://www.matrixlab-examples.com/loglog.html" onclick="return FIX.track(this);"><span style="" lang="ES-TRAD">semilogx<o:p></o:p></span></a></p>
+<p style="width: 63px;" class="MsoNormal"><span style="" lang="ES-TRAD"><a href="http://www.matrixlab-examples.com/loglog.html" onclick="return FIX.track(this);">semilogy</a><o:p></o:p></span></p>
+</td>
+<td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 131.1pt;" valign="top" width="175">
+<p class="MsoNormal" style=""><span style="color: black;">x=0 : .01 : 2*pi;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="width: 155px;"><span style="color: black;">semilogy(x,exp(2*x))</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 235.45pt;" valign="top" width="314">
+<p class="MsoNormal" style="text-align: center;" align="center"><span style="" lang="ES-TRAD"><o:p></o:p></span><img style="width: 284px; height: 225px;" alt="2d drawing - semilogarithmic plots" src="http://www.matrixlab-examples.com/image-files/2d-drawing-002.gif"></p>
+</td>
+</tr>
+<tr style="">
+<td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt; padding: 0cm 5.4pt; width: 82.35pt;" valign="top" width="110">
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><a href="http://www.matrixlab-examples.com/loglog.html" onclick="return FIX.track(this);">loglog</a><o:p></o:p></span></p>
+</td>
+<td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 131.1pt;" valign="top" width="175">
+<p class="MsoNormal" style=""><span style="color: black;">t = 0 : .01 : pi;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">x = exp(2*t);</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">y = 50+exp(t);</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">loglog(x,y)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">grid</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 235.45pt;" valign="top" width="314">
+<p class="MsoNormal" style="text-align: center;" align="center"><o:p></o:p><img style="width: 295px; height: 228px;" alt="2d drawing - logarithmic" src="http://www.matrixlab-examples.com/image-files/2d-drawing-003.gif"></p>
+</td>
+</tr>
+<tr style="">
+<td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt; padding: 0cm 5.4pt; width: 82.35pt;" valign="top" width="110">
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><a href="http://www.matrixlab-examples.com/polar-plots.html" onclick="return FIX.track(this);">polar</a><o:p></o:p></span></p>
+</td>
+<td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 131.1pt;" valign="top" width="175">
+<p class="MsoNormal" style=""><span style="color: black;">t=0 : .01 : 2*pi;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">r=sqrt(abs(sin(3*t)));</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">polar(t,r)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 235.45pt;" valign="top" width="314">
+<p class="MsoNormal" style="text-align: center;" align="center"><o:p></o:p><img style="width: 212px; height: 210px;" alt="2d drawing- polar" src="http://www.matrixlab-examples.com/image-files/2d-drawing-004.gif"></p>
+</td>
+</tr>
+<tr style="">
+<td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt; padding: 0cm 5.4pt; width: 82.35pt;" valign="top" width="110">
+<p class="MsoNormal"><span style="" lang="ES-TRAD">bar<o:p></o:p></span></p>
+</td>
+<td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 131.1pt;" valign="top" width="175">
+<p class="MsoNormal" style=""><span style="color: black;">x = 0 : 10;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">y = 2*x+3;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">bar(x,y)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 235.45pt;" valign="top" width="314">
+<p class="MsoNormal" style="text-align: center;" align="center"><o:p></o:p><img style="width: 285px; height: 223px;" alt="2D drawing - plot with bars" src="http://www.matrixlab-examples.com/image-files/2d-drawing-005.gif"></p>
+</td>
+</tr>
+<tr style="">
+<td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt; padding: 0cm 5.4pt; width: 82.35pt;" valign="top" width="110">
+<p class="MsoNormal"><span style="" lang="ES-TRAD">plotyy<o:p></o:p></span></p>
+</td>
+<td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 131.1pt;" valign="top" width="175">
+<p class="MsoNormal" style=""><span style="color: black;">x = 1:.1:10;</span></p>
+<p class="MsoNormal" style=""><span style="color: black;">y1=exp(-2*x).*cos(x);</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">y2=exp(2*x);</span></p>
+<p class="MsoNormal" style=""><span style="color: black;">H =plotyy(x,y1,x,y2);</span></p>
+<p class="MsoNormal" style=""><span style="color: black;">h1=get(H(1),</span><span style="color: rgb(160, 32, 240);">'ylabel'</span><span style="color: black;">);</span></p>
+<p class="MsoNormal" style=""><span style="color: black;">h2=get(H(2),</span><span style="color: rgb(160, 32, 240);">'ylabel'</span><span style="color: black;">);</span></p>
+<p class="MsoNormal" style=""><span style="color: black;">set(h1,</span><span style="color: rgb(160, 32, 240);">'string'</span><span style="color: black;">,</span><span style="color: rgb(160, 32, 240);">'fun y1'</span><span style="color: black;">);</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">set(h2,</span><span style="color: rgb(160, 32, 240);">'string'</span><span style="color: black;">,</span><span style="color: rgb(160, 32, 240);">'fun y2'</span><span style="color: black;">);<br>
+<o:p></o:p></span></p>
+</td>
+<td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 235.45pt;" valign="top" width="314">
+<p class="MsoNormal"><o:p></o:p><img style="width: 316px; height: 237px;" alt="drawing two axes in one plot" src="http://www.matrixlab-examples.com/image-files/2d-drawing-006.gif"></p>
+</td>
+</tr>
+<tr style="">
+<td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt; padding: 0cm 5.4pt; width: 82.35pt;" valign="top" width="110">
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><a href="http://www.matrixlab-examples.com/polygon-area.html" onclick="return FIX.track(this);">area</a><o:p></o:p></span></p>
+</td>
+<td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 131.1pt;" valign="top" width="175">
+<p class="MsoNormal" style=""><span style="color: black;">x = -2*pi:.01:2*pi;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">y = sin(x)./x;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">area(x,y)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 235.45pt;" valign="top" width="314">
+<p class="MsoNormal"><o:p></o:p><img style="width: 292px; height: 229px;" alt="drawing - area" src="http://www.matrixlab-examples.com/image-files/2d-drawing-007.gif"></p>
+</td>
+</tr>
+<tr style="">
+<td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt; padding: 0cm 5.4pt; width: 82.35pt;" valign="top" width="110">
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><a href="http://www.matrixlab-examples.com/pie-plots.html" onclick="return FIX.track(this);">pie</a><o:p></o:p></span></p>
+</td>
+<td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 131.1pt;" valign="top" width="175">
+<p class="MsoNormal" style=""><span style="color: black;">dat = [5 5 20 30 40];</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">pie(dat)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 235.45pt;" valign="top" width="314">
+<p class="MsoNormal" style="text-align: center;" align="center"><o:p></o:p><img style="width: 218px; height: 209px;" alt="drawing pie plot" src="http://www.matrixlab-examples.com/image-files/2d-drawing-008.gif"></p>
+</td>
+</tr>
+<tr style="">
+<td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt; padding: 0cm 5.4pt; width: 82.35pt;" valign="top" width="110">
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><a href="http://www.matrixlab-examples.com/hist.html" onclick="return FIX.track(this);">hist</a><o:p></o:p></span></p>
+</td>
+<td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 131.1pt;" valign="top" width="175">
+<p class="MsoNormal" style=""><span style="color: black;">y = 20*rand(1,10);</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">hist(y)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 235.45pt;" valign="top" width="314">
+<p class="MsoNormal" style="text-align: center;" align="center"><o:p></o:p><img style="width: 285px; height: 224px;" alt="2D drawing - histograms" src="http://www.matrixlab-examples.com/image-files/2d-drawing-009.gif"></p>
+</td>
+</tr>
+<tr style="">
+<td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt; padding: 0cm 5.4pt; width: 82.35pt;" valign="top" width="110">
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><a href="http://www.matrixlab-examples.com/matlab-plot-3.html" onclick="return FIX.track(this);">stem</a><o:p></o:p></span></p>
+</td>
+<td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 131.1pt;" valign="top" width="175">
+<p class="MsoNormal" style=""><span style="color: black;">t = -3*pi : 3*pi;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">y = cos(t)-2*sin(t);</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">stem(t,y)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 235.45pt;" valign="top" width="314">
+<p class="MsoNormal" style="text-align: center;" align="center"><o:p></o:p><img style="width: 286px; height: 226px;" alt="2D drawing - stems" src="http://www.matrixlab-examples.com/image-files/2d-drawing-010.gif"></p>
+</td>
+</tr>
+<tr style="">
+<td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt; padding: 0cm 5.4pt; width: 82.35pt;" valign="top" width="110">
+<p class="MsoNormal"><span style="" lang="ES-TRAD">stairs<o:p></o:p></span></p>
+</td>
+<td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 131.1pt;" valign="top" width="175">
+<p class="MsoNormal" style=""><span style="color: black;">x = 1 : 10;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">y = 2*x;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">stairs(x,y)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 235.45pt;" valign="top" width="314">
+<p class="MsoNormal" style="text-align: center;" align="center"><o:p></o:p><img style="width: 285px; height: 226px;" alt="2D drawing - stairs" src="http://www.matrixlab-examples.com/image-files/2d-drawing-011.gif"></p>
+</td>
+</tr>
+<tr style="">
+<td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt; padding: 0cm 5.4pt; width: 82.35pt;" valign="top" width="110">
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><a href="http://www.matrixlab-examples.com/polar-plots.html" onclick="return FIX.track(this);">compass</a><o:p></o:p></span></p>
+</td>
+<td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 131.1pt;" valign="top" width="175">
+<p class="MsoNormal" style=""><span style="color: black;">t = 0 : pi/6 : pi;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">x = cos(t);</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">y = i*sin(t);</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">z = x + y;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">compass(z)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 235.45pt;" valign="top" width="314">
+<p class="MsoNormal" style="text-align: center;" align="center"><o:p></o:p><img style="width: 211px; height: 210px;" alt="2D drawing - compass - arrows" src="http://www.matrixlab-examples.com/image-files/2d-drawing-012.gif"></p>
+</td>
+</tr>
+<tr style="">
+<td style="border-style: none solid solid; border-color: -moz-use-text-color windowtext windowtext; border-width: medium 1pt 1pt; padding: 0cm 5.4pt; width: 82.35pt;" valign="top" width="110">
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><a href="http://www.matrixlab-examples.com/3D-plot-part4.html" onclick="return FIX.track(this);">contour</a><o:p></o:p></span></p>
+</td>
+<td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 131.1pt;" valign="top" width="175">
+<p class="MsoNormal" style=""><span style="color: black;">X = -3 : .1 : 3;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">[x,y]=meshgrid(X,X);</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">z = -x^2 + 2*x.*y + y^2;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">pl=contour(x,y,z);</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">clabel(pl)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;"><o:p>&nbsp;</o:p></span></p>
+</td>
+<td style="border-style: none solid solid none; border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color; border-width: medium 1pt 1pt medium; padding: 0cm 5.4pt; width: 235.45pt;" valign="top" width="314">
+<p class="MsoNormal" style="text-align: center;" align="center"><o:p></o:p><img style="width: 285px; height: 228px;" alt="contour - level curves - 2D plots" src="http://www.matrixlab-examples.com/image-files/2d-drawing-013.gif"></p>
+</td>
+</tr>
+</tbody>
+</table>
+<br><table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><br><h3>Video - Create 2D Images in Matlab</h3></td></tr><tr><td><iframe src="https://www.youtube.com/embed/RoYzP3hkK0I?rel=0" allowfullscreen="" frameborder="0" height="292" width="519"></iframe></td></tr></tbody></table><br><p style="font-weight: bold;" class="MsoNormal"><a href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);"><span style="" lang="ES-TRAD"><o:p>From
+'2D drawing'
+to home</o:p></span></a></p>
+<p style="font-weight: bold;" class="MsoNormal"><span style="" lang="ES-TRAD"><o:p><a href="http://www.matrixlab-examples.com/matlab-plot-2tier.html" onclick="return FIX.track(this);">From '2D drawing' to Plot Menu</a></o:p></span></p>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><br>
+<!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a href="3d-graphs.html#3D_graphs_%3F_plots_and_volumes_in_Matlab"><span style="" lang="ES-TRAD"></span></a><a style="font-weight: bold;" href="2d-drawing.html#2D_drawing_%3F_plots_and_graphs_in_Matlab"><span style="" lang="ES-TRAD">Top</span></a><br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for 2D drawing page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; text-align: right; vertical-align: top; background-color: rgb(224, 236, 255);"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:44:25 10-Aug-2021 -->
+</body></html>

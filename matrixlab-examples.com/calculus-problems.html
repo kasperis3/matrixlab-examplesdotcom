@@ -1,0 +1,354 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Calculus Problems - let's use Matlab to tackle them</title>
+
+<meta name="Description" content="Common Calculus Problems and their solution with Matlab, a numerical software for series, derivatives, integrals...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/calculus-problems.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Calculus Problems - let's use Matlab to tackle them" />
+<meta property="og:description" content="Common Calculus Problems and their solution with Matlab, a numerical software for series, derivatives, integrals..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/calculus-problems.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<h1><a name="Calculus_Problems_-_some_ideas_and"></a>Calculus
+Problems - some ideas and approaches with Matlab</h1>
+<span style="font-weight: bold;">Calculus
+problems</span> are a branch of mathematics focused on limits,
+functions, derivatives and integrals.<br>
+&nbsp; &nbsp;
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+</td>
+<td style="vertical-align: middle;"><span style="font-weight: bold;"></span>This very broad
+topic&nbsp; constitutes a major part of modern education. It has
+two major branches, <span style="font-weight: bold;">differential
+and integral calculus</span>, <br>
+which are related due to the fact that integrals are the
+anti-derivatives (so to speak).... We use Matlab to fastly <span style="font-weight: bold;">experiment with some important
+concepts</span>.<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/sequences-and-series.html" onclick="return FIX.track(this);">Sequences and Series</a><br>
+<span style="font-weight: bold;">Sequences
+and series</span>
+are very related: a sequence of</td>
+</tr>
+</tbody>
+</table>
+<br>
+numbers
+is a function defined on the set of positive integers (the numbers in
+the sequence
+are called <span style="font-weight: bold;">terms</span>)...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/harmonic-series.html" onclick="return FIX.track(this);">Infinite and Harmonic Series</a><br>
+In this article we
+are going to experiment on <span style="font-weight: bold;">geometric
+and harmonic series</span>. We review geometric series, the
+alternating harmonic series, the Leibnitz formula to find pi and...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/factorials.html" onclick="return FIX.track(this);">Factorials</a><br>
+<span style="font-weight: bold;">Factorials</span>
+of positive integers <i style="">n</i>, are the
+product of all positive
+integers less than or equal to <i style="">n</i>.
+Factorials are denoted by <i style="">n</i>!...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/lucas-series.html" onclick="return FIX.track(this);">Lucas Series</a><br>
+The French mathematician, E. Lucas, found a sequence of numbers (named
+the <span style="font-weight: bold;">Lucas series</span>)
+similar to the sequence found in the <span style="font-weight: bold;">Fibonacci numbers</span>.<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/derivative.html" onclick="return FIX.track(this);">Derivative</a><br>
+The derivative of a function <span style="font-style: italic; font-weight: bold;">f</span>(<span style="font-style: italic;">x</span>) at <span style="font-style: italic;">x</span> = <span style="font-style: italic;">c</span> is the slope of
+the tangent line to <span style="font-weight: bold; font-style: italic;">f</span>
+at <span style="font-style: italic;">x</span> = <span style="font-style: italic;">c</span>. You can find the
+value of the derivative using the difference quotient, which is a
+formula... <br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/gradient.html" onclick="return FIX.track(this);">Gradient</a><br>
+In
+our case, a numerical gradient is like having a 3D derivative. We get
+partial derivatives along x, y and z axes, and that's our gradient.
+It's convenient to follow the method shown to calculate derivatives...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/definite-integrals.html" onclick="return FIX.track(this);">Definite Integrals</a><br>
+<span style="" lang="ES-TRAD">A&nbsp;numerical
+integration can be performed by a number of
+algorithms that calculate the approximate value of <span style="font-weight: bold;">definite integrals</span>...</span><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/trapezoidal-rule.html" onclick="return FIX.track(this);">Trapezoidal Rule</a><br>
+The
+Trapezoidal Rule is a&nbsp;way to approximate area beneath a curve.
+Instead of constructing rectangles, this method uses small trapezoids.
+In effect, these trapezoids look the same as&nbsp;rectangles near
+their
+bases, but&nbsp;different at the top...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/simpsons-rule.html" onclick="return FIX.track(this);">Simpson's Rule</a><br>
+Another&nbsp;area-approximating tool is the Simpson&#8217;s Rule.
+Geometrically, it creates&nbsp;parabolas to get&nbsp;closer to
+the
+function we&#8217;re approximating. The formula is similar to the trapezoidal
+rule, but&nbsp;you can only use an even number of subintervals...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/maclaurin-series.html" onclick="return FIX.track(this);">Maclaurin Series</a><br>
+<span style="font-weight: bold;">Maclaurin
+series</span> are
+fast approximations of functions, and
+they offer more accurate function approximations than just <span style="font-weight: bold;">linear</span> ones. You
+have
+to consider only one general formula and you can...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/taylor-expansion.html" onclick="return FIX.track(this);">Taylor expansion</a><br>
+<span style="font-weight: bold;">Taylor&nbsp;series</span>
+are
+another type of fast approximations of functions and are very similar
+to Maclaurin's<span style="font-weight: bold;"></span>.
+You
+have
+to consider only one general formula and you can...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/sine-series.html" onclick="return FIX.track(this);">Sine / Cosine series</a><br>
+The
+sine and cosine functions are two of the basic functions in
+trigonometry. In this article, we&#8217;re going to explore a number of ways
+to calculate the sine series without actually using the sine (or
+cosine) functions...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/fourier-analysis.html" onclick="return FIX.track(this);">Fourier Analysis - intro</a><br>
+This field began with the study of
+the way periodic or general functions that might be represented by <span style="font-weight: bold;">summations</span> of
+simpler trigonometric functions (<span style="font-weight: bold;">sine
+or cosine series</span>). Fourier analysis has
+many applications in science...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/fourier-series.html" onclick="return FIX.track(this);">Fourier Series - (analysis cont.)</a><br>
+Fourier series is an <span style="font-weight: bold;">infinite
+sum of sines</span>
+used to solve special types of problems in electronics. The series
+consists of an infinite sum of sines (and cosines) that repeats over
+fixed intervals...<br>
+<br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Calculus Problems' to home</a><br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/sitemap.html" onclick="return FIX.track(this);">From
+'Calculus Problems' to Sitemap/Search</a><br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="#Calculus_Problems_-_some_ideas_and">Top</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/linear-algebra.html" onclick="return FIX.track(this);">Linear
+Algebra</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/linear-algebra-books.html" onclick="return FIX.track(this);">Books</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/probability-and-statistics.html" onclick="return FIX.track(this);">Statistics</a><br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for calculus problems page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; vertical-align: top; background-color: rgb(224, 236, 255); text-align: center;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:42:21 10-Aug-2021 -->
+</body></html>

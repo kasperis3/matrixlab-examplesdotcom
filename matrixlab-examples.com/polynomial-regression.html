@@ -1,0 +1,348 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Polynomial Regression in Matlab - easy least squares fitting</title>
+
+<meta name="Description" content="We'll demonstrate how to work out polynomial regression in Matlab (also known as polynomial least squares fittings)...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/polynomial-regression.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Polynomial Regression in Matlab - easy least squares fitting" />
+<meta property="og:description" content="We'll demonstrate how to work out polynomial regression in Matlab (also known as polynomial least squares fittings)..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/polynomial-regression.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/polynomial-regression-001.gif" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<h1><a name="Polynomial_Regression_&#8211;_Least_Square"></a><span style="" lang="ES-TRAD">Polynomial
+Regression &#8211; Least Square Fittings</span></h1>
+<br>
+This brief article will demonstrate how to work out
+<span style="font-weight: bold;">polynomial
+regressions</span> in Matlab (also known as polynomial least
+squares
+fittings). The idea is to find the polynomial function that properly
+fits a
+given set of data points.<br>
+&nbsp; <br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+</td>
+<td style="vertical-align: middle;"><span style="" lang="ES-TRAD">For
+this purpose, we&#8217;re going to use two useful built-in functions: polyfit
+(for
+fitting polynomial to data) and polyval (to evaluate polynomials).</span><br>
+<br>
+<br>
+<span style="" lang="ES-TRAD">This
+is
+the simplest way to use these functions:<o:p><br>
+<br>
+</o:p></span><span style="" lang="ES-TRAD">p = <span style="font-weight: bold;">polyfit</span>(x,
+y, n) finds the coefficients of a polynomial p(x) of degree n that fits
+the
+data y best in a least-squares sense. </span></td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">p is a row vector of length n
++ 1
+containing the polynomial coefficients in descending powers, p(1)*x^n +
+p(2)*x^(n
+- 1) + ... + p(n)*x + p(n + 1).</span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">y = <span style="font-weight: bold;">polyval</span>(p,
+x) returns the value of a polynomial p evaluated at x. p is a vector of
+length
+n + 1 whose elements are the coefficients of the polynomial in
+descending
+powers, y = p(1)*x^n + p(2)*x^(n - 1) + ... + p(n)*x + p(n + 1). If x
+is a
+matrix or vector, the polynomial is evaluated at all points in x.<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><br>
+Let&#8217;s
+say that we&#8217;re given these points<o:p>&nbsp;</o:p></span></p>
+<p style="font-family: monospace;" class="MsoNormal">x = [1 2 3 4 5.5 7 10]<br>
+y = [3 7 9 15 22 21 21]<span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">and
+want to explore fits of 2nd., 4th. and 5th. order. We could use the
+following
+code:<br>
+<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">clear </span><span style="color: rgb(160, 32, 240);">all</span><span style="color: black;">, clc,
+close </span><span style="color: rgb(160, 32, 240);">all</span><span style="color: black;">, format </span><span style="color: rgb(160, 32, 240);">compact<br>
+<span style=""></span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+define coordinates</span><br>
+<span style="color: black;">x = [1 2
+3 4 5.5 7 10];<br>
+y = [3 7
+9 15 22 21 21];</span><span style="font-size: 12pt;"></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+plot given data in red</span><br>
+<span style="color: black;">plot(x,
+y, </span><span style="color: rgb(160, 32, 240);">'ro'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'linewidth'</span><span style="color: black;">, 2)<br>
+hold </span><span style="color: rgb(160, 32, 240);">on<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+find polynomial fits of different orders</span><br>
+<span style="color: black;">p2 =
+polyfit(x, y, 2)<br>
+p4 =
+polyfit(x, y, 4)<br>
+p5 =
+polyfit(x, y, 5)<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+see interpolated values of fits</span><br>
+<span style="color: black;">xc = 1 :
+.1 : 10;<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+plot 2nd order polynomial</span><br>
+<span style="color: black;">y2 =
+polyval(p2, xc);<br>
+plot(xc,
+y2, </span><span style="color: rgb(160, 32, 240);">'g.-'</span><span style="color: black;">)<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+plot 4th order polynomial</span><br>
+<span style="color: black;">y4 =
+polyval(p4, xc);<br>
+plot(xc,
+y4, </span><span style="color: rgb(160, 32, 240);">'linewidth'</span><span style="color: black;">, 2)<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+plot 5th order polynomial</span><br>
+<span style="color: black;">y5 =
+polyval(p5, xc);<br>
+plot(xc,
+y5, </span><span style="color: rgb(160, 32, 240);">'k.'</span><span style="color: black;">, </span><span style="color: rgb(160, 32, 240);">'linewidth'</span><span style="color: black;">, 2)<br>
+grid</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black; font-family: monospace;">legend(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'original
+data'</span><span style="color: black; font-family: monospace;">,
+</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'2nd.
+order fit'</span><span style="color: black; font-family: monospace;">, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'4th.
+order'</span><span style="color: black; font-family: monospace;">, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'5th.
+order'</span><span style="color: black; font-family: monospace;">)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">The
+resulting fits are displayed in this figure<o:p></o:p></span></p>
+<p class="MsoNormal" style="text-align: center;" align="center"><span style="" lang="ES-TRAD"><o:p><img style="width: 377px; height: 305px;" alt="polynomial regression calculated with Matlab" src="http://www.matrixlab-examples.com/image-files/polynomial-regression-001.gif"><br>
+&nbsp;&nbsp;</o:p></span><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The coefficients found
+by Matlab are:</p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD">p2 = <span style="">&nbsp;&nbsp;&nbsp;</span>-0.3863<span style="">&nbsp;&nbsp;&nbsp;
+</span>6.3983<span style="">&nbsp;&nbsp;
+</span>-4.1596<br>
+p4 = <span style="">&nbsp;&nbsp;&nbsp;&nbsp;</span>0.0334<span style="">&nbsp;&nbsp;
+</span>-0.7377<span style="">&nbsp;&nbsp;&nbsp;
+</span>5.0158<span style="">&nbsp;&nbsp;
+</span>-8.4137<span style="">&nbsp;&nbsp;&nbsp;
+</span>7.5779<br>
+p5 = <span style="">&nbsp;&nbsp;&nbsp;&nbsp;</span>0.0213<span style="">&nbsp;&nbsp;
+</span>-0.5022<span style="">&nbsp;&nbsp;&nbsp;
+</span>4.1330<span style="">&nbsp; </span>-14.5708<span style="">&nbsp;&nbsp;
+</span>25.3233<span style="">&nbsp; </span>-11.3510</span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p><br>
+which,
+in other words, represent the following polynomials of &nbsp;2nd.,
+4th. and 5th. order, respectively.<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p><br>
+y<sub>2</sub>
+= -0.3863x<sup>2</sup> + 6.3983x - 4.1596<br>
+y<sub>4</sub>
+= <span style="">&nbsp;</span>0.0334x<sup>4</sup>
+- 0.7377x<sup>3</sup>
++ 5.0158x<sup>2</sup> - 8.4137x + 7.5779<br>
+y<sub>5</sub>
+= <span style="">&nbsp;</span>0.0213x<sup>5</sup>
+- 0.5022x<sup>4</sup>
++ 4.1330x<sup>3</sup> - 14.5708x<sup>2</sup> +
+25.3233x - 11.3510<o:p>&nbsp;</o:p></span></p>
+<br>
+You can see <a href="http://www.matrixlab-examples.com/curve-fitting.html" onclick="return FIX.track(this);">this video on
+how to do it even easier with the integrated </a><a href="http://www.matrixlab-examples.com/curve-fitting.html" onclick="return FIX.track(this);">Curve Fitting Tool</a>
+within the Figure window.<br>
+<br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Polynomial Regression' to home</a><br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-tutorial.html" onclick="return FIX.track(this);">From 'Polynomial Regression' to
+Matlab Tutorials</a><br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="#Polynomial_Regression_%3F_Least_Square">Top</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/polynomials.html" onclick="return FIX.track(this);">More on polynomials</a><br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for polynomial regression page"><a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br></a></p>
+</td>
+<td style="width: 170px; vertical-align: top; background-color: rgb(224, 236, 255); text-align: center;"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:47:08 10-Aug-2021 -->
+</body></html>

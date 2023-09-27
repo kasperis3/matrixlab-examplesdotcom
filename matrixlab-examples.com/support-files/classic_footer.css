@@ -1,0 +1,51 @@
+
+/* font AvantGardeRegular definition */
+@font-face {
+    font-family: AvantGardeRegular;
+    src: url('/support-files/avantgarde-webfont.eot');
+    src: url('/support-files/avantgarde-webfont.eot?iefix') format('eot'),
+         url('/support-files/avantgarde-webfont.woff') format('woff'),
+         url('/support-files/avantgarde-webfont.ttf') format('truetype'),
+         url('/support-files/avantgarde-webfont.svg#webfontILwWK1qr') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+} 
+
+.page_footer_container {
+    width:500px;
+    margin: 12px auto;
+}
+.page_footer_content {
+    width: 100%;
+    
+    text-align: center;
+    background-color: transparent;
+}
+.footer_divider_above {
+    width: 50%;
+    margin: 0 auto;
+    border:0; border-top: 1px solid #000;
+}
+.footer_divider_below {
+    width: 50%;
+    margin: 0 auto;
+    border:0; border-top: 1px solid #000;
+}
+.footer_content,
+.footer_content a {
+    text-align: center;
+    font-family: AvantGardeRegular;
+    font-size: 12px;
+    color: #000;
+    padding:12px 0;
+}
+.liner {
+    padding: 12px;	
+}
+.powered_by_sbi_banner{
+    width:500px;
+    margin:0 auto;
+    text-align:center;	
+}
+	

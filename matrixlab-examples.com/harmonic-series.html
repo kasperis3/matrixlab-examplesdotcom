@@ -1,0 +1,555 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Infinite Geometric and Harmonic Series - working with
+numerical software</title>
+
+<meta name="Description" content="We're going to experiment on geometric and harmonic series using Matlab, see the sequences...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/harmonic-series.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Infinite Geometric and Harmonic Series - working with
+numerical software" />
+<meta property="og:description" content="We're going to experiment on geometric and harmonic series using Matlab, see the sequences..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/harmonic-series.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/harmonic-series-005.gif" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<h1><a name="Infinite_Geometric_and_Harmonic_Series_-"></a>Infinite
+Geometric&nbsp;and Harmonic Series - working
+with numerical software</h1>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+</td>
+<td style="vertical-align: middle;">In
+this article we
+are going to experiment on <span style="font-weight: bold;">geometric
+and harmonic series</span>.<br>
+<br>
+I
+suggest you read the
+article <a href="http://www.matrixlab-examples.com/sequences-and-series.html" onclick="return FIX.track(this);">Sequences and
+Series</a> before reading
+this one, to understand the basics...&nbsp;
+<p class="MsoNormal">An <span style="font-weight: bold;">infinite geometric
+series</span> is an infinite series whose
+successive terms have a common ratio. Such a series converges if and
+only if
+the absolute value of the common ratio is less than one.&nbsp;</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal">The sum to
+infinity (<i style="">S</i><sub><span style="">&#8734;</span></sub>) of
+any&nbsp;geometric
+sequence in which the common
+ratio <i style="">r</i> is numerically less than 1
+is
+given by</p>
+<div style="text-align: center;"><o:p>&nbsp;<img style="width: 149px; height: 46px;" alt="infinite geometric series equation" src="http://www.matrixlab-examples.com/image-files/harmonic-series-001.gif"></o:p><br>
+</div>
+<p class="MsoNormal">where<br>
+<i style=""><span style="font-family: &quot;Times New Roman&quot;;">a</span></i>
+= first number of the series<br>
+<i style="">r</i>
+= common ratio<br>
+<i style=""><span style="font-family: &quot;Times New Roman&quot;;"><o:p></o:p></span></i><span style="font-family: &quot;Times New Roman&quot;;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal"><span style="font-weight: bold;">Example</span></p>
+<hr style="width: 100%; height: 2px;">
+<p class="MsoNormal">Consider the infinite
+geometric series<br>
+1 &#8211; 1/2 + 1/4 &#8211; 1/8 +
+1/16...<br>
+Then, a = 1 and r = -1/2<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">So, using the formula
+above the sum to infinity is<br>
+S = 1/(1-(-1/2)) = 2/3<o:p><br>
+&nbsp;</o:p></p>
+<p class="MsoNormal">For the series<br>
+1 &#8211; 1/3 + 1/9 &#8211; 1/27 +
+1/81...<br>
+a = 1 and r = -1/3<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Then, the sum to infinity
+is<br>
+S = 1/(1-(-1/3)) = 3/4<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Let&#8217;s experiment with
+Matlab.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+define your first 5 n-elements</span><br>
+<span style="color: black;">n = 0 :
+4</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+generate your sequence</span><br>
+<span style="color: black;">s =
+(-1).^n ./ 2.^n</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen; font-family: monospace;">%
+find its sum</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">s_to_i
+=
+sum(s)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span><br>
+The response is:</p>
+<p class="MsoNormal"><span style="font-family: monospace;">n
+=&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;
+2&nbsp;&nbsp;&nbsp;&nbsp;
+3&nbsp;&nbsp;&nbsp;&nbsp;
+4</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">s
+=&nbsp;&nbsp;&nbsp;&nbsp;
+1.0000&nbsp;&nbsp;
+-0.5000&nbsp;&nbsp;&nbsp;
+0.2500&nbsp;&nbsp;
+-0.1250&nbsp;&nbsp;&nbsp;
+0.0625</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">s_to_i =
+0.6875</span><br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">this shows that five
+elements are not giving us enough
+precision (0.6875 instead of 0.6667, as we expect). Let&#8217;s try more
+terms.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="color: forestgreen; font-family: monospace;">%
+use 101 elements</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">format
+</span><span style="color: rgb(160, 32, 240); font-family: monospace;">long</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">n
+= 0 :
+100;<br>
+s =
+(-1).^n ./ 2.^n;<br>
+s_to_i =
+sum(s)</span><br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The answer is </p>
+<p class="MsoNormal"><span style="font-family: monospace;">s_to_i =
+0.66666666666667</span>, which is much better.</p>
+<p class="MsoNormal">Obviously, we cannot
+directly compute a sum to infinity (it
+would take too long, right?) but we&#8217;re showing that using more terms we
+may
+reach an approximation as good as we need.<o:p><br>
+&nbsp;</o:p></p>
+<h3>Harmonic Series&nbsp;</h3>
+<p class="MsoNormal">A harmonic sequence is a
+sequence of numbers whose
+reciprocals form an arithmetic sequence. Then 1/2, 1/4, 1/6, 1/8... is
+a
+harmonic sequence because 2, 4, 6, 8... is an arithmetic sequence.</p>
+<p class="MsoNormal">The harmonic series is</p>
+<div style="text-align: center;"><o:p>&nbsp;<img style="width: 177px; height: 60px;" alt="harmonic series equation" src="http://www.matrixlab-examples.com/image-files/harmonic-series-002.gif"></o:p><br>
+<o:p></o:p></div>
+<p class="MsoNormal"><o:p></o:p>its
+name derives from the
+concept of overtones, or harmonics
+in music.</p>
+<p class="MsoNormal">Even though higher terms
+in the sequence are smaller in
+value, the series diverges. Let&#8217;s explore the series with our numerical
+software:</p>
+<p class="MsoNormal" style=""><o:p></o:p><br>
+<span style="color: forestgreen; font-family: monospace;">%
+define the first 4 terms</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">n
+= 1 :
+4<br>
+seq =
+1./n</span><span style="font-size: 12pt; font-family: monospace;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+find the sum of these terms</span><br>
+<span style="color: black;">sum(seq)</span></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The answer is:<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="font-family: monospace;">n =&nbsp;&nbsp;
+&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;
+2&nbsp;&nbsp;&nbsp;&nbsp;
+3&nbsp;&nbsp;&nbsp;&nbsp;
+4</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">seq
+=&nbsp;&nbsp;
+1.0000&nbsp;&nbsp;&nbsp;
+0.5000&nbsp;&nbsp;&nbsp;
+0.3333&nbsp;&nbsp;&nbsp;
+0.2500</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">ans
+=&nbsp;&nbsp;
+2.0833</span><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen;"></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+define the first 100 terms</span><br>
+<span style="color: black;">n = 1 :
+100;<br>
+seq =
+1./n;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+find the sume of thes terms</span><br>
+<span style="color: black;">sum(seq)</span></p>
+<p class="MsoNormal">The answer is:<o:p>&nbsp;</o:p></p>
+<p style="font-family: monospace;" class="MsoNormal">ans =<span style="">&nbsp;&nbsp;
+</span>5.1874</p>
+<p style="font-family: monospace;" class="MsoNormal"></p>
+<p class="MsoNormal"><o:p></o:p></p>
+<hr style="width: 100%; height: 2px;">
+<h3><o:p>Alternating Series</o:p></h3>
+<p class="MsoNormal"></p>
+The series
+<p style="text-align: center;" class="MsoNormal"><span style="position: relative; top: 14pt;"><img style="width: 256px; height: 60px;" alt="alternating harmonic series" src="http://www.matrixlab-examples.com/image-files/harmonic-series-003.gif"></span></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
+is known as the
+<span style="font-weight: bold;">alternating
+harmonic series</span>. In particular,
+the sum is equal to the natural logarithm of 2.</p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+our goal</span><br>
+<span style="color: black;">L =
+log(2)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+we try 5 terms</span><br>
+<span style="color: black;">n = 1 :
+5</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+define the alternating sequence</span><br>
+<span style="color: black;">seq =
+(-1).^(n+1) ./ n</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen; font-family: monospace;">%
+get the sum</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">s
+=
+sum(seq)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><o:p></o:p></p>
+<p class="MsoNormal">The Matlab answer is:</p>
+<p style="font-family: monospace;" class="MsoNormal">L =<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>0.6931<br>
+n =<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>1<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>2<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>3<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>4<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>5<br>
+seq =<span style="">&nbsp;&nbsp;
+</span>1.0000<span style="">&nbsp;&nbsp;
+</span>-0.5000<span style="">&nbsp;&nbsp;&nbsp;
+</span>0.3333<span style="">&nbsp;&nbsp;
+</span>-0.2500<span style="">&nbsp;&nbsp;&nbsp;
+</span>0.2000<br>
+s =<span style="">&nbsp;&nbsp;&nbsp;&nbsp;
+</span>0.7833</p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
+We see that 5 terms are
+not enough. Let&#8217;s try 1000 terms.</p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+we try 1000 terms</span><br>
+<span style="color: black;">n = 1 :
+1000;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+define the alternating sequence</span><br>
+<span style="color: black;">seq = (-1).^(n+1)
+./ n;</span><span style="font-size: 12pt;"></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+get the sum</span><br>
+<span style="color: black;">s =
+sum(seq)</span></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The new answer is:</p>
+<p style="font-family: monospace;" class="MsoNormal">s =<span style="">&nbsp;&nbsp;&nbsp;
+</span>0.6926</p>
+<p class="MsoNormal">This is a closer answer,
+but we&#8217;re still far from log 2.
+More terms are needed for higher accuracy... be aware...<o:p>
+&nbsp;</o:p></p>
+<p class="MsoNormal"><o:p></o:p></p>
+<hr style="width: 100%; height: 2px;">
+<h3>Formula for pi</h3>
+<p class="MsoNormal">A related series can be
+derived from the Taylor series:</p>
+<div style="text-align: center;"><img style="width: 236px; height: 58px;" alt="Leibnitz formula for pi" src="http://www.matrixlab-examples.com/image-files/harmonic-series-004.gif">
+</div>
+<p class="MsoNormal">This series starts with <span style="font-style: italic;">n</span>
+= 0, and it&#8217;s known as the <span style="font-weight: bold;">Leibniz
+formula for pi</span>. Let&#8217;s try it in Matlab.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">format </span><span style="color: rgb(160, 32, 240);">long</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+goal</span><br>
+<span style="color: black;">p4 =
+pi/4</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+we try 1000000 terms to find pi/4</span><br>
+<span style="color: black;">n = 0 :
+1000000;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+define the sequence</span><br>
+<span style="color: black;">seq = (-1).^n
+./ (2*n + 1);</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen; font-family: monospace;">%
+get the sum</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">s
+=
+sum(seq)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">The answer is:</p>
+<p style="font-family: monospace;" class="MsoNormal">p4 =<span style="">&nbsp;&nbsp;
+</span>0.78539816339745<br>
+s =<span style="">&nbsp;&nbsp;&nbsp;
+</span>0.78539841339719</p>
+<p class="MsoNormal">We see that with
+one-million terms in our series, we only
+get 6 decimals right! The series converges very slowly...
+<o:p>&nbsp;</o:p><br>
+</p>
+<p class="MsoNormal"><span style="font-weight: bold;">Another approach to find pi</span>,
+using iterations, just for
+fun...</p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+What we&#8217;re trying to get is<br>
+%
+(4/1)-(4/3)+(4/5)-(4/7)...</span><br>
+<span style="color: black;">format </span><span style="color: rgb(160, 32, 240);">long<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+You start with 0</span><br>
+<span style="color: black;">calc_pi
+= 0;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Take the first 100 terms</span><br>
+<span style="color: blue;">for</span><span style="color: black;"> n = 0 :
+100</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: forestgreen;">% Implement the appropriate
+sequence</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span>t = (-1)^n/(2*n + 1);</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;"><span style="">&nbsp;&nbsp;
+</span><span style="">&nbsp;</span></span><span style="color: forestgreen;">%
+Add-up the terms to try to get pi/4</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span>calc_pi = calc_pi + t;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span></span><span style="color: forestgreen;">% Save the values to be
+plotted</span><br>
+<span style="color: black;"><span style="">&nbsp;&nbsp;&nbsp;
+</span>cp(n+1) = 4*calc_pi;</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: blue;">end</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Plot the evolution of the algorithm</span><br>
+<span style="color: black;">plot(cp)<br>
+title(</span><span style="color: rgb(160, 32, 240);">'Series
+to find pi'</span><span style="color: black;">);
+grid </span><span style="color: rgb(160, 32, 240);">on</span></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen; font-family: monospace;">%
+Display the last value found</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">cp(end)</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="color: black;"><span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span><br>
+The result for the calculated pi with 100 terms is:<o:p></o:p></p>
+<p style="font-family: monospace;" class="MsoNormal">ans = 3.15149340107099</p>
+<p class="MsoNormal">This is how the series
+evolves. It starts with 4 and slowly
+tends to 3.14, but after 100 terms it has only reached
+3.1514...&nbsp;<br>
+</p>
+<div style="text-align: center;"><img style="width: 335px; height: 283px;" alt="Evolution of the algorithm to find PI" src="http://www.matrixlab-examples.com/image-files/harmonic-series-005.gif"></div>
+<br>
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Harmonic Series ' to
+home</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/calculus-problems.html" onclick="return FIX.track(this);">From
+'Harmonic
+Series ' to Calculus Problems</a><br style="font-weight: bold;">
+&nbsp; <br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="#Infinite_Geometric_and_Harmonic_Series_-">Top</a><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/sequences-and-series.html" onclick="return FIX.track(this);">Sequences
+and Series</a><br style="font-weight: bold;">
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 500px; height: 80px;" src="http://www.matrixlab-examples.com/imgs/FOOTER.gif" alt="footer for harmonic series page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; text-align: right; vertical-align: top;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:49:23 10-Aug-2021 -->
+</body></html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Complex Numbers - how to plot them in numerical software</title>
+
+<meta content="This is an intro to coding complex numbers in Matlab. The unit of imaginary numbers is root of -1 and is generally designated by the letter i (or j). Many laws which are true for real numbers are true for complex ones as well..." name="Description">
+<meta content="complex numbers, matlab examples, generic programming" name="Keywords">
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/complex-numbers.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Complex Numbers - how to plot them in numerical software" />
+<meta property="og:description" content="This is an intro to coding complex numbers in Matlab. The unit of imaginary numbers is root of -1 and is generally designated by the letter i (or j). Many laws which are true for real numbers are true for complex ones as well..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/complex-numbers.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/complex-numbers.jpg" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/imgs/logo.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<h1><a name="top"></a>Complex
+Numbers</h1>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+</td>
+<td>The unit of <span style="font-weight: bold;">imaginary numbers</span>
+is&nbsp;<span style="font-size: 10pt; font-family: &quot;Courier New&quot;;" lang="ES-TRAD"><img style="width: 35px; height: 24px;" alt="root of -1" src="http://www.matrixlab-examples.com/image-files/root-of--1.jpg"></span>&nbsp;
+and is generally designated by the letter <span style="font-style: italic; font-weight: bold;">i</span>
+(or <span style="font-style: italic; font-weight: bold;">j</span>).
+Many laws which are true for real numbers are true for imaginary
+numbers as well. Thus&nbsp;<span style="font-size: 10pt; font-family: &quot;Courier New&quot;;" lang="ES-TRAD"><img style="width: 203px; height: 24px;" alt="complex numbers 1" src="http://www.matrixlab-examples.com/image-files/complex-numbers-1.jpg"></span>
+.<br>
+<br>
+Matlab recognizes the letters <span style="font-style: italic;">i</span>
+and <span style="font-style: italic;">j</span> as
+the imaginary number&nbsp;<span style="font-size: 10pt; font-family: &quot;Courier New&quot;;" lang="ES-TRAD"><img style="width: 35px; height: 24px;" alt="root of -1" src="http://www.matrixlab-examples.com/image-files/root-of--1.jpg"></span>.
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+A complex number 3 + 10<span style="font-style: italic;">i</span>
+may be input as 3 + 10i or 3 + 10*i in Matlab (make sure not to use <span style="font-style: italic;">i</span> as a variable). <br>
+<br>
+In the <span style="font-weight: bold;">complex number</span>
+<span style="font-style: italic;">a</span>
++ <span style="font-style: italic;">bi</span>, <span style="font-style: italic;">a</span> is called the <span style="font-weight: bold;">real part</span> (in
+Matlab, real(3+5i) = 3) and <span style="font-style: italic;">b</span>
+is the coefficient of the <span style="font-weight: bold;">imaginary
+part</span> (in Matlab, imag(4-9i) = -9). When <span style="font-style: italic;">a</span> = 0, the
+number is called a pure imaginary. If <span style="font-style: italic;">b</span> = 0, the
+number is only the real number <span style="font-style: italic;">a</span>.
+Thus, complex numbers include all real numbers and all pure imaginary
+numbers. <br>
+<br>
+The <span style="font-weight: bold;">conjugate</span>
+of a complex <span style="font-style: italic;">a +
+bi</span> is <span style="font-style: italic;">a -
+bi</span>. In Matlab, conj(2 - 8i) = 2 + 8i.<br>
+<br>
+To <span style="font-weight: bold;">add</span> (or <span style="font-weight: bold;">subtract</span>)
+two&nbsp;numbers, add (or subtract) the real parts and the
+imaginary
+parts separately. For example:<br>
+(<span style="font-style: italic;">a+bi</span>) + (<span style="font-style: italic;">c-di</span>) = (<span style="font-style: italic;">a+c</span>)+(<span style="font-style: italic;">b-d</span>)<span style="font-style: italic;">i</span><br>
+<br>
+In Matlab, it's very easy to do it:<br>
+&gt;&gt; a = 3-5i<br>
+a =<br>
+&nbsp;&nbsp; 3.0000 - 5.0000i<br>
+<br>
+&gt;&gt; b = -9+3i<br>
+b =<br>
+&nbsp; -9.0000 + 3.0000i<br>
+<br>
+&gt;&gt; a + b<br>
+ans =<br>
+&nbsp; -6.0000 - 2.0000i<br>
+<br>
+&gt;&gt; a - b<br>
+ans =<br>
+&nbsp; 12.0000 - 8.0000i<br>
+<br>
+To <span style="font-weight: bold;">multiply</span>
+two numbers, treat them as ordinary binomials and
+replace&nbsp;<span style="font-size: 10pt; font-family: &quot;Courier New&quot;;" lang="ES-TRAD"><span style="font-style: italic;">i</span><sup>2</sup></span>
+by -1. To <span style="font-weight: bold;">divide</span>
+two complex nrs., multiply the numerator and denominator of the
+fraction by the conjugate of the denominator, replacing <span style="font-size: 10pt; font-family: &quot;Courier New&quot;;" lang="ES-TRAD">again <span style="font-style: italic;">i</span><sup>2</sup></span>
+by -1.<br>
+<br>
+Don't worry, in Matlab it's still very easy (assuming same <span style="font-style: italic;">a</span> and <span style="font-style: italic;">b</span> as above):<br>
+&gt;&gt; a*b<br>
+ans =<br>
+&nbsp;-12.0000 +54.0000i<br>
+<br>
+&gt;&gt; a/b<br>
+ans =<br>
+&nbsp; -0.4667 + 0.4000i<br>
+<br>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 1px;"><br>
+</td>
+<td><br>
+<br>
+Employing <span style="font-weight: bold;">rectangular
+coordinate axes</span>, the complex nr. <span style="font-style: italic;">a+bi</span> is represented
+by the point whose coordinates are (a,b).<br>
+<br>
+We can plot <span style="font-weight: bold;">complex nrs.</span>
+this easy way. To plot numbers (3+2<span style="font-style: italic;">i</span>),
+(-2+5<span style="font-style: italic;">i</span>) and
+(-1-1<span style="font-style: italic;">i</span>), we
+can write the following code in Matlab.<br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span style="font-weight: bold;">Example -
+Plotting Complex Numbers:</span><br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<span style="font-weight: bold;">% Enter each
+coordinate (x,y) separated by commas</span><br style="font-weight: bold;">
+<span style="font-weight: bold;">% Each point
+is marked by a blue circle ('bo')</span><br style="font-weight: bold;">
+plot(3,2,'bo', -2,5,'bo', -1,-1,'bo')<br>
+<br>
+<span style="font-weight: bold;">% You can
+define the limits of the plot [xmin xmax ymin ymax]</span><br>
+axis([-3 4 -2 6])<br>
+<br>
+<span style="font-weight: bold;">% Add some
+labels to explain the plot</span><br>
+xlabel('x (real axis)')<br>
+ylabel('y (imaginary axis)')<br>
+<br>
+<span style="font-weight: bold;">% Activate
+the grid</span><br>
+grid on<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+And you get:<br>
+<div style="text-align: center;"><img style="width: 345px; height: 278px;" alt="plotting complex numbers" src="http://www.matrixlab-examples.com/image-files/complex-numbers.jpg"><br>
+</div>
+&nbsp;<br>
+<br>
+<h1>Polar Form of Complex Nrs.</h1>
+<br>
+In the figure below, <img style="width: 219px; height: 18px;" alt="rectangular to polar coordinates" src="http://www.matrixlab-examples.com/image-files/rectangular-to-polar.jpg">.<br>
+&#61486;&#61472;Then&nbsp;<img style="width: 219px; height: 22px;" alt="rectangular to polar coordinates" src="http://www.matrixlab-examples.com/image-files/rectangular-to-polar-2.jpg">.<br>
+<br>
+<div style="text-align: center;">&nbsp;<img style="width: 201px; height: 203px;" alt="polar form of complex numbers" src="http://www.matrixlab-examples.com/image-files/polar_form_complex_numbers.jpg"><br>
+</div>
+<br>
+Then <span style="font-style: italic;">x + yi</span>
+is the <span style="font-weight: bold;">rectangular form</span>
+and&nbsp;<img style="width: 149px; height: 21px;" alt="rectangular to polar 3" src="http://www.matrixlab-examples.com/image-files/rectangular-to-polar-3.jpg">
+is the <span style="font-weight: bold;">polar form</span>
+of the
+same complex nr. The distance&nbsp;<img style="width: 94px; height: 28px;" alt="hipotenuse formula" src="http://www.matrixlab-examples.com/image-files/hipotenuse.jpg">&nbsp;
+is always
+positive and is called the <span style="font-weight: bold;">absolute
+value</span> or <span style="font-weight: bold;">modulus</span>
+of the complex number. The angle &#61472;is called the <span style="font-weight: bold;">argument</span> or <span style="font-weight: bold;">amplitude</span> of the
+complex number.<br>
+<br>
+In Matlab, we can effortlessly know the modulus&nbsp;and angle (in
+radians) of any number, by using the '<span style="font-weight: bold;">abs</span>' and '<span style="font-weight: bold;">angle</span>' instructions.
+For example:<br>
+<br>
+a = 3-4i<br>
+magnitude = abs(a)<br>
+ang = angle(a)<br>
+<br>
+a =<br>
+&nbsp;&nbsp; 3.0000 - 4.0000i<br>
+<br>
+magnitude =<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 5<br>
+<br>
+ang =<br>
+&nbsp;&nbsp; -0.9273<br>
+<br>
+<h1>De Moivre's Theorem</h1>
+The <span style="font-style: italic;">nth</span>
+power of <img style="width: 149px; height: 21px;" alt="rectangular to polar 3" src="http://www.matrixlab-examples.com/image-files/rectangular-to-polar-3.jpg">is<br>
+<img style="width: 406px; height: 19px;" alt="De Moivre's theorem" src="http://www.matrixlab-examples.com/image-files/de-moivres-1.jpg"><br>
+<br>
+This relation is known as the <span style="font-weight: bold;">De
+Moivre's theorem</span> and is true for any real value of the
+exponent. If the exponent is 1/<span style="font-style: italic;">n</span>,
+then<br>
+<img style="width: 413px; height: 21px;" alt="De Moivre's theorem 2" src="http://www.matrixlab-examples.com/image-files/de-moivres-2.jpg">.<br>
+<br>
+It's a good idea if you make up some exercises to test the validity of
+the theorem.<br>
+<br>
+<h1>Roots of Complex Numbers in Polar Form</h1>
+<br>
+If <span style="font-style: italic;">k</span> is
+any integer, <img style="width: 353px; height: 15px;" alt="roots of complex numbers in polar form" src="http://www.matrixlab-examples.com/image-files/roots-of-complex-numbers-1.jpg">.<br>
+<br>
+Then,<br>
+<div style="text-align: center;">&nbsp;<img style="width: 320px; height: 81px;" alt="roots of complex numbers in polar form 2" src="http://www.matrixlab-examples.com/image-files/roots-of-complex-numbers-2.jpg"><br>
+</div>
+<br>
+<br>
+Any number (real or complex) has <span style="font-style: italic; font-weight: bold;">n</span><span style="font-weight: bold;"> distinct </span><span style="font-style: italic; font-weight: bold;">n</span><span style="font-weight: bold;">th roots</span>, except
+zero. To obtain the <span style="font-style: italic;">n</span>
+nth roots of the complex number <span style="font-style: italic;">x
++ yi</span>, or<span style="font-style: italic;"></span><img style="width: 149px; height: 21px;" alt="rectangular to polar 3" src="http://www.matrixlab-examples.com/image-files/rectangular-to-polar-3.jpg">,&nbsp;let
+<span style="font-style: italic;">k</span>
+take on the
+successive values 0, 1, 2, ..., <span style="font-style: italic;">n</span>-1
+in the above formula.<br>
+<br>
+Again, it's a good idea if you create some exercises in Matlab to test
+the validity of this affirmation. Working with complex or imaginary
+numbers is easy with Matlab.<br>
+<br>
+&nbsp;<a href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Complex Numbers' to
+home</a><br>
+<br>
+&nbsp;<a href="http://www.matrixlab-examples.com/matlab-examples.html" onclick="return FIX.track(this);">From
+'Complex
+Numbers' to 'Matlab Examples'</a><br>
+&nbsp; <br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;">
+<div style="text-align: right;"><a href="complex-numbers.html#top">Top</a><br>
+<br>
+</div>
+<a href="http://www.matrixlab-examples.com/coordinate-conversion.html" onclick="return FIX.track(this);">Coordinaate
+Conversion</a><br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for complex numbers page"><a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br>
+</a></p>
+</td>
+<td style="width: 170px; vertical-align: top; background-color: rgb(224, 236, 255); text-align: center;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:42:24 10-Aug-2021 -->
+</body></html>

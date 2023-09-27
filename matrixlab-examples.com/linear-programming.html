@@ -1,0 +1,437 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Linear Programming - ideas to approach it with Matlab...</title>
+
+<meta name="Description" content="Matlab is well suited to handle the so called linear programming problems. These are problems in which you have a quantity, depending linearly on several variables, that you want to maximize or minimize subject to several constraints that are expressed as linear inequalities...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/linear-programming.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Linear Programming - ideas to approach it with Matlab..." />
+<meta property="og:description" content="Matlab is well suited to handle the so called linear programming problems. These are problems in which you have a quantity, depending linearly on several variables, that you want to maximize or minimize subject to several constraints that are expressed as linear inequalities..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/linear-programming.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/imgs/logo.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td>
+<h1><a name="top"></a>Linear
+Programming - (as an optimization problem)</h1>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --></td>
+<td>Matlab is well suited to handle the so
+called <span style="font-weight: bold;">linear programming</span>
+problems. These are problems in which you have a quantity, depending
+linearly on several variables, that you want to maximize or minimize
+subject to several constraints that are expressed as <span style="font-weight: bold;">linear inequalities</span>
+with the same variables. <br>
+<br>
+Sometimes the number of variables and the number of constraints are
+high, or the</td>
+</tr>
+</tbody>
+</table>
+<br>
+constraints in the linear inequalities or the expression
+for the quantity to be optimized may be numerically complicated. <br>
+<br>
+We will illustrate the method of linear programming by means of a
+simple example giving a <span style="font-weight: bold;">numerical
+solution</span>. Matlab has some special functions such as '<span style="font-weight: bold;">simlp</span>' or '<span style="font-weight: bold;">linprog</span>' to tackle
+down this type of problems, but these built-in functions are not always
+available since they belong to special toolboxes (<span style="font-weight: bold;">Simulink</span> or <span style="font-weight: bold;">Optimization</span>
+toolboxes). Therefore, we are going to formulate the problem as an
+optimization issue, and we'll use the instruction '<span style="font-weight: bold;">fminsearch</span>', which
+is an always available instruction.<br>
+<br>
+Let's suppose that a merry farmer has 75 roods (4 roods = 1 acre) on
+which to plant two crops: wheat and corn. To produce these crops, it
+costs the farmer (for seed, water, fertilizer, etc. ) $120 per rood for
+the wheat, and $210 per rood for the corn. The farmer has $15,000
+available for expenses, but after the harvest the farmer must store the
+crops while awaiting favorable or good market conditions. The farmer
+has storage space for 4,000 bushels. Each rood yields an average of 110
+bushels of wheat or 30 bushels of corn. If the net profit per bushel of
+wheat (after all the expenses) is $1.30 and for corn is $2.00, how
+should the merry farmer plant the 75 roods to maximize profit?<br>
+<br>
+We begin by formulating the linear programming problem mathematically.
+We express the <span style="font-weight: bold;">objective</span>
+(profit)
+and the <span style="font-weight: bold;">constraints</span>.
+Let <span style="font-style: italic;">x</span>
+denote the number of roods allotted to wheat and <span style="font-style: italic;">y</span> the number of
+roods allotted to corn. Then the expression to be maximized is clearly<br>
+<br>
+<span style="font-style: italic;">P</span>
+= (110)(1.3)<span style="font-style: italic;">x</span>
++ (30)(2)<span style="font-style: italic;">y</span>
+= 143<span style="font-style: italic;">x</span> + 60<span style="font-style: italic;">y</span><br>
+<br>
+There are some constraint inequalities, specified by the limits on
+expenses, storage and roodage. They are:<br>
+<br>
+<img style="width: 164px; height: 59px;" alt="constraints for linear programming problem" src="http://www.matrixlab-examples.com/image-files/constraints.jpg"><br>
+<br>
+and naturally:<br>
+<br>
+<img style="width: 134px; height: 25px;" alt="final constraints for linear programming problem" src="http://www.matrixlab-examples.com/image-files/constraints-2.jpg"><br>
+<br>
+As we mentioned before, we are going to formulate this as an <span style="font-weight: bold;">optimization problem</span>
+using the '<span style="font-weight: bold;">fminsearch</span>'
+built-in function.<br>
+<br>
+&nbsp;<br>
+In Matlab, the instruction works as follows:<br>
+<br>
+X = FMINSEARCH(FUN,X0,OPTIONS) minimizes with the default optimization
+parameters replaced by values in the structure OPTIONS, created with
+the OPTIMSET function.&nbsp;FMINSEARCH uses these options: Display,
+TolX, TolFun, MaxFunEvals, MaxIter, FunValCheck, and OutputFcn.<br>
+<br>
+This is one possible approach for our objective function, which is
+saved as an m-file (in this case 'OF_P.m'):<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+function OFValue = OF_P(x)<br>
+<br>
+<span style="font-weight: bold;">% Here we
+embed the constraints or inequalities.</span><br style="font-weight: bold;">
+<span style="font-weight: bold;">% If the
+constraints are not met, we penalize the optimization by</span><br style="font-weight: bold;">
+<span style="font-weight: bold;">% giving an
+arbitrary high value to the objective function.</span><br>
+if&nbsp; 120 * x(1) + 210 * x(2) &gt; 15000 |...<br>
+&nbsp;&nbsp;&nbsp; 110 * x(1) + 30 * x(2) &gt; 4000 |...<br>
+&nbsp;&nbsp;&nbsp; x(1) + x(2) &gt; 75 | ...<br>
+&nbsp;&nbsp;&nbsp; x(1) &lt; 0 |...<br>
+&nbsp;&nbsp;&nbsp; x(2) &lt; 0<br>
+&nbsp;&nbsp;&nbsp; OFValue = 10;<br>
+&nbsp;&nbsp;&nbsp; return<br>
+end<br>
+<br>
+<span style="font-weight: bold;">% fminsearch
+tries to minimize the function, so we invert its sign</span><br>
+P = 143 * x(1) + 60 * x(2);<br>
+OFValue = -P;<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+Then, we can call it from another script, which includes the '<span style="font-weight: bold;">fminsearch</span>'&nbsp;
+function calling the objective function file (in 'OF_P'):<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+clear; clc; <br>
+format bank <br>
+<br>
+<span style="font-weight: bold;">% We have to
+start with a 'seed' for the search</span><br>
+x = [1 10]';<br>
+<br>
+<span style="font-weight: bold;">% We can
+perform the optimization with different number of</span><br style="font-weight: bold;">
+<span style="font-weight: bold;">% iterations
+or tolerances</span><br style="font-weight: bold;">
+options = optimset('MaxFunEvals', 2000, 'TolX', 1e-2);<br>
+[x_opt, FunVal, EF, output] = fminsearch('OF_P', x, options)<br>
+<br>
+<span style="font-weight: bold;">% Finally, we
+display the profit using the found solution</span><br>
+P = 143 * x_opt(1) + 60 * x_opt(2)<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+And the Matlab response is:<br>
+<br>
+<span style="font-family: monospace;">x_opt =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+21.87</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+53.12</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">FunVal =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-6315.62</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">EF =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1.00</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">output =
+</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+iterations: 121.00</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+funcCount: 243.00</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+algorithm: 'Nelder-Mead simplex direct search'</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+message: [1x196 char]</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">P =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+6315.62</span><br style="font-family: monospace;">
+<span style="font-family: monospace;"></span><br>
+<br>
+This means that the farmer should consider 21.87 roods for wheat, 53.12
+roods for corn, and his profit would be $6,315.62.<br>
+<br>
+It is important to notice that this is a <span style="font-weight: bold;">numerical approximation</span>,
+which means that if we start with another '<span style="font-weight: bold;">seed</span>' or use other
+parameters in the '<span style="font-weight: bold;">options</span>'
+set, we can get to another result. The number found is a possible
+solution, but there's no guarantee that it is the best one, according
+to <span style="font-weight: bold;">tolerances</span>
+or to number of <span style="font-weight: bold;">iterations</span>
+or evaluations desired.<br>
+<br>
+For example, we can use the seed 'x = [10 10]' instead (without moving
+any other instruction), and the Matlab answer now is:<br>
+<br>
+<span style="font-family: monospace;">x_opt =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+32.31</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+14.88</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">FunVal =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-5512.50</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">EF =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1.00</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">output =
+</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+iterations: 75.00</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+funcCount: 151.00</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+algorithm: 'Nelder-Mead simplex direct search'</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+message: [1x196 char]</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">P =</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+5512.50</span><br>
+<br>
+Now, the 'best' profit found is only $5,512.50. So, it is a good idea
+to try with several '<span style="font-weight: bold;">seeds</span>'
+and different parameters in the '<span style="font-weight: bold;">options</span>'
+set to compare with and select the best solution. Most of the times the
+solutions will be very close (at least for linear programming problems).<br>
+<br>
+<br>
+&nbsp;<a href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Linear Programming'
+to home</a><br>
+<br>
+&nbsp;<a href="http://www.matrixlab-examples.com/linear-algebra.html" onclick="return FIX.track(this);">From
+'Linear
+Programming' to 'Linear Algebra'</a><br>
+&nbsp; <br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a href="linear-programming.html#top">Top</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/nonlinear-programming.html" onclick="return FIX.track(this);">Curve
+Fitting</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/mathematical-optimization.html" onclick="return FIX.track(this);">Mathematical
+Optim.</a><br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for linear programming page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; vertical-align: top; background-color: rgb(224, 236, 255); text-align: center;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:50:59 10-Aug-2021 -->
+</body></html>

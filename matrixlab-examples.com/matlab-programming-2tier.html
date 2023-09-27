@@ -1,0 +1,391 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Matlab programming - Cookbook II</title>
+
+<meta name="Description" content="This page continues our work with Matlab programming. You can see other pages like: Basic Matlab Tutorials, Basic Matlab Examples, Advanced Matlab Projects...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/matlab-programming-2tier.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Matlab programming - Cookbook II" />
+<meta property="og:description" content="This page continues our work with Matlab programming. You can see other pages like: Basic Matlab Tutorials, Basic Matlab Examples, Advanced Matlab Projects..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/matlab-programming-2tier.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<h1><a name="Matlab_Programming_-_"></a>Matlab
+Programming -&nbsp;</h1>
+<h1>(Matlab Cookbook II)</h1>
+This page continues our work with Matlab programming. You can see other
+pages like:<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-tutorial.html" onclick="return FIX.track(this);">Basic
+Matlab Tutorials</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-examples.html" onclick="return FIX.track(this);">Basic
+Matlab
+Examples</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/sitemap.html" onclick="return FIX.track(this);">Table
+of Contents</a><br>
+&nbsp;
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --></td>
+<td><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/polynomial-roots.html" onclick="return FIX.track(this);">Polynomial
+Roots (zero finding)</a><br>
+To
+find <span style="font-weight: bold;">polynomial roots</span>
+(aka 'zero finding' process), Matlab has a
+specific command, namely '<span style="font-weight: bold;">roots</span>'...
+<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/check-writer.html" onclick="return FIX.track(this);">How
+to manipulate strings in Matlab - Check Writer -Change numbers into words</a><br>
+This Matlab program is a &#8216;check
+writer&#8217;. You enter a number and the script returns the
+same amount in letters (any
+number between 1.00 and 999,999.99... <br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/angle-between-vectors.html" onclick="return FIX.track(this);">Angle between two Vectors</a><br>
+<span style="" lang="ES-TRAD">This
+article shows how to calculate the <span style="font-weight: bold;">angle
+between vectors</span>, the angle
+between
+each vector and axis, and the magnitude of each vector. The vectors are
+given
+in three dimensional space...<br>
+<br>
+</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/fibonacci-numbers.html" onclick="return FIX.track(this);">Fibonacci
+Numbers</a><br>
+The first two <span style="font-weight: bold;">Fibonacci
+numbers</span> are 0 and 1, and <span style="font-weight: bold;">each remaining</span>
+number
+is the <span style="font-weight: bold;">sum of the
+previous two</span>. Some sources <span style="font-weight: bold;">neglect</span> the initial
+0, and
+instead beginning the sequence with the first two 1s...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/binary-to-decimal.html" onclick="return FIX.track(this);">Binary
+to
+decimal conversion</a><br>
+We're going to present four variations of a <span style="font-weight: bold;">binary-to-decimal conversion</span>
+in Matlab; that is, we're going to convert binary
+numbers (numbers with only symbols '0' and '1') to decimal numbers...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/decimal-to-binary.html" onclick="return FIX.track(this);">Decimal
+to
+Binary conversion</a><br>
+Two methods for a&nbsp;<span style="font-weight: bold;">decimal-to-binary
+conversion</span>
+in Matlab;&nbsp;we're going to
+convert decimal numbers
+(numbers with 10 different symbols, from '0' to '9', or in base 10)
+into binary
+numbers...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/binary-to-hexadecimal.html" onclick="return FIX.track(this);">Binary
+to Hexadecimal numbers</a><br>
+A major <span style="font-weight: bold;">numbering system</span>
+used in digital systems is the
+hexadecimal system (base 16). Let's see how we can work with 4-bit
+binary groups...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/hex-to-binary.html" onclick="return FIX.track(this);">Hex
+to Binary conversion</a><br>
+The following table shows
+the meaning of all the symbols in
+the <span style="font-weight: bold;">hexadecimal</span>&nbsp;
+numbering system and their conversion to&nbsp;<span style="font-weight: bold;">binary</span> equivalents...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/octal-to-binary.html" onclick="return FIX.track(this);">Octal to Binary conversion</a><br>
+To convert a value from <span style="font-weight: bold;">octal
+to binary</span>, we first need to know what an <span style="font-style: italic;">octal number </span>is. A
+major <span style="font-style: italic;">numerical system</span>,
+or base, used in digital elec...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/decimal-to-octal.html" onclick="return FIX.track(this);">Decimal to Octal</a> <br>
+Two methods for a&nbsp;<span style="font-weight: bold;">decimal-to-octal
+conversion</span>
+in Matlab;&nbsp;we're going to
+convert decimal numbers&nbsp;into octal ones...<br>
+<br><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/octal-to-decimal.html" onclick="return FIX.track(this);">Octal to Decimal</a><br><br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/gray-code.html" onclick="return FIX.track(this);">Gray Code - to/from Bin or Dec</a><br>
+The Gray code code
+was originally designed to prevent <span style="font-weight: bold;">undesired
+transient states</span> or outputs from electromechanical
+switches. Today,
+this code
+is used to facilitate error correction in digital communications...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/ms-excel.html" onclick="return FIX.track(this);">MS
+Excel and Matlab</a><br>
+Interchange of information between these two programs...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/nodal-analysis.html" onclick="return FIX.track(this);">Nodal Analysis - find voltages in
+a circuit</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/winspice.html" onclick="return FIX.track(this);">Circuit
+Simulation using WinSpice and Matlab</a><br>
+In this article, a <span style="font-weight: bold;">Matlab
+routine to drive the </span><span style="font-weight: bold;"></span><span style="font-weight: bold;">WinSpice </span><span style="font-weight: bold;">circuit
+simulator&nbsp;</span><span style="font-weight: bold;"></span>is
+presented. This
+method can be easily adapted to
+simulate and drive any circuit entered in <span style="font-weight: bold;">WinSpice</span>. The
+performance of the Matlab
+driver is illustrated by simulating an amplifier...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/circuit-simulator.html" onclick="return FIX.track(this);">An
+improved
+routine to drive WinSpice from Matlab</a><br>
+The
+approach
+developed now&nbsp;utilizes the inherent capability of
+this SPICE simulator&nbsp;to <span style="font-weight: bold;">include
+other</span> circuit text <span style="font-weight: bold;">files
+with parameters</span>, and print data
+to external .csv&nbsp;(comma separated values) files... <br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/mathematical-optimization.html" onclick="return FIX.track(this);">Mathematical
+Optimization</a><br>
+To continue with our Matlab programming ideas, let's explore functions '<span style="font-weight: bold;">fminbnd</span>' and '<span style="font-weight: bold;">fminsearch</span>' to
+achieve minimization of functions, which also can be considered a
+mathematical optimization for the function...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/find-intersections.html" onclick="return FIX.track(this);">Find Intersections</a><br>
+The problem of how to <span style="font-weight: bold;">find
+intersections</span> of given lines is
+very common in math or basic algebra. The meaning of those
+intersections is
+that the given lines...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/simultaneous-equations-nonlinear.html" onclick="return FIX.track(this);">Nonlinear
+Simultaneous Equations</a><br>
+Another application of the <span style="font-weight: bold;">optimization
+techniques</span> is the solution of nonlinear systems. We can
+express the solution as a minimization problem...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/nonlinear-programming.html" onclick="return FIX.track(this);">Curve
+Fitting based on Optimization techniques</a><br>
+In this article we're going to show a <span style="font-weight: bold;">practical approach to
+solve a curve fitting</span> with Matlab. This explanation is
+neither formal nor&nbsp;comprehensive, but straightforward and
+useful...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/exponential-regression.html" onclick="return FIX.track(this);">Exponential Regression</a><br>
+<span style="" lang="ES-TRAD">We&#8217;ll
+work this time with <span style="font-weight: bold;">exponential
+regression</span> in a curve fitting example. The
+following codes find the coefficients of an equation for an exponential
+curve...</span><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/rgb-images.html" onclick="return FIX.track(this);">Simple
+Image Processing</a><br>
+These are some basic
+ideas on <span style="font-weight: bold;">RGB images</span>
+(or <span style="font-weight: bold;">image process</span>
+in Matlab programming).
+These concepts are fundamental and don't require any special toolbox...<br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/line-detection.html" onclick="return FIX.track(this);">Line
+detection</a> <br>
+<span style="" lang="ES-TRAD">This
+experiment explores <span style="font-weight: bold;">line
+detection</span> (for <span style="font-weight: bold;">image
+analysis</span>) with this numerical software. No toolbox is
+needed...</span><br>
+<br>
+&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Matlab Programming'
+to home</a><br>
+&nbsp;<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="#Matlab_Programming_-_">Top</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-plot-2tier.html" onclick="return FIX.track(this);">2D Graphs</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/3D-plot-2tier.html" onclick="return FIX.track(this);">3D Graphs</a><br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for matlab programming page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; text-align: right; vertical-align: top; background-color: rgb(224, 236, 255);"><br>
+<br>
+<br>
+<br>
+<br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:49:59 10-Aug-2021 -->
+</body></html>

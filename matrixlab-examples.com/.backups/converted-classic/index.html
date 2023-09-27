@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>MATLAB examples, tutorials, applications and more...</title><meta name="description" content="Quick introduction to MATLAB, with examples and applications.">
+<!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="MATLAB examples, tutorials, applications and more..." />
+<meta property="og:description" content="Quick introduction to MATLAB, with examples and applications." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head -->
+    <link href="/sd/support-files/style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/sd/support-files/fix.js"></script>
+    <script type="text/javascript">        FIX.designMode = "legacy";
+        FIX.doEndOfHead();
+    </script>
+</head>
+<body>
+    <table id="PageWrapper">
+        <tr>
+            <td id="Header" colspan="3">
+            	<div class="Liner">
+</div>
+            </td>
+        </tr>
+        <tr>
+            <td id="NavColumn">
+	            <div class="Liner">
+
+<!-- start: tool_blocks.rssit -->
+<div class="RSSbox">
+                <div class="questionMark">[<a href="http://www.matrixlab-examples.com/help/rss.html" onclick="javascript:window.open('http://www.matrixlab-examples.com/help/rss.html','help','resizable,status,scrollbars,width=600,height=500');return false;"><span style="font-size:110%;">?</span></a>]Subscribe To This Site</div>
+                <ul>
+                    <li>
+                        <a href="http://www.matrixlab-examples.com/matlab.xml" target="new"><img style="padding-top:2px;" src="http://www.matrixlab-examples.com/objects/rss.jpg" alt="XML RSS"></a>
+                    </li><li><a href="https://feedly.com/i/subscription/feed/http://www.matrixlab-examples.com/matlab.xml" target="new" rel="nofollow"><img src="http://www.matrixlab-examples.com/objects/feedly.gif" alt="follow us in feedly"></a></li><li><a href="http://add.my.yahoo.com/rss?url=http://www.matrixlab-examples.com/matlab.xml" target="new" rel="nofollow"><img src="http://www.matrixlab-examples.com/objects/addtomyyahoo4.gif" alt="Add to My Yahoo!"></a></li></ul>
+            </div><!-- end: tool_blocks.rssit -->
+<!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li class="navbar_selected"><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar -->
+
+
+</div>
+            </td>
+            <td id="ContentWrapper">
+                <table cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td id="ContentColumn">
+                            	<div class="Liner"><p>
+
+<h2 style="text-align: center"><font style="color:blue;">Do you want to learn MATLAB<sup>®</sup>?</font></h2>
+<p><br><font style="color:red;"><strong>WELCOME</strong></font> to matrixlab-examples.com!!</p><p><br><strong>Why matrixlab-examples?</strong></p><p><br>Well, MATLAB<sup>®</sup> stands for MATrix-LABoratory and this site is dedicated to working with matrices, vectors, arrays... and MATLAB, of course. You can find and learn from plenty of examples, tutorials, applications (some basic and some advanced), and... I hope you can also have fun! </p><p>I should mention that it is sometimes misspelled MATHLAB, and the reason is pretty obvious: this virtual lab is about mathematics, algebra, geometry, graphics, science, programming... you name it...</p><p>I like this science laboratory, and I want you to enjoy it too; that's the idea behind this site. My first goal is to get you started quickly and pleasantly.</p><p>MATLAB is simple, powerful, and quite fast. It's is one of the most used tools in the field of engineering today. It provides easy extensibility with its own high-level programming language.</p><p>I started using this Matrix-Lab in 2003 in a CAD course on electronics and simulators. After that, I used it in almost every course I took. I've also worked with the 'Optimization', 'Neural Networks' and 'Digital Image Processing' toolboxes. This site is the result of some of my own experiences with this programming tool. Little by little you'll find more examples and applications. I'm launching this site starting with the basics.</p><p>After a couple of hours of getting started you can use the site as a reference. There are many examples which you can easily modify for your own use. The topics are based on what I wish I could have found when I was first learning. </p><p>If you find this site informative and useful, it is my pleasure to be of help to you. If you find it confusing, please take your time to let me know how or what to improve.</p><p>Best wishes!!<br><br></p><p></p><p><style type="text/css">
+@import url(https://www.google.com/cse/api/branding.css);
+</style><div class="cse-branding-right" style="background-color:#FFFFFF;color:#000000">  <div class="cse-branding-form">    <form action="http://www.matrixlab-examples.com/matlab-search-results.html" id="cse-search-box">      <div>        <input type="hidden" name="cx" value="partner-pub-5160657252215077:pviw6c-k52n" />        <input type="hidden" name="cof" value="FORID:10" />        <input type="hidden" name="ie" value="ISO-8859-1" />        <input type="text" name="q" size="31" />        <input type="submit" name="sa" value="Search" />      </div>    </form>  </div>  <div class="cse-branding-logo">    <img src="https://www.google.com/images/poweredby_transparent/poweredby_FFFFFF.gif" alt="Google" />  </div>  <div class="cse-branding-text">    Custom Search  </div></div></p><p><br></p><p><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!-- First-go --><ins class="adsbygoogle"     style="display:block"     data-ad-client="ca-pub-1500170575521750"     data-ad-slot="7341812828"     data-ad-format="auto"     data-full-width-responsive="true"></ins><script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></p><p><script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-8852938-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+</p><!-- start: tool_blocks.toc -->
+    <dl class="TOC"><dt><a href="/matlab-blog.html">Matlab examples - the blog...</a></dt>
+          <dd>In this blog I propose some interesting Matlab exercises, examples and tutorials to cover powerful programming instructions to work with matrices, vectors and arrays.</dd><dt><a href="/sitemap.html">Sitemap for Matrixlab Examples</a></dt>
+          <dd>Sitemap for Matrixlab-Examples.com, you can fastly find your topics of interest...</dd><dt><a href="/matlab-books.html">Matlab Books... and other relevant topics</a></dt>
+          <dd>Take a look at these Matlab books as well as other engineering and science topics...</dd><dt><a href="/programming-forums.html">Programming Forums and help (including a Matlab forum
+and other relevant ones...)</a></dt>
+          <dd>Join these programming forums (including a Matlab one) to discuss engineering topics...</dd><dt><a href="/contact-us.html">Contact us - matrixlab-examples.com</a></dt>
+          <dd>Please, feel free to contact us (Matrixlab-Examples.com) using the form below...</dd><dt><a href="/matlab-help-2tier.html">Matlab Help - Download a list of commands and learn to
+use the on-line help...</a></dt>
+          <dd>Review basic topics on Matlab help on commands and built-in instructions. You can review a list of functions to let you know what you can have...</dd><dt><a href="/matlab-tutorial.html">Matlab Tutorial - easy, step-by-step approach</a></dt>
+          <dd>Step-by-step Matlab Tutorial to get you started quickly! See the descriptions and click on the one of your interest. After these 'in-a-nutshell' lessons, you'll be almost ready to do your own Matlab programs!</dd><dt><a href="/matlab-examples.html">Matlab Examples - Step-by-step...</a></dt>
+          <dd>This is a group of Matlab examples to get you up and running in a just few hours...</dd><dt><a href="/matlab-code-3.html">Matlab Code - Flow Control (for, while, if...)</a></dt>
+          <dd>Matlab code has its own syntax for control-flow statements like for-loops, while and if-elseif branching. See these examples...</dd><dt><a href="/boolean-algebra.html">Boolean Algebra - examples in programming</a></dt>
+          <dd>Definitions and examples of Boolean Algebra with Matlab. Learn about logical operations...</dd><dt><a href="/matlab-plot-2tier.html">Matlab Plot - see these examples...</a></dt>
+          <dd>See these step-by-step examples of how to handle Matlab Plot. See the instructions 'title', 'legend', 'axis' and more...</dd><dt><a href="/3D-plot-2tier.html">3D Plot - Main menu - Matlab Graphics</a></dt>
+          <dd>In these sections you can find many step-by-step commented guides to easily develop a 3D plot. If you are not familiar with tridimensional graphics in Matlab, I recommend you start with Part 1.</dd><dt><a href="/matlab-gui-2tier.html">Matlab GUI - Tutorials</a></dt>
+          <dd>In this series of articles, we are going to develop several Matlab GUI (or graphical user interfaces). We explain callback-functions and relevant instructions to activate any action of the elements in the GUI...</dd><dt><a href="/calculus-problems.html">Calculus Problems - let's use Matlab to tackle them</a></dt>
+          <dd>Common Calculus Problems and their solution with Matlab, a numerical software for series, derivatives, integrals...</dd><dt><a href="/linear-algebra.html">Linear Algebra - a simple and easy approach with Matlab</a></dt>
+          <dd>Here are some important and requested topics regarding Linear Algebra: simultaneous equations, circuit analysis, factorization or matrix decomposition...</dd><dt><a href="/generic-programming.html">Generic Programming</a></dt>
+          <dd>This section includes several examples of generic programming. These programs perform a variety of common, practical tasks. Remarks or comments (preceded with a '%') are included in the examples to help Matlab learners understand how each program works...</dd><dt><a href="/matlab-programming-2tier.html">Matlab programming - Cookbook II</a></dt>
+          <dd>This page continues our work with Matlab programming. You can see other pages like: Basic Matlab Tutorials, Basic Matlab Examples, Advanced Matlab Projects...</dd><dt><a href="/electrical-calculations.html">Electrical Calculations - code in Matlab and spreadsheets</a></dt>
+          <dd>Analyze some examples related to electrical calculations and circuit analysis. We're using Matlab to develop easy codes and including some spreadsheets...</dd><dt><a href="/probability-and-statistics.html">Probability and Statistics - applied examples coded in Matlab</a></dt>
+          <dd>... we present some examples to solve typical Probability and Statistics problems. We present the Matlab code without using any special toolbox or instruction. Everything is plain...</dd><dt><a href="/finance-formulas.html">Finance Formulas - Financial Applications with Matlab</a></dt>
+          <dd>Financial applications with Matlab. We take some well-known finance formulas, develop a script for them and a code to introduce data and drive the main formula...</dd><dt><a href="/free-online-calculators.html">Free Online Calculators - Spreadsheets ready to go!</a></dt>
+          <dd>This is a group of free online calculators (developed on spreadsheets) that seem to have great demand by internauts...</dd><dt><a href="/academic-software.html">Academic Software - Numerical Tools</a></dt>
+          <dd>Academic Software resources related to math and science, such as Matlab, Octave, Scilab, Freemat, SciPy...</dd><dt><a href="/basics-of-computer-programming.html">Basics of Computer Programming</a></dt>
+          <dd>Some basics of computer programming or computer science. They are not related to Math software, but are here to...</dd><dt><a href="/it-jokes-2tier.html">IT Jokes - a Matlab break</a></dt>
+          <dd>These IT Jokes are also mathematician jokes, math fun and... a Matlab break!</dd><dt><a href="/scilab.html">Scilab - another matrix laboratory</a></dt>
+          <dd>Scilab examples and tutorials. You can see many similarities when comparing this lab to Matlab...</dd><dt><a href="/Become-a-Webmaster.html">Become a webmaster... how? Free downloads...</a></dt>
+          <dd>How to become a webmaster ? The Small Business market is encouraging an increasing number of Webmasters to strike out on their own and set up a home-based business...</dd><dt><a href="/terms-of-service.html">Terms of Service - Disclaimer - Cookies - Privacy</a></dt>
+          <dd>Terms of Service, Disclaimer, Privacy for matrixlab-examples.com</dd></dl>
+    <!-- end: tool_blocks.toc -->
+
+<!-- start: tool_blocks.footer -->
+    <div class="page_footer_container">
+      <div class="page_footer_content">
+        <div class="page_footer_liner" style="white-space:pre-line"><hr class="page_footer_divider_above"><div class="page_footer_text" >© Copyright 2009 - 2021 matrixlab-examples.com</div><hr class="page_footer_divider_below"></div>        
+      </div><div class="powered_by_sbi_banner" >
+          <p><a href="http://www.sitesell.com/Kushaal.html" rel="noopener nofollow" target="_blank"><img src="/imgs/SBI.png" border="0" alt="SBI"></a><br><a href="http://www.sitesell.com/Kushaal.html" rel="noopener nofollow" target="_blank"><strong>SBI!</strong></a></p>
+        </div></div>
+     <!-- end: tool_blocks.footer -->
+</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td id="ExtraColumn">
+	            <div class="Liner">
+
+<!-- start: shared_blocks.118936805#RC-hm160 -->
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><p><!-- hm160x600, 7/13/11 --><ins class="adsbygoogle"     style="display:inline-block;width:160px;height:600px"     data-ad-client="ca-pub-5160657252215077"     data-ad-slot="9800491881"></ins><script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!-- end: shared_blocks.118936805#RC-hm160 -->
+
+</p></div>
+            </td>
+        </tr>
+		<tr>
+			<td id="Footer" colspan="3">
+				<div class="Liner">
+</div>
+			</td>
+		</tr>
+    </table>
+
+    <script type="text/javascript">
+        FIX.doEndOfBody();
+    </script>
+<!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:false};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 15:12:04 10-Aug-2021 -->
+
+</body>
+</html>

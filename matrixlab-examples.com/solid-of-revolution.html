@@ -1,0 +1,364 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Solid of Revolution - using cylinders in Matlab</title>
+
+<meta name="Description" content="A solid of revolution is generated when a function rotates about a line of the same plane. We&#8217;re going to show some experiments in Matlab to create 3D graphs...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/solid-of-revolution.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Solid of Revolution - using cylinders in Matlab" />
+<meta property="og:description" content="A solid of revolution is generated when a function rotates about a line of the same plane. We&amp;#8217;re going to show some experiments in Matlab to create 3D graphs..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/solid-of-revolution.html" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/solid-of-revolution-001.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/solid-of-revolution-002.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/solid-of-revolution-003.gif" />
+<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/solid-of-revolution-004.gif" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<h1><a name="Solid_of_Revolution_&#8211;_Cylinders_in"></a><span style="" lang="ES-TRAD">Solid
+of Revolution &#8211; Cylinders in Matlab</span></h1>
+<h3>Revolving a 2D function about the x-axis</h3>
+<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml --><br>
+</td>
+<td style="vertical-align: top;"><span style="" lang="ES-TRAD">A <span style="font-weight: bold;">solid
+of revolution</span> is generated when a function, for example <i style="">y </i>=<i style=""> f(x)</i>,
+rotates about a
+line of the same plane, for example <i style="">y</i>
+= 0. We&#8217;re going to show some simple experiments in Matlab to create 3D
+graphs
+by using the built-in function &#8216;cylinder&#8217;.<br>
+<br>
+</span><span style="" lang="ES-TRAD">The
+built-in function cylinder generates x, y, and z-coordinates of a unit
+cylinder. </span><span style="" lang="ES-TRAD">You
+can plot the cylindrical surface or object using instructions surf
+or mesh.</span></td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>Naturally, you can always type
+'help cylinder' on your command window to see the explanation and
+examples of this function.<br>
+</o:p><br>
+The basic format [X, Y, Z] = cylinder(r) returns the x, y, and
+z-coordinates of a cylinder using r to define a profile curve. cylinder
+treats
+its first argument as a profile curve. It&#8217;s important to note that the
+resulting surface object is generated by rotating the curve about the
+x-axis,
+and then aligning it with the z-axis. &nbsp;<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p>Let&#8217;s
+say that we want to plot a section of the trigonometric sine function,
+from 0
+to </span><span style="" lang="ES-TRAD">&#1055;/2,
+and then rotate it about the x-axis. We can do
+this:<o:p><br>
+&nbsp;</o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Clear memory, clean screen, close any figure</span><br>
+<span style="color: black;">clear,
+clc, close </span><span style="color: rgb(160, 32, 240);">all<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Define our initial profile</span><br>
+<span style="color: black;">x =
+linspace(0, pi/2, 20);<br>
+y =
+sin(x);<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+We draw the profile</span><br>
+<span style="color: black;">subplot(221),
+plot(x,y), axis </span><span style="color: rgb(160, 32, 240);">equal</span><br>
+<span style="color: black;">title(</span><span style="color: rgb(160, 32, 240);">'Original
+function (profile)'</span><span style="color: black;">)<br>
+xlabel(</span><span style="color: rgb(160, 32, 240);">'x'</span><span style="color: black;">);
+ylabel(</span><span style="color: rgb(160, 32, 240);">'y'</span><span style="color: black;">);<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+We use the cylinder function to rotate and align<br>
+%
+with the z-axis, to produce a 3D solid</span> <br>
+<span style="color: black;">[X,Y,Z]
+= cylinder(y);<br>
+subplot(222),
+surf(X,Y,Z), axis </span><span style="color: rgb(160, 32, 240);">square</span><br>
+<span style="color: black;">xlabel(</span><span style="color: rgb(160, 32, 240);">'z'</span><span style="color: black;">);
+ylabel(</span><span style="color: rgb(160, 32, 240);">'y'</span><span style="color: black;">); zlabel(</span><span style="color: rgb(160, 32, 240);">'x'</span><span style="color: black;">)<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+We can have another view, along the x-axis</span><br>
+<span style="color: black;">subplot(223),
+surf(X,Y,Z), axis </span><span style="color: rgb(160, 32, 240);">square</span><br>
+<span style="color: black;">xlabel(</span><span style="color: rgb(160, 32, 240);">'z'</span><span style="color: black;">);
+ylabel(</span><span style="color: rgb(160, 32, 240);">'y'</span><span style="color: black;">); zlabel(</span><span style="color: rgb(160, 32, 240);">'x'</span><span style="color: black;">)<br>
+view(0,90)<span style=""></span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: forestgreen; font-family: monospace;">%
+We produce another image, now a lateral view</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">subplot(224),
+surf(X,Y,Z), axis </span><span style="color: rgb(160, 32, 240); font-family: monospace;">square</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">xlabel(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'z'</span><span style="color: black; font-family: monospace;">);
+ylabel(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'y'</span><span style="color: black; font-family: monospace;">); zlabel(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'x'</span><span style="color: black; font-family: monospace;">)<br>
+view(90,0)</span><br>
+<span style="font-size: 12pt;"><o:p>&nbsp;</o:p></span></p>
+<div style="text-align: center;"><img style="width: 377px; height: 326px;" alt="solids of revolution with Matlab - experiment 1" src="http://www.matrixlab-examples.com/image-files/solid-of-revolution-001.gif">
+</div>
+<p class="MsoNormal" style=""><span style="color: black;"><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><o:p></o:p>Let&#8217;s
+note that the shape or envelop is what we want. When we rotate the
+line, the
+x-limits are lost, and and become 0 to 1. We keep the idea for this 3D
+image,
+though.</p>
+<p class="MsoNormal" style="">If we
+interchange the parameters for the surf function, we can achieve
+another views.
+We can play with coordinates and labels. Keep an eye on the axes,
+values and
+labels, so you can know what you&#8217;re seeing.</p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+Let's create another figure and plot it from the back</span><br>
+<span style="color: black;">figure<br>
+subplot(221),
+surf(Z,X,Y), axis </span><span style="color: rgb(160, 32, 240);">square</span><br>
+<span style="color: black;">xlabel(</span><span style="color: rgb(160, 32, 240);">'x'</span><span style="color: black;">); ylabel(</span><span style="color: rgb(160, 32, 240);">'z'</span><span style="color: black;">);
+zlabel(</span><span style="color: rgb(160, 32, 240);">'y'</span><span style="color: black;">)<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+A view from the top, showing high y-values</span><br>
+<span style="color: black;">subplot(222),
+surf(Z,X,Y), axis </span><span style="color: rgb(160, 32, 240);">square</span><br>
+<span style="color: black;">xlabel(</span><span style="color: rgb(160, 32, 240);">'x'</span><span style="color: black;">);
+ylabel(</span><span style="color: rgb(160, 32, 240);">'z'</span><span style="color: black;">); zlabel(</span><span style="color: rgb(160, 32, 240);">'y'</span><span style="color: black;">)<br>
+view(0,90)<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: forestgreen;">%
+A view from the bottom, showing low y-values</span><br>
+<span style="color: black;">subplot(223),
+surf(Z,X,Y), axis </span><span style="color: rgb(160, 32, 240);">square</span><br>
+<span style="color: black;">xlabel(</span><span style="color: rgb(160, 32, 240);">'x'</span><span style="color: black;">);
+ylabel(</span><span style="color: rgb(160, 32, 240);">'z'</span><span style="color: black;">); zlabel(</span><span style="color: rgb(160, 32, 240);">'y'</span><span style="color: black;">)<br>
+view(0,-90)<span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><span style="color: forestgreen; font-family: monospace;">%
+A final arbitrary view for this solid of revolution</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">subplot(224),
+surf(Z,X,Y), axis </span><span style="color: rgb(160, 32, 240); font-family: monospace;">square</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;">xlabel(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'x'</span><span style="color: black; font-family: monospace;">);
+ylabel(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'z'</span><span style="color: black; font-family: monospace;">); zlabel(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'y'</span><span style="color: black; font-family: monospace;">)<br>
+view(35,
+15)</span><br>
+<span style="" lang="ES-TRAD"><o:p></o:p></span></p>
+<p class="MsoNormal" style="text-align: center;" align="center"></p>
+<p class="MsoNormal" style="text-align: center;"><o:p><img style="width: 368px; height: 321px;" alt="solid of revolution - Matlab - experiment 2" src="http://www.matrixlab-examples.com/image-files/solid-of-revolution-002.gif">&nbsp;</o:p></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class="MsoNormal">Let&#8217;s change the limits
+and profile function (first lines above), keep the rest
+of the code as it is, and see the interesting solids of revolution and
+pretty images that we get:<br>
+<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"><span style="color: black; font-family: monospace;">x =
+linspace(pi/2, 2*pi, 20);<br>
+y =
+cos(x);</span><o:p></o:p></p>
+<p style="text-align: center;" class="MsoNormal"><o:p>&nbsp;<img style="width: 375px; height: 327px;" alt="solid of revolution - revolving about x-axis" src="http://www.matrixlab-examples.com/image-files/solid-of-revolution-003.gif"></o:p></p>
+<p class="MsoNormal" style="text-align: center;" align="center"></p>
+<p class="MsoNormal" style="text-align: center;"><span style="" lang="ES-TRAD"><o:p></o:p></span><img style="width: 371px; height: 316px;" alt="3D - different views of solids of revolutions" src="http://www.matrixlab-examples.com/image-files/solid-of-revolution-004.gif"></p>
+<br>
+<br>
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Solid of Revolution'
+to Matlab Examples home</a><br>
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/3D-plot-2tier.html" onclick="return FIX.track(this);">From
+'Solid of
+Revolution' to '3D Graphs Menu'</a><br>
+&nbsp; &nbsp;<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml --></td>
+<td style="vertical-align: bottom; text-align: right; font-weight: bold;"><a href="#Solid_of_Revolution_%3F_Cylinders_in">Top</a><br>
+<br>
+<a href="http://www.matrixlab-examples.com/3d-graphs.html" onclick="return FIX.track(this);">Other 3D Graphs</a><br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for solid of revolution page"><br>
+<br>
+<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
+</td>
+<td style="width: 170px; text-align: right; vertical-align: top;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:49:47 10-Aug-2021 -->
+</body></html>

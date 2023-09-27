@@ -1,0 +1,384 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>Binary to octal numbers - algorithm in Matlab</title>
+
+<meta name="Description" content="To convert from binary to octal numbers, we first need to know what binary or octal numbers are. Major numbering systems in digital methods are the octal system...">
+
+<style type="text/css">
+body {
+background-color:#fff;
+}
+body, td {
+font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+color:#000;
+margin: 0px;
+}
+h1, h2, h3 {
+margin:8px 0px 14px 0px;
+}
+h1 {
+font-size:26px;
+}
+h2 {
+font-size:22px;
+}
+h3 {
+font-size:18px;
+}
+</style>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8852938-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- start: SSI z-automatic.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-automatic.shtml -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/binary-to-octal.html" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+<meta property="og:title" content="Binary to octal numbers - algorithm in Matlab" />
+<meta property="og:description" content="To convert from binary to octal numbers, we first need to know what binary or octal numbers are. Major numbering systems in digital methods are the octal system..." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.matrixlab-examples.com/binary-to-octal.html" />
+
+<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+
+    
+    
+    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+
+
+    <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile .Navigation h3{
+}@media (max-width:768px) {.Navigation h3{
+}}@media (max-width:447px) {.Navigation h3{
+}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile #PageWrapper .Navigation h3{
+}@media (max-width:768px) {#PageWrapper .Navigation h3{
+}}@media (max-width:447px) {#PageWrapper .Navigation h3{
+}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
+}html.mobile body #PageWrapper div.Navigation h3{
+}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
+}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
+}}.Navigation a, html.mobile .Navigation a{
+}html.mobile .Navigation a{
+}@media (max-width:768px) {.Navigation a{
+}}@media (max-width:447px) {.Navigation a{
+}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
+}html.mobile #PageWrapper div.Navigation a{
+}@media (max-width:768px) {#PageWrapper div.Navigation a{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a{
+}}.Navigation a,
+#PageWrapper div.Navigation a {}
+html.mobile .Navigation a,
+html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
+}html.mobile .Navigation a:link{
+}@media (max-width:768px) {.Navigation a:link{
+}}@media (max-width:447px) {.Navigation a:link{
+}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
+}html.mobile #PageWrapper div.Navigation a:link{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
+}}.Navigation a:visited, html.mobile .Navigation a:visited{
+}html.mobile .Navigation a:visited{
+}@media (max-width:768px) {.Navigation a:visited{
+}}@media (max-width:447px) {.Navigation a:visited{
+}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
+}html.mobile #PageWrapper div.Navigation a:visited{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
+}}.Navigation a:hover, html.mobile .Navigation a:hover{
+}html.mobile .Navigation a:hover{
+}@media (max-width:768px) {.Navigation a:hover{
+}}@media (max-width:447px) {.Navigation a:hover{
+}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
+}html.mobile #PageWrapper div.Navigation a:hover{
+}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
+}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
+}}</style>
+<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
+<body>
+<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+<tbody>
+<tr>
+<td style="width: 812px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/imgs/logo.jpg" alt="logo for matrixlab-examples.com"></td>
+</tr>
+<tr>
+<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 146px;" valign="top">
+<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
+<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
+<td style="width: 812px;" valign="top">
+<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+<tbody>
+<tr>
+<td><br>
+<h1><a name="Binary_to_hexadecimal_numbers:_two"></a>Binary
+to octal numbers:&nbsp; two solutions in Matlab<o:p>&nbsp;</o:p></h1>
+To convert a value from <span style="font-weight: bold;">binary
+to octal</span>,
+we first need
+to know what an octal number is.<br>
+&nbsp;<br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads300x250.shtml -->
+</td>
+<td><o:p></o:p>A major <span style="font-weight: bold;">numbering system</span>
+used in digital electronics is the
+octal system, also named base 8. In this system, the numbers are
+counted
+from 0 to 7.<br>
+<br>
+The following table shows
+the meaning of all the symbols in
+the bin and oct (for short) numbering systems.</td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal"><br>
+</p>
+<p style="text-align: center;" class="MsoNormal"><span style="font-weight: bold;">Equivalent decimal,
+binary and octal numbers</span></p>
+<p style="text-align: center;" class="MsoNormal"><o:p><img style="width: 172px; height: 217px;" alt="binary to octal table" src="http://www.matrixlab-examples.com/image-files/bin_to_oct_002.gif">&nbsp;</o:p></p>
+<p class="MsoNormal"><o:p></o:p><br>
+To convert a value from <span style="font-weight: bold;">binary
+to octal</span>, you merely
+translate each 3-bit binary group to its octal equivalent. For
+example,
+the binary number 001111101100010 (or, to be clearly seen,&nbsp;001
+111 101 100 010 translates into
+the octal 17542
+equivalent.<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal"></p>
+<h3>Solution 1. &nbsp;Using built-in functions</h3>
+<p class="MsoNormal">In Matlab, we can go from
+<span style="font-weight: bold;">binary to
+decimal</span>, and then, from
+<span style="font-weight: bold;">decimal to
+octal</span> (using dec2base). We can embed one instruction into
+the other,
+like this:<o:p>&nbsp;</o:p></p>
+<p class="MsoNormal" style=""><span style="color: black;"><span style="font-family: monospace;">oct_str
+= dec2base(bin2dec(bin_str), 8)</span><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;"><o:p>&nbsp;</o:p><br>
+It&#8217;s
+important to remember that both <span style="font-weight: bold;">binary
+numbers</span> and <span style="font-weight: bold;">octal
+ones</span> are treated
+as <span style="font-weight: bold;">strings</span>
+in Matlab.<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">So, we
+can use this concept, like this:<o:p></o:p></span></p>
+<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">bin_str
+= </span><span style="color: rgb(160, 32, 240);">'</span>111101100010<span style="color: rgb(160, 32, 240);">'</span><br>
+<span style="color: black;">oct_str
+=&nbsp;</span><span style="color: black;"><span style="font-family: monospace;">dec2base(bin2dec(bin_str), 8)</span></span><span style="font-size: 12pt;"><o:p></o:p></span></p>
+<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
+Matlab&#8217;s answer is:<o:p>&nbsp;</o:p></p>
+<p style="font-family: monospace;" class="MsoNormal">oct_str = 7542</p>
+<p style="font-family: monospace;" class="MsoNormal"><o:p></o:p></p>
+<h3><o:p>Solution 2. Separating in groups</o:p></h3>
+<o:p></o:p>Now, let&#8217;s say that we want to
+explore how the binary groups
+are separated to form the oct symbols and we want to manipulate our own
+strings
+(binary and octal).<o:p>&nbsp;</o:p>
+<p class="MsoNormal">We can develop a function
+to translate the table shown
+before. Our suggestion uses a <span style="font-weight: bold;">switch-case
+structure</span>.</p>
+<p class="MsoNormal">&nbsp;<br>
+<o:p>&nbsp;<img style="width: 511px; height: 220px;" alt="binary numbers to octals - main concept" src="http://www.matrixlab-examples.com/image-files/binary_to_octal_003.gif"></o:p></p>
+<p class="MsoNormal" style=""><span style="color: blue; font-family: monospace;"><span style="color: rgb(51, 204, 0);">% Binary to octal
+conversion</span><br>
+function</span><span style="color: black; font-family: monospace;"> o =
+b2o(b)</span><br style="font-family: monospace;">
+<span style="color: blue; font-family: monospace;">switch</span><span style="color: black; font-family: monospace;"> b<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue; font-family: monospace;">case</span><span style="color: black; font-family: monospace;"> {</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'0'</span><span style="color: black; font-family: monospace;">, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'00'</span><span style="color: black; font-family: monospace;">, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'000'</span><span style="color: black; font-family: monospace;"></span><span style="color: rgb(160, 32, 240); font-family: monospace;"></span><span style="color: black; font-family: monospace;">}<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>h = </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'0'</span><span style="color: black; font-family: monospace;">;<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue; font-family: monospace;">case</span><span style="color: black; font-family: monospace;"> {</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'1'</span><span style="color: black; font-family: monospace;">, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'01'</span><span style="color: black; font-family: monospace;">, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'001'</span><span style="color: black; font-family: monospace;"></span><span style="color: rgb(160, 32, 240); font-family: monospace;"></span><span style="color: black; font-family: monospace;">}<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>h = </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'1'</span><span style="color: black; font-family: monospace;">;<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue; font-family: monospace;">case</span><span style="color: black; font-family: monospace;"> {</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'10'</span><span style="color: black; font-family: monospace;">, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'010'</span><span style="color: black; font-family: monospace;"></span><span style="color: rgb(160, 32, 240); font-family: monospace;"></span><span style="color: black; font-family: monospace;">}<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>h = </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'2'</span><span style="color: black; font-family: monospace;">;<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue; font-family: monospace;">case</span><span style="color: black; font-family: monospace;"> {</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'11'</span><span style="color: black; font-family: monospace;">, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'011'</span><span style="color: black; font-family: monospace;"></span><span style="color: rgb(160, 32, 240); font-family: monospace;"></span><span style="color: black; font-family: monospace;">}<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>h = </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'3'</span><span style="color: black; font-family: monospace;">;<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue; font-family: monospace;">case</span><span style="color: black; font-family: monospace;"> {</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'100'</span><span style="color: black; font-family: monospace;"></span><span style="color: rgb(160, 32, 240); font-family: monospace;"></span><span style="color: black; font-family: monospace;">}<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>h = </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'4'</span><span style="color: black; font-family: monospace;">;<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue; font-family: monospace;">case</span><span style="color: black; font-family: monospace;"> {</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'101'</span><span style="color: black; font-family: monospace;"></span><span style="color: rgb(160, 32, 240); font-family: monospace;"></span><span style="color: black; font-family: monospace;">}<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>h = </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'5'</span><span style="color: black; font-family: monospace;">;<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue; font-family: monospace;">case</span><span style="color: black; font-family: monospace;"> {</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'110'</span><span style="color: black; font-family: monospace;"></span><span style="color: rgb(160, 32, 240); font-family: monospace;"></span><span style="color: black; font-family: monospace;">}<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>h = </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'6'</span><span style="color: black; font-family: monospace;">;<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue; font-family: monospace;">case</span><span style="color: black; font-family: monospace;"> {</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'111'</span><span style="color: black; font-family: monospace;"></span><span style="color: rgb(160, 32, 240); font-family: monospace;"></span><span style="color: black; font-family: monospace;">}<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>h = </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'7'</span><span style="color: black; font-family: monospace;">;<br>
+<span style=""></span></span><span style="color: blue;"><span style="font-family: monospace;">end</span><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: blue;"><o:p>&nbsp;</o:p></span><br>
+<span style="">Now, we have to call
+the function for every 3-bit group of binary numbers. One possible
+solution to
+separate the binary number into 3-bit groups is shown here:<o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style=""><o:p>&nbsp;</o:p></span><br>
+<span style="color: black; font-family: monospace;">bin_str
+= input(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'Enter
+binary number: '</span><span style="color: black; font-family: monospace;">, </span><span style="color: rgb(160, 32, 240); font-family: monospace;">'s'</span><span style="color: black; font-family: monospace;">);<br>
+i =
+length(bin_str);<br>
+n =
+ceil(i/3);<span style="">&nbsp;</span></span><span style="font-size: 12pt; font-family: monospace;"><o:p></o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: blue; font-family: monospace;">for</span><span style="color: black; font-family: monospace;"> g = n :
+-1 : 1<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue; font-family: monospace;">if</span><span style="color: black; font-family: monospace;"> i &gt; 3<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>oct_str(g) = b2o(bin_str(i-3 : i));<br>
+<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>i = i - 3;<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue; font-family: monospace;">else</span><br style="font-family: monospace;">
+<span style="color: black; font-family: monospace;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>oct_str(g) = b2o(bin_str(1 : i));<br>
+<span style="">&nbsp;&nbsp;&nbsp; </span></span><span style="color: blue; font-family: monospace;">end<br>
+end</span><br style="font-family: monospace;">
+<span style="color: black;"><span style="font-family: monospace;">oct_str</span><o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;">Let&#8217;s
+try it.<o:p>&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black;"><o:p></o:p><br>
+<span style="font-family: monospace;">Enter
+binary number: 101010</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">oct_str
+= 2A</span><o:p style="font-family: monospace;">&nbsp;</o:p></span></p>
+<p class="MsoNormal" style=""><span style="color: black; font-family: monospace;">Enter
+binary number: 110001011110101<br>
+oct_str
+= 62F5</span></p>
+<span style="font-family: monospace;"><br>
+&nbsp;</span><span style=""><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From
+'Binary to Hexadecimal' to home</a><br>
+&nbsp; <a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-programming-2tier.html" onclick="return FIX.track(this);">From
+'Binary to Hexadecimal' to 'Matlab Programming'</a></span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/matlab-programming-2tier.html" onclick="return FIX.track(this);"><span style="font-size: 12pt;"><o:p></o:p></span></a><br>
+&nbsp;&nbsp;<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/sitemap.html" onclick="return FIX.track(this);">Search Site</a><span style="font-size: 12pt; font-weight: bold;"><o:p></o:p></span><span style="font-size: 12pt;"><o:p> </o:p></span><br>
+&nbsp; <br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI z-ads336x280.shtml -->
+</td>
+<td style="vertical-align: bottom; text-align: right;"><a style="font-weight: bold;" href="#Binary_to_hexadecimal_numbers:_two"><span style="">Top</span></a><br>
+<br>
+<a style="font-weight: bold; color: red;" href="http://www.matrixlab-examples.com/base-conversion.html" onclick="return FIX.track(this);">Online Base Converter</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/hex-to-binary.html" onclick="return FIX.track(this);">Hex
+to binary conversions</a><br style="font-weight: bold;">
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/binary-to-decimal.html" onclick="return FIX.track(this);">Binary to Decimal</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/decimal-to-binary.html" onclick="return FIX.track(this);">Decimal to Binary</a><br>
+<br>
+<a style="font-weight: bold;" href="http://www.matrixlab-examples.com/gray-code.html" onclick="return FIX.track(this);">Gray Code</a><br>
+<br>
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br> <!-- start: tool_blocks.socializeit -->
+<div id="socializeit_" class="js-socializeit"></div>
+        <script type="text/javascript">  var https_page;
+        var socializeit_options = socializeit_options || [];
+        socializeit_options.push({
+          el_id: "socializeit_",
+          pack:1, 
+          domain: "matrixlab-examples.com", 
+          https_page: https_page,
+          share_horizontal_label: "Share this page:", 
+          share_sticky_label: "Share", 
+          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
+          payItExpanded: "", 
+          szColor: "#FFFF99",  
+          whatIsThisLabel: "What&rsquo;s this?",
+          whatIsThisUrl: "/help/whats-this.html",
+          background_color: "",  
+          version: 1,
+          display_variant: ""     });
+        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for binary to hexadecimal conversion page"><a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><br>
+</a></p>
+</td>
+<td style="width: 170px; vertical-align: top; background-color: rgb(211, 228, 244); text-align: center;"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- start: SSI 160x600.shtml --><!--
+--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
+     crossorigin="anonymous"></script><!--
+--><!-- end: SSI 160x600.shtml --><br>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table> <!-- start: tool_blocks.sbi_html_body_end -->
+    <script>
+        var SS_PARAMS = {
+            pinterest_enabled:false,
+            googleplus1_on_page:false,
+            socializeit_onpage:true};
+    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
+	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
+  (function(d,id){
+    if (d.getElementById(id)) {return;}
+    var s=d.createElement('script');s.async=true;s.defer=true;
+        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
+   })(document,'_ss_ldr_script');
+  </script><!-- end: tool_blocks.sbi_html_body_end -->
+  
+<!-- Generated at 17:45:04 10-Aug-2021 -->
+</body></html>
