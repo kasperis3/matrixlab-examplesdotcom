@@ -1,429 +1,802 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml"><head><title>3D Polygon - draw a box with Matlab</title>
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml">
+  <head>
+    <title>3D Polygon - draw a box with Matlab</title>
+    <meta name="Description" content="Draw a 3D polygon with Matlab, specifically a 6-faces box using the built-in function fill3 ...">
+    <style type="text/css">
+      body {
+        background-color: #fff;
+      }
 
-<meta name="Description" content="Draw a 3D polygon with Matlab, specifically a 6-faces box using the built-in function fill3 ...">
+      body,
+      td {
+        font: 13px Verdana, Geneva, Arial, Helvetica, sans-serif;
+        color: #000;
+        margin: 0px;
+      }
 
-<style type="text/css">
-body {
-background-color:#fff;
-}
-body, td {
-font:13px Verdana, Geneva, Arial, Helvetica, sans-serif;
-color:#000;
-margin: 0px;
-}
-h1, h2, h3 {
-margin:8px 0px 14px 0px;
-}
-h1 {
-font-size:26px;
-}
-h2 {
-font-size:22px;
-}
-h3 {
-font-size:18px;
-}
-</style>
-<script type="text/javascript">
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-8852938-1']);
-_gaq.push(['_trackPageview']);
-(function() {
-var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-</script>
-<!-- start: SSI z-automatic.shtml --><!--
---><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
-     crossorigin="anonymous"></script><!--
---><!-- end: SSI z-automatic.shtml -->
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script> <!-- start: tool_blocks.sbi_html_head -->
-    <!--#config errmsg="" --><!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
-<!--#include virtual="/.includes/favit_header.shtml" --><link rel="canonical" href="http://www.matrixlab-examples.com/3d-polygon.html" />
-<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
-<meta property="og:title" content="3D Polygon - draw a box with Matlab" />
-<meta property="og:description" content="Draw a 3D polygon with Matlab, specifically a 6-faces box using the built-in function fill3 ..." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.matrixlab-examples.com/3d-polygon.html" />
-<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/3d-polygon-001.gif" />
-<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/3d-polygon-003.gif" />
-<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/3d-polygon-004.gif" />
-<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/3d-polygon-005.gif" />
-<meta property="og:image" content="http://www.matrixlab-examples.com/image-files/3d-polygon-006.gif" />
+      h1,
+      h2,
+      h3 {
+        margin: 8px 0px 14px 0px;
+      }
 
-<!-- SD --><!--#include virtual='/sd/support-files/style-head.shtml' -->
+      h1 {
+        font-size: 26px;
+      }
 
-    
-    
-    <script type="text/javascript" language="JavaScript">var https_page =0</script>
+      h2 {
+        font-size: 22px;
+      }
 
-
+      h3 {
+        font-size: 18px;
+      }
+    </style>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-8852938-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <!-- start: SSI z-automatic.shtml -->
+    <!--
+-->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750" crossorigin="anonymous"></script>
+    <!--
+-->
+    <!-- end: SSI z-automatic.shtml -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript" src="http://www.matrixlab-examples.com/sd/support-files/fix.js"></script>
+    <!-- start: tool_blocks.sbi_html_head -->
+    <!--#config errmsg="" -->
+    <!--#include virtual="/.includes/gtagjs_snippet.shtml" -->
+    <!--#include virtual="/.includes/favit_header.shtml" -->
+    <link rel="canonical" href="http://www.matrixlab-examples.com/3d-polygon.html" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.matrixlab-examples.com/matlab.xml">
+    <meta property="og:title" content="3D Polygon - draw a box with Matlab" />
+    <meta property="og:description" content="Draw a 3D polygon with Matlab, specifically a 6-faces box using the built-in function fill3 ..." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://www.matrixlab-examples.com/3d-polygon.html" />
+    <meta property="og:image" content="http://www.matrixlab-examples.com/image-files/3d-polygon-001.gif" />
+    <meta property="og:image" content="http://www.matrixlab-examples.com/image-files/3d-polygon-003.gif" />
+    <meta property="og:image" content="http://www.matrixlab-examples.com/image-files/3d-polygon-004.gif" />
+    <meta property="og:image" content="http://www.matrixlab-examples.com/image-files/3d-polygon-005.gif" />
+    <meta property="og:image" content="http://www.matrixlab-examples.com/image-files/3d-polygon-006.gif" />
+    <!-- SD -->
+    <!--#include virtual='/sd/support-files/style-head.shtml' -->
+    <script type="text/javascript" language="JavaScript">
+      var https_page = 0
+    </script>
     <link href="http://www.matrixlab-examples.com/sd/support-files/navbar.css" rel="stylesheet" type="text/css">
-<style type="text/css">
-/* CSS for Text Nav */.Navigation h3, html.mobile .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
-}html.mobile .Navigation h3{
-}@media (max-width:768px) {.Navigation h3{
-}}@media (max-width:447px) {.Navigation h3{
-}}#PageWrapper .Navigation h3, html.mobile #PageWrapper .Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
-}html.mobile #PageWrapper .Navigation h3{
-}@media (max-width:768px) {#PageWrapper .Navigation h3{
-}}@media (max-width:447px) {#PageWrapper .Navigation h3{
-}}body #PageWrapper div.Navigation h3, html.mobile body #PageWrapper div.Navigation h3{border-color:#FFFFFF;border-style:solid;background-color:#99FFFF;font-family:Verdana, Geneva, sans-serif;text-align:center;font-size:15px;color:#0000CC;font-weight:bold;
-}html.mobile body #PageWrapper div.Navigation h3{
-}@media (max-width:768px) {body #PageWrapper div.Navigation h3{
-}}@media (max-width:447px) {body #PageWrapper div.Navigation h3{
-}}.Navigation a, html.mobile .Navigation a{
-}html.mobile .Navigation a{
-}@media (max-width:768px) {.Navigation a{
-}}@media (max-width:447px) {.Navigation a{
-}}#PageWrapper div.Navigation a, html.mobile #PageWrapper div.Navigation a{
-}html.mobile #PageWrapper div.Navigation a{
-}@media (max-width:768px) {#PageWrapper div.Navigation a{
-}}@media (max-width:447px) {#PageWrapper div.Navigation a{
-}}.Navigation a,
-#PageWrapper div.Navigation a {}
-html.mobile .Navigation a,
-html.mobile #PageWrapper div.Navigation a {}.Navigation a:link, html.mobile .Navigation a:link{
-}html.mobile .Navigation a:link{
-}@media (max-width:768px) {.Navigation a:link{
-}}@media (max-width:447px) {.Navigation a:link{
-}}#PageWrapper div.Navigation a:link, html.mobile #PageWrapper div.Navigation a:link{
-}html.mobile #PageWrapper div.Navigation a:link{
-}@media (max-width:768px) {#PageWrapper div.Navigation a:link{
-}}@media (max-width:447px) {#PageWrapper div.Navigation a:link{
-}}.Navigation a:visited, html.mobile .Navigation a:visited{
-}html.mobile .Navigation a:visited{
-}@media (max-width:768px) {.Navigation a:visited{
-}}@media (max-width:447px) {.Navigation a:visited{
-}}#PageWrapper div.Navigation a:visited, html.mobile #PageWrapper div.Navigation a:visited{
-}html.mobile #PageWrapper div.Navigation a:visited{
-}@media (max-width:768px) {#PageWrapper div.Navigation a:visited{
-}}@media (max-width:447px) {#PageWrapper div.Navigation a:visited{
-}}.Navigation a:hover, html.mobile .Navigation a:hover{
-}html.mobile .Navigation a:hover{
-}@media (max-width:768px) {.Navigation a:hover{
-}}@media (max-width:447px) {.Navigation a:hover{
-}}#PageWrapper div.Navigation a:hover, html.mobile #PageWrapper div.Navigation a:hover{
-}html.mobile #PageWrapper div.Navigation a:hover{
-}@media (max-width:768px) {#PageWrapper div.Navigation a:hover{
-}}@media (max-width:447px) {#PageWrapper div.Navigation a:hover{
-}}</style>
-<script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script><!-- end: tool_blocks.sbi_html_head --></head>
-<body>
-<table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
-<tbody>
-<tr>
-<td style="width: 813px;" colspan="2"><img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com"></td>
-</tr>
-<tr>
-<td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 145px;" valign="top">
-<div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;"><!-- start: tool_blocks.navbar --><div class="Navigation"><ul><li><a href="/">Home</a></li></ul><h3>Welcome</h3><ul><li><a href="/matlab-blog.html">Matrixmania Blog</a></li><li><a href="/sitemap.html">Sitemap / Search</a></li><li><a href="/matlab-books.html">Matlab Books</a></li><li><a href="/programming-forums.html">Forums and Help</a></li><li><a href="/contact-us.html">Contact</a></li></ul><h3>Basics</h3><ul><li><a href="/matlab-help-2tier.html">Quick Matlab Guide</a></li><li><a href="/matlab-tutorial.html">Matlab Tutorial</a></li><li><a href="/matlab-examples.html">Matlab Examples</a></li><li><a href="/matlab-code-3.html">Matlab Flow Control</a></li><li><a href="/boolean-algebra.html">Boolean Logic</a></li></ul><h3>Plots and GUI</h3><ul><li><a href="/matlab-plot-2tier.html">Matlab 2D Plots</a></li><li><a href="/3D-plot-2tier.html">Matlab 3D Plots</a></li><li><a href="/matlab-gui-2tier.html">Matlab GUI</a></li></ul><h3>Applications</h3><ul><li><a href="/calculus-problems.html">Calculus</a></li><li><a href="/linear-algebra.html">Linear Algebra</a></li><li><a href="/generic-programming.html">Matlab Cookbook I</a></li><li><a href="/matlab-programming-2tier.html">Matlab Cookbook II</a></li><li><a href="/electrical-calculations.html">Electrical Calc</a></li><li><a href="/probability-and-statistics.html">Probab and Stats</a></li><li><a href="/finance-formulas.html">Finance Apps</a></li></ul><h3>Other</h3><ul><li><a href="/free-online-calculators.html">Online Calculators</a></li><li><a href="/academic-software.html">Relevant Links</a></li><li><a href="/basics-of-computer-programming.html">Notes on Comp</a></li><li><a href="/it-jokes-2tier.html">Fun!</a></li><li><a href="/scilab.html">Scilab</a></li><li><a href="/Become-a-Webmaster.html">Your own Website?</a></li><li><a href="/terms-of-service.html">Terms/Policies</a></li></ul></div><!-- end: tool_blocks.navbar --></div>
-<img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146"></td>
-<td style="width: 813px;" valign="top">
-<table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
-<tbody>
-<tr>
-<td style="width: 520px;">
-<h1><a name="3D_Polygon_-_draw_planes_with_Matlab"></a>3D
-Polygon - draw planes with Matlab</h1>
-<br>
-<p class="MsoNormal"><span style="" lang="ES-TRAD">In this
-example we&#8217;re going to explain how to draw a 3D polygon using Matlab.
-More
-specifically, we are going to draw several flat surfaces (planes) to
-build or
-model a box.&nbsp;<o:p>&nbsp;</o:p></span></p>
-<span style="" lang="ES-TRAD">Our
-main built-in function in this case is the function &#8220;fill3&#8221;, which is
-intended
-to color 3D flat planes.</span><br>
-<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
-<tbody>
-<tr>
-<td style="vertical-align: top; width: 308px;"><!-- start: SSI z-ads300x250.shtml --><!--
---><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
-     crossorigin="anonymous"></script><!--
---><!-- end: SSI z-ads300x250.shtml --><br>
-</td>
-<td style="vertical-align: top;"></td>
-</tr>
-</tbody>
-</table>
-<p class="MsoNormal"><span style="" lang="ES-TRAD">The
-sentence fill3(x, y, z, c) would fill the 3D polygon defined by vectors
-x, y
-and z with the color specified by c.<span style="">&nbsp;
-</span>The
-vertices of the polygon are specified by coordinates of components of
-x, y and
-z, and the polygon is closed by connecting the last vertex to the first
-one.<o:p></o:p></span></p>
-<br>
-<p class="MsoNormal"><span style="" lang="ES-TRAD">Let&#8217;s
-say that we want to draw this arbitrary rectangular box<o:p></o:p></span></p>
-<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
-<p class="MsoNormal" style="text-align: center;" align="center"><span style="" lang="ES-TRAD"><o:p></o:p></span><img style="width: 452px; height: 292px;" alt="Drawing a 3D polygon with Matlab" src="http://www.matrixlab-examples.com/image-files/3d-polygon-001.gif"></p>
-<p class="MsoNormal" style="text-align: center;" align="center"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
-<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p></o:p>The
-coordinates of the eight vertices are as follows:<o:p></o:p></span></p>
-<div style="text-align: center;"><span style="" lang="ES-TRAD">P<sub>1</sub>(0,
-0, 0)</span><br>
-<span style="" lang="ES-TRAD">P<sub>2</sub>(2,
-0, 0)</span><br>
-<span style="" lang="ES-TRAD">P<sub>3</sub>(2,
-4, 0)</span><br>
-<span style="" lang="ES-TRAD">P<sub>4</sub>(0,
-4, 0)</span><br>
-<span style="" lang="ES-TRAD">P<sub>5</sub>(0,
-0, 3)</span><br>
-<span style="" lang="ES-TRAD">P<sub>6</sub>(2,
-0, 3)</span><br>
-<span style="" lang="ES-TRAD">P<sub>7</sub>(2,
-4, 3)</span><br>
-<span style="" lang="ES-TRAD">P<sub>8</sub>(0,
-4, 3)<o:p></o:p></span><br>
-<span style="" lang="ES-TRAD"><o:p></o:p></span></div>
-<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
-<p class="MsoNormal"><span style="" lang="ES-TRAD">We
-could draw our first flat surface by filling the area defined by the
-first four
-points, like this:<o:p></o:p></span></p>
-<p class="MsoNormal" style=""><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span><br>
-<span style="color: black; font-family: monospace;">p1
-= [0
-0 0];<br>
-p2 = [2
-0 0];<br>
-p3 = [2
-4 0];<br>
-p4 = [0
-4 0];<span style="">&nbsp;</span></span><span style="font-size: 12pt; font-family: monospace;"><o:p></o:p></span></p>
-<p class="MsoNormal" style="font-family: monospace;"><span style="color: black;">x =
-[p1(1) p2(1) p3(1) p4(1)];<br>
-y =
-[p1(2) p2(2) p3(2) p4(2)];<br>
-z =
-[p1(3) p2(3) p3(3) p4(3)];</span><span style="font-size: 12pt;"><o:p></o:p></span></p>
-<p class="MsoNormal" style=""><span style="color: black; font-family: monospace;">fill3(x,
-y, z, 1);<br>
-xlabel(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'x'</span><span style="color: black; font-family: monospace;">);
-ylabel(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'y'</span><span style="color: black; font-family: monospace;">); zlabel(</span><span style="color: rgb(160, 32, 240); font-family: monospace;">'z'</span><span style="color: black; font-family: monospace;">); </span><span style="color: forestgreen; font-family: monospace;"><span style="">&nbsp;</span></span><span style="font-size: 12pt;"><o:p><br>
-&nbsp;</o:p></span></p>
-<p class="MsoNormal">The code produces this
-figure:</p>
-<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class="MsoNormal" style="text-align: center;" align="center"><!--[if gte vml 1]><v:shape
+    <style type="text/css">
+      /* CSS for Text Nav */
+      .Navigation h3,
+      html.mobile .Navigation h3 {
+        border-color: #FFFFFF;
+        border-style: solid;
+        background-color: #99FFFF;
+        font-family: Verdana, Geneva, sans-serif;
+        text-align: center;
+        font-size: 15px;
+        color: #0000CC;
+        font-weight: bold;
+      }
+
+      html.mobile .Navigation h3 {}
+
+      @media (max-width:768px) {
+        .Navigation h3 {}
+      }
+
+      @media (max-width:447px) {
+        .Navigation h3 {}
+      }
+
+      #PageWrapper .Navigation h3,
+      html.mobile #PageWrapper .Navigation h3 {
+        border-color: #FFFFFF;
+        border-style: solid;
+        background-color: #99FFFF;
+        font-family: Verdana, Geneva, sans-serif;
+        text-align: center;
+        font-size: 15px;
+        color: #0000CC;
+        font-weight: bold;
+      }
+
+      html.mobile #PageWrapper .Navigation h3 {}
+
+      @media (max-width:768px) {
+        #PageWrapper .Navigation h3 {}
+      }
+
+      @media (max-width:447px) {
+        #PageWrapper .Navigation h3 {}
+      }
+
+      body #PageWrapper div.Navigation h3,
+      html.mobile body #PageWrapper div.Navigation h3 {
+        border-color: #FFFFFF;
+        border-style: solid;
+        background-color: #99FFFF;
+        font-family: Verdana, Geneva, sans-serif;
+        text-align: center;
+        font-size: 15px;
+        color: #0000CC;
+        font-weight: bold;
+      }
+
+      html.mobile body #PageWrapper div.Navigation h3 {}
+
+      @media (max-width:768px) {
+        body #PageWrapper div.Navigation h3 {}
+      }
+
+      @media (max-width:447px) {
+        body #PageWrapper div.Navigation h3 {}
+      }
+
+      .Navigation a,
+      html.mobile .Navigation a {}
+
+      html.mobile .Navigation a {}
+
+      @media (max-width:768px) {
+        .Navigation a {}
+      }
+
+      @media (max-width:447px) {
+        .Navigation a {}
+      }
+
+      #PageWrapper div.Navigation a,
+      html.mobile #PageWrapper div.Navigation a {}
+
+      html.mobile #PageWrapper div.Navigation a {}
+
+      @media (max-width:768px) {
+        #PageWrapper div.Navigation a {}
+      }
+
+      @media (max-width:447px) {
+        #PageWrapper div.Navigation a {}
+      }
+
+      .Navigation a,
+      #PageWrapper div.Navigation a {}
+
+      html.mobile .Navigation a,
+      html.mobile #PageWrapper div.Navigation a {}
+
+      .Navigation a:link,
+      html.mobile .Navigation a:link {}
+
+      html.mobile .Navigation a:link {}
+
+      @media (max-width:768px) {
+        .Navigation a:link {}
+      }
+
+      @media (max-width:447px) {
+        .Navigation a:link {}
+      }
+
+      #PageWrapper div.Navigation a:link,
+      html.mobile #PageWrapper div.Navigation a:link {}
+
+      html.mobile #PageWrapper div.Navigation a:link {}
+
+      @media (max-width:768px) {
+        #PageWrapper div.Navigation a:link {}
+      }
+
+      @media (max-width:447px) {
+        #PageWrapper div.Navigation a:link {}
+      }
+
+      .Navigation a:visited,
+      html.mobile .Navigation a:visited {}
+
+      html.mobile .Navigation a:visited {}
+
+      @media (max-width:768px) {
+        .Navigation a:visited {}
+      }
+
+      @media (max-width:447px) {
+        .Navigation a:visited {}
+      }
+
+      #PageWrapper div.Navigation a:visited,
+      html.mobile #PageWrapper div.Navigation a:visited {}
+
+      html.mobile #PageWrapper div.Navigation a:visited {}
+
+      @media (max-width:768px) {
+        #PageWrapper div.Navigation a:visited {}
+      }
+
+      @media (max-width:447px) {
+        #PageWrapper div.Navigation a:visited {}
+      }
+
+      .Navigation a:hover,
+      html.mobile .Navigation a:hover {}
+
+      html.mobile .Navigation a:hover {}
+
+      @media (max-width:768px) {
+        .Navigation a:hover {}
+      }
+
+      @media (max-width:447px) {
+        .Navigation a:hover {}
+      }
+
+      #PageWrapper div.Navigation a:hover,
+      html.mobile #PageWrapper div.Navigation a:hover {}
+
+      html.mobile #PageWrapper div.Navigation a:hover {}
+
+      @media (max-width:768px) {
+        #PageWrapper div.Navigation a:hover {}
+      }
+
+      @media (max-width:447px) {
+        #PageWrapper div.Navigation a:hover {}
+      }
+    </style>
+    <script src="http://www.matrixlab-examples.com/sd/support-files/eucookie.js" async defer type="text/javascript"></script>
+    <!-- end: tool_blocks.sbi_html_head -->
+  </head>
+  <body>
+    <table align="center" background="http://www.matrixlab-examples.com/imgs/backimage.gif" border="0" cellpadding="0" cellspacing="0" width="725">
+      <tbody>
+        <tr>
+          <td style="width: 813px;" colspan="2">
+            <img style="width: 960px; height: 108px;" src="http://www.matrixlab-examples.com/image-files/header-image_3c.jpg" alt="logo for matrixlab-examples.com">
+          </td>
+        </tr>
+        <tr>
+          <td style="background-image: url(imgs/leftimage.gif); background-position: left top; width: 145px;" valign="top">
+            <div id="Layer1" style="position: absolute; width: 130px; z-index: 1; top: 165px;">
+              <!-- start: tool_blocks.navbar -->
+              <div class="Navigation">
+                <ul>
+                  <li>
+                    <a href="/">Home</a>
+                  </li>
+                </ul>
+                <h3>Welcome</h3>
+                <ul>
+                  <li>
+                    <a href="/matlab-blog.html">Matrixmania Blog</a>
+                  </li>
+                  <li>
+                    <a href="/sitemap.html">Sitemap / Search</a>
+                  </li>
+                  <li>
+                    <a href="/matlab-books.html">Matlab Books</a>
+                  </li>
+                  <li>
+                    <a href="/programming-forums.html">Forums and Help</a>
+                  </li>
+                  <li>
+                    <a href="/contact-us.html">Contact</a>
+                  </li>
+                </ul>
+                <h3>Basics</h3>
+                <ul>
+                  <li>
+                    <a href="/matlab-help-2tier.html">Quick Matlab Guide</a>
+                  </li>
+                  <li>
+                    <a href="/matlab-tutorial.html">Matlab Tutorial</a>
+                  </li>
+                  <li>
+                    <a href="/matlab-examples.html">Matlab Examples</a>
+                  </li>
+                  <li>
+                    <a href="/matlab-code-3.html">Matlab Flow Control</a>
+                  </li>
+                  <li>
+                    <a href="/boolean-algebra.html">Boolean Logic</a>
+                  </li>
+                </ul>
+                <h3>Plots and GUI</h3>
+                <ul>
+                  <li>
+                    <a href="/matlab-plot-2tier.html">Matlab 2D Plots</a>
+                  </li>
+                  <li>
+                    <a href="/3D-plot-2tier.html">Matlab 3D Plots</a>
+                  </li>
+                  <li>
+                    <a href="/matlab-gui-2tier.html">Matlab GUI</a>
+                  </li>
+                </ul>
+                <h3>Applications</h3>
+                <ul>
+                  <li>
+                    <a href="/calculus-problems.html">Calculus</a>
+                  </li>
+                  <li>
+                    <a href="/linear-algebra.html">Linear Algebra</a>
+                  </li>
+                  <li>
+                    <a href="/generic-programming.html">Matlab Cookbook I</a>
+                  </li>
+                  <li>
+                    <a href="/matlab-programming-2tier.html">Matlab Cookbook II</a>
+                  </li>
+                  <li>
+                    <a href="/electrical-calculations.html">Electrical Calc</a>
+                  </li>
+                  <li>
+                    <a href="/probability-and-statistics.html">Probab and Stats</a>
+                  </li>
+                  <li>
+                    <a href="/finance-formulas.html">Finance Apps</a>
+                  </li>
+                </ul>
+                <h3>Other</h3>
+                <ul>
+                  <li>
+                    <a href="/free-online-calculators.html">Online Calculators</a>
+                  </li>
+                  <li>
+                    <a href="/academic-software.html">Relevant Links</a>
+                  </li>
+                  <li>
+                    <a href="/basics-of-computer-programming.html">Notes on Comp</a>
+                  </li>
+                  <li>
+                    <a href="/it-jokes-2tier.html">Fun!</a>
+                  </li>
+                  <li>
+                    <a href="/scilab.html">Scilab</a>
+                  </li>
+                  <li>
+                    <a href="/Become-a-Webmaster.html">Your own Website?</a>
+                  </li>
+                  <li>
+                    <a href="/terms-of-service.html">Terms/Policies</a>
+                  </li>
+                </ul>
+              </div>
+              <!-- end: tool_blocks.navbar -->
+            </div>
+            <img src="http://www.matrixlab-examples.com/imgs/leftimage.gif" alt="leftimage for matrixlab-examples.com" height="400" width="146">
+          </td>
+          <td style="width: 813px;" valign="top">
+            <table style="width: 760px; text-align: left; margin-left: auto; margin-right: auto;" border="0" cellpadding="16" cellspacing="0">
+              <tbody>
+                <tr>
+                  <td style="width: 520px;">
+                    <h1>
+                      <a name="3D_Polygon_-_draw_planes_with_Matlab"></a>3D Polygon - draw planes with Matlab
+                    </h1>
+                    <br>
+                    <p class="MsoNormal">
+                      <span style="" lang="ES-TRAD">In this example we&#8217;re going to explain how to draw a 3D polygon using Matlab. More specifically, we are going to draw several flat surfaces (planes) to build or model a box.&nbsp; <o:p>&nbsp;</o:p>
+                      </span>
+                    </p>
+                    <span style="" lang="ES-TRAD">Our main built-in function in this case is the function &#8220;fill3&#8221;, which is intended to color 3D flat planes.</span>
+                    <br>
+                    <br>
+                    <table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+                      <tbody>
+                        <tr>
+                          <td style="vertical-align: top; width: 308px;">
+                            <!-- start: SSI z-ads300x250.shtml -->
+                            <!--
+-->
+                            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750" crossorigin="anonymous"></script>
+                            <!--
+-->
+                            <!-- end: SSI z-ads300x250.shtml -->
+                            <br>
+                          </td>
+                          <td style="vertical-align: top;"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <p class="MsoNormal">
+                      <span style="" lang="ES-TRAD">The sentence fill3(x, y, z, c) would fill the 3D polygon defined by vectors x, y and z with the color specified by c. <span style="">&nbsp; </span>The vertices of the polygon are specified by coordinates of components of x, y and z, and the polygon is closed by connecting the last vertex to the first one. <o:p></o:p>
+                      </span>
+                    </p>
+                    <br>
+                    <p class="MsoNormal">
+                      <span style="" lang="ES-TRAD">Let&#8217;s say that we want to draw this arbitrary rectangular box <o:p></o:p>
+                      </span>
+                    </p>
+                    <p class="MsoNormal">
+                      <span style="" lang="ES-TRAD">
+                        <o:p>&nbsp;</o:p>
+                      </span>
+                    </p>
+                    <p class="MsoNormal" style="text-align: center;" align="center">
+                      <span style="" lang="ES-TRAD">
+                        <o:p></o:p>
+                      </span>
+                      <img style="width: 452px; height: 292px;" alt="Drawing a 3D polygon with Matlab" src="http://www.matrixlab-examples.com/image-files/3d-polygon-001.gif">
+                    </p>
+                    <p class="MsoNormal" style="text-align: center;" align="center">
+                      <span style="" lang="ES-TRAD">
+                        <o:p>&nbsp;</o:p>
+                      </span>
+                    </p>
+                    <p class="MsoNormal">
+                      <span style="" lang="ES-TRAD">
+                        <o:p></o:p>The coordinates of the eight vertices are as follows: <o:p></o:p>
+                      </span>
+                    </p>
+                    <div style="text-align: center;">
+                      <span style="" lang="ES-TRAD">P <sub>1</sub>(0, 0, 0) </span>
+                      <br>
+                      <span style="" lang="ES-TRAD">P <sub>2</sub>(2, 0, 0) </span>
+                      <br>
+                      <span style="" lang="ES-TRAD">P <sub>3</sub>(2, 4, 0) </span>
+                      <br>
+                      <span style="" lang="ES-TRAD">P <sub>4</sub>(0, 4, 0) </span>
+                      <br>
+                      <span style="" lang="ES-TRAD">P <sub>5</sub>(0, 0, 3) </span>
+                      <br>
+                      <span style="" lang="ES-TRAD">P <sub>6</sub>(2, 0, 3) </span>
+                      <br>
+                      <span style="" lang="ES-TRAD">P <sub>7</sub>(2, 4, 3) </span>
+                      <br>
+                      <span style="" lang="ES-TRAD">P <sub>8</sub>(0, 4, 3) <o:p></o:p>
+                      </span>
+                      <br>
+                      <span style="" lang="ES-TRAD">
+                        <o:p></o:p>
+                      </span>
+                    </div>
+                    <p class="MsoNormal">
+                      <span style="" lang="ES-TRAD">
+                        <o:p>&nbsp;</o:p>
+                      </span>
+                    </p>
+                    <p class="MsoNormal">
+                      <span style="" lang="ES-TRAD">We could draw our first flat surface by filling the area defined by the first four points, like this: <o:p></o:p>
+                      </span>
+                    </p>
+                    <p class="MsoNormal" style="">
+                      <span style="" lang="ES-TRAD">
+                        <o:p>&nbsp;</o:p>
+                      </span>
+                      <br>
+                      <span style="color: black; font-family: monospace;">p1 = [0 0 0]; <br> p2 = [2 0 0]; <br> p3 = [2 4 0]; <br> p4 = [0 4 0]; <span style="">&nbsp;</span>
+                      </span>
+                      <span style="font-size: 12pt; font-family: monospace;">
+                        <o:p></o:p>
+                      </span>
+                    </p>
+                    <p class="MsoNormal" style="font-family: monospace;">
+                      <span style="color: black;">x = [p1(1) p2(1) p3(1) p4(1)]; <br> y = [p1(2) p2(2) p3(2) p4(2)]; <br> z = [p1(3) p2(3) p3(3) p4(3)]; </span>
+                      <span style="font-size: 12pt;">
+                        <o:p></o:p>
+                      </span>
+                    </p>
+                    <p class="MsoNormal" style="">
+                      <span style="color: black; font-family: monospace;">fill3(x, y, z, 1); <br> xlabel( </span>
+                      <span style="color: rgb(160, 32, 240); font-family: monospace;">'x'</span>
+                      <span style="color: black; font-family: monospace;">); ylabel(</span>
+                      <span style="color: rgb(160, 32, 240); font-family: monospace;">'y'</span>
+                      <span style="color: black; font-family: monospace;">); zlabel(</span>
+                      <span style="color: rgb(160, 32, 240); font-family: monospace;">'z'</span>
+                      <span style="color: black; font-family: monospace;">); </span>
+                      <span style="color: forestgreen; font-family: monospace;">
+                        <span style="">&nbsp;</span>
+                      </span>
+                      <span style="font-size: 12pt;">
+                        <o:p>
+                          <br> &nbsp;
+                        </o:p>
+                      </span>
+                    </p>
+                    <p class="MsoNormal">The code produces this figure:</p>
+                    <p class="MsoNormal">
+                      <o:p>&nbsp;</o:p>
+                    </p>
+                    <p class="MsoNormal" style="text-align: center;" align="center">
+                      <!--[if gte vml 1]>
+																																						<v:shape
 id="_x0000_i1025" type="#_x0000_t75" style='width:271.5pt;height:177pt'>
-<v:imagedata src="file:///C:\DOCUME~1\Jorge\CONFIG~1\Temp\msohtml1\01\clip_image002.emz"
+																																							<v:imagedata src="file:///C:\DOCUME~1\Jorge\CONFIG~1\Temp\msohtml1\01\clip_image002.emz"
 o:title="" croptop="11618f" cropbottom="1356f" cropleft="1858f" cropright="3229f"/>
-</v:shape><![endif]--><!--[if !vml]--><!--[endif]--><span style=""><o:p></o:p></span><img style="width: 366px; height: 231px;" alt="First plane of the 3D polygon" src="http://www.matrixlab-examples.com/image-files/3d-polygon-002.gif"></p>
-<p class="MsoNormal"><span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
-<p class="MsoNormal"><span style="" lang="ES-TRAD">We can
-expand our axes, add a grid and hold the image in order to add more
-planes...<o:p>&nbsp;</o:p></span></p>
-<p class="MsoNormal"><span style="color: black; font-family: monospace;">axis([-1
-3 -1 5 -1 4])<br>
-grid<br>
-hold </span><span style="color: rgb(160, 32, 240); font-family: monospace;">on</span><br>
-<span style="" lang="ES-TRAD"><o:p>&nbsp;</o:p></span></p>
-<p class="MsoNormal"><span style="" lang="ES-TRAD">produces...<o:p></o:p></span></p>
-<p class="MsoNormal" style="text-align: center;" align="center"><!--[if gte vml 1]><v:shape
+																																						</v:shape>
+																																						<![endif]-->
+                      <!--[if !vml]-->
+                      <!--[endif]-->
+                      <span style="">
+                        <o:p></o:p>
+                      </span>
+                      <img style="width: 366px; height: 231px;" alt="First plane of the 3D polygon" src="http://www.matrixlab-examples.com/image-files/3d-polygon-002.gif">
+                    </p>
+                    <p class="MsoNormal">
+                      <span style="" lang="ES-TRAD">
+                        <o:p>&nbsp;</o:p>
+                      </span>
+                    </p>
+                    <p class="MsoNormal">
+                      <span style="" lang="ES-TRAD">We can expand our axes, add a grid and hold the image in order to add more planes... <o:p>&nbsp;</o:p>
+                      </span>
+                    </p>
+                    <p class="MsoNormal">
+                      <span style="color: black; font-family: monospace;">axis([-1 3 -1 5 -1 4]) <br> grid <br> hold </span>
+                      <span style="color: rgb(160, 32, 240); font-family: monospace;">on</span>
+                      <br>
+                      <span style="" lang="ES-TRAD">
+                        <o:p>&nbsp;</o:p>
+                      </span>
+                    </p>
+                    <p class="MsoNormal">
+                      <span style="" lang="ES-TRAD">produces... <o:p></o:p>
+                      </span>
+                    </p>
+                    <p class="MsoNormal" style="text-align: center;" align="center">
+                      <!--[if gte vml 1]>
+																																										<v:shape
 id="_x0000_i1026" type="#_x0000_t75" style='width:265.5pt;height:201pt'>
-<v:imagedata src="file:///C:\DOCUME~1\Jorge\CONFIG~1\Temp\msohtml1\01\clip_image004.emz"
+																																											<v:imagedata src="file:///C:\DOCUME~1\Jorge\CONFIG~1\Temp\msohtml1\01\clip_image004.emz"
 o:title="" croptop="3833f" cropbottom="1946f" cropleft="3140f" cropright="3229f"/>
-</v:shape><![endif]--><!--[if !vml]--><!--[endif]--><img style="width: 357px; height: 270px;" alt="plane drawn with Matlab. Axex expanded." src="http://www.matrixlab-examples.com/image-files/3d-polygon-003.gif"></p>
-<p class="MsoNormal" style="text-align: center;" align="center"><o:p>&nbsp;</o:p></p>
-<p class="MsoNormal">We can draw a second
-surface or plane defined by the last
-four vertices:</p>
-<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
-<span style="font-family: monospace;">p5 = [0
-0 3];</span><br style="font-family: monospace;">
-<span style="font-family: monospace;">p6 = [2
-0 3];</span><br style="font-family: monospace;">
-<span style="font-family: monospace;">p7 = [2
-4 3];</span><br style="font-family: monospace;">
-<span style="font-family: monospace;">p8 = [0
-4 3];</span><o:p style="font-family: monospace;"></o:p></p>
-<p class="MsoNormal"><span style="font-family: monospace;">&nbsp;</span><br style="font-family: monospace;">
-<span style="font-family: monospace;">x =
-[p5(1) p6(1) p7(1) p8(1)];</span><br style="font-family: monospace;">
-<span style="font-family: monospace;">y =
-[p5(2) p6(2) p7(2) p8(2)];</span><br style="font-family: monospace;">
-<span style="font-family: monospace;">z =
-[p5(3) p6(3) p7(3) p8(3)];</span><br style="font-family: monospace;">
-<span style="font-family: monospace;">fill3(x,
-y, z, 2);</span><span style="font-size: 12pt; font-family: monospace;"><o:p></o:p></span><br>
-<o:p>&nbsp;</o:p></p>
-<p class="MsoNormal">And the result now is:</p>
-<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class="MsoNormal" style="text-align: center;" align="center"><!--[if gte vml 1]><v:shape
+																																										</v:shape>
+																																										<![endif]-->
+                      <!--[if !vml]-->
+                      <!--[endif]-->
+                      <img style="width: 357px; height: 270px;" alt="plane drawn with Matlab. Axex expanded." src="http://www.matrixlab-examples.com/image-files/3d-polygon-003.gif">
+                    </p>
+                    <p class="MsoNormal" style="text-align: center;" align="center">
+                      <o:p>&nbsp;</o:p>
+                    </p>
+                    <p class="MsoNormal">We can draw a second surface or plane defined by the last four vertices:</p>
+                    <p class="MsoNormal">
+                      <o:p>&nbsp;</o:p>
+                      <br>
+                      <span style="font-family: monospace;">p5 = [0 0 3];</span>
+                      <br style="font-family: monospace;">
+                      <span style="font-family: monospace;">p6 = [2 0 3];</span>
+                      <br style="font-family: monospace;">
+                      <span style="font-family: monospace;">p7 = [2 4 3];</span>
+                      <br style="font-family: monospace;">
+                      <span style="font-family: monospace;">p8 = [0 4 3];</span>
+                      <o:p style="font-family: monospace;"></o:p>
+                    </p>
+                    <p class="MsoNormal">
+                      <span style="font-family: monospace;">&nbsp;</span>
+                      <br style="font-family: monospace;">
+                      <span style="font-family: monospace;">x = [p5(1) p6(1) p7(1) p8(1)];</span>
+                      <br style="font-family: monospace;">
+                      <span style="font-family: monospace;">y = [p5(2) p6(2) p7(2) p8(2)];</span>
+                      <br style="font-family: monospace;">
+                      <span style="font-family: monospace;">z = [p5(3) p6(3) p7(3) p8(3)];</span>
+                      <br style="font-family: monospace;">
+                      <span style="font-family: monospace;">fill3(x, y, z, 2);</span>
+                      <span style="font-size: 12pt; font-family: monospace;">
+                        <o:p></o:p>
+                      </span>
+                      <br>
+                      <o:p>&nbsp;</o:p>
+                    </p>
+                    <p class="MsoNormal">And the result now is:</p>
+                    <p class="MsoNormal">
+                      <o:p>&nbsp;</o:p>
+                    </p>
+                    <p class="MsoNormal" style="text-align: center;" align="center">
+                      <!--[if gte vml 1]>
+																																																				<v:shape
 id="_x0000_i1027" type="#_x0000_t75" style='width:264pt;height:204.75pt'>
-<v:imagedata src="file:///C:\DOCUME~1\Jorge\CONFIG~1\Temp\msohtml1\01\clip_image006.emz"
+																																																					<v:imagedata src="file:///C:\DOCUME~1\Jorge\CONFIG~1\Temp\msohtml1\01\clip_image006.emz"
 o:title="" croptop="3067f" cropbottom="1474f" cropleft="3140f" cropright="3671f"/>
-</v:shape><![endif]--><!--[if !vml]--><img style="width: 355px; height: 270px;" alt="Parallel surfaces for our box in Matlab." src="http://www.matrixlab-examples.com/image-files/3d-polygon-004.gif" v:shapes="_x0000_i1027"><!--[endif]--></p>
-<p class="MsoNormal" style="text-align: center;" align="center"><o:p>&nbsp;</o:p></p>
-<p class="MsoNormal">We can add more surfaces
-by connecting the appropriate
-vertices, in the correct order. If we continue our code above with</p>
-<p style="font-family: monospace;" class="MsoNormal">x = [p2(1) p6(1) p7(1) p3(1)];<br>
-y = [p2(2) p6(2) p7(2) p3(2)];<br>
-z = [p2(3) p6(3) p7(3) p3(3)];<br>
-fill3(x, y, z, 3);<br>
-<o:p>&nbsp;</o:p></p>
-<p style="font-family: monospace;" class="MsoNormal">x = [p2(1) p6(1) p5(1) p1(1)];<br>
-y = [p2(2) p6(2) p5(2) p1(2)];<br>
-z = [p2(3) p6(3) p5(3) p1(3)];<br>
-fill3(x, y, z, 4);</p>
-<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class="MsoNormal">The resulting 3D-image is
-the following figure:</p>
-<p class="MsoNormal" style="text-align: center;" align="center"><!--[if gte vml 1]><v:shape
+																																																				</v:shape>
+																																																				<![endif]-->
+                      <!--[if !vml]-->
+                      <img style="width: 355px; height: 270px;" alt="Parallel surfaces for our box in Matlab." src="http://www.matrixlab-examples.com/image-files/3d-polygon-004.gif" v:shapes="_x0000_i1027">
+                      <!--[endif]-->
+                    </p>
+                    <p class="MsoNormal" style="text-align: center;" align="center">
+                      <o:p>&nbsp;</o:p>
+                    </p>
+                    <p class="MsoNormal">We can add more surfaces by connecting the appropriate vertices, in the correct order. If we continue our code above with</p>
+                    <p style="font-family: monospace;" class="MsoNormal">x = [p2(1) p6(1) p7(1) p3(1)]; <br> y = [p2(2) p6(2) p7(2) p3(2)]; <br> z = [p2(3) p6(3) p7(3) p3(3)]; <br> fill3(x, y, z, 3); <br>
+                      <o:p>&nbsp;</o:p>
+                    </p>
+                    <p style="font-family: monospace;" class="MsoNormal">x = [p2(1) p6(1) p5(1) p1(1)]; <br> y = [p2(2) p6(2) p5(2) p1(2)]; <br> z = [p2(3) p6(3) p5(3) p1(3)]; <br> fill3(x, y, z, 4); </p>
+                    <p class="MsoNormal">
+                      <o:p>&nbsp;</o:p>
+                    </p>
+                    <p class="MsoNormal">The resulting 3D-image is the following figure:</p>
+                    <p class="MsoNormal" style="text-align: center;" align="center">
+                      <!--[if gte vml 1]>
+																																																												<v:shape
 id="_x0000_i1028" type="#_x0000_t75" style='width:267.75pt;height:201pt'>
-<v:imagedata src="file:///C:\DOCUME~1\Jorge\CONFIG~1\Temp\msohtml1\01\clip_image008.emz"
+																																																													<v:imagedata src="file:///C:\DOCUME~1\Jorge\CONFIG~1\Temp\msohtml1\01\clip_image008.emz"
 o:title="" croptop="3833f" cropbottom="1946f" cropleft="2698f" cropright="3229f"/>
-</v:shape><![endif]--><!--[if !vml]--><!--[endif]--><img style="width: 356px; height: 274px;" alt="4 faces of the box. 3D images" src="http://www.matrixlab-examples.com/image-files/3d-polygon-005.gif"></p>
-<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
-We can produce or generate different views of the same
-3D-image, of course:</p>
-<p class="MsoNormal"><span style="font-family: monospace;">view(120, 50)</span><br>
-<o:p>&nbsp;</o:p></p>
-<div style="text-align: center;"><img style="width: 361px; height: 278px;" alt="a different view of our 3D polygon" src="http://www.matrixlab-examples.com/image-files/3d-polygon-006.gif">
-</div>
-<p class="MsoNormal"><o:p>&nbsp;</o:p><br>
-Naturally, we can have&nbsp;a custom-made function to draw
-rectangles. For example, save something like this:<br>
-<o:p>&nbsp;</o:p></p>
-<p class="MsoNormal"><span style="color: blue; font-family: monospace;">function</span><span style="color: black; font-family: monospace;">
-poly_rectangle(p1, p2, p3, p4)</span><br style="font-family: monospace;">
-<span style="color: forestgreen; font-family: monospace;">%
-The points must be in the correct sequence.<br>
-%
-The coordinates must consider x, y and z-axes.</span><br style="font-family: monospace;">
-<span style="font-family: monospace;">x =
-[p1(1) p2(1) p3(1) p4(1)];</span><br style="font-family: monospace;">
-<span style="font-family: monospace;">y =
-[p1(2) p2(2) p3(2) p4(2)];</span><br style="font-family: monospace;">
-<span style="font-family: monospace;">z =
-[p1(3) p2(3) p3(3) p4(3)];</span><br style="font-family: monospace;">
-<span style="font-family: monospace;">fill3(x,
-y, z, rand(size(p1)));</span><br style="font-family: monospace;">
-<span style="font-family: monospace;">hold on</span><br>
-<o:p>&nbsp;</o:p></p>
-<p class="MsoNormal">We can call that function
-from any other script or from the
-command window.</p>
-<p class="MsoNormal">Let&#8217;s try it:</p>
-<p class="MsoNormal"><span style="font-family: monospace;">poly_rectangle(p3, p4, p8,
-p7)</span><br style="font-family: monospace;">
-<span style="font-family: monospace;">poly_rectangle(p1,
-p4, p8, p5)</span><br style="font-family: monospace;">
-<span style="font-family: monospace;">view(-155,
-43)</span><o:p style="font-family: monospace;"></o:p><br>
-</p>
-<p class="MsoNormal">What did you get?</p>
-<p class="MsoNormal"></p>
-<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From '3D
-Polygon' to Matlab home</a><br style="font-weight: bold;">
-<br style="font-weight: bold;">
-<span style="font-weight: bold;">&nbsp;</span><a style="font-weight: bold;" href="http://www.matrixlab-examples.com/3D-plot-2tier.html" onclick="return FIX.track(this);">From
-'3D Polygon' to 3D figures</a><br>
-&nbsp;<br>
-<table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
-<tbody>
-<tr>
-<td style="width: 344px; vertical-align: top;"><!-- start: SSI z-ads336x280.shtml --><!--
---><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
-     crossorigin="anonymous"></script><!--
---><!-- end: SSI z-ads336x280.shtml --><br>
-</td>
-<td style="vertical-align: bottom; text-align: right; font-weight: bold;"><a href="#3D_Polygon_-_draw_planes_with_Matlab">Top</a></td>
-</tr>
-</tbody>
-</table>
-<br>
-<br> <!-- start: tool_blocks.socializeit -->
-<div id="socializeit_" class="js-socializeit"></div>
-        <script type="text/javascript">  var https_page;
-        var socializeit_options = socializeit_options || [];
-        socializeit_options.push({
-          el_id: "socializeit_",
-          pack:1, 
-          domain: "matrixlab-examples.com", 
-          https_page: https_page,
-          share_horizontal_label: "Share this page:", 
-          share_sticky_label: "Share", 
-          payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...", 
-          payItExpanded: "", 
-          szColor: "#FFFF99",  
-          whatIsThisLabel: "What&rsquo;s this?",
-          whatIsThisUrl: "/help/whats-this.html",
-          background_color: "",  
-          version: 1,
-          display_variant: ""     });
-        </script><!-- end: tool_blocks.socializeit --><p align="center"><img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for 3d polygon page"><br>
-<br>
-<a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank"><img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif"></a></p>
-</td>
-<td style="vertical-align: top; background-color: rgb(224, 236, 255); width: 170px; text-align: right;"><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<!-- start: SSI 160x600.shtml --><!--
---><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750"
-     crossorigin="anonymous"></script><!--
---><!-- end: SSI 160x600.shtml --></td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-</tbody>
-</table> <!-- start: tool_blocks.sbi_html_body_end -->
-    <script>
-        var SS_PARAMS = {
-            pinterest_enabled:false,
-            googleplus1_on_page:false,
-            socializeit_onpage:true};
-    </script><style>.g-recaptcha{ display:inline-block;} .recaptcha_wrapper{text-align:center}</style>
-	    <script> if (typeof recaptcha_callbackings !== "undefined") { SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || [] }; </script><script>
-  (function(d,id){
-    if (d.getElementById(id)) {return;}
-    var s=d.createElement('script');s.async=true;s.defer=true;
-        s.src = "/ssjs/ldr.js";s.id=id; d.getElementsByTagName('head')[0].appendChild(s);
-   })(document,'_ss_ldr_script');
-  </script><!-- end: tool_blocks.sbi_html_body_end -->
-  
-<!-- Generated at 17:45:42 10-Aug-2021 -->
-</body></html>
+																																																												</v:shape>
+																																																												<![endif]-->
+                      <!--[if !vml]-->
+                      <!--[endif]-->
+                      <img style="width: 356px; height: 274px;" alt="4 faces of the box. 3D images" src="http://www.matrixlab-examples.com/image-files/3d-polygon-005.gif">
+                    </p>
+                    <p class="MsoNormal">
+                      <o:p>&nbsp;</o:p>
+                      <br> We can produce or generate different views of the same 3D-image, of course:
+                    </p>
+                    <p class="MsoNormal">
+                      <span style="font-family: monospace;">view(120, 50)</span>
+                      <br>
+                      <o:p>&nbsp;</o:p>
+                    </p>
+                    <div style="text-align: center;">
+                      <img style="width: 361px; height: 278px;" alt="a different view of our 3D polygon" src="http://www.matrixlab-examples.com/image-files/3d-polygon-006.gif">
+                    </div>
+                    <p class="MsoNormal">
+                      <o:p>&nbsp;</o:p>
+                      <br> Naturally, we can have&nbsp;a custom-made function to draw rectangles. For example, save something like this: <br>
+                      <o:p>&nbsp;</o:p>
+                    </p>
+                    <p class="MsoNormal">
+                      <span style="color: blue; font-family: monospace;">function</span>
+                      <span style="color: black; font-family: monospace;"> poly_rectangle(p1, p2, p3, p4)</span>
+                      <br style="font-family: monospace;">
+                      <span style="color: forestgreen; font-family: monospace;">% The points must be in the correct sequence. <br> % The coordinates must consider x, y and z-axes. </span>
+                      <br style="font-family: monospace;">
+                      <span style="font-family: monospace;">x = [p1(1) p2(1) p3(1) p4(1)];</span>
+                      <br style="font-family: monospace;">
+                      <span style="font-family: monospace;">y = [p1(2) p2(2) p3(2) p4(2)];</span>
+                      <br style="font-family: monospace;">
+                      <span style="font-family: monospace;">z = [p1(3) p2(3) p3(3) p4(3)];</span>
+                      <br style="font-family: monospace;">
+                      <span style="font-family: monospace;">fill3(x, y, z, rand(size(p1)));</span>
+                      <br style="font-family: monospace;">
+                      <span style="font-family: monospace;">hold on</span>
+                      <br>
+                      <o:p>&nbsp;</o:p>
+                    </p>
+                    <p class="MsoNormal">We can call that function from any other script or from the command window.</p>
+                    <p class="MsoNormal">Let&#8217;s try it:</p>
+                    <p class="MsoNormal">
+                      <span style="font-family: monospace;">poly_rectangle(p3, p4, p8, p7)</span>
+                      <br style="font-family: monospace;">
+                      <span style="font-family: monospace;">poly_rectangle(p1, p4, p8, p5)</span>
+                      <br style="font-family: monospace;">
+                      <span style="font-family: monospace;">view(-155, 43)</span>
+                      <o:p style="font-family: monospace;"></o:p>
+                      <br>
+                    </p>
+                    <p class="MsoNormal">What did you get?</p>
+                    <p class="MsoNormal"></p>
+                    <span style="font-weight: bold;">&nbsp;</span>
+                    <a style="font-weight: bold;" href="http://www.matrixlab-examples.com/index.html" onclick="return FIX.track(this);">From '3D Polygon' to Matlab home</a>
+                    <br style="font-weight: bold;">
+                    <br style="font-weight: bold;">
+                    <span style="font-weight: bold;">&nbsp;</span>
+                    <a style="font-weight: bold;" href="http://www.matrixlab-examples.com/3D-plot-2tier.html" onclick="return FIX.track(this);">From '3D Polygon' to 3D figures</a>
+                    <br> &nbsp; <br>
+                    <table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+                      <tbody>
+                        <tr>
+                          <td style="width: 344px; vertical-align: top;">
+                            <!-- start: SSI z-ads336x280.shtml -->
+                            <!--
+-->
+                            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750" crossorigin="anonymous"></script>
+                            <!--
+-->
+                            <!-- end: SSI z-ads336x280.shtml -->
+                            <br>
+                          </td>
+                          <td style="vertical-align: bottom; text-align: right; font-weight: bold;">
+                            <a href="#3D_Polygon_-_draw_planes_with_Matlab">Top</a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <!-- start: tool_blocks.socializeit -->
+                    <div id="socializeit_" class="js-socializeit"></div>
+                    <script type="text/javascript">
+                      var https_page;
+                      var socializeit_options = socializeit_options || [];
+                      socializeit_options.push({
+                        el_id: "socializeit_",
+                        pack: 1,
+                        domain: "matrixlab-examples.com",
+                        https_page: https_page,
+                        share_horizontal_label: "Share this page:",
+                        share_sticky_label: "Share",
+                        payItText: "Enjoy this page?  Please pay it forward. Here&apos;s how...",
+                        payItExpanded: "",
+                        szColor: "#FFFF99",
+                        whatIsThisLabel: "What&rsquo;s this?",
+                        whatIsThisUrl: "/help/whats-this.html",
+                        background_color: "",
+                        version: 1,
+                        display_variant: ""
+                      });
+                    </script>
+                    <!-- end: tool_blocks.socializeit -->
+                    <p align="center">
+                      <img style="border: 0px solid ; width: 296px; height: 51px;" src="http://www.matrixlab-examples.com/image-files/copyright-matrixlab-001.gif" alt="footer for 3d polygon page">
+                      <br>
+                      <br>
+                      <a href="http://www.sitesell.com/magicispossible.html" onclick="return FIX.track(this);" rel="noopener nofollow" target="_blank">
+                        <img style="border: 0px solid ; width: 500px; height: 16px;" alt="" src="http://www.matrixlab-examples.com/imgs/powered-by-sbi-page-bottom.gif">
+                      </a>
+                    </p>
+                  </td>
+                  <td style="vertical-align: top; background-color: rgb(224, 236, 255); width: 170px; text-align: right;">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>undefined<br>undefined<br>undefined<br>undefined<br>undefined<br>undefined<br>undefined<br>undefined<br>undefined<br>undefined<br>undefined<br>undefined<br>undefined<br>undefined<br>undefined<br>undefined<br>undefined<br>undefined
+                    <!-- start: SSI 160x600.shtml -->undefined
+                    <!--
+-->undefined<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1500170575521750" crossorigin="anonymous"></script>undefined
+                    <!--
+-->undefined
+                    <!-- end: SSI 160x600.shtml -->undefined
+                  </td>undefined
+                </tr>undefined
+              </tbody>undefined
+            </table>undefined
+          </td>undefined
+        </tr>undefined
+      </tbody>undefined
+    </table>undefined
+    <!-- start: tool_blocks.sbi_html_body_end -->undefined<script>
+      var SS_PARAMS = {
+        pinterest_enabled: false,
+        googleplus1_on_page: false,
+        socializeit_onpage: true
+      };
+    </script>undefined<style>
+      .g-recaptcha {
+        display: inline-block;
+      }
+
+      .recaptcha_wrapper {
+        text-align: center
+      }
+    </style>undefined<script>
+      if (typeof recaptcha_callbackings !== "undefined") {
+        SS_PARAMS.recaptcha_callbackings = recaptcha_callbackings || []
+      };
+    </script>undefined<script>
+      (function(d, id) {
+        if (d.getElementById(id)) {
+          return;
+        }
+        var s = d.createElement('script');
+        s.async = true;
+        s.defer = true;
+        s.src = "/ssjs/ldr.js";
+        s.id = id;
+        d.getElementsByTagName('head')[0].appendChild(s);
+      })(document, '_ss_ldr_script');
+    </script>undefined
+    <!-- end: tool_blocks.sbi_html_body_end -->undefined
+    <!-- Generated at 17:45:42 10-Aug-2021 -->undefined
+  </body>undefined
+</html>
